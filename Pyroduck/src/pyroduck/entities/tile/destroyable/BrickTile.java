@@ -1,5 +1,7 @@
 package pyroduck.entities.tile.destroyable;
 
+import pyroduck.bomb.DirectionalExplosion;
+import pyroduck.entities.Entity;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
@@ -38,10 +40,18 @@ public class BrickTile extends DestroyableTile {
     public void render(Screen screen) {
         int x = Coordinates.tileToPixel(this.x);
         int y = Coordinates.tileToPixel(this.y);
-        if(destroyed) {
-            System.out.println("Destroyed");
-        }
-        else
+        if(!destroyed)
             screen.renderEntity( x, y, this);
-    }	
+        else{
+            sprite = movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1, Sprite.brick_exploded2);
+            screen.renderEntityWithBelowSprite(x, y, this, belowSprite);
+        }       
+    }
+    
+    @Override
+    public boolean collide(Entity e){
+        if (e instanceof DirectionalExplosion)
+            destroyed = true;
+        return true;
+    }
 }

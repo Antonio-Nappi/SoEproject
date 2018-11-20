@@ -77,6 +77,6 @@ public class Explosion extends Entity {
      */
     @Override
     public boolean collide(Entity e) {
-        return true;
+        return false;
     }
 }

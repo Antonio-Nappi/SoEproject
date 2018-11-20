@@ -15,7 +15,6 @@ import pyroduck.level.FileLevel;
 
 public class Board {
 
-    private int width, height;
     private FileLevel level;
     private final Keyboard input;
     private final Screen screen;
@@ -73,7 +72,7 @@ public class Board {
 
     @SuppressWarnings("static-access")
     private void resetProperties() {
-        Game.playerSpeed = 1.0;
+        Game.playerSpeed = 1.2;
         Game.bombRadius = 1;
         Game.bombRate = 1;	
     }

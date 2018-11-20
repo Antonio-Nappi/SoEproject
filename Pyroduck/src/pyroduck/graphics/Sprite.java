@@ -59,38 +59,48 @@ public class Sprite {
     public static Sprite bomb = new Sprite(3, 1, SpriteSheet.tiles, 32, 32);
     public static Sprite bomb_1 = new Sprite(4, 1, SpriteSheet.tiles, 32, 32);
     public static Sprite bomb_2 = new Sprite(5, 1, SpriteSheet.tiles, 32, 32);
+    
     /*
     |--------------------------------------------------------------------------
     | Explosion Sprites
     |--------------------------------------------------------------------------
      */
-    public static Sprite bomb_exploded = new Sprite(3, 2, SpriteSheet.tiles, 32, 32);
-    public static Sprite bomb_exploded1 = new Sprite(9, 2, SpriteSheet.tiles, 32, 32);
-    public static Sprite bomb_exploded2 = new Sprite(9, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite bomb_exploded = new Sprite(12, 1, SpriteSheet.tiles, 32, 32);
+    public static Sprite bomb_exploded1 = new Sprite(12, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite bomb_exploded2 = new Sprite(12, 3, SpriteSheet.tiles, 32, 32);
 
-    public static Sprite explosion_vertical = new Sprite(9, 1, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_vertical1 = new Sprite(9, 1, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_vertical2 = new Sprite(9, 1, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_vertical = new Sprite(6, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_vertical1 = new Sprite(7, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_vertical2 = new Sprite(8, 2, SpriteSheet.tiles, 32, 32);
 
-    public static Sprite explosion_horizontal = new Sprite(8, 2, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_horizontal1 = new Sprite(8, 2, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_horizontal2 = new Sprite(8, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_horizontal = new Sprite(10, 1, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_horizontal1 = new Sprite(10, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_horizontal2 = new Sprite(10, 3, SpriteSheet.tiles, 32, 32);
 
-    public static Sprite explosion_horizontal_left_last = new Sprite(7, 2, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_horizontal_left_last1 = new Sprite(7, 2, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_horizontal_left_last2 = new Sprite(7, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_horizontal_left_last = new Sprite(9, 1, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_horizontal_left_last1 = new Sprite(9, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_horizontal_left_last2 = new Sprite(9, 3, SpriteSheet.tiles, 32, 32);
 
-    public static Sprite explosion_horizontal_right_last = new Sprite(11, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_horizontal_right_last = new Sprite(11, 1, SpriteSheet.tiles, 32, 32);
     public static Sprite explosion_horizontal_right_last1 = new Sprite(11, 2, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_horizontal_right_last2 = new Sprite(11, 2, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_horizontal_right_last2 = new Sprite(11, 3, SpriteSheet.tiles, 32, 32);
 
-    public static Sprite explosion_vertical_top_last = new Sprite(9, 0, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_vertical_top_last1 = new Sprite(9, 0, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_vertical_top_last2 = new Sprite(9, 0, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_vertical_top_last = new Sprite(6, 1, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_vertical_top_last1 = new Sprite(7, 1, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_vertical_top_last2 = new Sprite(8, 1, SpriteSheet.tiles, 32, 32);
 
-    public static Sprite explosion_vertical_down_last = new Sprite(9, 4, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_vertical_down_last1 = new Sprite(9, 4, SpriteSheet.tiles, 32, 32);
-    public static Sprite explosion_vertical_down_last2 = new Sprite(9, 4, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_vertical_down_last = new Sprite(6, 3, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_vertical_down_last1 = new Sprite(7, 3, SpriteSheet.tiles, 32, 32);
+    public static Sprite explosion_vertical_down_last2 = new Sprite(8, 3, SpriteSheet.tiles, 32, 32);
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Brick Explosion
+    |--------------------------------------------------------------------------
+     */
+    public static Sprite brick_exploded = new Sprite(4, 0, SpriteSheet.tiles, 32, 32);
+    public static Sprite brick_exploded1 = new Sprite(5, 0, SpriteSheet.tiles, 32, 32);
+    public static Sprite brick_exploded2 = new Sprite(6, 0, SpriteSheet.tiles, 32, 32);
 
     public Sprite(int x, int y, SpriteSheet sheet, int rw, int rh) {
         pixels = new int[SIZE * SIZE];

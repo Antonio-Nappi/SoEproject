@@ -18,7 +18,7 @@ public class GamePanel extends JPanel {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width-420, Toolkit.getDefaultToolkit().getScreenSize().height-100));
         try {
-            game = new Game();
+            game = Game.getInstance();
             add(game);
             game.setVisible(true);
         } catch (PyroduckException e) {

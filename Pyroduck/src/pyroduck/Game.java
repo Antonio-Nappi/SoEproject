@@ -24,7 +24,7 @@ public class Game extends Canvas {
     //initial configs
     private static final int BOMBRATE = 1;
     private static final int BOMBRADIUS = 1;
-    private static final double PLAYERSPEED = 1.0;
+    private static final double PLAYERSPEED = 1.2;
 
     //can be modified with bonus
     protected static int bombRate = BOMBRATE;
@@ -34,6 +34,7 @@ public class Game extends Canvas {
     private final Keyboard input;
     private final Board board;
     private final Screen screen;
+    private static Game instance = null;
     private final Timer timer;
     //this will be used to render the game, each render is a calculated image saved here
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -41,7 +42,7 @@ public class Game extends Canvas {
     //Raster è una classe che rappresenta una matrice di pixel. Le immagini contenute nel buffer vengono estratte, e 
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
 
-    public Game() throws PyroduckException {
+    private Game() throws PyroduckException {
 
         timer = new Timer();
         this.screen = new Screen(WIDTH, HEIGHT);
@@ -49,11 +50,17 @@ public class Game extends Canvas {
         this.board = new Board(this.input, this.screen);
         addKeyListener(this.input);
     }
+    
+    public static Game getInstance() throws PyroduckException{
+        if (instance == null)
+            instance = new Game();
+        return instance;
+    }
 
     private void renderGame() { //render will run the maximum times it can per second
         BufferStrategy bs = getBufferStrategy(); //represents the mechanism with which to organize complex memory on a Canvas
         if(bs == null) { //if canvas dont have a bufferstrategy, create it
-            createBufferStrategy(3); //triple buffer
+            createBufferStrategy(1); //triple buffer
             return;
         }
         screen.clear();
@@ -116,6 +123,5 @@ public class Game extends Canvas {
             renderGame();
             update();
         }           
-    }
-    
+    }  
 }

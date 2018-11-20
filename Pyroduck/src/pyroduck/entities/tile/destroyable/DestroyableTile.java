@@ -1,5 +1,7 @@
 package pyroduck.entities.tile.destroyable;
 
+import pyroduck.bomb.DirectionalExplosion;
+import pyroduck.entities.Entity;
 import pyroduck.entities.tile.Tile;
 import pyroduck.graphics.Sprite;
 
@@ -53,13 +55,6 @@ public class DestroyableTile extends Tile {
     }
 
     /**
-     * Set the tile in the destroyed state.
-     */
-    public void destroy() {
-        destroyed = true;
-    }
-
-    /**
      * Add a sprite at the bottom level.
      * @param sprite added at the bottom level.
      */
@@ -83,5 +78,12 @@ public class DestroyableTile extends Tile {
             return x1;
         }
         return x2;
+    }
+    
+    @Override
+    public boolean collide(Entity e){
+        if(e instanceof DirectionalExplosion)
+            destroyed = true;
+        return true;
     }
 }
