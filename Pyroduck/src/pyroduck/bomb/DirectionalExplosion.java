@@ -6,8 +6,8 @@ import pyroduck.entities.mob.Mob;
 import pyroduck.graphics.Screen;
 
 /**
- * Represent the entity related at the explosion range. 
- * It is used to manage each direction in which a bomb can be explode and the collisions related. 
+ * Represent the related entity at the explosion range. 
+ * It is used to manage the range of explosion.
  * @author Bini, Petruzzello
  */
 public class DirectionalExplosion extends Entity {
@@ -19,7 +19,7 @@ public class DirectionalExplosion extends Entity {
     protected Explosion[] explosions;
 
     /**
-     * Costruisce un esplosione.
+     * Creates an explosion object setting each properties of the range.
      * @param x
      * @param y
      * @param direction
@@ -39,7 +39,7 @@ public class DirectionalExplosion extends Entity {
     }
 
     /**
-     * Genera l'esplosione che si propaga verticalmente e orizzontalmente al punto di esplosione.
+     * Generates an horizontal and vertical explosion.
      */
     private void createExplosions() {
         boolean last = false;
@@ -58,8 +58,8 @@ public class DirectionalExplosion extends Entity {
     }
 
     /**
-     * Restituisce il raggio di esposione in una determinata direzione.
-     * @return un intero relativo al raggio di esplosione in una determinata direzione.
+     * Return the range of the explosion in a certain position.
+     * @return the range of the explosion in a certain position.
      */
     private int calculatePermitedDistance() {
         int radius = 0;
@@ -81,6 +81,7 @@ public class DirectionalExplosion extends Entity {
     }
 
     /**
+     * Return an Explosion if it's happened an explosion in a certain point 
      * Resctituisce un Explosion se è avvenuta un esplosione in quello specifico punto.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
@@ -95,13 +96,13 @@ public class DirectionalExplosion extends Entity {
     }
 
     /**
-     * Metodo non implementato.
+     * Method not implemented.
      */
     @Override
     public void update() {}
 
     /**
-     * Invoca il metodo di screen che provede a stampare a video le varie esplosioni.
+     * Invokes the screen method that provide to show several explosion
      * @param screen on which the print is called.
      */
     @Override
@@ -112,10 +113,11 @@ public class DirectionalExplosion extends Entity {
     }
 
     /**
-     * Check if two entities can collide with each other.
+     * Checks if two entities can collide with each other.
+     * returns always false because the collision of mob with this object that provides the ...
      * Restituisce sempre false poichè la collisione di un mob con tale oggetto deve provocare il suo immobilizzamento.
      * @param e is the entity with which is checked the collision.
-     * @return false sempre
+     * @return always false
      */
     @Override
     public boolean collide(Entity e) {
