@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/bomb/DirectionalExplosion.java</file>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/entities/mob/Player.java</file>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/entities/mob/Mob.java</file>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/bomb/Explosion.java</file>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/bomb/Bomb.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/src/pyroduck/entities/tile/destroyable/BrickTile.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/src/pyroduck/bomb/DirectionalExplosion.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/src/pyroduck/input/Keyboard.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/test/pyroduck/bomb/BombTest.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/src/pyroduck/Game.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/test/pyroduck/bomb/DirectionalExplosionTest.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/test/pyroduck/level/CoordinatesTest.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/src/pyroduck/entities/Entity.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/test/pyroduck/level/FileLevelTest.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/test/pyroduck/entities/tile/destroyable/BrickTileTest.java</file>
+            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/SoEproject_GitHub/Pyroduck/src/pyroduck/entities/tile/destroyable/DestroyableTile.java</file>
         </group>
     </open-files>
 </project-private>

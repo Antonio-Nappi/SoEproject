@@ -21,8 +21,7 @@ public class LayeredEntity extends Entity {
      * @param y vertical coordinate.
      * @param entities array of variable lenght that contain the entities to overlap, the entities must be passed from the bottom to the top.
      */
-    public LayeredEntity(int x, int y, Entity ... entities) {      //... = significa che il metodo accetta una matrice di quel tipo di oggetti, ma quella matrice
-                                                                // viene creata automaticamente quando si passano diversi oggetti di quel tipo separati da virgole
+    public LayeredEntity(int x, int y, Entity ... entities) {
         this.x = x;
         this.y = y;
         for (int i = 0; i < entities.length; i++) {
@@ -35,7 +34,7 @@ public class LayeredEntity extends Entity {
     }
 
     /**
-     * It allow to update the state of layered entity checking if the top entity must be replaced by the bottom one.
+     * Allow to update the state of layered entity checking if the top entity must be replaced by the bottom one.
      */
     @Override
     public void update() {
@@ -53,7 +52,7 @@ public class LayeredEntity extends Entity {
     }
 
     /**
-     * Getter that release the top entity.
+     * Return the top entity.
      * @return the top entity.
      */
     public Entity getTopEntity() {      
