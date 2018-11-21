@@ -4,7 +4,7 @@
 package pyroduck.entities;
 
 /**
- ** It adds some features at the entities which have different animation.
+ * It adds some features at the entities which have different animation.
  * It is used to manage all the animation for each animated entity.
  * @author 
  * @version 1.0
