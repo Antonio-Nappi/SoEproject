@@ -24,7 +24,7 @@ public class Game extends Canvas {
     //initial configs
     private static final int BOMBRATE = 1;
     private static final int BOMBRADIUS = 1;
-    private static final double PLAYERSPEED = 1.2;
+    private static final double PLAYERSPEED = 1.3;
 
     //can be modified with bonus
     protected static int bombRate = BOMBRATE;
@@ -96,14 +96,13 @@ public class Game extends Canvas {
 		playerSpeed += i;
 	}
 	
-    public static void decreasePlayerSpeed(double i) {
-                double p=playerSpeed;
-		playerSpeed = playerSpeed -i;
-                if(playerSpeed<0.4){
-                    playerSpeed=p;
-                }
-	}
-    
+    public static void decreasePlayerSpeed(double i) {        
+        double p=playerSpeed;
+        playerSpeed = playerSpeed -i;
+        if(playerSpeed<0.8){
+            playerSpeed=p;
+        }
+    }
 	
     /*
     |--------------------------------------------------------------------------
