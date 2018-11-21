@@ -14,7 +14,7 @@ import pyroduck.input.Keyboard;
 
 /**
  *
- * @author stefa
+ * @author 
  */
 public class BrickTileTest {
     
