@@ -91,6 +91,19 @@ public class Game extends Canvas {
     public static void addBombRadius(int i) {
         bombRadius += i;
     }
+    
+    public static void addPlayerSpeed(double i) {
+		playerSpeed += i;
+	}
+	
+    public static void decreasePlayerSpeed(double i) {
+                double p=playerSpeed;
+		playerSpeed = playerSpeed -i;
+                if(playerSpeed<0.4){
+                    playerSpeed=p;
+                }
+	}
+    
 	
     /*
     |--------------------------------------------------------------------------

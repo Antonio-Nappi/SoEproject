@@ -101,6 +101,17 @@ public class Sprite {
     public static Sprite brick_exploded = new Sprite(4, 0, SpriteSheet.tiles, 32, 32);
     public static Sprite brick_exploded1 = new Sprite(5, 0, SpriteSheet.tiles, 32, 32);
     public static Sprite brick_exploded2 = new Sprite(6, 0, SpriteSheet.tiles, 32, 32);
+  
+       /*
+    |--------------------------------------------------------------------------
+    | Powerup
+    |--------------------------------------------------------------------------
+     */
+    
+    public static Sprite powerup_bombs = new Sprite(1, 3, SpriteSheet.tiles, 32, 32);
+    public static Sprite powerup_flames = new Sprite(1, 4, SpriteSheet.tiles, 32, 32);
+    public static Sprite powerup_speed = new Sprite(2, 1, SpriteSheet.tiles, 32, 32);
+    public static Sprite powerup_slow = new Sprite(3, 0, SpriteSheet.tiles, 32, 32);
 
     public Sprite(int x, int y, SpriteSheet sheet, int rw, int rh) {
         pixels = new int[SIZE * SIZE];

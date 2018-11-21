@@ -4,7 +4,7 @@
 # # # #*# # #*#*# # # #*#*#*# #
 #   *     ***  *      *   * * #
 # # # # # #*# # #*#*# # # # #*#
-#f         x **1 *  *  1     1#
+#f  b  s  o  x*1 *  *  1     1#
 # # # # # # # # # #*#1#*# # # #
 #*  *      *  *      *        #
 # # # # #*# # # #*#*# # # # # #
@@ -30,3 +30,4 @@ Powerups:
 b - Powerup Bombs
 f - Powerup Flames
 s - Powerup Speed
+o - Malus decrease speed

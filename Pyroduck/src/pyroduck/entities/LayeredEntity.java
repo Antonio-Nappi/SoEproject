@@ -72,6 +72,10 @@ public class LayeredEntity extends Entity {
             entities.removeLast();
         }
     }
+    
+    public void addBeforeTop(Entity e) {
+		entities.add(entities.size() - 1, e);
+	}
 
     /**
      * Check if the top entity can collide with the one passed as a parameter.
