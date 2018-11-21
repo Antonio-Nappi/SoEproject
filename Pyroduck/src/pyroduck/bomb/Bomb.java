@@ -24,9 +24,9 @@ public class Bomb extends AnimatedEntity {
     protected boolean exploded = false;
 
     /**
-     * Constructor creates an instance of the Bomb.
-     * @param x horizontal coordinate.
-     * @param y vertical coordinate.
+     * Creates an instance of the Bomb.
+     * @param x horizontal coordinate of the bomb.
+     * @param y vertical coordinate of the bomb.
      * @param board ...
      */
     public Bomb(int x, int y,Board board) {
@@ -37,8 +37,9 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * It allow to update the state of bomb to check if it is change something.
-     * In particulary it updates the animation, checks if the explosion timer is expired and commands the explosion and removal.
+     * Allows to update the state of bomb to check if something is changed.
+     * Particularly it updates the animation and it checks if the explosion timer is expired. In addition
+     * it calls explosion and remove.
      */
     @Override
     public void update() {
@@ -56,7 +57,7 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * Check which animation must be appear on the screen and invoke the method for the screen print.
+     * Checks which animation must appear on the screen. It also invokes the method to print on the scree.
      * @param screen screen on which the print is called. 
      */
     @Override
@@ -72,7 +73,7 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * Command the print of each tile related at the explosion range.
+     * Cares about printing of each interested tile in the explosion.
      * @param screen 
      */
     public void renderExplosions(Screen screen) {
@@ -82,7 +83,7 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * Manage the bomb explosion creating new DirectionalExplosion.
+     * Manages the bomb explosion creating new DirectionalExplosion.
      */
     protected void explosion() {
         allowedToPassThru = false;
@@ -94,7 +95,7 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * Check if an explosion occurred in a certain position.
+     * Checks if an explosion is happend in a certain position.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @return the Explosion object present in a (x,y) coordinates.
@@ -113,7 +114,7 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * Check if the bomb is exploded.
+     * Checks if the bomb is exploded.
      * @return true if the bomb is exploded, false otherwise.
      */
     public boolean isExploded() {
@@ -121,9 +122,9 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * Check if an entity can overlap with the bomb.
-     * @param e entity with which must be check the collision.
-     * @return true if the entity can overlap with the bomb, false otherwise.
+     * Checks if an entity can overlap the bomb.
+     * @param e entity which must be checked for the collision.
+     * @return true if the entity can overlap the bomb, false otherwise.
      */
     @Override
     public boolean collide(Entity e) {

@@ -37,7 +37,7 @@ public class Screen {
     }
 
     // Questa classe riempie i pixel della schermata relativi a ciascuna entità
-    // per farlo utilla come variabili:
+    // per farlo utilizza come variabili:
     // - xp, yp: posizioni iniziali alle quali aggiungere l'entita (angolo in basso a destra);
     // - xOffset, yOffset: dimensioni width e height dell'entità;
     // - x, y: posizione relativa all'interno dell'entità;

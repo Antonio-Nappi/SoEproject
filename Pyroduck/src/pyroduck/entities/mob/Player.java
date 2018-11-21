@@ -24,7 +24,7 @@ public class Player extends Mob {
     protected Keyboard input;
     private List<Bomb> bombs = null;
     protected int timeBetweenPutBombs = 0;
-    public static List<Powerup> _powerups = new ArrayList<Powerup>();
+    public static List<Powerup> powerups = new ArrayList<Powerup>();
 
     /**
      * Constructor creates an instance of the player.
@@ -198,18 +198,15 @@ public class Player extends Mob {
     }
     
      /*
-	|--------------------------------------------------------------------------
-	| Powerups
-	|--------------------------------------------------------------------------
-	 */
-	public void addPowerup(Powerup p) {
-		if(p.isRemoved()) return;
-		System.out.println("CIAOOO");
-		_powerups.add(p);
-		p.setValues();
-                
-	}
-    
-        
- 
+    |--------------------------------------------------------------------------
+    | Powerups
+    |--------------------------------------------------------------------------
+     */
+    public void addPowerup(Powerup p) {
+        if(p.isRemoved()) 
+            return;
+        powerups.add(p);
+        p.setValues();
+
+    }
 }

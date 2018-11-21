@@ -92,66 +92,50 @@ public class FileLevel{
                                 new GrassTile(x ,y, Sprite.grass), 
                                 new BrickTile(x ,y, Sprite.brick)));
                 break;
-            case 'x': 
-                board.addEntity(pos, new LayeredEntity(x, y, 
-                                new GrassTile(x ,y, Sprite.grass),
-                                new BrickTile(x ,y, Sprite.brick)));
-                break;
             case ' ': 
                 board.addEntity(pos, new GrassTile(x, y, Sprite.grass));
                 break;
             case 'p': 
                 board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                 Screen.setOffset(0, 0);
-
                 board.addEntity(pos, new GrassTile(x, y, Sprite.grass));
                 break;
+            case 'f':
+                LayeredEntity layer = new LayeredEntity(x, y, 
+                                        new GrassTile(x ,y, Sprite.grass), 
+                                        new BrickTile(x ,y, Sprite.brick));
+                if(board.isPowerupUsed(x, y) == false) {
+                    layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));
+                }				
+                board.addEntity(pos, layer);
+                break;  
+            case 'b':
+                LayeredEntity layer2 = new LayeredEntity(x, y, 
+                                        new GrassTile(x ,y, Sprite.grass), 
+                                        new BrickTile(x ,y, Sprite.brick));
+                if(board.isPowerupUsed(x, y) == false) {
+                    layer2.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));
+                }				
+                board.addEntity(pos, layer2);
+                break;
+            case 's':
+                LayeredEntity layer3 = new LayeredEntity(x, y, 
+                                        new GrassTile(x ,y, Sprite.grass), 
+                                        new BrickTile(x ,y, Sprite.brick));
+                if(board.isPowerupUsed(x, y) == false) {
+                    layer3.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));
+                }				
+                board.addEntity(pos, layer3);
+                break;
+            case 'o':
+                LayeredEntity layer4 = new LayeredEntity(x, y, 
+                                        new GrassTile(x ,y, Sprite.grass),
+                                        new PowerupSlow(x, y, Sprite.powerup_slow));
+                board.addEntity(pos, layer4);
+                break; 
             default: 
                 board.addEntity(pos, new GrassTile(x, y, Sprite.grass));
                 break;
-              case 'f':
-				LayeredEntity layer = new LayeredEntity(x, y, 
-						new GrassTile(x ,y, Sprite.grass), 
-						new BrickTile(x ,y, Sprite.brick));
-                                              
-				if(board.isPowerupUsed(x, y) == false) {
-				    layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));
-				}
-//				
-				board.addEntity(pos, layer);
-				break;
-                
-            case 'b':
-				LayeredEntity layer2 = new LayeredEntity(x, y, 
-						new GrassTile(x ,y, Sprite.grass), 
-						new BrickTile(x ,y, Sprite.brick));
-				if(board.isPowerupUsed(x, y) == false) {
-					layer2.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));
-				}
-//				
-				board.addEntity(pos, layer2);
-				break;
-            case 's':
-				LayeredEntity layer3 = new LayeredEntity(x, y, 
-						new GrassTile(x ,y, Sprite.grass), 
-						new BrickTile(x ,y, Sprite.brick));
-				if(board.isPowerupUsed(x, y) == false) {
-					layer3.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));
-				}
-//				
-				board.addEntity(pos, layer3);
-				break;
-              case 'o':
-				LayeredEntity layer4 = new LayeredEntity(x, y, 
-						new GrassTile(x ,y, Sprite.grass), 
-//						new BrickTile(x ,y, Sprite.brick));
-                                                new PowerupSlow(x, y, Sprite.powerup_slow));
-//				if(board.isPowerupUsed(x, y) == false) {
-//					layer.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));
-//				}
-//				
-				board.addEntity(pos, layer4);
-				break; 
         }
     }
     
