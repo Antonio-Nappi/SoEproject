@@ -22,7 +22,7 @@ import pyroduck.level.Coordinates;
 public class Player extends Mob {
 	
     protected Keyboard input;
-    private List<Bomb> bombs = null;
+    protected List<Bomb> bombs = null;
     protected int timeBetweenPutBombs = 0;
     public static List<Powerup> powerups = new ArrayList<Powerup>();
 

@@ -48,7 +48,7 @@ public class GameTest {
     public void testGetInstance() throws Exception {
         System.out.println("getInstance");
         Game result = Game.getInstance();
-        assertEquals(game, result);
+        assertSame(game, result);
     }
 
     /**
