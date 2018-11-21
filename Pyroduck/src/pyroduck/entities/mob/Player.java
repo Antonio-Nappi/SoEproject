@@ -54,7 +54,7 @@ public class Player extends Mob {
         if(timeBetweenPutBombs < -7500) 
             timeBetweenPutBombs = 0; 
         else 
-            timeBetweenPutBombs--;
+            --timeBetweenPutBombs;
         animate();
         calculateMove();
         detectPlaceBomb();
