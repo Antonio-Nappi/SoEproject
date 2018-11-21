@@ -16,6 +16,14 @@ public class Explosion extends Entity {
     protected Board board;
     protected Sprite sprite1, sprite2;
 
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param direction
+     * @param last
+     * @param board 
+     */
     public Explosion(int x, int y, int direction, boolean last, Board board) {
         this.x = x;
         this.y = y;
