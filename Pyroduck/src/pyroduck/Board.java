@@ -72,7 +72,7 @@ public class Board {
 
     @SuppressWarnings("static-access")
     private void resetProperties() {
-        Game.playerSpeed = 1.2;
+        Game.playerSpeed = 1.3;
         Game.bombRadius = 1;
         Game.bombRate = 1;	
     }

@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/bomb/DirectionalExplosion.java</file>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/entities/mob/Player.java</file>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/entities/mob/Mob.java</file>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/bomb/Explosion.java</file>
-            <file>file:/C:/Users/stefa/Documents/NetBeansProjects/Pyroduck/src/pyroduck/bomb/Bomb.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/test/pyroduck/entities/mob/PlayerTest.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/mob/Player.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/graphics/Screen.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/test/pyroduck/level/FileLevelTest.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/tile/powerup/Powerup.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/tile/powerup/PowerupBombs.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/AnimatedEntity.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/Board.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/Game.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/mob/Mob.java</file>
         </group>
     </open-files>
 </project-private>

@@ -203,10 +203,10 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     public void addPowerup(Powerup p) {
-        if(p.isRemoved()) 
-            return;
-        powerups.add(p);
-        p.setValues();
+        if(!p.isRemoved()) {     
+            powerups.add(p);
+            p.setValues();
+        }
 
     }
 }
