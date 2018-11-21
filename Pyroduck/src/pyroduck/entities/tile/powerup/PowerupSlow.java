@@ -1,13 +1,14 @@
 package pyroduck.entities.tile.powerup;
 
 import pyroduck.Game;
+import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.graphics.Sprite;
 
 /**
  *
- * @author 
+ * @author La Femina, Petruzzello
  */
 public class PowerupSlow extends Powerup {
 
@@ -17,6 +18,8 @@ public class PowerupSlow extends Powerup {
 
     @Override
     public boolean collide(Entity e) {
+        if(e instanceof DirectionalExplosion)
+            destroyed = true;
         if(e instanceof Player) {
             ((Player) e).addPowerup(this);
             remove();

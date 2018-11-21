@@ -1,13 +1,13 @@
 package pyroduck.entities.tile.powerup;
 
-import pyroduck.entities.tile.Tile;
+import pyroduck.entities.tile.destroyable.DestroyableTile;
 import pyroduck.graphics.Sprite;
 
 /**
  *
- * @author
+ * @author La Femina, Petruzzello
  */
-public abstract class Powerup extends Tile {
+public abstract class Powerup extends DestroyableTile {
 
     protected boolean active = false;
 
