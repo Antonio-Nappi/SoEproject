@@ -1,6 +1,3 @@
-/*
- * THIS CLASS EXTENDS "ENTITY" AND CREATE AN ARRAY OF ALL ENTITY THAT WILL BE IN THE LEVEL
- */
 package pyroduck.entities;
 
 import java.util.LinkedList;
