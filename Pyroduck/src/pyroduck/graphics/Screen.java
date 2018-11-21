@@ -35,12 +35,12 @@ public class Screen {
         }
     }
 
-    // Questa classe riempie i pixel della schermata relativi a ciascuna entità
-    // per farlo utilizza come variabili:
-    // - xp, yp: posizioni iniziali alle quali aggiungere l'entita (angolo in basso a destra);
-    // - xOffset, yOffset: dimensioni width e height dell'entità;
-    // - x, y: posizione relativa all'interno dell'entità;
-    // - xa, ya: posizione assoluta del pixel che si sta modificando.
+    /**
+     * Fills the pixels array with the pixels related to the entity passed as parameter.
+     * @param xp horizontal coordinate of the entity.
+     * @param yp vertical coordinate of the entity.
+     * @param entity entity whose pixels must be fill in the pixels array.
+     */
     public void renderEntity(int xp, int yp, Entity entity) {
         xp -= xOffset;
         yp -= yOffset;
@@ -59,8 +59,13 @@ public class Screen {
         }
     }
 
-    // L'unica differenza con il precedente è che quando il colore è quello di fondo bisogna sostituirlo con
-    // l'immagine dello sprite sottostante.
+     /**
+     * Fills the pixels array with the pixels related to the layered entities passed as parameters.
+     * @param xp horizontal coordinate of the layered entity.
+     * @param yp vertical coordinate of the layered entity.
+     * @param entity entity whose pixels must be fill in the pixels array.
+     * @param below sprite underlying entity.
+     */
     public void renderEntityWithBelowSprite(int xp, int yp, Entity entity, Sprite below) {
         xp -= xOffset;
         yp -= yOffset;
@@ -81,11 +86,22 @@ public class Screen {
         }
     }
 
+    /**
+     * Sets the offset of the ...
+     * @param xO ...
+     * @param yO ...
+     */
     public static void setOffset(int xO, int yO) {
         xOffset = xO;
         yOffset = yO;
     }
 
+    /**
+     * Return the horizontal offset related
+     * @param board ...
+     * @param player ...
+     * @return ...
+     */
     public static int calculateXOffset(Board board, Player player) {
         if(player == null)
             return 0;

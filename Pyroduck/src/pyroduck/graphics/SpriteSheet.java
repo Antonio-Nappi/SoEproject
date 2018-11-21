@@ -1,6 +1,3 @@
-/*
- * THIS CLASS IS RESPONSABLE TO THE LOAD OF THE SPRITE-SHEET
- */
 package pyroduck.graphics;
 
 import java.awt.image.BufferedImage;
@@ -8,14 +5,22 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * The class takes care to load the game sprite sheet.
+ * @author Corbisiero, Ferrara, La Femina.
+ */
 public class SpriteSheet {
 
     private final String path;
     public final int SIZE;
     public int[] pixels;
-
     public static SpriteSheet tiles = new SpriteSheet("./resources/textures/Sheet32.png", 1024);
 
+    /**
+     * Constructs an instance of SpriteSheet and it creates an array in which will load the image.
+     * @param path pathway related to the sprite sheet.
+     * @param size size of the sprite sheet.
+     */
     public SpriteSheet(String path, int size) {
         this.path = path;
         this.SIZE = size;
@@ -23,6 +28,9 @@ public class SpriteSheet {
         load();
     }
 
+    /**
+     * Loads the image of sprite sheet from the file.
+     */
     private void load() {
         File f = new File(path);
         try {

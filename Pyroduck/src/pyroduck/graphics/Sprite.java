@@ -1,10 +1,7 @@
-/*
- * THIS CLASS LOAD ALL THE IMAGE NECESSARY TO THE GRAPHIC OF THE GAME AND STORE IT IN EACH SPECIFI
- */
 package pyroduck.graphics;
 
 /**
- * Represent the 
+ * Represent the class that loads the image and manages the animation of each entity.
  * @author Corbisiero, Ferrara, La Femina
  */
 public class Sprite {
@@ -113,6 +110,12 @@ public class Sprite {
     public static Sprite powerup_speed = new Sprite(5, 2, SpriteSheet.tiles);
     public static Sprite powerup_slow = new Sprite(3, 0, SpriteSheet.tiles);
 
+    /**
+     * Constructs an instance of Sheet, sets its parameters and calls the method to load the related image.
+     * @param x column number of the sprite sheet.
+     * @param y row number of the sprite sheet.
+     * @param sheet sprite from which load the image.
+     */
     public Sprite(int x, int y, SpriteSheet sheet) {
         pixels = new int[SIZE * SIZE];
         this.x = x * SIZE;
@@ -121,6 +124,9 @@ public class Sprite {
         load();
     }
 
+    /**
+     * Loads each pixel of the image in the pixels array.
+     */
     private void load() {
         for (int y = 0; y < SIZE; y++) {
             for (int x = 0; x < SIZE; x++) {
@@ -134,6 +140,15 @@ public class Sprite {
     | Moving Sprites
     |--------------------------------------------------------------------------
      */
+    /**
+     * Manages the sprite animation between three elements changing the image after a certain time inteval.
+     * @param normal first sprite of the animation.
+     * @param x1 second sprite of the animation.
+     * @param x2 last sprite of animation.
+     * @param animate number used to manage the exchange of the state between animations.
+     * @param time duration of each animation.
+     * @return the sprite of the animation that must be shown.
+     */
     public static Sprite movingSprite(Sprite normal, Sprite x1, Sprite x2, int animate, int time) {
         int calc = animate % time;
         int diff = time / 3;
@@ -146,15 +161,32 @@ public class Sprite {
         return x2;
     }
 
+    /**
+     * Manages the sprite animation between three elements changing the image after a certain time inteval.
+     * @param x1 first sprite of the animation.
+     * @param x2 last sprite of animation.
+     * @param animate number used to manage the exchange of the state between animations.
+     * @param time duration of each animation.
+     * @return the sprite of the animation that must be shown.
+     */
     public static Sprite movingSprite(Sprite x1, Sprite x2, int animate, int time) {
         int diff = time / 2;
         return (animate % time > diff) ? x1 : x2; 
     }
 
+    /**
+     * Return the size of sprite.
+     * @return the size of sprite.
+     */
     public int getSize() {
         return SIZE;
     }
 
+    /**
+     * Return the pixel related at a specific position.
+     * @param i position of the pixel in the pixels array.
+     * @return the pixel array related to the sprite image.
+     */
     public int getPixel(int i) {
         return pixels[i];
     }

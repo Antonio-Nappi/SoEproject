@@ -49,7 +49,7 @@ public abstract class Entity {
     public abstract boolean collide(Entity e);
 
     /**
-     * Getter that return the sprite that represent the entity.
+     * Return the sprite that represent the entity.
      * @return the sprite related at the entity.
      */
     public Sprite getSprite() {
@@ -57,7 +57,7 @@ public abstract class Entity {
     }
     
     /**
-     * Getter that return the <b>x</b> position of the entity on the screen.
+     * Return the <b>x</b> position of the entity on the screen.
      * @return <b>x</b> coordinate.
      */
     public double getX() {
@@ -65,7 +65,7 @@ public abstract class Entity {
     }
 
     /**
-     * Getter that return the <b>y</b> position of the entity on the screen.
+     * Return the <b>y</b> position of the entity on the screen.
      * @return <b>y</b> coordinate.
      */
     public double getY() {
