@@ -8,7 +8,6 @@ import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
-import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.Screen;
 import pyroduck.input.Keyboard;

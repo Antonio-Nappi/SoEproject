@@ -49,7 +49,6 @@ public class CoordinatesTest {
         int expResult = 1;
         int result = Coordinates.pixelToTile(i);
         assertEquals(expResult, result);
-
     }
 
     /**
@@ -62,8 +61,7 @@ public class CoordinatesTest {
         int size = Game.TILES_SIZE;
         int expResult = 0;
         int result = Coordinates.tileToPixel(i);
-        assertEquals(expResult, result);
-        
+        assertEquals(expResult, result); 
     }
 
     /**

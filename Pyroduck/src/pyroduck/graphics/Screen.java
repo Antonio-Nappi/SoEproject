@@ -19,12 +19,10 @@ public class Screen {
 
     /**
      * Constructor creates an instance of the screen and set its parameters.
-     * @param width width of the screen.
-     * @param height height of the screen.
      */
-    public Screen(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Screen() {
+        this.width = Game.WIDTH;
+        this.height = Game.HEIGHT;
         this.pixels = new int[width * height];
     }
 

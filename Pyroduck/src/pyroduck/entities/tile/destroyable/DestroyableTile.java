@@ -11,7 +11,7 @@ import pyroduck.graphics.Sprite;
  * @author 
  * @version 1.0
  */
-public class DestroyableTile extends Tile {
+public abstract class DestroyableTile extends Tile {
 
     private final int MAX_ANIMATE = 7500; //save the animation status and dont let this get too big
     private int animate = 0;

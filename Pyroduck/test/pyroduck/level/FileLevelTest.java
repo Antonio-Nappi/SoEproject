@@ -49,7 +49,6 @@ public class FileLevelTest {
         String path = "";
         FileLevel instance = null;
         instance.loadLevel(path);
- 
     }
 
     /**
@@ -63,8 +62,6 @@ public class FileLevelTest {
         Entity[] expResult = null;
         Entity[] result = instance.createEntities(board);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -77,8 +74,5 @@ public class FileLevelTest {
         int expResult = 0;
         int result = instance.getLevel();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+    }  
 }

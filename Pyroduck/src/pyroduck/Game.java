@@ -45,7 +45,7 @@ public class Game extends Canvas {
     private Game() throws PyroduckException {
 
         timer = new Timer();
-        this.screen = new Screen(WIDTH, HEIGHT);
+        this.screen = new Screen();
         this.input = new Keyboard();
         this.board = new Board(this.input, this.screen);
         addKeyListener(this.input);

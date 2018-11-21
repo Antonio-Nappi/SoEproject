@@ -18,13 +18,15 @@ import pyroduck.entities.tile.destroyable.BrickTile;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.input.Keyboard;
-import pyroduck.input.Keyboard;
 
 /**
  *
  * 
  */
 public class BombTest {
+    
+    Bomb bomb;
+    
     public BombTest() {
     }
     
@@ -38,6 +40,7 @@ public class BombTest {
     
     @Before
     public void setUp() {
+        bomb = new  Bomb(1, 1, new Board(new Keyboard(),new Screen()));
     }
     
     @After
@@ -49,24 +52,23 @@ public class BombTest {
      */
     @Test
     public void testUpdate() {
-        Bomb b = new  Bomb(1, 1, new Board(new Keyboard(),new Screen(2, 2)));
-        b.update();
-        assertEquals(119.0, b.timeToExplode,0);
-        assertEquals(20, b.timeAfter, 0);
-        boolean t = b.isExploded();
+        bomb.update();
+        assertEquals(119.0, bomb.timeToExplode,0);
+        assertEquals(20, bomb.timeAfter, 0);
+        boolean t = bomb.isExploded();
         assertEquals(t, false);
         for(int i = 0; i<119; i++){
-            b.update();
+            bomb.update();
         }
-        assertEquals(0.0, b.timeToExplode,0);
-        assertEquals(20, b.timeAfter, 0);
-        t = b.isExploded();
+        assertEquals(0.0, bomb.timeToExplode,0);
+        assertEquals(20, bomb.timeAfter, 0);
+        t = bomb.isExploded();
         assertEquals(t, false);
         for(int i = 0; i<20; i++){
-            b.update();
+            bomb.update();
         }
-        assertEquals(0, b.timeAfter, 0);
-        t = b.isExploded();
+        assertEquals(0, bomb.timeAfter, 0);
+        t = bomb.isExploded();
         assertEquals(t, true);
     }
 
@@ -76,9 +78,8 @@ public class BombTest {
     @Test
     public void testExplosion() {
         System.out.println("explosion");
-        Bomb instance = new Bomb(1, 1, new Board(new Keyboard(),new Screen(2, 2)));
-        instance.explosion();
-        boolean t = instance.isExploded();
+        bomb.explosion();
+        boolean t = bomb.isExploded();
         assertEquals(t, true);
         
     }
@@ -91,9 +92,8 @@ public class BombTest {
         System.out.println("explosionAt");
         int x = 0;
         int y = 0;
-        Bomb instance = new Bomb(1, 1, new Board(new Keyboard(),new Screen(2, 2)));;
         Explosion expResult = null;
-        Explosion result = instance.explosionAt(x, y);
+        Explosion result = bomb.explosionAt(x, y);
         assertEquals(expResult, result);
     }
 
@@ -103,9 +103,8 @@ public class BombTest {
     @Test
     public void testIsExploded() {
         System.out.println("isExploded");
-        Bomb instance = new Bomb(1, 1, new Board(new Keyboard(),new Screen(2, 2)));
         boolean expResult = false;
-        boolean result = instance.isExploded();
+        boolean result = bomb.isExploded();
         assertEquals(expResult, result);
     }
 
@@ -115,17 +114,14 @@ public class BombTest {
     @Test
     public void testCollide() {
         System.out.println("collide");
-        Entity e = new Player(2, 1, new Board(new Keyboard(), new Screen(2, 2)));
-        Bomb b = new Bomb(2, 1, new Board(new Keyboard(), new Screen(2, 2)));
-        boolean test = b.collide(e);
+        Entity e = new Player(2, 1, new Board(new Keyboard(), new Screen()));
+        boolean test = bomb.collide(e);
         assertEquals(test, true);
-        Entity e1 = new DirectionalExplosion(2, 1, 1,1,new Board(new Keyboard(), new Screen(2, 2)));
-        boolean test1 = b.collide(e1);
+        Entity e1 = new DirectionalExplosion(2, 1, 1,1,new Board(new Keyboard(), new Screen()));
+        boolean test1 = bomb.collide(e1);
         assertEquals(test1, false);
         Entity e2 = new BrickTile(2, 2, Sprite.brick);
-        boolean test2 = b.collide(e2);
-        assertEquals(test2, true);
-        
-    }
-    
+        boolean test2 = bomb.collide(e2);
+        assertEquals(test2, true);    
+    } 
 }

@@ -1,7 +1,5 @@
 package pyroduck.entities.tile.destroyable;
 
-import pyroduck.bomb.DirectionalExplosion;
-import pyroduck.entities.Entity;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
@@ -24,14 +22,6 @@ public class BrickTile extends DestroyableTile {
     }
 
     /**
-     * Check if the tile has been destroyed and if so, menage the animation related.
-     */
-    @Override
-    public void update() {
-        super.update();
-    }
-
-    /**
      * Check what must be shown on the screen and invoke the screen's method to print the entity.
      * During the animation must be shown both top and bottom sprite.
      * @param screen screen on which the print is called.
@@ -46,12 +36,5 @@ public class BrickTile extends DestroyableTile {
             sprite = movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1, Sprite.brick_exploded2);
             screen.renderEntityWithBelowSprite(x, y, this, belowSprite);
         }       
-    }
-    
-    @Override
-    public boolean collide(Entity e){
-        if (e instanceof DirectionalExplosion)
-            destroyed = true;
-        return true;
-    }
+    }  
 }

@@ -31,19 +31,15 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e != null){
-            try{
-                keys[e.getKeyCode()] = true;
-            }catch(ArrayIndexOutOfBoundsException ex){}
-        }
+        try{
+            keys[e.getKeyCode()] = true;
+        }catch(ArrayIndexOutOfBoundsException ex){}
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e != null){
-            try{
-                keys[e.getKeyCode()] = false;
-            }catch(ArrayIndexOutOfBoundsException ex){}
-        }
+        try{
+            keys[e.getKeyCode()] = false;
+        }catch(ArrayIndexOutOfBoundsException ex){}
     }
 }    
