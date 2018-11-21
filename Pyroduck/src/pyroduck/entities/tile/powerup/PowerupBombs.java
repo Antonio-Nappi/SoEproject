@@ -32,6 +32,7 @@ public class PowerupBombs extends Powerup {
     @Override
     public void setValues() {
         active = true;
-        Game.addBombRate(1);
+        if(Game.getBombRate() <= 2)
+            Game.addBombRate(1);
     }
 }

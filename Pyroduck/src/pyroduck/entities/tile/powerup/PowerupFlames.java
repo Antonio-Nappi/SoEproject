@@ -31,6 +31,7 @@ public class PowerupFlames extends Powerup {
     @Override
     public void setValues() {
         active = true;
-        Game.addBombRadius(1);
+        if(Game.getBombRadius()<= 2)
+            Game.addBombRadius(1);
     }
 }

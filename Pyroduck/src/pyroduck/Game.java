@@ -97,11 +97,7 @@ public class Game extends Canvas {
 	}
 	
     public static void decreasePlayerSpeed(double i) {        
-        double p=playerSpeed;
         playerSpeed = playerSpeed -i;
-        if(playerSpeed<0.8){
-            playerSpeed=p;
-        }
     }
 	
     /*

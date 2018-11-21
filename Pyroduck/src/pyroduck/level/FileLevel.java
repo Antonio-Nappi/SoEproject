@@ -71,7 +71,6 @@ public class FileLevel{
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
                 char c = lineTiles[y].charAt(x);  //for each character read in this file we call addLevelEntity
-
                 int pos = x + y * WIDTH;
                 switch(c) { 
                     case '#': 
@@ -94,28 +93,22 @@ public class FileLevel{
                         LayeredEntity layer = new LayeredEntity(x, y, 
                                                 new GrassTile(x ,y, Sprite.grass), 
                                                     new BrickTile(x ,y, Sprite.brick));
-                        if(board.isPowerupUsed(x, y) == false) {
-                            layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));
-                        }				
+                        layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));				
                        entities[pos] = layer;
                         break;  
                     case 'b':
                         LayeredEntity layer2 = new LayeredEntity(x, y, 
                                                 new GrassTile(x ,y, Sprite.grass), 
                                                     new BrickTile(x ,y, Sprite.brick));
-                        if(board.isPowerupUsed(x, y) == false) {
-                            layer2.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));
-                        }				
+                        layer2.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));				
                         entities[pos] = layer2;
                         break;
                     case 's':
                         LayeredEntity layer3 = new LayeredEntity(x, y, 
                                                 new GrassTile(x ,y, Sprite.grass), 
                                                     new BrickTile(x ,y, Sprite.brick));
-                        if(board.isPowerupUsed(x, y) == false) {
-                            layer3.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));
-                        }				
-                         entities[pos] = layer3;
+                        layer3.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));				
+                        entities[pos] = layer3;
                         break;
                     case 'o':
                         entities[pos] = new LayeredEntity(x, y, 
@@ -124,13 +117,14 @@ public class FileLevel{
 
                         break; 
                     default: 
-                         entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                 }
             }
         }
         return entities;
     }
+    
     /**
      * Return the number of level charged.
      * @return the number of level charged.

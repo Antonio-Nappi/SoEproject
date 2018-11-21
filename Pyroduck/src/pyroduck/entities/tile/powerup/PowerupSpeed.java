@@ -32,6 +32,7 @@ public class PowerupSpeed extends Powerup {
     @Override
     public void setValues() {
         active = true;
-        Game.addPlayerSpeed(0.7);
+        if(Game.getPlayerSpeed()<= 2.3)
+            Game.addPlayerSpeed(0.7);
     }
 }

@@ -31,6 +31,7 @@ public class PowerupSlow extends Powerup {
     @Override
     public void setValues() {
         active = true;
-        Game.decreasePlayerSpeed(0.4);
+        if(Game.getPlayerSpeed() >= 1.2)
+            Game.decreasePlayerSpeed(0.4);
     }
 }
