@@ -7,7 +7,7 @@ import pyroduck.graphics.Screen;
 /**
  * Represent the abstract class of each entities that is able to move in the map.
  * It is used to menage the behavior of these entities calculating where they can move and commanding the moviment.
- * @author 
+ * @author Montefusco, Nappi
  * @version 1.0
  */
 public abstract class Mob extends AnimatedEntity {

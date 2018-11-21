@@ -4,7 +4,7 @@ import pyroduck.graphics.Sprite;
 
 /**
  * Is the tile that marks the end and the inaccessible areas of the map.
- * @author 
+ * @author Corbisiero, Ferrara, La Femina
  * @version 1.0
  */
 public class WallTile extends Tile {

@@ -16,7 +16,7 @@ import pyroduck.level.Coordinates;
 /**
  * It describe the behavior of the player controllable via keyboard.
  * It is used to menage the behavior of the player calculating where they can move and commanding the moviment, more over it keep trace of the bombs placed with him.
- * @author 
+ * @author Montefusco, Nappi
  * @version 1.0
  */
 public class Player extends Mob {

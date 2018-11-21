@@ -6,7 +6,7 @@ import pyroduck.level.Coordinates;
 
 /**
  * Represent the tile that block the passage of the mobs, but can be destroyed with the bombs.
- * @author 
+ * @author Bini, Petruzzello
  * @version 1.0
  */
 public class BrickTile extends DestroyableTile {

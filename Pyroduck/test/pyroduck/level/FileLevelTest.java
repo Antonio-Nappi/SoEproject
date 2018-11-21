@@ -17,7 +17,7 @@ import pyroduck.input.Keyboard;
 
 /**
  *
- * @author 
+ * @author Corbisiero, Ferrara, La Femina
  */
 public class FileLevelTest {
     

@@ -6,7 +6,7 @@ package pyroduck.entities;
 /**
  * It adds some features at the entities which have different animation.
  * It is used to manage all the animation for each animated entity.
- * @author 
+ * @author Montefusco, Nappi
  * @version 1.0
  */
 public abstract class AnimatedEntity extends Entity {

@@ -18,7 +18,7 @@ import pyroduck.input.Keyboard;
 
 /**
  *
- * @author 
+ * @author La Femina, Petruzzello
  */
 public class PowerupSlowTest {
     

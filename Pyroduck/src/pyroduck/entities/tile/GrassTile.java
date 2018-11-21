@@ -5,7 +5,7 @@ import pyroduck.graphics.Sprite;
 
 /**
  * Is the background tile on which each entity is placed.
- * @author 
+ * @author Corbisiero, Ferrara, La Femina
  * @version 1.0
  */
 public class GrassTile extends Tile {

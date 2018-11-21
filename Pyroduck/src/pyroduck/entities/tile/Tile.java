@@ -8,7 +8,7 @@ import pyroduck.level.Coordinates;
 /**
  * Represent the abstract class of each non-animated entity.
  * It is used to menage the interaction of this entities with the other.
- * @author 
+ * @author Corbisiero, Ferrara, La Femina
  * @version 1.0
  */
 public abstract class Tile extends Entity {

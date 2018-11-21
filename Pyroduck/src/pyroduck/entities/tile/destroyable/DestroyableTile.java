@@ -8,7 +8,7 @@ import pyroduck.graphics.Sprite;
 /**
  * Represent the tile that can be destroyed during the game.
  * Is used to menage what happen when an object of this class is destroyed and the menagement of the releted animations.
- * @author 
+ * @author Bini, Petruzzello
  * @version 1.0
  */
 public abstract class DestroyableTile extends Tile {

@@ -2,7 +2,7 @@ package pyroduck.exceptions;
 
 /**
  * Exception related at the error within Pyroduck.
- * @author Bini
+ * @author all
  */
 public class PyroduckException extends Exception {
     public PyroduckException() {

@@ -13,7 +13,7 @@ import pyroduck.input.Keyboard;
 
 /**
  *
- * @author 
+ * @author Bini, Corbisiero, Petruzzello
  */
 public class ScreenTest {
     

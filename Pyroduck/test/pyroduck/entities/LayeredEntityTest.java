@@ -14,7 +14,7 @@ import pyroduck.graphics.Sprite;
 
 /**
  * 
- * @author 
+ * @author Montefusco, Nappi
  */
 public class LayeredEntityTest {
     

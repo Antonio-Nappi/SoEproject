@@ -8,7 +8,7 @@ import pyroduck.graphics.Screen;
 /**
  * It is an array that can be overlapped on a single cell of the map.
  * It is used to overlap the entities between them.
- * @author 
+ * @author Montefusco, Nappi
  * @version 1.0
  */
 public class LayeredEntity extends Entity {

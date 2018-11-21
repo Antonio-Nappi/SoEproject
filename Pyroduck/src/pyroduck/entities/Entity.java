@@ -6,7 +6,7 @@ import pyroduck.graphics.Sprite;
 /**
  * The abstract class that rapresent the backbone of each entity.
  * It fix the main behavior of all entities that can appear on the map.
- * @author
+ * @author Montefusco, Nappi
  * @version 1.0
 */
 public abstract class Entity {

@@ -10,7 +10,7 @@ import pyroduck.Game;
 
 /**
  *
- * @author 
+ * @author Corbisiero, Ferrara, La Femina
  */
 public class CoordinatesTest {
     

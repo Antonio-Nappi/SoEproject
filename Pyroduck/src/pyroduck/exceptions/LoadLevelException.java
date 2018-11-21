@@ -2,7 +2,7 @@ package pyroduck.exceptions;
 
 /**
  * Exception related at the error in the level charged.
- * @author Bini
+ * @author all
  */
 public class LoadLevelException extends PyroduckException {
     public LoadLevelException() {

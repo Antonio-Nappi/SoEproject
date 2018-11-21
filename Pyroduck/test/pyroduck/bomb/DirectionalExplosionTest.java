@@ -7,7 +7,7 @@ import pyroduck.graphics.Screen;
 import pyroduck.input.Keyboard;
 /**
  *
- * @author  
+ * @author Bini, Petruzzello
  */
 public class DirectionalExplosionTest {
     

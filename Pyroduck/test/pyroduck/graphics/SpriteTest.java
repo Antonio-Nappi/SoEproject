@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author 
+ * @author Corbisiero, Ferrara, La Femina
  */
 public class SpriteTest {
     

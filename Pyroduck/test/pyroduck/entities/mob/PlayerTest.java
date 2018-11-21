@@ -14,7 +14,6 @@ import static org.junit.Assert.*;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.Bomb;
-import pyroduck.entities.Entity;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.entities.tile.powerup.PowerupBombs;
 import pyroduck.graphics.Screen;
@@ -23,7 +22,7 @@ import pyroduck.input.Keyboard;
 
 /**
  *
- * @author Antonio
+ * @author Montefusco, Nappi
  */
 public class PlayerTest {
     Player player;
