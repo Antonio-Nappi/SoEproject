@@ -4,6 +4,7 @@ import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
+import pyroduck.level.FileLevel;
 
 /**
  * Represent the game screen printer.
@@ -93,8 +94,8 @@ public class Screen {
         int temp = xOffset;
         double playerX = player.getX() / 32;
         double complement = 0.5;
-        int firstBreakpoint = board.getWidth() / 4;
-        int lastBreakpoint = board.getWidth() - firstBreakpoint;
+        int firstBreakpoint = FileLevel.WIDTH / 4;
+        int lastBreakpoint = FileLevel.WIDTH - firstBreakpoint;
         if( playerX > firstBreakpoint + complement && playerX < lastBreakpoint - complement) {
             temp = (int)player.getX() - (Game.WIDTH / 2);
         }

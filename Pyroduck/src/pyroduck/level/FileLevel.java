@@ -6,6 +6,7 @@ import java.util.StringTokenizer;
 import java.io.FileReader;
 import pyroduck.Board;
 import pyroduck.Game;
+import pyroduck.entities.Entity;
 import pyroduck.entities.LayeredEntity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.GrassTile;
@@ -26,19 +27,19 @@ import pyroduck.graphics.Sprite;
  */
 public class FileLevel{
 
-    protected int width, height, level;
+    public static final int WIDTH = 31, HEIGHT = 13; 
+    protected int level;
     protected String[] lineTiles;
-    protected Board board;
+   
 
     /**
      * Costructs level file.
      * @param path related to the ".txt" file.
-     * @param board
      * @throws LoadLevelException error in the charge of level.
      */
-    public FileLevel(String path, Board board) throws LoadLevelException {
+    public FileLevel(String path) throws LoadLevelException {
         loadLevel(path);
-        this.board = board;
+        
     }
 
     /**
@@ -52,11 +53,9 @@ public class FileLevel{
             String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
             StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
             level = Integer.parseInt(tokens.nextToken());
-            height = Integer.parseInt(tokens.nextToken());
-            width = Integer.parseInt(tokens.nextToken());
-            lineTiles = new String[height];  
-            for(int i = 0; i < height; ++i) {
-                lineTiles[i] = in.readLine().substring(0, width); //It reads each line of "level.txt" and storage it into a String array
+            lineTiles = new String[HEIGHT];  
+            for(int i = 0; i < HEIGHT; ++i) {
+                lineTiles[i] = in.readLine().substring(0, WIDTH); //It reads each line of "level.txt" and storage it into a String array
             }
             in.close();
         } catch (IOException e) {
@@ -67,94 +66,71 @@ public class FileLevel{
     /**
      * 
      */
-    public void createEntities() {                        //entity = player, mobs, powerups,..., also tile!!!
-        for (int y = 0; y < getHeight(); y++) {
-            for (int x = 0; x < getWidth(); x++) {
-                addLevelEntity(lineTiles[y].charAt(x), x, y);   //for each character read in this file we call addLevelEntity
+    public Entity[] createEntities(Board board) {
+        Entity[] entities = new Entity[WIDTH*HEIGHT];//entity = player, mobs, powerups,..., also tile!!!
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                char c = lineTiles[y].charAt(x);  //for each character read in this file we call addLevelEntity
+
+                int pos = x + y * WIDTH;
+                switch(c) { 
+                    case '#': 
+                       entities[pos] = new WallTile(x, y, Sprite.wall);  
+                        break;
+                    case '*': 
+                       entities[pos] = new LayeredEntity(x, y, 
+                                        new GrassTile(x ,y, Sprite.grass), 
+                                            new BrickTile(x ,y, Sprite.brick));
+                        break;
+                    case ' ': 
+                        entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        break;
+                    case 'p': 
+                        board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        Screen.setOffset(0, 0);
+                       entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        break;
+                    case 'f':
+                        LayeredEntity layer = new LayeredEntity(x, y, 
+                                                new GrassTile(x ,y, Sprite.grass), 
+                                                    new BrickTile(x ,y, Sprite.brick));
+                        if(board.isPowerupUsed(x, y) == false) {
+                            layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));
+                        }				
+                       entities[pos] = layer;
+                        break;  
+                    case 'b':
+                        LayeredEntity layer2 = new LayeredEntity(x, y, 
+                                                new GrassTile(x ,y, Sprite.grass), 
+                                                    new BrickTile(x ,y, Sprite.brick));
+                        if(board.isPowerupUsed(x, y) == false) {
+                            layer2.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));
+                        }				
+                        entities[pos] = layer2;
+                        break;
+                    case 's':
+                        LayeredEntity layer3 = new LayeredEntity(x, y, 
+                                                new GrassTile(x ,y, Sprite.grass), 
+                                                    new BrickTile(x ,y, Sprite.brick));
+                        if(board.isPowerupUsed(x, y) == false) {
+                            layer3.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));
+                        }				
+                         entities[pos] = layer3;
+                        break;
+                    case 'o':
+                        entities[pos] = new LayeredEntity(x, y, 
+                                            new GrassTile(x ,y, Sprite.grass),
+                                                new PowerupSlow(x, y, Sprite.powerup_slow));
+
+                        break; 
+                    default: 
+                         entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        break;
+                }
             }
         }
+        return entities;
     }
-
-    /**
-     * Delegates the board to add the entity corrisponding at the character passed.
-     * @param c character related at the entity.
-     * @param x horizontal coordinate.
-     * @param y vertical coordinate.
-     */
-    public void addLevelEntity(char c, int x, int y) {
-        int pos = x + y * getWidth();
-        switch(c) { 
-            case '#': 
-                board.addEntity(pos, new WallTile(x, y, Sprite.wall));  
-                break;
-            case '*': 
-                board.addEntity(pos, new LayeredEntity(x, y, 
-                                new GrassTile(x ,y, Sprite.grass), 
-                                new BrickTile(x ,y, Sprite.brick)));
-                break;
-            case ' ': 
-                board.addEntity(pos, new GrassTile(x, y, Sprite.grass));
-                break;
-            case 'p': 
-                board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
-                Screen.setOffset(0, 0);
-                board.addEntity(pos, new GrassTile(x, y, Sprite.grass));
-                break;
-            case 'f':
-                LayeredEntity layer = new LayeredEntity(x, y, 
-                                        new GrassTile(x ,y, Sprite.grass), 
-                                        new BrickTile(x ,y, Sprite.brick));
-                if(board.isPowerupUsed(x, y) == false) {
-                    layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));
-                }				
-                board.addEntity(pos, layer);
-                break;  
-            case 'b':
-                LayeredEntity layer2 = new LayeredEntity(x, y, 
-                                        new GrassTile(x ,y, Sprite.grass), 
-                                        new BrickTile(x ,y, Sprite.brick));
-                if(board.isPowerupUsed(x, y) == false) {
-                    layer2.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));
-                }				
-                board.addEntity(pos, layer2);
-                break;
-            case 's':
-                LayeredEntity layer3 = new LayeredEntity(x, y, 
-                                        new GrassTile(x ,y, Sprite.grass), 
-                                        new BrickTile(x ,y, Sprite.brick));
-                if(board.isPowerupUsed(x, y) == false) {
-                    layer3.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));
-                }				
-                board.addEntity(pos, layer3);
-                break;
-            case 'o':
-                LayeredEntity layer4 = new LayeredEntity(x, y, 
-                                        new GrassTile(x ,y, Sprite.grass),
-                                        new PowerupSlow(x, y, Sprite.powerup_slow));
-                board.addEntity(pos, layer4);
-                break; 
-            default: 
-                board.addEntity(pos, new GrassTile(x, y, Sprite.grass));
-                break;
-        }
-    }
-    
-    /**
-     * Return the level width. 
-     * @return the level width. 
-     */
-    public int getWidth() {
-        return this.width;
-    }
-
-    /**
-     * Return the level height.
-     * @return the level height.
-     */
-    public int getHeight() {
-        return this.height;
-    }
-
     /**
      * Return the number of level charged.
      * @return the number of level charged.
