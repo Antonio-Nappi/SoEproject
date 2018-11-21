@@ -54,7 +54,7 @@ public class Board {
         int y1 = (Screen.yOffset + screen.getHeight()) / Game.TILES_SIZE; //render one tile plus to fix black margins
         for (int y = y0; y < y1; y++) {
             for (int x = x0; x < x1; x++) {
-                entities[x + y * level.getWidth()].render(screen);
+                entities[x + y * FileLevel.WIDTH].render(screen);
             }
         }
         renderBombs(screen);
@@ -87,9 +87,8 @@ public class Board {
         mobs.clear();
         bombs.clear();
         try {
-            this.level = new FileLevel("./resources/levels/Level" + level + ".txt", this);
-            entities = new Entity[this.level.getHeight() * this.level.getWidth()];	
-            this.level.createEntities();
+            this.level = new FileLevel("./resources/levels/Level" + level + ".txt");
+            entities = this.level.createEntities(this);
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
@@ -153,7 +152,7 @@ public class Board {
         return null;
     }
     public Entity getEntityAt(double x, double y) {
-        return entities[(int)x + (int)y * level.getWidth()];
+        return entities[(int)x + (int)y * FileLevel.WIDTH];
     }
 
     /*
@@ -166,8 +165,8 @@ public class Board {
      * @param pos position within the entity array (pos = x + y * levelWidth)
      * @param e entity to add within the entity array.
      */
-    public void addEntity(int pos, Entity e) {
-        entities[pos] = e;
+    public void addEntity() {
+        entities = level.createEntities(this);
     }
 
     public List<Mob> getMobs() {
@@ -224,14 +223,6 @@ public class Board {
 
     public FileLevel getLevel() {
         return level;
-    }
-
-    public int getWidth() {
-        return level.getWidth();
-    }
-
-    public int getHeight() {
-        return level.getHeight();
     }
 
     protected void updateBombs() {
