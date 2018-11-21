@@ -240,20 +240,4 @@ public class Board {
         while(itr.hasNext())
             itr.next().render(screen);
     }
-    
-    /*
-    Powerup
-    */
-    
-    public boolean isPowerupUsed(int x, int y) {
-		Powerup p;
-		for (int i = 0; i < Player.powerups.size(); i++) {
-			p = Player.powerups.get(i);
-			if(p.getX() == x && p.getY() == y )
-                                
-				return true;
-		}
-		
-		return false;
-	} 
 }
