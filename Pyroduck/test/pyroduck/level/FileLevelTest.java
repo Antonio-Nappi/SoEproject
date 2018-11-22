@@ -59,10 +59,9 @@ public class FileLevelTest {
         System.out.println("createEntities");
         Board board = new Board(new Keyboard(), new Screen());
         FileLevel instance = new FileLevel("./resources/level/test.txt");
-        Entity[] expResult = {new WallTile(0, 1, Sprite.wall),
-                              new BrickTile(1, 1, Sprite.brick),
-                              new WallTile(2, 1, Sprite.wall)};
+        FileLevel instance1 = new FileLevel("./resources/level/Level1.txt");
         Entity[] result = instance.createEntities(board);
+        Entity [] expResult = instance1.createEntities(board);
         assertArrayEquals(expResult, result);
     }
 
