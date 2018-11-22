@@ -14,8 +14,9 @@ import pyroduck.input.Keyboard;
 import pyroduck.level.Coordinates;
 
 /**
- * It describe the behavior of the player controllable via keyboard.
- * It is used to menage the behavior of the player calculating where they can move and commanding the moviment, more over it keep trace of the bombs placed with him.
+ * Describes the behavior of the player controllable via keyboard.
+ * Is used to manage the behavior of the player calculating where it can move and directing the moviment.
+ * it is also delegated to manage the undermining the bombs.
  * @author Montefusco, Nappi
  * @version 1.0
  */
@@ -27,7 +28,7 @@ public class Player extends Mob {
     public static List<Powerup> powerups = new ArrayList<Powerup>();
 
     /**
-     * Constructor creates an instance of the player.
+     * Creates an instance of the player.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param board to take the keyboard related at the player commands.
@@ -45,8 +46,9 @@ public class Player extends Mob {
      */
 
     /**
-     * It allow to update the state of player to check if it is change something.
-     * In particulary update the state of the bombs and the animation related at the player, it calculate the moviment and check if he placed a new bomb.
+     * Allows to update the state of player checking if something is changed.
+     * Updates the state of the bomb and the related animation at the player, 
+     * it calculates the movement and it checks if he has placed a bomb.
      */
     @Override
     public void update() {

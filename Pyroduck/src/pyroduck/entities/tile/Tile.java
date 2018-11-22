@@ -7,14 +7,14 @@ import pyroduck.level.Coordinates;
 
 /**
  * Represent the abstract class of each non-animated entity.
- * It is used to menage the interaction of this entities with the other.
+ * Is used to manage the interaction between these entities with the others.
  * @author Corbisiero, Ferrara, La Femina
  * @version 1.0
  */
 public abstract class Tile extends Entity {
 
     /**
-     * Constructor that create an object of this class.
+     * Creates an object of Tile.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param sprite related to the entity.
@@ -26,13 +26,13 @@ public abstract class Tile extends Entity {
     }
 
     /**
-     * The implementation of this method it allow to update the state of entity to check if it is change something.
+     * The implementation of this method allows to update the state of the entity checking if something is changed.
      */
     @Override
     public void update() {}
     
     /**
-     * Invoke the screen's method to print the entity on screen.
+     * Invokes the screen's method to print the entity on screen.
      * @param screen screen on which the print is called.
      */
     @Override
@@ -41,7 +41,7 @@ public abstract class Tile extends Entity {
     }
     
     /**
-     * Check if two entities can collide with each other.
+     * Checks if two entities collide with each other.
      * For these entities the possibility of colliding is set true by default, so these entities cannot overlap with the others.
      * @param e is the entity with which is checked the collision.
      * @return true if the entities can collide with each other, false otherwise.

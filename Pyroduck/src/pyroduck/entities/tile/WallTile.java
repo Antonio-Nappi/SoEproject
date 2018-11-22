@@ -3,14 +3,14 @@ package pyroduck.entities.tile;
 import pyroduck.graphics.Sprite;
 
 /**
- * Is the tile that marks the end and the inaccessible areas of the map.
+ * Is the inaccessible tile on the map where the Player can't pass through it.
  * @author Corbisiero, Ferrara, La Femina
  * @version 1.0
  */
 public class WallTile extends Tile {
 
     /**
-     * Constructor that create an object of this class.
+     * Creates an object of the WallTile.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param sprite related to the tile.

@@ -10,8 +10,8 @@ import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
 
 /**
- * Represent the entities able to explode.
- * It is used to manage explosion events.
+ * Represents the explosive entities
+ * Is used to manage explosion events.
  * @author Bini, Petruzzello
  */
 public class Bomb extends AnimatedEntity {
@@ -37,9 +37,9 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * Allows to update the state of bomb to check if something is changed.
-     * Particularly it updates the animation and it checks if the explosion timer is expired. In addition
-     * it calls explosion and remove.
+     * Allows to update the state of the bomb and it checks if something is changed
+     * Particularly it updates the animation and checks if the explosion timer is expired 
+     * and manage the explosion and its removal.
      */
     @Override
     public void update() {
@@ -122,9 +122,9 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * Checks if an entity can overlap the bomb.
-     * @param e entity which must be checked for the collision.
-     * @return true if the entity can overlap the bomb, false otherwise.
+     * Return true if the entity is overlapped by the bomb, false otherwise.
+     * @param e e is the entity which must be checked for the collision.
+     * @return true if the entity is overlapped by the bomb, false otherwise.
      */
     @Override
     public boolean collide(Entity e) {

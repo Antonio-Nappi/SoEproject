@@ -1,7 +1,7 @@
 package pyroduck.exceptions;
 
 /**
- * Exception related at the error within Pyroduck.
+ * Exception thrown when there is an error in Pyroduck.
  * @author all
  */
 public class PyroduckException extends Exception {
@@ -9,7 +9,7 @@ public class PyroduckException extends Exception {
     }
 
     /**
-     * Constructs a new exception with the specified detail message.
+     * Creates a new exception with the specified detail message.
      * @param str detail message.
      */
     public PyroduckException(String str) {

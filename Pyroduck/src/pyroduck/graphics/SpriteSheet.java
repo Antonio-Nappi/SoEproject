@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * The class takes care to load the game sprite sheet.
+ * The class loads the game sprite sheet.
  * @author Corbisiero, Ferrara, La Femina.
  */
 public class SpriteSheet {
@@ -17,7 +17,7 @@ public class SpriteSheet {
     public static SpriteSheet tiles = new SpriteSheet("./resources/textures/Sheet32.png", 1024);
 
     /**
-     * Constructs an instance of SpriteSheet and it creates an array in which will load the image.
+     * Creates an instance of SpriteSheet and it also creates an array which will load the image.
      * @param path pathway related to the sprite sheet.
      * @param size size of the sprite sheet.
      */

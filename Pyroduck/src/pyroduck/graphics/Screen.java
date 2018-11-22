@@ -8,7 +8,7 @@ import pyroduck.level.FileLevel;
 
 /**
  * Represent the game screen printer.
- * It takes care to print on screen everything that happen in the game. 
+ * It takes care to print on the screen whatever happen in the game. 
  * @author Bini, Corbisiero, Petruzzello
  */
 public class Screen {
@@ -18,7 +18,7 @@ public class Screen {
     public static int xOffset = 0, yOffset = 0;
 
     /**
-     * Constructor creates an instance of the screen and set its parameters.
+     * Creates an instance of the screen and sets its parameters.
      */
     public Screen() {
         this.width = Game.WIDTH;
@@ -27,7 +27,7 @@ public class Screen {
     }
 
     /**
-     * Set the pixels in order to show a black screen.
+     * Sets the pixels in order to show a black screen.
      */
     public void clear() {
         for (int i = 0; i <pixels.length; i++) {
@@ -35,6 +35,12 @@ public class Screen {
         }
     }
 
+    /** Fill the pixel according the related screen and each entity that belongs to it
+    // To do it, it uses as variable:
+    // - xp, yp: initial position to which add the entity (low-right corner);
+    // - xOffset, yOffset: width and height of the entity;
+    // - x, y: internal relative position of the entity;
+    // - xa, ya: absolute position of the pixel which is being modificated
     /**
      * Fills the pixels array with the pixels related to the entity passed as parameter.
      * @param xp horizontal coordinate of the entity.
@@ -87,7 +93,7 @@ public class Screen {
     }
 
     /**
-     * Sets the offset of the ...
+     * Sets the offset
      * @param xO ...
      * @param yO ...
      */

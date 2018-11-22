@@ -6,8 +6,8 @@ import pyroduck.entities.tile.destroyable.DestroyableTile;
 import pyroduck.graphics.Screen;
 
 /**
- * It is an array that can be overlapped on a single cell of the map.
- * It is used to overlap the entities between them.
+ * Is an array which allows the overlapping of the single tile in the map.
+ * It is used to overlap the entities between them on a single tile.
  * @author Montefusco, Nappi
  * @version 1.0
  */
@@ -16,7 +16,7 @@ public class LayeredEntity extends Entity {
     protected LinkedList<Entity> entities = new LinkedList<Entity>();
 
     /**
-     * Initialize the object making a layered entity that contain all the entities localized in a specific coordinates.
+     * Initializes the object making a layered entity that contain all the entities localized in a specific coordinates.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param entities array of variable lenght that contain the entities to overlap, the entities must be passed from the bottom to the top.
@@ -34,7 +34,7 @@ public class LayeredEntity extends Entity {
     }
 
     /**
-     * Allow to update the state of layered entity checking if the top entity must be replaced by the bottom one.
+     * Allows to update the state of layered entity checking if the top entity should be replaced by the bottom one.
      */
     @Override
     public void update() {
@@ -43,7 +43,7 @@ public class LayeredEntity extends Entity {
     }
 
     /**
-     * Invoke the screen's method to print the top entity on screen.
+     * Invokes the screen's method to print the top entity on screen.
      * @param screen screen on which the print is called.
      */
     @Override
@@ -60,7 +60,7 @@ public class LayeredEntity extends Entity {
     }
 
     /**
-     * Check if the top entity must be removed and eventually remove it.
+     * Checks if the top entity must be removed and eventually it removes.
      */
     private void clearRemoved() {
         Entity top = getTopEntity();
@@ -74,7 +74,7 @@ public class LayeredEntity extends Entity {
 	}
 
     /**
-     * Check if the top entity can collide with the one passed as a parameter.
+     * Checks if the top entity collides with the one passed as a parameter.
      * @param e is the entity with which is checked the collision.
      * @return true if the entities can collide with each other, false otherwise.
      */

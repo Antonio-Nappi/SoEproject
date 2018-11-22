@@ -5,14 +5,14 @@ import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
 
 /**
- * Represent the tile that block the passage of the mobs, but can be destroyed with the bombs.
+ * Represents the blocked tile which can be destroyed by the bomb.
  * @author Bini, Petruzzello
  * @version 1.0
  */
 public class BrickTile extends DestroyableTile {
 
     /**
-     * Constructor that create an object of this class.
+     * Creates an object of BrickTile.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param sprite related to the tile.
@@ -22,7 +22,7 @@ public class BrickTile extends DestroyableTile {
     }
 
     /**
-     * Check what must be shown on the screen and invoke the screen's method to print the entity.
+     * Checks what should be shown on the screen and it invokes the screen's method to print the entity.
      * During the animation must be shown both top and bottom sprite.
      * @param screen screen on which the print is called.
      */

@@ -4,8 +4,8 @@ import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
 /**
- * The abstract class that rapresent the backbone of each entity.
- * It fix the main behavior of all entities that can appear on the map.
+ * The abstract class represents the entities' backbone
+ * Fixs the main behavior of each entity appearable on the map.
  * @author Montefusco, Nappi
  * @version 1.0
 */
@@ -16,12 +16,12 @@ public abstract class Entity {
     protected Sprite sprite;
 
     /**
-     * It allow to update the state of entity to check if it is change something.
+    * Allows to update the state of the entity and it checks if something is changed
      */
     public abstract void update();
 
     /**
-     * The implementation of this method invoke the screen's method to print the entity on screen.
+     * The implementation of this method invokes the screen's method to print the entity on screen.
      * @param screen screen on which the print is called.
      */
     public abstract void render(Screen screen);
@@ -34,7 +34,7 @@ public abstract class Entity {
     }
 
     /**
-     * Check if the entity must be removed.
+     * Checks if the entity must be removed.
      * @return true if the entity must be removed, false otherwise.
      */
     public boolean isRemoved() {
@@ -42,14 +42,14 @@ public abstract class Entity {
     }
 
     /**
-     * The implementation of this method check if two entities can collide with each other.
+     * The implementation of this method checks if two entities collide with each other.
      * @param e is the entity with which is checked the collision.
      * @return true if the entities can collide with each other, false otherwise.
      */
     public abstract boolean collide(Entity e);
 
     /**
-     * Return the sprite that represent the entity.
+     * Returns the sprite of the entity.
      * @return the sprite related at the entity.
      */
     public Sprite getSprite() {
@@ -57,16 +57,16 @@ public abstract class Entity {
     }
     
     /**
-     * Return the <b>x</b> position of the entity on the screen.
-     * @return <b>x</b> coordinate.
+     * Returns the <b>x</b> coordinate of the entity on the screen.
+     * @return the <b>x</b> coordinate of the entity on the screen.
      */
     public double getX() {
         return x;
     }
 
     /**
-     * Return the <b>y</b> position of the entity on the screen.
-     * @return <b>y</b> coordinate.
+     * Return the <b>y</b> coordinate of the entity on the screen.
+     * @return <b>y</b> coordinate of the entity on the screen.
      */
     public double getY() {
         return y;

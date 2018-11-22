@@ -6,8 +6,8 @@ import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
 /**
- * Rappresenta la classe che gestisce la visualizzazione grafica delle esplosioni.
- * è utilizzata per settare le immagini di ogni casella coinvolta nell'esplosione.
+ * Represents the class able to manage the graphic of the explosion and 
+ * used to set the images of each related tile in the explosion
  * @author Corbisiero, Ferrara, La Femina
  */
 public class Explosion extends Entity {
@@ -62,7 +62,7 @@ public class Explosion extends Entity {
     }
 
     /**
-     * Invoca il metodo di screen che provvede a stampare a video ciascuna delle celle coinvolte nell'esplosione.
+     *Invokes the screen's method that provides to print on the screen each related tile in the explosion
      * @param screen on which the print is called.
      */
     @Override
@@ -73,15 +73,15 @@ public class Explosion extends Entity {
     }
 
     /**
-     * Metodo non implementato.
+     * Not implemented method.
      */
     @Override
     public void update() {}
 
     /**
-     * Say if the explosion entity can collide with other entity.
+     * Return false if the explosion entity collide with other entity.
      * @param e is the entity with which is checked the collision.
-     * @return true sempre.
+     * @return 
      */
     @Override
     public boolean collide(Entity e) {

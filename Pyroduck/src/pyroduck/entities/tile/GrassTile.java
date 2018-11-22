@@ -4,7 +4,7 @@ import pyroduck.entities.Entity;
 import pyroduck.graphics.Sprite;
 
 /**
- * Is the background tile on which each entity is placed.
+ * Is the background of the tile where each entity is placed.
  * @author Corbisiero, Ferrara, La Femina
  * @version 1.0
  */
@@ -21,10 +21,10 @@ public class GrassTile extends Tile {
     }
 
     /**
-     * Check if two entities can collide with each other.
-     * Obviously for these entities the possibility of colliding is set false because each other entity must be able to move on it.
+     * Return false 
+     * Obviously for these entities the possibility of colliding is setted false because other entities can move on it.
      * @param e is the entity with which is checked the collision.
-     * @return true if the entities can collide with each other, false otherwise.
+     * @return false.
      */
     @Override
     public boolean collide(Entity e) {

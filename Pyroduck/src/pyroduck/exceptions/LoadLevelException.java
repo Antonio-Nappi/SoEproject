@@ -1,7 +1,7 @@
 package pyroduck.exceptions;
 
 /**
- * Exception related at the error in the level charged.
+  * Exception thrown when there is the loading of the level from the file.
  * @author all
  */
 public class LoadLevelException extends PyroduckException {
@@ -9,7 +9,7 @@ public class LoadLevelException extends PyroduckException {
     }
 
     /**
-     * Constructs a new exception with the specified detail message.
+     * Creates a new exception with specified details of the message.
      * @param str detail message.
      */
     public LoadLevelException(String str) {
