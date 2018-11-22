@@ -101,7 +101,7 @@ public class Player extends Mob {
     @Override
     public boolean canMove(double x, double y) {
         for (int c = 0; c < 4; c++) { //colision detection for each corner of the player
-            double xt = ((this.x + x) + c % 2 * 26) / Game.TILES_SIZE; // 
+            double xt = ((this.x + x) + c % 2 * 24 + 4) / Game.TILES_SIZE; // 
             double yt = ((this.y + y) + c / 2 * 15 - 16) / Game.TILES_SIZE; // the multiply factor control bottom collision and the additional factor control top collision
             Entity a = board.getEntity(xt, yt);
             if(a.collide(this))
