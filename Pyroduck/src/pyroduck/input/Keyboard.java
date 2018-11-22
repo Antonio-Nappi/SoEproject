@@ -22,6 +22,14 @@ public class Keyboard implements KeyListener {
         space = keys[KeyEvent.VK_SPACE] || keys[KeyEvent.VK_X];
     }
     
+    public void updateReverse() {
+        down = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W];
+        up = keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];
+        right = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
+        left = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
+        space = keys[KeyEvent.VK_SPACE] || keys[KeyEvent.VK_X];
+    }
+    
     /**
      * Method not implemented.
      * @param e 

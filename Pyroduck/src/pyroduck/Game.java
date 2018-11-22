@@ -30,6 +30,7 @@ public class Game extends Canvas {
     protected static int bombRate = BOMBRATE;
     protected static int bombRadius = BOMBRADIUS;
     protected static double playerSpeed = PLAYERSPEED;
+    protected static boolean reverse=false;
     
     private final Keyboard input;
     private final Board board;
@@ -75,7 +76,9 @@ public class Game extends Canvas {
     }
 
     private void update() {
+        if (!reverse)
         input.update();
+        else input.updateReverse();
         board.update();
     }
 
@@ -98,6 +101,10 @@ public class Game extends Canvas {
 	
     public static void decreasePlayerSpeed(double i) {        
         playerSpeed = playerSpeed -i;
+    }
+    
+    public static void reverseInput(boolean b){
+        reverse=b;
     }
 	
     /*
