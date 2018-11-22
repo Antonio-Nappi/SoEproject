@@ -160,10 +160,8 @@ public class Board {
      */
     /**
      * Add the entity and the related position in the entity array.
-     * @param pos position within the entity array (pos = x + y * levelWidth)
-     * @param e entity to add within the entity array.
      */
-    public void addEntity() {
+    public void addEntities() {
         entities = level.createEntities(this);
     }
 

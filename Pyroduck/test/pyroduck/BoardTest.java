@@ -16,7 +16,7 @@ import pyroduck.input.Keyboard;
 
 /**
  *
- * @author stefa
+ * @author all
  */
 public class BoardTest {
     
@@ -72,7 +72,7 @@ public class BoardTest {
         assertEquals(1, Game.bombRadius);
         assertEquals(1, Game.bombRate);
         assertEquals(1.3, Game.playerSpeed, 0);
-        assertTrue(board.mobs.isEmpty());
+        assertTrue(board.mobs.size() == 1);
         assertTrue(board.bombs.isEmpty());
     }
 
@@ -82,11 +82,8 @@ public class BoardTest {
     @Test
     public void testGetEntity() {
         Bomb bomb = new Bomb(0, 0, board);
-        Explosion explosion = new Explosion(1, 1, 2, false, board);
-        Player player = new Player(1, 2, board);
-        assertTrue(board.getEntity(0, 0)instanceof Bomb);
-        assertTrue(board.getEntity(1, 1)instanceof Explosion);
-        assertTrue(board.getEntity(1, 2)instanceof Player);
+        board.addBomb(bomb);
+        assertTrue(board.getEntity(0, 0) instanceof Bomb);
     }
 
     /**
@@ -95,7 +92,8 @@ public class BoardTest {
     @Test
     public void testGetBombAt() {
         Bomb bomb = new Bomb(0, 0, board);
-        assertEquals(board.getBombAt(0, 0), bomb);
+        board.addBomb(bomb);
+        assertTrue(board.getBombAt(0, 0) instanceof Bomb);
     }
 
     /**
@@ -104,16 +102,8 @@ public class BoardTest {
     @Test
     public void testGetPlayer() {
         Player player = new Player(1, 2, board);
-        assertEquals(board.getPlayer(), player);
-    }
-
-    /**
-     * Test of getExplosionAt method, of class Board.
-     */
-    @Test
-    public void testGetExplosionAt() {
-        Explosion explosion = new Explosion(1, 1, 2, false, board);
-        assertTrue(board.getEntity(1, 1)instanceof Explosion);
+        board.addMob(player);
+        assertTrue(board.getPlayer() instanceof Player);
     }
 
     /**
@@ -122,6 +112,6 @@ public class BoardTest {
     @Test
     public void testGetEntityAt() {
         WallTile wall = new WallTile(0, 0, Sprite.wall);
-        assertEquals(wall, board.getEntityAt(0, 0));
+        assertTrue(board.getEntityAt(0, 0) instanceof WallTile);
     }
 }

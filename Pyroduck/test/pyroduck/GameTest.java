@@ -10,7 +10,7 @@ import pyroduck.exceptions.PyroduckException;
 
 /**
  *
- * @author 
+ * @author all
  */
 public class GameTest {
     Game game;
