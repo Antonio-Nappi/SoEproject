@@ -7,9 +7,12 @@
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/mob/Player.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/level/FileLevel.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/test/pyroduck/level/FileLevelTest.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/input/Keyboard.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/AnimatedEntity.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/test/pyroduck/GameTest.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/Board.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/tile/powerup/MalusReverseKeyboard.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/Game.java</file>
         </group>
     </open-files>
 </project-private>
