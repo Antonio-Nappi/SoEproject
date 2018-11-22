@@ -100,7 +100,7 @@ public class Board {
     | Getters And Setters
     |--------------------------------------------------------------------------
      */
-    public Entity getEntity(double x, double y) { //Mob
+    public Entity getEntity(double x, double y) {
         Entity res = getExplosionAt((int)x, (int)y);
         if( res != null) 
             return res;
