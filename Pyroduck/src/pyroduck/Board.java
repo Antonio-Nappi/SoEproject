@@ -19,7 +19,7 @@ public class Board {
     private final Keyboard input;
     private final Screen screen;
     public Entity[] entities;
-    public List<Mob> mobs = new ArrayList<>(); //da correggere
+    public List<Mob> mobs = new ArrayList<>();
     private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
     protected List<Bomb> bombs = new ArrayList<>();
 
