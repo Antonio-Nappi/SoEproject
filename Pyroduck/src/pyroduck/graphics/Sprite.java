@@ -18,9 +18,15 @@ public class Sprite {
     | Board sprites
     |--------------------------------------------------------------------------
      */
+    
     public static Sprite grass = new Sprite(1, 0, SpriteSheet.tiles);
     public static Sprite brick = new Sprite(3, 0, SpriteSheet.tiles);
     public static Sprite wall = new Sprite(0, 0, SpriteSheet.tiles);
+    /*GLACE ARENA
+    public static Sprite grass = new Sprite(9, 0, SpriteSheet.tiles);
+    public static Sprite brick = new Sprite(11, 0, SpriteSheet.tiles);
+    public static Sprite wall = new Sprite(7, 0, SpriteSheet.tiles);
+    */
 
     /*
     |--------------------------------------------------------------------------
@@ -109,6 +115,7 @@ public class Sprite {
     public static Sprite powerup_flames = new Sprite(4, 3, SpriteSheet.tiles);
     public static Sprite powerup_speed = new Sprite(5, 2, SpriteSheet.tiles);
     public static Sprite powerup_slow = new Sprite(3, 0, SpriteSheet.tiles);
+    public static Sprite powerup_malus = new Sprite(4, 4, SpriteSheet.tiles);
 
     /**
      * Creates an instance of Sheet, sets its parameters and calls the method to load the related image.
