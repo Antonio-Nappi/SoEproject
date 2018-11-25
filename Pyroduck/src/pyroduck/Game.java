@@ -31,6 +31,7 @@ public class Game extends Canvas {
     protected static int bombRadius = BOMBRADIUS;
     protected static double playerSpeed = PLAYERSPEED;
     protected static boolean reverse=false;
+    protected static int rev = 0;
     
     private final Keyboard input;
     private final Board board;
@@ -135,8 +136,15 @@ public class Game extends Canvas {
     private class ScheduleTask extends TimerTask{
         @Override
         public void run(){
+            if(reverse){
+                rev++;
+                if(rev >= 200){
+                    reverse = false;
+                    rev = 0;
+                }     
+            }
             renderGame();
             update();
-        }           
-    }  
+        }
+    }             
 }
