@@ -131,7 +131,7 @@ public class Bomb extends AnimatedEntity {
         if(e instanceof Player) {
             double diffX = e.getX() - Coordinates.tileToPixel(getX());
             double diffY = e.getY() - Coordinates.tileToPixel(getY());
-            if(!(diffX >= -26 && diffX < 32 && diffY >= 1 && diffY <= 47)) { // differences to see if the player has moved out of the bomb, tested values
+            if(!(diffX >= -26 && diffX < 30 && diffY >= 1 && diffY <= 47)) { // differences to see if the player has moved out of the bomb, tested values
                 allowedToPassThru = true;
             }
             return allowedToPassThru;
