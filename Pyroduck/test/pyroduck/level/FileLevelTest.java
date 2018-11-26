@@ -8,11 +8,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import pyroduck.Board;
 import pyroduck.entities.Entity;
-import pyroduck.entities.tile.WallTile;
-import pyroduck.entities.tile.destroyable.BrickTile;
+import pyroduck.entities.tile.*;
 import pyroduck.exceptions.LoadLevelException;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
+import pyroduck.graphics.*;
 import pyroduck.input.Keyboard;
 
 /**

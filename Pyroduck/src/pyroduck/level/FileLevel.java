@@ -12,11 +12,8 @@ import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.GrassTile;
 import pyroduck.entities.tile.WallTile;
 import pyroduck.entities.tile.destroyable.BrickTile;
-import pyroduck.entities.tile.powerup.MalusReverseKeyboard;
-import pyroduck.entities.tile.powerup.PowerupBombs;
-import pyroduck.entities.tile.powerup.PowerupFlames;
-import pyroduck.entities.tile.powerup.PowerupSlow;
-import pyroduck.entities.tile.powerup.PowerupSpeed;
+import pyroduck.entities.tile.powerup.MalusSlow;
+import pyroduck.entities.tile.powerup.*;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -114,7 +111,7 @@ public class FileLevel{
                     case 'o':
                         entities[pos] = new LayeredEntity(x, y, 
                                             new GrassTile(x ,y, Sprite.grass),
-                                                new PowerupSlow(x, y, Sprite.powerup_slow));
+                                                new MalusSlow(x, y, Sprite.powerup_slow));
 
                         break; 
                       case 'b':
@@ -129,7 +126,7 @@ public class FileLevel{
                         LayeredEntity layer5 = new LayeredEntity(x, y, 
                                                 new GrassTile(x ,y, Sprite.grass), 
                                                     new BrickTile(x ,y, Sprite.brick));
-                        layer5.addBeforeTop(new MalusReverseKeyboard(x, y, Sprite.powerup_malus));				
+                        layer5.addBeforeTop(new MalusReverse(x, y, Sprite.powerup_malus));				
                         entities[pos] = layer5;
                         break;
                     default: 

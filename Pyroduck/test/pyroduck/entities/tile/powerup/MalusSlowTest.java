@@ -20,9 +20,9 @@ import pyroduck.input.Keyboard;
  *
  * @author La Femina, Petruzzello
  */
-public class PowerupSlowTest {
+public class MalusSlowTest {
     
-    public PowerupSlowTest() {
+    public MalusSlowTest() {
     }
     
     @BeforeClass
@@ -42,7 +42,7 @@ public class PowerupSlowTest {
     }
 
     /**
-     * Test of collide method, of class PowerupSlow.
+     * Test of collide method, of class MalusSlow.
      */
     @Test
     public void testCollide() {
@@ -51,7 +51,7 @@ public class PowerupSlowTest {
         Entity e1 = new DirectionalExplosion(1, 2, 0, 1, b);
         Entity e2 = new Player(1, 1, b);
         Entity e3 = new BrickTile(1, 1, Sprite.brick);
-        PowerupSlow instance = new PowerupSlow(1, 1, Sprite.brick);
+        MalusSlow instance = new MalusSlow(1, 1, Sprite.brick);
         boolean des = instance.collide(e1);
         assertFalse(des);
         assertTrue(instance.isDestroyed());
@@ -63,12 +63,12 @@ public class PowerupSlowTest {
     }
 
     /**
-     * Test of setValues method, of class PowerupSlow.
+     * Test of setValues method, of class MalusSlow.
      */
     @Test
     public void testSetValues() {
         System.out.println("setValues");
-        PowerupSlow instance = new PowerupSlow(1, 1, Sprite.brick);
+        MalusSlow instance = new MalusSlow(1, 1, Sprite.brick);
         assertEquals(0.9, Game.getPlayerSpeed(), 0);
         instance.setValues();
         assertEquals(0.9, Game.getPlayerSpeed(), 0);

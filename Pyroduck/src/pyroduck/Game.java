@@ -133,12 +133,16 @@ public class Game extends Canvas {
         return board;
     }
 
+    public int getLives() {
+        return board.lives;
+    }
+   
     private class ScheduleTask extends TimerTask{
         @Override
         public void run(){
             if(reverse){
                 rev++;
-                if(rev >= 200){
+                if(rev >= 667){
                     reverse = false;
                     rev = 0;
                 }     

@@ -9,10 +9,12 @@
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/test/pyroduck/level/FileLevelTest.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/input/Keyboard.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/AnimatedEntity.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/Pyroduck.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/tile/powerup/PowerupBombs.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/test/pyroduck/GameTest.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/Board.java</file>
-            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/tile/powerup/MalusReverseKeyboard.java</file>
             <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/Game.java</file>
+            <file>file:/C:/Users/Antonio/Documents/NetBeansProjects/SoEproject/Pyroduck/src/pyroduck/entities/tile/powerup/MalusReverse.java</file>
         </group>
     </open-files>
 </project-private>

@@ -22,7 +22,8 @@ public class Board {
     public List<Mob> mobs = new ArrayList<>();
     private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
     protected List<Bomb> bombs = new ArrayList<>();
-
+    protected int lives = 3;
+            
     public Board(Keyboard input, Screen screen) {
         this.input = input;
         this.screen = screen;

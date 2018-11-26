@@ -15,9 +15,9 @@ import pyroduck.graphics.Sprite;
  *
  * @author Acer 5744 i5
  */
-public class MalusReverseKeyboard extends Powerup {
+public class MalusReverse extends Powerup {
 
-    public MalusReverseKeyboard(int x, int y, Sprite sprite) {
+    public MalusReverse(int x, int y, Sprite sprite) {
         super(x, y, sprite);
     }
 
@@ -38,6 +38,6 @@ public class MalusReverseKeyboard extends Powerup {
     public void setValues() {
         Game.reverseInput(true);
     }
-    
+     
     
 }
