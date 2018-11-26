@@ -4,6 +4,8 @@
 package pyroduck.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import pyroduck.Game;
@@ -24,6 +26,9 @@ public class Frame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
+        ImageIcon imgi = new ImageIcon("resources\\textures\\duck.png");
+        Image img = imgi.getImage();
+        setIconImage(img);
         setLocationRelativeTo(null);
         setVisible(true);	
         game.start();

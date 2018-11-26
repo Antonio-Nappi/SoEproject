@@ -141,8 +141,7 @@ public class Game extends Canvas {
         @Override
         public void run(){
             if(reverse){
-                rev++;
-                if(rev >= 667){
+                if(++rev >= 667){
                     reverse = false;
                     rev = 0;
                 }     
