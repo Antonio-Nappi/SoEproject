@@ -6,6 +6,7 @@ import java.util.List;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
+import pyroduck.entities.Message;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.LoadLevelException;
@@ -23,7 +24,11 @@ public class Board {
     private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
     protected List<Bomb> bombs = new ArrayList<>();
     protected int lives = 3;
+<<<<<<< HEAD
     private int points = 0;
+=======
+    private List<Message> messages = new ArrayList<Message>();
+>>>>>>> parent of 63a8edf... Add collision between "Player" and "Bomb"
             
     public Board(Keyboard input, Screen screen) {
         this.input = input;
@@ -174,6 +179,17 @@ public class Board {
     public void addMob(Mob e) {
         mobs.add(e);
     }
+<<<<<<< HEAD
+=======
+    
+    /**
+     * 
+     * @param e 
+     */
+    public void addMessage(Message e) {
+        messages.add(e);
+    }
+>>>>>>> parent of 63a8edf... Add collision between "Player" and "Bomb"
 
     /*
     |--------------------------------------------------------------------------
