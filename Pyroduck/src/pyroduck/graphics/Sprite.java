@@ -153,16 +153,16 @@ public class Sprite {
      * @param x1 second sprite of the animation.
      * @param x2 last sprite of animation.
      * @param animate number used to manage the exchange of the state between animations.
-     * @param time duration of each animation.
+     * @param delta duration of each animation.
      * @return the sprite animation between three elements changing the image after a certain time inteval.
      */
-    public static Sprite movingSprite(Sprite normal, Sprite x1, Sprite x2, int animate, int time) {
-        int calc = animate % time;
-        int diff = time / 3;
-        if(calc < diff) {
+    public static Sprite movingSprite(Sprite normal, Sprite x1, Sprite x2, int animate, int delta) {
+        int timewindow = animate % delta;
+        int interval = delta / 3;
+        if(timewindow < interval) {
             return normal;
         }
-        if(calc < diff * 2) {
+        if(timewindow < interval * 2) {
             return x1;
         }
         return x2;
@@ -173,12 +173,12 @@ public class Sprite {
      * @param x1 first sprite of the animation.
      * @param x2 last sprite of animation.
      * @param animate number used to manage the exchange of the state between animations.
-     * @param time duration of each animation.
+     * @param delta duration of each animation.
      * @return the sprite animation between three elements changing the image after a certain time inteval.
      */
-    public static Sprite movingSprite(Sprite x1, Sprite x2, int animate, int time) {
-        int diff = time / 2;
-        return (animate % time > diff) ? x1 : x2; 
+    public static Sprite movingSprite(Sprite x1, Sprite x2, int animate, int delta) {
+        int interval = delta / 2;
+        return (animate % delta > interval) ? x1 : x2; 
     }
 
     /**

@@ -26,7 +26,6 @@ public class Player extends Mob {
     protected List<Bomb> bombs = null;
     protected int timeBetweenPutBombs = 0;
     public static List<Powerup> powerups = new ArrayList<Powerup>();
-
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
@@ -57,7 +56,9 @@ public class Player extends Mob {
             timeBetweenPutBombs = 0; 
         else 
             --timeBetweenPutBombs;
-        animate();
+        animate(); 
+//        if(level==2)
+//            calculateMoveIce();
         calculateMove();
         detectPlaceBomb();
     }
@@ -91,7 +92,7 @@ public class Player extends Mob {
         if(input.left) xa--;
         if(input.right) xa++;
         if(xa != 0 || ya != 0)  {
-            move(xa * Game.getPlayerSpeed(), ya * Game.getPlayerSpeed());
+            move(xa * Game.getPlayerSpeed(), ya *Game.getPlayerSpeed());
             moving = true;
         } else {
             moving = false;
@@ -127,6 +128,7 @@ public class Player extends Mob {
             this.x += xa;
         }
     }
+    
     /*
     |--------------------------------------------------------------------------
     | Mob Sprite
@@ -137,31 +139,31 @@ public class Player extends Mob {
             case 0:
                 sprite = Sprite.player_up;
                 if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 20);
+                    sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 30);
                 }
                 break;
             case 1:
                 sprite = Sprite.player_right;
                 if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 20);
+                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
                 }
                 break;
             case 2:
                 sprite = Sprite.player_down;
                 if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 20);
+                    sprite = Sprite.movingSprite(Sprite.player_down, Sprite.player_down, animate, 30);
                 }
                 break;
             case 3:
                 sprite = Sprite.player_left;
                 if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 20);
+                    sprite = Sprite.movingSprite(Sprite.player_left, Sprite.player_left, animate, 30);
                 }
                 break;
             default:
                 sprite = Sprite.player_right;
                 if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 20);
+                    sprite = Sprite.movingSprite(Sprite.player_right, Sprite.player_right, animate, 30);
                 }
                 break;
             }
@@ -209,6 +211,19 @@ public class Player extends Mob {
             powerups.add(p);
             p.setValues();
         }
+    }
 
+    private void calculateMoveIce() {
+        double xa = 0, ya = 0;
+        if(input.up) ya = - Math.random();
+        if(input.down) ya = Math.random();
+        if(input.left) xa = - Math.random();
+        if(input.right) xa = Math.random();
+        if(xa != 0 || ya != 0)  {
+            move(xa * Game.getPlayerSpeed(), ya*Game.getPlayerSpeed());
+            moving = true;
+        } else {
+            moving = false;
+        }
     }
 }
