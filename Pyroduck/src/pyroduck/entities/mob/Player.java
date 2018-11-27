@@ -9,11 +9,7 @@ import pyroduck.Game;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
-<<<<<<< HEAD
 import pyroduck.entities.mob.enemy.Enemy;
-=======
-import pyroduck.entities.Message;
->>>>>>> parent of 63a8edf... Add collision between "Player" and "Bomb"
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -190,17 +186,10 @@ public class Player extends Mob {
             kill();
             return true;
         }
-<<<<<<< HEAD
         if(e instanceof Enemy) {
             kill();
             return false;
         }
-=======
-//        if(e instanceof Enemy) {
-//            kill();
-//            return true;
-//        }
->>>>>>> Collision_Stefano_Branch
         return false;
     }
     
@@ -250,32 +239,18 @@ public class Player extends Mob {
      */
     @Override
     public void kill() {
-<<<<<<< HEAD
-        if(!alive) return;
-        alive = false;
-        board.addLives(-1);
-        Message msg = new Message("-1 LIVE", getXMessage(), getYMessage(), 2, Color.white, 14);
-        board.addMessage(msg);
-=======
         if(!alive) 
             return;
         alive = false;
         board.addLives(-1);
->>>>>>> Collision_Stefano_Branch
     }
 
     @Override
     protected void afterKill() {
-<<<<<<< HEAD
-        if(timeAfter > 0) --timeAfter;
-        else {
-            if(bombs.size() == 0) {
-=======
         if(timeAfter > 0) 
             --timeAfter;
         else {
             if(bombs.isEmpty()) {
->>>>>>> Collision_Stefano_Branch
                 if(board.getLives() == 0)
                     board.endGame();
                 else

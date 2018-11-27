@@ -6,7 +6,6 @@ import java.util.List;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
-import pyroduck.entities.Message;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.LoadLevelException;
@@ -24,12 +23,8 @@ public class Board {
     private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
     protected List<Bomb> bombs = new ArrayList<>();
     protected int lives = 3;
-<<<<<<< HEAD
     private int points = 0;
-=======
-    private List<Message> messages = new ArrayList<Message>();
->>>>>>> parent of 63a8edf... Add collision between "Player" and "Bomb"
-            
+    
     public Board(Keyboard input, Screen screen) {
         this.input = input;
         this.screen = screen;
@@ -187,22 +182,6 @@ public class Board {
     public void addMob(Mob e) {
         mobs.add(e);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    
-    /**
-     * 
-     * @param e 
-     */
-    public void addMessage(Message e) {
-        messages.add(e);
-    }
->>>>>>> parent of 63a8edf... Add collision between "Player" and "Bomb"
-
-=======
-    
->>>>>>> Collision_Stefano_Branch
     /*
     |--------------------------------------------------------------------------
     | Renders
@@ -292,38 +271,23 @@ public class Board {
         while(itr.hasNext())
             itr.next().render(screen);
     }
-<<<<<<< HEAD
 
     public int getLives() {
         return lives;
     }
-    
-=======
-    
+
     /**
      * 
      * @param lives 
      */
->>>>>>> Collision_Stefano_Branch
     public void addLives(int lives) {
         this.lives += lives;
     }
-    
-<<<<<<< HEAD
-    public void endGame() {
-        screenToShow = 1;
-    }
-    
+ 
     public void addPoints(int points) {
         this.points += points;
-=======
-    /**
-     * 
-     * @return 
-     */
-    public int getLives() {
-	return lives;
     }
+
     
     /**
      * 
@@ -341,6 +305,5 @@ public class Board {
                 return cur;
         }
         return null;
->>>>>>> Collision_Stefano_Branch
     }
 }

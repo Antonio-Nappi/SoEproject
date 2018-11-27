@@ -78,18 +78,12 @@ public abstract class Mob extends AnimatedEntity {
      */
     public int getDirection() {
         return direction;
-<<<<<<< HEAD
     }	
-=======
-    }
->>>>>>> Collision_Stefano_Branch
     
     public abstract void kill();
 	
     protected abstract void afterKill();
-<<<<<<< HEAD
-=======
-    
+  
     protected double getXMessage() {
         return (x) + (sprite.SIZE / 2);
     }
@@ -97,5 +91,4 @@ public abstract class Mob extends AnimatedEntity {
     protected double getYMessage() {
         return (y) - (sprite.SIZE / 2);
     }
->>>>>>> Collision_Stefano_Branch
 }
