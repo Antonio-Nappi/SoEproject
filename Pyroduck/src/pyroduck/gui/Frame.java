@@ -8,19 +8,16 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import pyroduck.Game;
 
 public class Frame extends JFrame {
     public GamePanel gamepane;
     private JPanel containerpane;
-    private Game game;
     public static final String TITLE = "Pyroduck";
 
     public Frame() {
         containerpane = new JPanel(new BorderLayout());
         gamepane = new GamePanel(this);
         containerpane.add(gamepane, BorderLayout.PAGE_END);
-        game = gamepane.getGame();
         setTitle(TITLE);
         add(containerpane);
         setResizable(false);
@@ -31,7 +28,7 @@ public class Frame extends JFrame {
         setIconImage(img);
         setLocationRelativeTo(null);
         setVisible(true);	
-        game.start();
+        gamepane.getGame().start();
     }
 
     /*
@@ -41,7 +38,7 @@ public class Frame extends JFrame {
      */
     
     public void newGame() {
-        game.getBoard().newGame();
+        gamepane.getGame().getBoard().newGame();
     }
     
 }
