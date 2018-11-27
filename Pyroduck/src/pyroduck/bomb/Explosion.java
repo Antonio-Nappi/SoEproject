@@ -88,7 +88,6 @@ public class Explosion extends Entity {
     public boolean collide(Entity e) {
         if(e instanceof Mob) {
                 ((Mob)e).kill();
-                System.out.println("collisione mob->explosion in explosion");
         }
         return false;
     }
