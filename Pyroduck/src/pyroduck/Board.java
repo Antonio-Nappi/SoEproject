@@ -24,7 +24,8 @@ public class Board {
     private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
     protected List<Bomb> bombs = new ArrayList<>();
     protected int lives = 3;
-            
+    private int points = 0;
+    
     public Board(Keyboard input, Screen screen) {
         this.input = input;
         this.screen = screen;
@@ -168,14 +169,21 @@ public class Board {
         entities = level.createEntities(this);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Mob> getMobs() {
         return mobs;
     }
 
+    /**
+     * 
+     * @param e 
+     */
     public void addMob(Mob e) {
         mobs.add(e);
     }
-
     /*
     |--------------------------------------------------------------------------
     | Renders
@@ -210,33 +218,94 @@ public class Board {
         for (int i = 0; i < entities.length; i++) 
             entities[i].update();
     }
+    
+    /**
+     * 
+     */
+    public void endGame() {
+        screenToShow = 1;
+    }
 
     /*
     |--------------------------------------------------------------------------
     | Getters & Setters
     |--------------------------------------------------------------------------
     */
+    /**
+     * 
+     * @return 
+     */
     public Keyboard getInput() {
         return input;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public FileLevel getLevel() {
         return level;
     }
 
+    /**
+     * 
+     */
     protected void updateBombs() {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().update();
     }
 
+    /**
+     * 
+     * @param b 
+     */
     public void addBomb(Bomb b) {
         bombs.add(b);    
     }
     
+    /**
+     * 
+     * @param screen 
+     */
     protected void renderBombs(Screen screen) {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().render(screen);
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    /**
+     * 
+     * @param lives 
+     */
+    public void addLives(int lives) {
+        this.lives += lives;
+    }
+ 
+    public void addPoints(int points) {
+        this.points += points;
+    }
+
+    
+    /**
+     * 
+     * @param x
+     * @param y
+     * @return 
+     */
+    public Mob getMobAt(double x, double y) {
+        Iterator<Mob> itr = mobs.iterator();
+
+        Mob cur;
+        while(itr.hasNext()) {
+            cur = itr.next();
+            if(cur.getXTile() == x && cur.getYTile() == y)
+                return cur;
+        }
+        return null;
     }
 }
