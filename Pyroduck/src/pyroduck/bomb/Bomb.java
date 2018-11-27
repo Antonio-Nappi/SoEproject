@@ -4,6 +4,7 @@ import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.AnimatedEntity;
 import pyroduck.entities.Entity;
+import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -48,6 +49,8 @@ public class Bomb extends AnimatedEntity {
         else {
             if(!exploded) 
                 explosion();
+            else
+                updateExplosions();
             if(timeAfter > 0) 
                 timeAfter--;
             else
@@ -81,6 +84,15 @@ public class Bomb extends AnimatedEntity {
             explosions[i].render(screen);
         }
     }
+    
+    /**
+     * 
+     */
+    public void updateExplosions() {
+        for (int i = 0; i < explosions.length; i++) {
+            explosions[i].update();
+        }
+    }
 
     /**
      * Manages the bomb explosion creating new DirectionalExplosion.
@@ -88,6 +100,10 @@ public class Bomb extends AnimatedEntity {
     protected void explosion() {
         allowedToPassThru = false;
         exploded = true;
+        Mob a = board.getMobAt(x, y);
+        if(a != null)  {
+            a.kill();
+        }
         explosions = new DirectionalExplosion[4];
         for (int i = 0; i < explosions.length; i++) {
             explosions[i] = new DirectionalExplosion((int)x, (int)y, i, Game.getBombRadius(), board);

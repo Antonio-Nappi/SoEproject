@@ -73,10 +73,25 @@ public abstract class Entity {
         return y;
     }
     
+<<<<<<< HEAD
     public int getXTile() {
         return Coordinates.pixelToTile(x + sprite.SIZE / 2); //plus half block for precision
     }
 
+=======
+    /**
+     * 
+     * @return 
+     */
+    public int getXTile() {
+        return Coordinates.pixelToTile(x + sprite.SIZE / 2); //plus half block for precision
+    }
+	
+    /**
+     * 
+     * @return 
+     */
+>>>>>>> Collision_Stefano_Branch
     public int getYTile() {
         return Coordinates.pixelToTile(y - sprite.SIZE / 2); //plus half block
     }

@@ -60,6 +60,10 @@ public class Player extends Mob {
     @Override
     public void update() {
         clearBombs();
+        if(alive == false) {
+            afterKill();
+            return;
+        }
         if(timeBetweenPutBombs < -7500) 
             timeBetweenPutBombs = 0; 
         else 
@@ -76,10 +80,16 @@ public class Player extends Mob {
     @Override
     public void render(Screen screen) {
         calculateXOffset();
-        chooseSprite();
+        if(alive)
+            chooseSprite();
+        else
+            sprite = Sprite.player_dead1;
         screen.renderEntity((int)x, (int)y - sprite.SIZE, this);
     }
 
+    /**
+     * 
+     */
     public void calculateXOffset() {
         int xScroll = Screen.calculateXOffset(board, this);
         Screen.setOffset(xScroll, 0);
@@ -180,10 +190,17 @@ public class Player extends Mob {
             kill();
             return true;
         }
+<<<<<<< HEAD
         if(e instanceof Enemy) {
             kill();
             return false;
         }
+=======
+//        if(e instanceof Enemy) {
+//            kill();
+//            return true;
+//        }
+>>>>>>> Collision_Stefano_Branch
         return false;
     }
     
@@ -233,18 +250,32 @@ public class Player extends Mob {
      */
     @Override
     public void kill() {
+<<<<<<< HEAD
         if(!alive) return;
         alive = false;
         board.addLives(-1);
         Message msg = new Message("-1 LIVE", getXMessage(), getYMessage(), 2, Color.white, 14);
         board.addMessage(msg);
+=======
+        if(!alive) 
+            return;
+        alive = false;
+        board.addLives(-1);
+>>>>>>> Collision_Stefano_Branch
     }
 
     @Override
     protected void afterKill() {
+<<<<<<< HEAD
         if(timeAfter > 0) --timeAfter;
         else {
             if(bombs.size() == 0) {
+=======
+        if(timeAfter > 0) 
+            --timeAfter;
+        else {
+            if(bombs.isEmpty()) {
+>>>>>>> Collision_Stefano_Branch
                 if(board.getLives() == 0)
                     board.endGame();
                 else

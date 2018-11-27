@@ -172,13 +172,22 @@ public class Board {
         entities = level.createEntities(this);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Mob> getMobs() {
         return mobs;
     }
 
+    /**
+     * 
+     * @param e 
+     */
     public void addMob(Mob e) {
         mobs.add(e);
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     
@@ -191,6 +200,9 @@ public class Board {
     }
 >>>>>>> parent of 63a8edf... Add collision between "Player" and "Bomb"
 
+=======
+    
+>>>>>>> Collision_Stefano_Branch
     /*
     |--------------------------------------------------------------------------
     | Renders
@@ -225,49 +237,110 @@ public class Board {
         for (int i = 0; i < entities.length; i++) 
             entities[i].update();
     }
+    
+    /**
+     * 
+     */
+    public void endGame() {
+        screenToShow = 1;
+    }
 
     /*
     |--------------------------------------------------------------------------
     | Getters & Setters
     |--------------------------------------------------------------------------
     */
+    /**
+     * 
+     * @return 
+     */
     public Keyboard getInput() {
         return input;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public FileLevel getLevel() {
         return level;
     }
 
+    /**
+     * 
+     */
     protected void updateBombs() {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().update();
     }
 
+    /**
+     * 
+     * @param b 
+     */
     public void addBomb(Bomb b) {
         bombs.add(b);    
     }
     
+    /**
+     * 
+     * @param screen 
+     */
     protected void renderBombs(Screen screen) {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().render(screen);
     }
+<<<<<<< HEAD
 
     public int getLives() {
         return lives;
     }
     
+=======
+    
+    /**
+     * 
+     * @param lives 
+     */
+>>>>>>> Collision_Stefano_Branch
     public void addLives(int lives) {
         this.lives += lives;
     }
     
+<<<<<<< HEAD
     public void endGame() {
         screenToShow = 1;
     }
     
     public void addPoints(int points) {
         this.points += points;
+=======
+    /**
+     * 
+     * @return 
+     */
+    public int getLives() {
+	return lives;
+    }
+    
+    /**
+     * 
+     * @param x
+     * @param y
+     * @return 
+     */
+    public Mob getMobAt(double x, double y) {
+        Iterator<Mob> itr = mobs.iterator();
+
+        Mob cur;
+        while(itr.hasNext()) {
+            cur = itr.next();
+            if(cur.getXTile() == x && cur.getYTile() == y)
+                return cur;
+        }
+        return null;
+>>>>>>> Collision_Stefano_Branch
     }
 }
