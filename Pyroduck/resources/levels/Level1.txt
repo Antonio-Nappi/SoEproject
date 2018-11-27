@@ -5,7 +5,7 @@
 #   *     *b*  *      *   * * #
 # # # # # #*# # #*#*# # # # #*#
 #f  b  s  o   *  *  *         #
-# # # # # # # # # #*# #*# # # #
+# # # # # # # # # #*#1#*# # # #
 #*  *      b  *      *        #
 # # # # #*# # # #*#*# # # # # #
 #f    m*  *       *           #
@@ -27,5 +27,4 @@ Powerups:
 b - Powerup Bombs
 f - Powerup Flames
 s - Powerup Speed
-o - Malus Decrease Speed
-m - Malus Reverse Keyboard
+o - Malus decrease speed

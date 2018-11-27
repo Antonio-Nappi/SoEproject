@@ -94,12 +94,19 @@ public class FileLevel{
                         layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));				
                        entities[pos] = layer;
                         break;  
-                    case 's':
+                    /*case 'r':
                         LayeredEntity layer2 = new LayeredEntity(x, y, 
                                                 new GrassTile(x ,y, Sprite.grass), 
                                                     new BrickTile(x ,y, Sprite.brick));
-                        layer2.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));				
+                        layer2.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));				
                         entities[pos] = layer2;
+                        break;*/
+                    case 's':
+                        LayeredEntity layer3 = new LayeredEntity(x, y, 
+                                                new GrassTile(x ,y, Sprite.grass), 
+                                                    new BrickTile(x ,y, Sprite.brick));
+                        layer3.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));				
+                        entities[pos] = layer3;
                         break;
                     case 'o':
                         entities[pos] = new LayeredEntity(x, y, 
@@ -108,19 +115,19 @@ public class FileLevel{
 
                         break; 
                       case 'b':
-                        LayeredEntity layer3 = new LayeredEntity(x, y, 
-                                                new GrassTile(x ,y, Sprite.grass), 
-                                                    new BrickTile(x ,y, Sprite.brick));
-                        layer3.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));				
-                        entities[pos] = layer3;
-                        break;
-                        
-                    case 'm':
                         LayeredEntity layer4 = new LayeredEntity(x, y, 
                                                 new GrassTile(x ,y, Sprite.grass), 
                                                     new BrickTile(x ,y, Sprite.brick));
-                        layer4.addBeforeTop(new MalusReverse(x, y, Sprite.powerup_malus));				
+                        layer4.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));				
                         entities[pos] = layer4;
+                        break;
+                        
+                    case 'm':
+                        LayeredEntity layer5 = new LayeredEntity(x, y, 
+                                                new GrassTile(x ,y, Sprite.grass), 
+                                                    new BrickTile(x ,y, Sprite.brick));
+                        layer5.addBeforeTop(new MalusReverse(x, y, Sprite.powerup_malus));				
+                        entities[pos] = layer5;
                         break;
                     default: 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
