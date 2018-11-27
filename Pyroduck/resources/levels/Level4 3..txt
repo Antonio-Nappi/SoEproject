@@ -1,0 +1,32 @@
+4
+###############################
+#p     *f *    *   *  * * *   #
+# # # #*# # #*#*# # # #*#*#*# #
+#   *     *b*  *      *   * * #
+# # # # # #*# # #*#*# # # # #*#
+#f  b  s  o   *  *  *         #
+# # # # # # # # # #*# #*# # # #
+#*  *      b  *      *        #
+# # # # #*# # # #*#*# # # # # #
+#f    m*  *       *           #
+# #*# # # # # # #*# # # # # # #
+#           *   *  *          #
+###############################
+
+
+Meta data:
+(Number or Level) (Rows) (Columns)
+
+Info Tiles:
+# - Wall
+* - Brick
+
+Mobs:
+p - Player
+
+Powerups:
+b - Powerup Bombs
+f - Powerup Flames
+s - Powerup Speed
+o - Malus Decrease Speed
+m - Malus Reverse Keyboard

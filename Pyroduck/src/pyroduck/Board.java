@@ -3,6 +3,7 @@ package pyroduck;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
@@ -82,12 +83,13 @@ public class Board {
         changeLevel(level.getLevel());
     }
 
-    public void changeLevel(int level) {
+    public void changeLevel(int level) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
         mobs.clear();
         bombs.clear();
         try {
-            this.level = new FileLevel("./resources/levels/Level" + level + ".txt");
+            int combination = new Random().nextInt(3)+1;
+            this.level = new FileLevel("./resources/levels/Level" + level + " "+ combination + ".txt");
             entities = this.level.createEntities(this);
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");

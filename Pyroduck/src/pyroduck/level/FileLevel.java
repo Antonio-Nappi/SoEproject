@@ -122,6 +122,11 @@ public class FileLevel{
                         layer4.addBeforeTop(new MalusReverse(x, y, Sprite.powerup_malus));				
                         entities[pos] = layer4;
                         break;
+                    case 'w': //gestione portale
+                        LayeredEntity layer5= new LayeredEntity(x, y,
+                                               new GrassTile (x,y, Sprite.grass),
+                                                   new BrickTile(x,y, Sprite.brick));
+                        //layer5.addBeforeTop(new (x,y,Sprite.portal));
                     default: 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
