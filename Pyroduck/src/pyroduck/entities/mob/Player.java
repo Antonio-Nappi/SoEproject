@@ -1,6 +1,5 @@
 package pyroduck.entities.mob;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,7 +8,6 @@ import pyroduck.Game;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
-import pyroduck.entities.Message;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -243,8 +241,6 @@ public class Player extends Mob {
             return;
         alive = false;
         board.addLives(-1);
-        Message msg = new Message("-1 LIVE", getXMessage(), getYMessage(), 2, Color.white, 14);
-        board.addMessage(msg);
     }
 
     @Override
