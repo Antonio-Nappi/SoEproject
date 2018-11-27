@@ -94,13 +94,13 @@ public class FileLevel{
                         layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));				
                        entities[pos] = layer;
                         break;  
-                    case 'r':
+                    /*case 'r':
                         LayeredEntity layer2 = new LayeredEntity(x, y, 
                                                 new GrassTile(x ,y, Sprite.grass), 
                                                     new BrickTile(x ,y, Sprite.brick));
                         layer2.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));				
                         entities[pos] = layer2;
-                        break;
+                        break;*/
                     case 's':
                         LayeredEntity layer3 = new LayeredEntity(x, y, 
                                                 new GrassTile(x ,y, Sprite.grass), 
