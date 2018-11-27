@@ -5,6 +5,8 @@ package pyroduck.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Keyboard implements KeyListener {
 
@@ -47,7 +49,16 @@ public class Keyboard implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         try{
+            if(e.getKeyCode() == KeyEvent.VK_SPACE||e.getKeyCode() == KeyEvent.VK_X)
             keys[e.getKeyCode()] = false;
+            else{
+                try {
+                    Thread.sleep(225);
+                    keys[e.getKeyCode()] = false;
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Keyboard.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }catch(ArrayIndexOutOfBoundsException ex){}
     }
 }    

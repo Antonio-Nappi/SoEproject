@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.input.Keyboard;
@@ -76,11 +78,14 @@ public class Game extends Canvas {
         bs.show(); //make next buffer visible
     }
 
-    private void update() {
-        if (!reverse)
-        input.update();
-        else input.updateReverse();
+    private void update(){
         board.update();
+        if (!reverse){
+            input.update();  
+        }
+        else {
+            input.updateReverse();  
+        }     
     }
 
     public void start() {
