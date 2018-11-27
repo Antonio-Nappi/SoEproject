@@ -27,6 +27,7 @@ public class FileLevel{
 
     public static final int WIDTH = 31, HEIGHT = 13; 
     protected int level;
+    protected String world;
     protected String[] lineTiles;
    
 
@@ -51,6 +52,7 @@ public class FileLevel{
             String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
             StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
             level = Integer.parseInt(tokens.nextToken());
+            world = tokens.nextToken();
             lineTiles = new String[HEIGHT];  
             for(int i = 0; i < HEIGHT; ++i) {
                 lineTiles[i] = in.readLine().substring(0, WIDTH); //It reads each line of "level.txt" and storage it into a String array

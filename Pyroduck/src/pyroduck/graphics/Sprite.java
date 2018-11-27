@@ -22,11 +22,11 @@ public class Sprite {
     public static Sprite grass = new Sprite(1, 0, SpriteSheet.tiles);
     public static Sprite brick = new Sprite(3, 0, SpriteSheet.tiles);
     public static Sprite wall = new Sprite(0, 0, SpriteSheet.tiles);
-    /*ICE ARENA
-    public static Sprite grass = new Sprite(9, 0, SpriteSheet.tiles);
-    public static Sprite brick = new Sprite(11, 0, SpriteSheet.tiles);
-    public static Sprite wall = new Sprite(7, 0, SpriteSheet.tiles);
-    */
+    
+    public static Sprite ice = new Sprite(9, 0, SpriteSheet.tiles);
+    public static Sprite brickice = new Sprite(11, 0, SpriteSheet.tiles);
+    public static Sprite wallice = new Sprite(7, 0, SpriteSheet.tiles);
+    
 
     /*
     |--------------------------------------------------------------------------
