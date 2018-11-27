@@ -28,7 +28,6 @@ public class Player extends Mob {
     protected List<Bomb> bombs = null;
     protected int timeBetweenPutBombs = 0;
     public static List<Powerup> powerups = new ArrayList<Powerup>();
-
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
@@ -63,9 +62,13 @@ public class Player extends Mob {
             timeBetweenPutBombs = 0; 
         else 
             --timeBetweenPutBombs;
+
+        animate(); 
+//        if(level==2)
+//            calculateMoveIce();
+
         animate();
-        //if(level ==2)
-        //calculateMoveIce();
+
         calculateMove();
         detectPlaceBomb();
     }
@@ -105,7 +108,7 @@ public class Player extends Mob {
         if(input.left) xa--;
         if(input.right) xa++;
         if(xa != 0 || ya != 0)  {
-            move(xa * Game.getPlayerSpeed(), ya * Game.getPlayerSpeed());
+            move(xa * Game.getPlayerSpeed(), ya *Game.getPlayerSpeed());
             moving = true;
         } else {
             moving = false;
@@ -141,6 +144,7 @@ public class Player extends Mob {
             this.x += xa;
         }
     }
+    
     /*
     |--------------------------------------------------------------------------
     | Mob Sprite
@@ -230,6 +234,20 @@ public class Player extends Mob {
         if(!p.isRemoved()) {     
             powerups.add(p);
             p.setValues();
+        }
+    }
+
+    private void calculateMoveIce() {
+        double xa = 0, ya = 0;
+        if(input.up) ya = - Math.random();
+        if(input.down) ya = Math.random();
+        if(input.left) xa = - Math.random();
+        if(input.right) xa = Math.random();
+        if(xa != 0 || ya != 0)  {
+            move(xa * Game.getPlayerSpeed(), ya*Game.getPlayerSpeed());
+            moving = true;
+        } else {
+            moving = false;
         }
     }
     

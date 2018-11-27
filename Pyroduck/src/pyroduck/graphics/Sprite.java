@@ -22,11 +22,11 @@ public class Sprite {
     public static Sprite grass = new Sprite(1, 0, SpriteSheet.tiles);
     public static Sprite brick = new Sprite(3, 0, SpriteSheet.tiles);
     public static Sprite wall = new Sprite(0, 0, SpriteSheet.tiles);
-    /*ICE ARENA
-    public static Sprite grass = new Sprite(9, 0, SpriteSheet.tiles);
-    public static Sprite brick = new Sprite(11, 0, SpriteSheet.tiles);
-    public static Sprite wall = new Sprite(7, 0, SpriteSheet.tiles);
-    */
+    
+    public static Sprite ice = new Sprite(9, 0, SpriteSheet.tiles);
+    public static Sprite brickice = new Sprite(11, 0, SpriteSheet.tiles);
+    public static Sprite wallice = new Sprite(7, 0, SpriteSheet.tiles);
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -219,7 +219,7 @@ public class Sprite {
      * @param x1 second sprite of the animation.
      * @param x2 last sprite of animation.
      * @param animate number used to manage the exchange of the state between animations.
-     * @param time duration of each animation.
+     * @param delta duration of each animation.
      * @return the sprite animation between three elements changing the image after a certain time inteval.
      */
     public static Sprite movingSprite(Sprite normal, Sprite x1, Sprite x2, int animate, int delta) {
@@ -239,7 +239,7 @@ public class Sprite {
      * @param x1 first sprite of the animation.
      * @param x2 last sprite of animation.
      * @param animate number used to manage the exchange of the state between animations.
-     * @param time duration of each animation.
+     * @param delta duration of each animation.
      * @return the sprite animation between three elements changing the image after a certain time inteval.
      */
     public static Sprite movingSprite(Sprite x1, Sprite x2, int animate, int delta) {
