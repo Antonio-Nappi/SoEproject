@@ -23,6 +23,7 @@ public class Board {
     private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
     protected List<Bomb> bombs = new ArrayList<>();
     protected int lives = 3;
+    private int points = 0;
             
     public Board(Keyboard input, Screen screen) {
         this.input = input;
@@ -236,5 +237,21 @@ public class Board {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().render(screen);
+    }
+
+    public int getLives() {
+        return lives;
+    }
+    
+    public void addLives(int lives) {
+        this.lives += lives;
+    }
+    
+    public void endGame() {
+        screenToShow = 1;
+    }
+    
+    public void addPoints(int points) {
+        this.points += points;
     }
 }

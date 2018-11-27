@@ -2,6 +2,7 @@ package pyroduck.entities;
 
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
+import pyroduck.level.Coordinates;
 
 /**
  * The abstract class represents the entities' backbone
@@ -70,5 +71,13 @@ public abstract class Entity {
      */
     public double getY() {
         return y;
+    }
+    
+    public int getXTile() {
+        return Coordinates.pixelToTile(x + sprite.SIZE / 2); //plus half block for precision
+    }
+
+    public int getYTile() {
+        return Coordinates.pixelToTile(y - sprite.SIZE / 2); //plus half block
     }
 }

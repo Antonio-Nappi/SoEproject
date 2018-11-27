@@ -1,12 +1,15 @@
 package pyroduck.entities.mob;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.Bomb;
+import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
+import pyroduck.entities.mob.enemy.Enemy;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -169,7 +172,15 @@ public class Player extends Mob {
 
     @Override
     public boolean collide(Entity e) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        if(e instanceof DirectionalExplosion) {
+            kill();
+            return true;
+        }
+        if(e instanceof Enemy) {
+            kill();
+            return false;
+        }
+        return false;
     }
     
     private void detectPlaceBomb() {
@@ -209,6 +220,30 @@ public class Player extends Mob {
             powerups.add(p);
             p.setValues();
         }
+    }
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Mob Colide & Kill
+    |--------------------------------------------------------------------------
+     */
+    @Override
+    public void kill() {
+        if(!alive) return;
+        alive = false;
+        board.addLives(-1);
+    }
 
+    @Override
+    protected void afterKill() {
+        if(timeAfter > 0) --timeAfter;
+        else {
+            if(bombs.size() == 0) {
+                if(board.getLives() == 0)
+                    board.endGame();
+                else
+                    board.restartLevel();
+            }
+        }
     }
 }
