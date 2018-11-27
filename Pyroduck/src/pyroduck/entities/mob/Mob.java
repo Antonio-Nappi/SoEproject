@@ -1,6 +1,7 @@
 package pyroduck.entities.mob;
 
 import pyroduck.Board;
+import pyroduck.Game;
 import pyroduck.entities.AnimatedEntity;
 import pyroduck.graphics.Screen;
 
@@ -16,7 +17,7 @@ public abstract class Mob extends AnimatedEntity {
     protected int direction = -1;
     protected boolean alive = true;
     protected boolean moving = false;
-    //public int timeAfter = 80;
+    public int timeAfter = 80;
 
     /**
      * Creates an object of Mob.
@@ -78,4 +79,16 @@ public abstract class Mob extends AnimatedEntity {
     public int getDirection() {
         return direction;
     }	
+    
+    public abstract void kill();
+	
+    protected abstract void afterKill();
+  
+    protected double getXMessage() {
+        return (x) + (sprite.SIZE / 2);
+    }
+	
+    protected double getYMessage() {
+        return (y) - (sprite.SIZE / 2);
+    }
 }

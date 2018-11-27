@@ -1,12 +1,15 @@
 package pyroduck.entities.mob;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.Bomb;
+import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
+import pyroduck.entities.mob.enemy.Enemy;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -52,13 +55,21 @@ public class Player extends Mob {
     @Override
     public void update() {
         clearBombs();
+        if(alive == false) {
+            afterKill();
+            return;
+        }
         if(timeBetweenPutBombs < -7500) 
             timeBetweenPutBombs = 0; 
         else 
             --timeBetweenPutBombs;
+
         animate(); 
 //        if(level==2)
 //            calculateMoveIce();
+
+        animate();
+
         calculateMove();
         detectPlaceBomb();
     }
@@ -70,10 +81,16 @@ public class Player extends Mob {
     @Override
     public void render(Screen screen) {
         calculateXOffset();
-        chooseSprite();
+        if(alive)
+            chooseSprite();
+        else
+            sprite = Sprite.player_dead1;
         screen.renderEntity((int)x, (int)y - sprite.SIZE, this);
     }
 
+    /**
+     * 
+     */
     public void calculateXOffset() {
         int xScroll = Screen.calculateXOffset(board, this);
         Screen.setOffset(xScroll, 0);
@@ -151,19 +168,19 @@ public class Player extends Mob {
             case 2:
                 sprite = Sprite.player_down;
                 if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_down, Sprite.player_down, animate, 30);
+                    sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 30);
                 }
                 break;
             case 3:
                 sprite = Sprite.player_left;
                 if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_left, Sprite.player_left, animate, 30);
+                    sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 30);
                 }
                 break;
             default:
                 sprite = Sprite.player_right;
                 if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_right, Sprite.player_right, animate, 30);
+                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
                 }
                 break;
             }
@@ -171,7 +188,15 @@ public class Player extends Mob {
 
     @Override
     public boolean collide(Entity e) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        if(e instanceof DirectionalExplosion) {
+            kill();
+            return true;
+        }
+        if(e instanceof Enemy) {
+            kill();
+            return false;
+        }
+        return false;
     }
     
     private void detectPlaceBomb() {
@@ -224,6 +249,33 @@ public class Player extends Mob {
             moving = true;
         } else {
             moving = false;
+        }
+    }
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Mob Colide & Kill
+    |--------------------------------------------------------------------------
+     */
+    @Override
+    public void kill() {
+        if(!alive) 
+            return;
+        alive = false;
+        board.addLives(-1);
+    }
+
+    @Override
+    protected void afterKill() {
+        if(timeAfter > 0) 
+            --timeAfter;
+        else {
+            if(bombs.isEmpty()) {
+                if(board.getLives() == 0)
+                    board.endGame();
+                else
+                    board.restartLevel();
+            }
         }
     }
 }
