@@ -104,11 +104,15 @@ public class Board {
     | Getters And Setters
     |--------------------------------------------------------------------------
      */
-    public Entity getEntity(double x, double y) {
-        Entity res = getExplosionAt((int)x, (int)y);
+    public Entity getEntity(double x, double y, Mob m) {
+        Entity res = null;
+        res = getExplosionAt((int)x, (int)y);
         if( res != null) 
             return res;
         res = getBombAt(x, y);
+        if( res != null) 
+            return res;
+        res = getMobAtExcluding((int)x, (int)y, m);
         if( res != null) 
             return res;
         res = getEntityAt((int)x, (int)y);
@@ -141,15 +145,30 @@ public class Board {
         }
         return null;
     }
+    
+    public Mob getMobAtExcluding(int x, int y, Mob a) {
+        Iterator<Mob> itr = mobs.iterator();
+        Mob cur;
+        while(itr.hasNext()) {
+            cur = itr.next();
+            if(cur == a) {
+                continue;
+            }
+            if(cur.getXTile() == x && cur.getYTile() == y) {
+                return cur;
+            }
+        }
+        return null;
+    }
+    
     public Explosion getExplosionAt(int x, int y) {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
         while(bs.hasNext()) {
             b = bs.next();
             Explosion e = b.explosionAt(x, y);
-            if(e != null) {
+            if(e != null)
                 return e;
-            }
         }
         return null;
     }
@@ -168,6 +187,10 @@ public class Board {
     public void addEntities() {
         entities = level.createEntities(this);
     }
+    
+    public void addEntitie(int pos, Entity e) {
+		entities[pos] = e;
+	}
 
     /**
      * 
@@ -289,7 +312,6 @@ public class Board {
     public void addPoints(int points) {
         this.points += points;
     }
-
     
     /**
      * 

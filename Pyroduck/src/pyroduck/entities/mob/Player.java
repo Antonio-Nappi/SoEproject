@@ -1,6 +1,5 @@
 package pyroduck.entities.mob;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -118,7 +117,7 @@ public class Player extends Mob {
         for (int c = 0; c < 4; c++) { //colision detection for each corner of the player
             double xt = ((this.x + x) + c % 2 * 24 +2) / Game.TILES_SIZE; // 
             double yt = ((this.y + y) + c / 2 * 15 - 16) / Game.TILES_SIZE; // the multiply factor control bottom collision and the additional factor control top collision
-            Entity a = board.getEntity(xt, yt);
+            Entity a = board.getEntity(xt, yt, this);
             if(a.collide(this))
                 return false;
         }

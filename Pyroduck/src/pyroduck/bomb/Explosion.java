@@ -86,9 +86,8 @@ public class Explosion extends Entity {
      */
     @Override
     public boolean collide(Entity e) {
-        if(e instanceof Mob) {
-                ((Mob)e).kill();
-        }
+        if(e instanceof Mob) 
+            ((Mob)e).kill();
         return false;
     }
 }

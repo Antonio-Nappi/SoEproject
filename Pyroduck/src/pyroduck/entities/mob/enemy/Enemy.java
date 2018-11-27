@@ -111,7 +111,7 @@ public abstract class Enemy extends Mob {
         if(direction == 3) { xr += sprite.getSize() -1; yr += sprite.getSize()/2;}
         int xx = Coordinates.pixelToTile(xr) +(int)x;
         int yy = Coordinates.pixelToTile(yr) +(int)y;
-        Entity a = board.getEntity(xx, yy); //entity of the position we want to go
+        Entity a = board.getEntity(xx, yy, this); //entity of the position we want to go
         return a.collide(this);
     }
 
