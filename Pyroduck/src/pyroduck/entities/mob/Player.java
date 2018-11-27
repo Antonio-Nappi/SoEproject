@@ -1,12 +1,15 @@
 package pyroduck.entities.mob;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.Bomb;
+import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
+import pyroduck.entities.Message;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -53,6 +56,10 @@ public class Player extends Mob {
     @Override
     public void update() {
         clearBombs();
+        if(alive == false) {
+            afterKill();
+            return;
+        }
         if(timeBetweenPutBombs < -7500) 
             timeBetweenPutBombs = 0; 
         else 
@@ -69,10 +76,16 @@ public class Player extends Mob {
     @Override
     public void render(Screen screen) {
         calculateXOffset();
-        chooseSprite();
+        if(alive)
+            chooseSprite();
+        else
+            sprite = Sprite.player_dead1;
         screen.renderEntity((int)x, (int)y - sprite.SIZE, this);
     }
 
+    /**
+     * 
+     */
     public void calculateXOffset() {
         int xScroll = Screen.calculateXOffset(board, this);
         Screen.setOffset(xScroll, 0);
@@ -169,7 +182,15 @@ public class Player extends Mob {
 
     @Override
     public boolean collide(Entity e) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        if(e instanceof DirectionalExplosion) {
+            kill();
+            return true;
+        }
+//        if(e instanceof Enemy) {
+//            kill();
+//            return true;
+//        }
+        return false;
     }
     
     private void detectPlaceBomb() {
@@ -209,6 +230,34 @@ public class Player extends Mob {
             powerups.add(p);
             p.setValues();
         }
+    }
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Mob Colide & Kill
+    |--------------------------------------------------------------------------
+     */
+    @Override
+    public void kill() {
+        if(!alive) 
+            return;
+        alive = false;
+        board.addLives(-1);
+        Message msg = new Message("-1 LIVE", getXMessage(), getYMessage(), 2, Color.white, 14);
+        board.addMessage(msg);
+    }
 
+    @Override
+    protected void afterKill() {
+        if(timeAfter > 0) 
+            --timeAfter;
+        else {
+            if(bombs.isEmpty()) {
+                if(board.getLives() == 0)
+                    board.endGame();
+                else
+                    board.restartLevel();
+            }
+        }
     }
 }

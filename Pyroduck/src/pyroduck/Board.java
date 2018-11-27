@@ -6,6 +6,7 @@ import java.util.List;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
+import pyroduck.entities.Message;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.LoadLevelException;
@@ -23,6 +24,7 @@ public class Board {
     private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
     protected List<Bomb> bombs = new ArrayList<>();
     protected int lives = 3;
+    private List<Message> messages = new ArrayList<Message>();
             
     public Board(Keyboard input, Screen screen) {
         this.input = input;
@@ -166,12 +168,28 @@ public class Board {
         entities = level.createEntities(this);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Mob> getMobs() {
         return mobs;
     }
 
+    /**
+     * 
+     * @param e 
+     */
     public void addMob(Mob e) {
         mobs.add(e);
+    }
+    
+    /**
+     * 
+     * @param e 
+     */
+    public void addMessage(Message e) {
+        messages.add(e);
     }
 
     /*
@@ -208,33 +226,93 @@ public class Board {
         for (int i = 0; i < entities.length; i++) 
             entities[i].update();
     }
+    
+    /**
+     * 
+     */
+    public void endGame() {
+        screenToShow = 1;
+    }
 
     /*
     |--------------------------------------------------------------------------
     | Getters & Setters
     |--------------------------------------------------------------------------
     */
+    /**
+     * 
+     * @return 
+     */
     public Keyboard getInput() {
         return input;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public FileLevel getLevel() {
         return level;
     }
 
+    /**
+     * 
+     */
     protected void updateBombs() {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().update();
     }
 
+    /**
+     * 
+     * @param b 
+     */
     public void addBomb(Bomb b) {
         bombs.add(b);    
     }
     
+    /**
+     * 
+     * @param screen 
+     */
     protected void renderBombs(Screen screen) {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().render(screen);
+    }
+    
+    /**
+     * 
+     * @param lives 
+     */
+    public void addLives(int lives) {
+        this.lives += lives;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public int getLives() {
+	return lives;
+    }
+    
+    /**
+     * 
+     * @param x
+     * @param y
+     * @return 
+     */
+    public Mob getMobAt(double x, double y) {
+        Iterator<Mob> itr = mobs.iterator();
+
+        Mob cur;
+        while(itr.hasNext()) {
+            cur = itr.next();
+            if(cur.getXTile() == x && cur.getYTile() == y)
+                return cur;
+        }
+        return null;
     }
 }
