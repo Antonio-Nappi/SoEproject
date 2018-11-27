@@ -12,7 +12,7 @@ package pyroduck.entities;
 public abstract class AnimatedEntity extends Entity {
 
     protected int animate = 0;
-    protected final int MAX_ANIMATE = 7500; //save the animation status and dont let this get too big
+    protected final int MAX_ANIMATE = 1499; //save the animation status and dont let this get too big
 
     /**
      * Increase the animated variable in order to modify the animated related to entity.
