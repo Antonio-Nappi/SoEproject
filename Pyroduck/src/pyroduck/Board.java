@@ -98,6 +98,22 @@ public class Board {
             System.out.println("LEVEL'S FILE .txt NOT FOUND");
         }
     }
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Detections
+    |--------------------------------------------------------------------------
+    */
+    
+    public boolean detectNoEnemies() {
+		int total = 0;
+		for (int i = 0; i < mobs.size(); i++) {
+			if(mobs.get(i) instanceof Player == false)
+				++total;
+		}
+		
+		return total == 0;
+	}
 
     /*
     |--------------------------------------------------------------------------

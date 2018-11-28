@@ -10,6 +10,7 @@ import pyroduck.entities.Entity;
 import pyroduck.entities.LayeredEntity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.GrassTile;
+import pyroduck.entities.tile.PortalTile;
 import pyroduck.entities.tile.WallTile;
 import pyroduck.entities.tile.destroyable.BrickTile;
 import pyroduck.entities.tile.powerup.MalusSlow;
@@ -126,7 +127,7 @@ public class FileLevel{
                         LayeredEntity layer5= new LayeredEntity(x, y,
                                                new GrassTile (x,y, Sprite.grass),
                                                    new BrickTile(x,y, Sprite.brick));
-                        //layer5.addBeforeTop(new (x,y,Sprite.portal));
+                        layer5.addBeforeTop(new PortalTile(x,y, board, Sprite.portal));
                     default: 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
