@@ -207,7 +207,7 @@ public class FileLevel{
                             LayeredEntity layer5= new LayeredEntity(x, y,
                                                    new GrassTile (x,y, Sprite.ice),
                                                        new BrickTile(x,y, Sprite.brickice));
-                            //layer5.addBeforeTop(new (x,y,Sprite.portal));
+                            layer5.addBeforeTop(new PortalTile(x,y, board, Sprite.portal));
                         default:
                             entities[pos] = new GrassTile(x, y, Sprite.ice);
                             break;
