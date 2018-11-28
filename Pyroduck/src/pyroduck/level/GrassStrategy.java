@@ -48,7 +48,8 @@ public class GrassStrategy extends FileLevel{
                     case 'p': 
                         board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         Screen.setOffset(0, 0);
-                       entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        System.out.println("PLAYER AGGIUNTO");
                         break;
                     case 'f':
                         LayeredEntity layer = new LayeredEntity(x, y, 
