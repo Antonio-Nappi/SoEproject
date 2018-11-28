@@ -8,7 +8,7 @@ import pyroduck.Game;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
-import pyroduck.entities.mob.enemy.Enemy;
+import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;

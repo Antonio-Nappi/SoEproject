@@ -1,4 +1,4 @@
-package pyroduck.entities.mob.enemy;
+package pyroduck.entities.mob.enemy.graphic;
 
 import pyroduck.Board;
 import pyroduck.Game;
@@ -6,6 +6,7 @@ import pyroduck.entities.Entity;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
+import pyroduck.entities.mob.enemy.EnemyPower;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
