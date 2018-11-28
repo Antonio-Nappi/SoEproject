@@ -102,9 +102,7 @@ public class Board {
         bombs.clear();
         try {
             int combination = new Random().nextInt(3)+1;
-
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
-
             BufferedReader in = new BufferedReader(new FileReader(path));
             String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
             StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
@@ -369,7 +367,6 @@ public class Board {
      */
     public Mob getMobAt(double x, double y) {
         Iterator<Mob> itr = mobs.iterator();
-
         Mob cur;
         while(itr.hasNext()) {
             cur = itr.next();

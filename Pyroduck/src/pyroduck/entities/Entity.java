@@ -78,7 +78,7 @@ public abstract class Entity {
      * @return 
      */
     public int getXTile() {
-        return Coordinates.pixelToTile(x + sprite.SIZE / 2); //plus half block for precision
+        return Coordinates.pixelToTile(x + 16); //plus half block for precision
     }
 	
     /**
@@ -86,6 +86,6 @@ public abstract class Entity {
      * @return 
      */
     public int getYTile() {
-        return Coordinates.pixelToTile(y - sprite.SIZE / 2); //plus half block
+        return Coordinates.pixelToTile(y - 16); //plus half block
     }
 }

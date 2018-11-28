@@ -106,14 +106,26 @@ public abstract class Enemy extends Mob {
         double xr = this.x, yr = this.y - 16; //subtract y to get more accurate results
         //the thing is, subract 15 to 16 (sprite size), so if we add 1 tile we get the next pixel tile with this
         //we avoid the shaking inside tiles with the help of steps
-        if(direction == 0) { yr += sprite.getSize() -1 ; xr += sprite.getSize()/2; } 
-        if(direction == 1) {yr += sprite.getSize()/2; xr += 1;}
-        if(direction == 2) { xr += sprite.getSize()/2; yr += 1;}
-        if(direction == 3) { xr += sprite.getSize() -1; yr += sprite.getSize()/2;}
+        if(direction == 0) { 
+            yr += sprite.getSize() -1 ; 
+            xr += sprite.getSize()/2; 
+        } 
+        if(direction == 1) {
+            yr += sprite.getSize()/2; 
+            xr += 1;
+        }
+        if(direction == 2) {
+            xr += sprite.getSize()/2; 
+            yr += 1;
+        }
+        if(direction == 3) {
+            xr += sprite.getSize() -1; 
+            yr += sprite.getSize()/2;
+        }
         int xx = Coordinates.pixelToTile(xr) +(int)x;
         int yy = Coordinates.pixelToTile(yr) +(int)y;
         Entity a = board.getEntity(xx, yy, this); //entity of the position we want to go
-        return a.collide(this);
+        return !a.collide(this);
     }
 
     /*
@@ -136,7 +148,8 @@ public abstract class Enemy extends Mob {
 
     @Override
     public void kill() {
-        if(alive == false) return;
+        if(alive == false) 
+            return;
         alive = false;
     }
 
@@ -144,7 +157,8 @@ public abstract class Enemy extends Mob {
     protected void afterKill() {
         if(timeAfter > 0) --timeAfter;
         else {
-            if(finalAnimation > 0) --finalAnimation;
+            if(finalAnimation > 0) 
+                --finalAnimation;
             else
                 remove();
         }

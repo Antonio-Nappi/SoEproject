@@ -8,8 +8,6 @@ import java.awt.image.DataBufferInt;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.input.Keyboard;
@@ -48,7 +46,6 @@ public class Game extends Canvas {
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
 
     private Game() throws PyroduckException, IOException {
-
         timer = new Timer();
         this.screen = new Screen();
         this.input = new Keyboard();

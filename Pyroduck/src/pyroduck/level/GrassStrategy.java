@@ -9,6 +9,8 @@ import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.*;
 import pyroduck.entities.mob.*;
+import pyroduck.entities.mob.enemy.graphic.Glalie;
+import pyroduck.entities.mob.enemy.graphic.Golbat;
 import pyroduck.entities.tile.*;
 import pyroduck.entities.tile.destroyable.*;
 import pyroduck.entities.tile.powerup.*;
@@ -96,6 +98,14 @@ public class GrassStrategy extends FileLevel{
                                                    new BrickTile(x,y, Sprite.brick));
                         layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
                         entities[pos] = layer5;
+                        break;
+                    case '1':
+                        board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));
+                        entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        break;
+                    case '2':
+                        board.addMob(new Glalie(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     default: 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);

@@ -1,7 +1,6 @@
 package pyroduck.entities.mob;
 
 import pyroduck.Board;
-import pyroduck.Game;
 import pyroduck.entities.AnimatedEntity;
 import pyroduck.graphics.Screen;
 
