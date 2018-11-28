@@ -116,5 +116,4 @@ public class IceStrategy extends FileLevel{
         }
         return entities;
     }
-   
 }

@@ -100,7 +100,7 @@ public class Board {
 
     public void changeLevel(int numlevel) throws FileNotFoundException, IOException { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
-        mobs.clear();
+        mobs = new ArrayList<>();
         bombs.clear();
         try {
             int combination = new Random().nextInt(3)+1;
@@ -133,14 +133,13 @@ public class Board {
     */
 
     public boolean detectNoEnemies() {
-		int total = 0;
-		for (int i = 0; i < mobs.size(); i++) {
-			if(mobs.get(i) instanceof Player == false)
-				++total;
-		}
-
-		return total == 0;
-	}
+        int total = 0;
+        for (int i = 0; i < mobs.size(); i++) {
+            if(mobs.get(i) instanceof Player == false)
+                ++total;
+        }
+        return total == 0;
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -179,7 +178,6 @@ public class Board {
 
     public Player getPlayer() {
         Iterator<Mob> itr = mobs.iterator();
-
         Mob cur;
         while(itr.hasNext()) {
             cur = itr.next();
@@ -276,8 +274,9 @@ public class Board {
     */
     protected void updateMobs() {
         Iterator<Mob> itr = mobs.iterator();
-        while(itr.hasNext())
+        while(itr.hasNext()){
             itr.next().update();
+        }
     }
 
     protected void updateEntities() {

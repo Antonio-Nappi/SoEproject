@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.level;
 
 import pyroduck.Board;
@@ -16,10 +11,7 @@ import pyroduck.entities.tile.destroyable.*;
 import pyroduck.entities.tile.powerup.*;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.*;
-/**
- *
- * @author Alex
- */
+
 public class GrassStrategy extends FileLevel{
 
     public GrassStrategy(String path, Board board) throws LoadLevelException {
@@ -49,7 +41,6 @@ public class GrassStrategy extends FileLevel{
                         board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         Screen.setOffset(0, 0);
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
-                        System.out.println("PLAYER AGGIUNTO");
                         break;
                     case 'f':
                         LayeredEntity layer = new LayeredEntity(x, y, 
@@ -102,6 +93,7 @@ public class GrassStrategy extends FileLevel{
                         break;
                     case '1':
                         board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));
+                        System.out.println("pyroduck.level.GrassStrategy.createEntities()->2: "+board.getMobs());
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     case '2':
