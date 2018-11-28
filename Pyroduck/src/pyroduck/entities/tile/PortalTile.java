@@ -16,7 +16,7 @@ public class PortalTile extends Tile {
 	
 	public PortalTile(int x, int y, Board board, Sprite sprite) {
 		super(x, y, sprite);
-		board = board;
+		this.board = board;
 	}
 	
 	@Override
@@ -25,18 +25,17 @@ public class PortalTile extends Tile {
 		if(e instanceof Player ) {
 			
 			if(board.detectNoEnemies() == false)
-				return false;
+				return true;
 			
 			if(e.getXTile() == getX() && e.getYTile() == getY()) {
 				if(board.detectNoEnemies())
-					//board.nextLevel();
-                                    System.out.println("LIVELLO COMPLETATO!!!");
+					board.nextLevel();
 			}
 			
-			return true;
+			return false;
 		}
 		
-		return false;
+		return true;
 	}
 
 }

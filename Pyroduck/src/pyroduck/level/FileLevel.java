@@ -30,6 +30,7 @@ public class FileLevel{
     protected int level;
     protected String world;
     protected String[] lineTiles;
+    protected Board board;
 
 
     /**
@@ -37,10 +38,16 @@ public class FileLevel{
      * @param path related to the ".txt" file.
      * @throws LoadLevelException error in the charge of level.
      */
-    public FileLevel(String path) throws LoadLevelException {
-        loadLevel(path);
-
-    }
+//    public FileLevel(String path) throws LoadLevelException {
+//        loadLevel(path);
+//        System.out.println(path);
+//    }
+    
+    public FileLevel(String path, Board board) throws LoadLevelException {
+		loadLevel(path);
+                this.board=board;
+                System.out.println(path);
+	}
 
     /**
      * Load the level information (level, width, height) and the map information.
@@ -137,7 +144,9 @@ public class FileLevel{
                             LayeredEntity layer5= new LayeredEntity(x, y,
                                                    new GrassTile (x,y, Sprite.grass),
                                                        new BrickTile(x,y, Sprite.brick));
-                            //layer5.addBeforeTop(new (x,y,Sprite.portal));
+                            layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
+                            entities[pos] = layer5;
+                            break;
                         default:
                             entities[pos] = new GrassTile(x, y, Sprite.grass);
                             break;
@@ -207,7 +216,9 @@ public class FileLevel{
                             LayeredEntity layer5= new LayeredEntity(x, y,
                                                    new GrassTile (x,y, Sprite.ice),
                                                        new BrickTile(x,y, Sprite.brickice));
-                            layer5.addBeforeTop(new PortalTile(x,y, board, Sprite.portal));
+                            layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
+                            entities[pos] = layer5;
+                            break;
                         default:
                             entities[pos] = new GrassTile(x, y, Sprite.ice);
                             break;

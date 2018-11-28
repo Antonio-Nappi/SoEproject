@@ -83,6 +83,10 @@ public class Board {
     public void restartLevel() {
         changeLevel(level.getLevel());
     }
+    
+    public void nextLevel() {
+		changeLevel(level.getLevel() + 1);
+	}
 
     public void changeLevel(int level) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
@@ -90,7 +94,7 @@ public class Board {
         bombs.clear();
         try {
             int combination = new Random().nextInt(3)+1;
-            this.level = new FileLevel("./resources/levels/Level" + level + " "+ combination + ".txt");
+            this.level = new FileLevel("./resources/levels/Level" + level + " "+ combination + ".txt", this);
             entities = this.level.createEntities(this);
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
