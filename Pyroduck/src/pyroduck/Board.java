@@ -1,5 +1,6 @@
 package pyroduck;
 
+import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -34,6 +35,7 @@ public class Board {
     protected int lives = 3;
     private int points = 0;
     String world = "";
+    
     public Board(Keyboard input, Screen screen) throws IOException {
         this.input = input;
         this.screen = screen;
@@ -93,7 +95,7 @@ public class Board {
     }
 
     public void nextLevel() throws IOException {
-		changeLevel(clevel.getFilelevel().getLevel() + 1);
+	changeLevel(clevel.getFilelevel().getLevel() + 1);
 	}
 
     public void changeLevel(int numlevel) throws FileNotFoundException, IOException { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
@@ -113,11 +115,25 @@ public class Board {
             in.close();
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path, this));
-                entities = clevel.exectuteStrategy(this, world);
+                entities = clevel.executeStrategy(this, world);
+                for(Entity e : entities){
+                    if(e instanceof Player){
+                        System.out.println("PLAYER TROVATOOOOOO!");
+                    }
+                    if(e instanceof Mob){
+                        System.out.println("PLAYER TROVATOOOOOO!");
+                    }
+                    
+                } 
             }
             else{
                 this.clevel = new ContextLevel(new IceStrategy(path, this));
-                entities = clevel.exectuteStrategy(this, world);
+                entities = clevel.executeStrategy(this, world);
+                for(Entity e : entities){
+                    if(e instanceof Player){
+                        System.out.println("PLAYER TROVATOOOOOO!");
+                    }
+                } 
             }
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
@@ -228,7 +244,7 @@ public class Board {
      * Add the entity and the related position in the entity array.
      */
     public void addEntities() {
-        entities = clevel.exectuteStrategy(this, world);
+        entities = clevel.executeStrategy(this, world);
     }
 
     public void addEntitie(int pos, Entity e) {
@@ -291,6 +307,26 @@ public class Board {
     public void endGame() {
         screenToShow = 1;
     }
+    
+    	/*
+	|--------------------------------------------------------------------------
+	| Screens
+	|--------------------------------------------------------------------------
+	 */
+	public void drawScreen(Graphics g) {
+		switch (screenToShow) {
+			case 1:
+				//screen.drawEndGame(g, points, level.getActualCode());
+				break;
+			case 2:
+				screen.drawChangeLevel(g, clevel.getFilelevel().getLevel());
+				break;
+			case 3:
+				//screen.drawPaused(g);
+				break;
+		}
+	}
+	
 
     /*
     |--------------------------------------------------------------------------

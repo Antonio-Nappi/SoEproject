@@ -1,5 +1,9 @@
 package pyroduck.graphics;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.Entity;
@@ -121,6 +125,25 @@ public class Screen {
         }
         return temp;
     }
+    
+    public void drawChangeLevel(Graphics g, int level) {
+		g.setColor(Color.black);
+		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+		
+		Font font = new Font("Arial", Font.PLAIN, 20);
+		g.setFont(font);
+		g.setColor(Color.white);
+		drawCenteredString("LEVEL " + level, Game.WIDTH, Game.HEIGHT, g);
+		
+	}
+    
+    
+    public void drawCenteredString(String s, int w, int h, Graphics g) {
+	    FontMetrics fm = g.getFontMetrics();
+	    int x = (w - fm.stringWidth(s)) / 2;
+	    int y = (fm.getAscent() + (h - (fm.getAscent() + fm.getDescent())) / 2);
+	    g.drawString(s, x, y);
+	 }
 
     /**
      * Return a width of he screen.
