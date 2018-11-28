@@ -113,25 +113,11 @@ public class Board {
             in.close();
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path, this));
-                entities = clevel.executeStrategy(this, world);
-                for(Entity e : entities){
-                    if(e instanceof Player){
-                        System.out.println("PLAYER TROVATOOOOOO!");
-                    }
-                    if(e instanceof Mob){
-                        System.out.println("PLAYER TROVATOOOOOO!");
-                    }
-                    
-                } 
+                entities = clevel.executeStrategy(this, world); 
             }
             else{
                 this.clevel = new ContextLevel(new IceStrategy(path, this));
                 entities = clevel.executeStrategy(this, world);
-                for(Entity e : entities){
-                    if(e instanceof Player){
-                        System.out.println("PLAYER TROVATOOOOOO!");
-                    }
-                } 
             }
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
