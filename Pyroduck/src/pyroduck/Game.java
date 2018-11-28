@@ -34,7 +34,7 @@ public class Game extends Canvas {
     protected static double playerSpeed = PLAYERSPEED;
     protected static boolean reverse=false;
     protected static int rev = 0;
-    
+    protected static int lives= 3;
     private final Keyboard input;
     private final Board board;
     private final Screen screen;
@@ -79,6 +79,7 @@ public class Game extends Canvas {
     }
 
     private void update(){
+        board.setLives(lives);
         board.update();
         if (!reverse){
             input.update();  
@@ -112,6 +113,10 @@ public class Game extends Canvas {
     public static void reverseInput(boolean b){
         reverse=b;
     }
+    
+    public static void addLives(int i){
+        lives+=i;
+    }
 	
     /*
     |--------------------------------------------------------------------------
@@ -141,6 +146,8 @@ public class Game extends Canvas {
     public int getLives() {
         return board.lives;
     }
+    
+    
    
     private class ScheduleTask extends TimerTask{
         @Override

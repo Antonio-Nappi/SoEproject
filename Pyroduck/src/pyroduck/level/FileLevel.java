@@ -125,6 +125,13 @@ public class FileLevel{
                             layer4.addBeforeTop(new MalusReverse(x, y, Sprite.powerup_malus));				
                             entities[pos] = layer4;
                             break;
+                        case 'l':
+                            LayeredEntity layer6 = new LayeredEntity(x, y, 
+                                                    new GrassTile(x ,y, Sprite.grass), 
+                                                        new BrickTile(x ,y, Sprite.brick));
+                            layer6.addBeforeTop(new PowerupLife(x, y, Sprite.powerup_life));				
+                            entities[pos] = layer6;
+                            break;
                         case 'w': //gestione portale
                             LayeredEntity layer5= new LayeredEntity(x, y,
                                                    new GrassTile (x,y, Sprite.grass),
@@ -187,6 +194,13 @@ public class FileLevel{
                                                         new BrickTile(x ,y, Sprite.brickice));
                             layer4.addBeforeTop(new MalusReverse(x, y, Sprite.powerup_malus));				
                             entities[pos] = layer4;
+                            break;
+                        case 'l':
+                            LayeredEntity layer6 = new LayeredEntity(x, y, 
+                                                    new GrassTile(x ,y, Sprite.ice), 
+                                                        new BrickTile(x ,y, Sprite.brickice));
+                            layer6.addBeforeTop(new PowerupLife(x, y, Sprite.powerup_life));				
+                            entities[pos] = layer6;
                             break;
                         case 'w': //gestione portale
                             LayeredEntity layer5= new LayeredEntity(x, y,

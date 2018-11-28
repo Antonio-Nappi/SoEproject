@@ -181,7 +181,8 @@ public class Sprite {
     public static Sprite powerup_speed = new Sprite(5, 2, SpriteSheet.tiles);
     public static Sprite powerup_slow = new Sprite(3, 0, SpriteSheet.tiles);
     public static Sprite powerup_malus = new Sprite(4, 4, SpriteSheet.tiles);
-
+    public static Sprite powerup_life = new Sprite(4, 4, SpriteSheet.tiles);
+    
     public static Sprite portal = new Sprite(0,4, SpriteSheet.tiles);
     /**
      * Creates an instance of Sheet, sets its parameters and calls the method to load the related image.

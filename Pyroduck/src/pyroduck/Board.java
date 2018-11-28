@@ -300,6 +300,10 @@ public class Board {
     public int getLives() {
         return lives;
     }
+    
+    public void setLives(int i){
+        lives=i;
+    }
 
     /**
      * 
@@ -307,6 +311,7 @@ public class Board {
      */
     public void addLives(int lives) {
         this.lives += lives;
+        Game.addLives(lives);
     }
  
     public void addPoints(int points) {
