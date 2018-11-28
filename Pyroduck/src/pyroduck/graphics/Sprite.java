@@ -60,59 +60,42 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     //BALLOM
-//    public static Sprite balloom_left1 = new Sprite(16, 9, 0, SpriteSheet.tiles, 16, 16);
-//    public static Sprite balloom_left2 = new Sprite(16, 9, 1, SpriteSheet.tiles, 16, 16);
-//    public static Sprite balloom_left3 = new Sprite(16, 9, 2, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite balloom_right1 = new Sprite(16, 10, 0, SpriteSheet.tiles, 16, 16);
-//    public static Sprite balloom_right2 = new Sprite(16, 10, 1, SpriteSheet.tiles, 16, 16);
-//    public static Sprite balloom_right3 = new Sprite(16, 10, 2, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite balloom_dead = new Sprite(16, 9, 3, SpriteSheet.tiles, 16, 16);
-//
-//    //ONEAL
-//    public static Sprite oneal_left1 = new Sprite(16, 11, 0, SpriteSheet.tiles, 16, 16);
-//    public static Sprite oneal_left2 = new Sprite(16, 11, 1, SpriteSheet.tiles, 16, 16);
-//    public static Sprite oneal_left3 = new Sprite(16, 11, 2, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite oneal_right1 = new Sprite(16, 12, 0, SpriteSheet.tiles, 16, 16);
-//    public static Sprite oneal_right2 = new Sprite(16, 12, 1, SpriteSheet.tiles, 16, 16);
-//    public static Sprite oneal_right3 = new Sprite(16, 12, 2, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite oneal_dead = new Sprite(16, 11, 3, SpriteSheet.tiles, 16, 16);
-//
-//    //Doll
-//    public static Sprite doll_left1 = new Sprite(16, 13, 0, SpriteSheet.tiles, 16, 16);
-//    public static Sprite doll_left2 = new Sprite(16, 13, 1, SpriteSheet.tiles, 16, 16);
-//    public static Sprite doll_left3 = new Sprite(16, 13, 2, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite doll_right1 = new Sprite(16, 14, 0, SpriteSheet.tiles, 16, 16);
-//    public static Sprite doll_right2 = new Sprite(16, 14, 1, SpriteSheet.tiles, 16, 16);
-//    public static Sprite doll_right3 = new Sprite(16, 14, 2, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite doll_dead = new Sprite(16, 13, 3, SpriteSheet.tiles, 16, 16);
-//
-//    //Minvo
-//    public static Sprite minvo_left1 = new Sprite(16, 8, 5, SpriteSheet.tiles, 16, 16);
-//    public static Sprite minvo_left2 = new Sprite(16, 8, 6, SpriteSheet.tiles, 16, 16);
-//    public static Sprite minvo_left3 = new Sprite(16, 8, 7, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite minvo_right1 = new Sprite(16, 9, 5, SpriteSheet.tiles, 16, 16);
-//    public static Sprite minvo_right2 = new Sprite(16, 9, 6, SpriteSheet.tiles, 16, 16);
-//    public static Sprite minvo_right3 = new Sprite(16, 9, 7, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite minvo_dead = new Sprite(16, 8, 8, SpriteSheet.tiles, 16, 16);
-//
-//    //Kondoria
-//    public static Sprite kondoria_left1 = new Sprite(16, 10, 5, SpriteSheet.tiles, 16, 16);
-//    public static Sprite kondoria_left2 = new Sprite(16, 10, 6, SpriteSheet.tiles, 16, 16);
-//    public static Sprite kondoria_left3 = new Sprite(16, 10, 7, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite kondoria_right1 = new Sprite(16, 11, 5, SpriteSheet.tiles, 16, 16);
-//    public static Sprite kondoria_right2 = new Sprite(16, 11, 6, SpriteSheet.tiles, 16, 16);
-//    public static Sprite kondoria_right3 = new Sprite(16, 11, 7, SpriteSheet.tiles, 16, 16);
-//
-//    public static Sprite kondoria_dead = new Sprite(16, 10, 8, SpriteSheet.tiles, 16, 16);
+    public static Sprite golbat_up1 = new Sprite(9, 4, SpriteSheet.tiles);
+    public static Sprite golbat_up2 = new Sprite(10, 4, SpriteSheet.tiles);
+    public static Sprite golbat_up3 = new Sprite(11, 4, SpriteSheet.tiles);
+    
+    public static Sprite golbat_down1 = new Sprite(9, 7, SpriteSheet.tiles);
+    public static Sprite golbat_down2 = new Sprite(10, 7, SpriteSheet.tiles);
+    public static Sprite golbat_down3 = new Sprite(11, 7, SpriteSheet.tiles);
+    
+    public static Sprite golbat_left1 = new Sprite(9, 6, SpriteSheet.tiles);
+    public static Sprite golbat_left2 = new Sprite(10, 6, SpriteSheet.tiles);
+    public static Sprite golbat_left3 = new Sprite(11, 6, SpriteSheet.tiles);
+
+    public static Sprite golbat_right1 = new Sprite(9, 5, SpriteSheet.tiles);
+    public static Sprite golbat_right2 = new Sprite(10, 5, SpriteSheet.tiles);
+    public static Sprite golbat_right3 = new Sprite(11, 5, SpriteSheet.tiles);
+
+    public static Sprite golbat_dead = new Sprite(0, 2, SpriteSheet.tiles);
+
+    //ONEAL
+    public static Sprite glalie_up1 = new Sprite(6, 4, SpriteSheet.tiles);
+    public static Sprite glalie_up2 = new Sprite(7, 4, SpriteSheet.tiles);
+    public static Sprite glalie_up3 = new Sprite(8, 4, SpriteSheet.tiles);
+    
+    public static Sprite glalie_down1 = new Sprite(6, 7, SpriteSheet.tiles);
+    public static Sprite glalie_down2 = new Sprite(7, 7, SpriteSheet.tiles);
+    public static Sprite glalie_down3 = new Sprite(8, 7, SpriteSheet.tiles);
+    
+    public static Sprite glalie_left1 = new Sprite(6, 6, SpriteSheet.tiles);
+    public static Sprite glalie_left2 = new Sprite(7, 6, SpriteSheet.tiles);
+    public static Sprite glalie_left3 = new Sprite(8, 6, SpriteSheet.tiles);
+
+    public static Sprite glalie_right1 = new Sprite(6, 5, SpriteSheet.tiles);
+    public static Sprite glalie_right2 = new Sprite(7, 5, SpriteSheet.tiles);
+    public static Sprite glalie_right3 = new Sprite(8, 5, SpriteSheet.tiles);
+
+    public static Sprite glalie_dead = new Sprite(0, 2, SpriteSheet.tiles);
 
     //ALL
     public static Sprite mob_dead1 = new Sprite(15, 0, SpriteSheet.tiles);

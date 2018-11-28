@@ -1,9 +1,14 @@
 package pyroduck;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.StringTokenizer;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
@@ -12,11 +17,14 @@ import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.Screen;
 import pyroduck.input.Keyboard;
+import pyroduck.level.ContextLevel;
 import pyroduck.level.FileLevel;
+import pyroduck.level.GrassStrategy;
+import pyroduck.level.IceStrategy;
 
 public class Board {
 
-    private FileLevel level;
+    private ContextLevel clevel;
     private final Keyboard input;
     private final Screen screen;
     public Entity[] entities;
@@ -25,8 +33,8 @@ public class Board {
     protected List<Bomb> bombs = new ArrayList<>();
     protected int lives = 3;
     private int points = 0;
-    
-    public Board(Keyboard input, Screen screen) {
+    String world = "";
+    public Board(Keyboard input, Screen screen) throws IOException {
         this.input = input;
         this.screen = screen;
         changeLevel(1); //start in level 1
@@ -37,13 +45,13 @@ public class Board {
     | Render & Update
     |--------------------------------------------------------------------------
     */
-    public void update() {       
+    public void update() {
         updateEntities();
         updateMobs();
         updateBombs();
         for (int i = 0; i < mobs.size(); i++) {
             Mob a = mobs.get(i);
-            if(((Entity)a).isRemoved()) 
+            if(((Entity)a).isRemoved())
                 mobs.remove(i);
         }
     }
@@ -68,7 +76,7 @@ public class Board {
     | ChangeLevel
     |--------------------------------------------------------------------------
     */
-    public void newGame() {
+    public void newGame() throws IOException {
         resetProperties();
         changeLevel(1);
     }
@@ -77,45 +85,60 @@ public class Board {
     private void resetProperties() {
         Game.playerSpeed = 1.3;
         Game.bombRadius = 1;
-        Game.bombRate = 1;	
+        Game.bombRate = 1;
     }
 
-    public void restartLevel() {
-        changeLevel(level.getLevel());
+    public void restartLevel() throws IOException {
+        changeLevel(clevel.getFilelevel().getLevel() );
     }
-    
+
     public void nextLevel() {
 		changeLevel(level.getLevel() + 1);
 	}
 
-    public void changeLevel(int level) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
+    public void changeLevel(int numlevel) throws FileNotFoundException, IOException { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
         mobs.clear();
         bombs.clear();
         try {
             int combination = new Random().nextInt(3)+1;
-            this.level = new FileLevel("./resources/levels/Level" + level + " "+ combination + ".txt", this);
-            entities = this.level.createEntities(this);
+
+            String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
+
+            BufferedReader in = new BufferedReader(new FileReader(path));
+            String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
+            StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
+            int level = Integer.parseInt(tokens.nextToken());
+            world = tokens.nextToken();
+            in.close();
+            if(world.equals("G")){
+                this.clevel = new ContextLevel(new GrassStrategy(path));
+                entities = clevel.exectuteStrategy(this, world);
+            }
+            else{
+                this.clevel = new ContextLevel(new IceStrategy(path));
+                entities = clevel.exectuteStrategy(this, world);
+            }
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
             System.out.println("LEVEL'S FILE .txt NOT FOUND");
         }
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Detections
     |--------------------------------------------------------------------------
     */
-    
+
     public boolean detectNoEnemies() {
 		int total = 0;
 		for (int i = 0; i < mobs.size(); i++) {
 			if(mobs.get(i) instanceof Player == false)
 				++total;
 		}
-		
+
 		return total == 0;
 	}
 
@@ -127,13 +150,13 @@ public class Board {
     public Entity getEntity(double x, double y, Mob m) {
         Entity res = null;
         res = getExplosionAt((int)x, (int)y);
-        if( res != null) 
+        if( res != null)
             return res;
         res = getBombAt(x, y);
-        if( res != null) 
+        if( res != null)
             return res;
         res = getMobAtExcluding((int)x, (int)y, m);
-        if( res != null) 
+        if( res != null)
             return res;
         res = getEntityAt((int)x, (int)y);
         return res;
@@ -165,7 +188,7 @@ public class Board {
         }
         return null;
     }
-    
+
     public Mob getMobAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         Mob cur;
@@ -180,7 +203,7 @@ public class Board {
         }
         return null;
     }
-    
+
     public Explosion getExplosionAt(int x, int y) {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
@@ -205,24 +228,24 @@ public class Board {
      * Add the entity and the related position in the entity array.
      */
     public void addEntities() {
-        entities = level.createEntities(this);
+        entities = clevel.exectuteStrategy(this, world);
     }
-    
+
     public void addEntitie(int pos, Entity e) {
 		entities[pos] = e;
 	}
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public List<Mob> getMobs() {
         return mobs;
     }
 
     /**
-     * 
-     * @param e 
+     *
+     * @param e
      */
     public void addMob(Mob e) {
         mobs.add(e);
@@ -236,7 +259,7 @@ public class Board {
     Possiamo unire i due metodi?
     */
     protected void renderEntities(Screen screen) {
-        for (int i = 0; i < entities.length; i++) 
+        for (int i = 0; i < entities.length; i++)
             entities[i].render(screen);
     }
 
@@ -258,12 +281,12 @@ public class Board {
     }
 
     protected void updateEntities() {
-        for (int i = 0; i < entities.length; i++) 
+        for (int i = 0; i < entities.length; i++)
             entities[i].update();
     }
-    
+
     /**
-     * 
+     *
      */
     public void endGame() {
         screenToShow = 1;
@@ -275,23 +298,23 @@ public class Board {
     |--------------------------------------------------------------------------
     */
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public Keyboard getInput() {
         return input;
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
-    public FileLevel getLevel() {
-        return level;
+    public int getLevel() {
+        return clevel.getFilelevel().getLevel();
     }
 
     /**
-     * 
+     *
      */
     protected void updateBombs() {
         Iterator<Bomb> itr = bombs.iterator();
@@ -300,16 +323,16 @@ public class Board {
     }
 
     /**
-     * 
-     * @param b 
+     *
+     * @param b
      */
     public void addBomb(Bomb b) {
-        bombs.add(b);    
+        bombs.add(b);
     }
-    
+
     /**
-     * 
-     * @param screen 
+     *
+     * @param screen
      */
     protected void renderBombs(Screen screen) {
         Iterator<Bomb> itr = bombs.iterator();
@@ -320,29 +343,29 @@ public class Board {
     public int getLives() {
         return lives;
     }
-    
+
     public void setLives(int i){
         lives=i;
     }
 
     /**
-     * 
-     * @param lives 
+     *
+     * @param lives
      */
     public void addLives(int lives) {
         this.lives += lives;
         Game.addLives(lives);
     }
- 
+
     public void addPoints(int points) {
         this.points += points;
     }
-    
+
     /**
-     * 
+     *
      * @param x
      * @param y
-     * @return 
+     * @return
      */
     public Mob getMobAt(double x, double y) {
         Iterator<Mob> itr = mobs.iterator();

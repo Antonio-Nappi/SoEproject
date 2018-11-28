@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -46,7 +47,7 @@ public class Game extends Canvas {
     //Raster è una classe che rappresenta una matrice di pixel. Le immagini contenute nel buffer vengono estratte, e 
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
 
-    private Game() throws PyroduckException {
+    private Game() throws PyroduckException, IOException {
 
         timer = new Timer();
         this.screen = new Screen();
@@ -55,7 +56,7 @@ public class Game extends Canvas {
         addKeyListener(this.input);
     }
     
-    public static Game getInstance() throws PyroduckException{
+    public static Game getInstance() throws PyroduckException, IOException{
         if (instance == null)
             instance = new Game();
         return instance;

@@ -5,6 +5,7 @@ package pyroduck.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,7 +39,7 @@ public class Frame extends JFrame {
     |--------------------------------------------------------------------------
      */
     
-    public void newGame() {
+    public void newGame() throws IOException {
         gamepane.getGame().getBoard().newGame();
     }
     
