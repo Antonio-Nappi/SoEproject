@@ -21,8 +21,8 @@ import pyroduck.graphics.*;
  */
 public class IceStrategy extends FileLevel{
     
-    public IceStrategy(String path) throws LoadLevelException {
-        super(path);
+    public IceStrategy(String path, Board board) throws LoadLevelException {
+        super(path, board);
     }
     
     @Override
@@ -95,7 +95,9 @@ public class IceStrategy extends FileLevel{
                         LayeredEntity layer5= new LayeredEntity(x, y,
                                                new GrassTile (x,y, Sprite.ice),
                                                    new BrickTile(x,y, Sprite.brickice));
-                        //layer5.addBeforeTop(new (x,y,Sprite.portal));
+                        layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
+                        entities[pos] = layer5;
+                        break;
                     default: 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;

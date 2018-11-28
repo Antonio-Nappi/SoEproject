@@ -20,8 +20,8 @@ import pyroduck.graphics.*;
  */
 public class GrassStrategy extends FileLevel{
 
-    public GrassStrategy(String path) throws LoadLevelException {
-        super(path);
+    public GrassStrategy(String path, Board board) throws LoadLevelException {
+        super(path, board);
     }
 
     @Override
@@ -94,7 +94,9 @@ public class GrassStrategy extends FileLevel{
                         LayeredEntity layer5= new LayeredEntity(x, y,
                                                new GrassTile (x,y, Sprite.grass),
                                                    new BrickTile(x,y, Sprite.brick));
-                        //layer5.addBeforeTop(new (x,y,Sprite.portal));
+                        layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
+                        entities[pos] = layer5;
+                        break;
                     default: 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;

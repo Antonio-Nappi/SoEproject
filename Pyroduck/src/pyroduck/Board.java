@@ -92,8 +92,8 @@ public class Board {
         changeLevel(clevel.getFilelevel().getLevel() );
     }
 
-    public void nextLevel() {
-		changeLevel(level.getLevel() + 1);
+    public void nextLevel() throws IOException {
+		changeLevel(clevel.getFilelevel().getLevel() + 1);
 	}
 
     public void changeLevel(int numlevel) throws FileNotFoundException, IOException { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
@@ -112,11 +112,11 @@ public class Board {
             world = tokens.nextToken();
             in.close();
             if(world.equals("G")){
-                this.clevel = new ContextLevel(new GrassStrategy(path));
+                this.clevel = new ContextLevel(new GrassStrategy(path, this));
                 entities = clevel.exectuteStrategy(this, world);
             }
             else{
-                this.clevel = new ContextLevel(new IceStrategy(path));
+                this.clevel = new ContextLevel(new IceStrategy(path, this));
                 entities = clevel.exectuteStrategy(this, world);
             }
         } catch (LoadLevelException e) {

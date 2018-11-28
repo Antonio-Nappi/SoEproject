@@ -5,6 +5,9 @@
  */
 package pyroduck.entities.tile;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.Board;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
@@ -29,7 +32,11 @@ public class PortalTile extends Tile {
 			
 			if(e.getXTile() == getX() && e.getYTile() == getY()) {
 				if(board.detectNoEnemies())
+                                    try{
 					board.nextLevel();
+                                    } catch (IOException ex){
+                                        Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
 			}
 			
 			return false;
