@@ -125,20 +125,19 @@ public abstract class Enemy extends Mob {
     public boolean collide(Entity e) {
         if(e instanceof DirectionalExplosion) {
             kill();
-            return false;
+            return true;
         }
         if(e instanceof Player) {
             ((Player) e).kill();
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public void kill() {
         if(alive == false) return;
         alive = false;
-        board.addPoints(points);
     }
 
     @Override
