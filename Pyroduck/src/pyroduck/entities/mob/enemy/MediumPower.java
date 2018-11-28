@@ -1,5 +1,6 @@
 package pyroduck.entities.mob.enemy;
 
+import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.mob.Player;
 
 public class MediumPower extends EnemyPower {

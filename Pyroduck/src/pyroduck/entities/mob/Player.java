@@ -1,14 +1,17 @@
 package pyroduck.entities.mob;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
-import pyroduck.entities.mob.enemy.Enemy;
+import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -273,7 +276,11 @@ public class Player extends Mob {
                 if(board.getLives() == 0)
                     board.endGame();
                 else
-                    board.restartLevel();
+                    try {
+                        board.restartLevel();
+                } catch (IOException ex) {
+                    Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }

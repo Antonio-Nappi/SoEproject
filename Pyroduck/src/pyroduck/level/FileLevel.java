@@ -10,6 +10,7 @@ import pyroduck.entities.Entity;
 import pyroduck.entities.LayeredEntity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.GrassTile;
+import pyroduck.entities.tile.PortalTile;
 import pyroduck.entities.tile.WallTile;
 import pyroduck.entities.tile.destroyable.BrickTile;
 import pyroduck.entities.tile.powerup.MalusSlow;
@@ -19,16 +20,16 @@ import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
 /**
- * It is the level loader. 
- * It take care of reading the ".txt" file and substituted each character with the entity related. 
+ * It is the level loader.
+ * It take care of reading the ".txt" file and substituted each character with the entity related.
  * @author Corbisiero, Ferrara, La Femina
  */
 public abstract class FileLevel{
 
-    public static final int WIDTH = 31, HEIGHT = 13; 
+    public static final int WIDTH = 31, HEIGHT = 13;
     protected int level;
     protected String[] lineTiles;
-   
+
 
     /**
      * Costructs level file.
@@ -36,7 +37,9 @@ public abstract class FileLevel{
      * @throws LoadLevelException error in the charge of level.
      */
     public FileLevel(String path) throws LoadLevelException {
+
         loadLevel(path);  
+
     }
 
     /**
@@ -45,7 +48,7 @@ public abstract class FileLevel{
      * @throws LoadLevelException error in the charge of level.
      */
     public void loadLevel(String path) throws LoadLevelException {
-        try { 
+        try {
             BufferedReader in = new BufferedReader(new FileReader(path));
             String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
             StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
@@ -62,7 +65,7 @@ public abstract class FileLevel{
 
     
     public abstract Entity[] createEntities(Board board, String world);
-    
+
     /**
      * Return the number of level charged.
      * @return the number of level charged.
