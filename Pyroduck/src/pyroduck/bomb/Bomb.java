@@ -101,9 +101,8 @@ public class Bomb extends AnimatedEntity {
         allowedToPassThru = false;
         exploded = true;
         Mob a = board.getMobAt(x, y);
-        if(a != null)  {
+        if(a != null)
             a.kill();
-        }
         explosions = new DirectionalExplosion[4];
         for (int i = 0; i < explosions.length; i++) {
             explosions[i] = new DirectionalExplosion((int)x, (int)y, i, Game.getBombRadius(), board);

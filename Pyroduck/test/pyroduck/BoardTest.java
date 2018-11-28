@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import pyroduck.bomb.Bomb;
-import pyroduck.bomb.Explosion;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.WallTile;
 import pyroduck.graphics.Screen;
@@ -83,7 +82,7 @@ public class BoardTest {
     public void testGetEntity() {
         Bomb bomb = new Bomb(0, 0, board);
         board.addBomb(bomb);
-        assertTrue(board.getEntity(0, 0) instanceof Bomb);
+        assertTrue(board.getEntity(0, 0, null) instanceof Bomb);
     }
 
     /**

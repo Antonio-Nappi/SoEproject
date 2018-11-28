@@ -5,7 +5,7 @@ package pyroduck.graphics;
  * @author Corbisiero, Ferrara, La Femina
  */
 public class Sprite {
-    
+
     public final int SIZE = 32;
     private int x, y;
     public int[] pixels;
@@ -18,18 +18,15 @@ public class Sprite {
     | Board sprites
     |--------------------------------------------------------------------------
      */
-    
+
     public static Sprite grass = new Sprite(1, 0, SpriteSheet.tiles);
     public static Sprite brick = new Sprite(3, 0, SpriteSheet.tiles);
     public static Sprite wall = new Sprite(0, 0, SpriteSheet.tiles);
-    
-    /*ICE ARENA
-    public static Sprite grass = new Sprite(9, 0, SpriteSheet.tiles);
-    public static Sprite brick = new Sprite(11, 0, SpriteSheet.tiles);
-    public static Sprite wall = new Sprite(7, 0, SpriteSheet.tiles);
-    */
-    
-    public static Sprite portal = new Sprite(16, 0, SpriteSheet.tiles);
+
+    public static Sprite ice = new Sprite(9, 0, SpriteSheet.tiles);
+    public static Sprite brickice = new Sprite(11, 0, SpriteSheet.tiles);
+    public static Sprite wallice = new Sprite(7, 0, SpriteSheet.tiles);
+
 
     /*
     |--------------------------------------------------------------------------
@@ -130,7 +127,7 @@ public class Sprite {
     public static Sprite bomb = new Sprite(3, 1, SpriteSheet.tiles);
     public static Sprite bomb_1 = new Sprite(4, 1, SpriteSheet.tiles);
     public static Sprite bomb_2 = new Sprite(5, 1, SpriteSheet.tiles);
-    
+
     /*
     |--------------------------------------------------------------------------
     | Explosion Sprites
@@ -163,7 +160,7 @@ public class Sprite {
     public static Sprite explosion_vertical_down_last = new Sprite(6, 3, SpriteSheet.tiles);
     public static Sprite explosion_vertical_down_last1 = new Sprite(7, 3, SpriteSheet.tiles);
     public static Sprite explosion_vertical_down_last2 = new Sprite(8, 3, SpriteSheet.tiles);
-    
+
     /*
     |--------------------------------------------------------------------------
     | Brick Explosion
@@ -172,19 +169,21 @@ public class Sprite {
     public static Sprite brick_exploded = new Sprite(4, 0, SpriteSheet.tiles);
     public static Sprite brick_exploded1 = new Sprite(5, 0, SpriteSheet.tiles);
     public static Sprite brick_exploded2 = new Sprite(6, 0, SpriteSheet.tiles);
-  
+
        /*
     |--------------------------------------------------------------------------
     | Powerup
     |--------------------------------------------------------------------------
      */
-    
+
     public static Sprite powerup_bombs = new Sprite(4, 2, SpriteSheet.tiles);
     public static Sprite powerup_flames = new Sprite(4, 3, SpriteSheet.tiles);
     public static Sprite powerup_speed = new Sprite(5, 2, SpriteSheet.tiles);
     public static Sprite powerup_slow = new Sprite(3, 0, SpriteSheet.tiles);
     public static Sprite powerup_malus = new Sprite(4, 4, SpriteSheet.tiles);
+    public static Sprite powerup_life = new Sprite(4, 4, SpriteSheet.tiles);
 
+    public static Sprite portal = new Sprite(0,4, SpriteSheet.tiles);
     /**
      * Creates an instance of Sheet, sets its parameters and calls the method to load the related image.
      * @param x column number of the sprite sheet.
@@ -246,7 +245,7 @@ public class Sprite {
      */
     public static Sprite movingSprite(Sprite x1, Sprite x2, int animate, int delta) {
         int interval = delta / 2;
-        return (animate % delta > interval) ? x1 : x2; 
+        return (animate % delta > interval) ? x1 : x2;
     }
 
     /**
