@@ -45,7 +45,6 @@ public abstract class FileLevel{
     public FileLevel(String path, Board board) throws LoadLevelException {
 		loadLevel(path);
                 this.board = board;
-                System.out.println(path);
 	}
 
     /**
