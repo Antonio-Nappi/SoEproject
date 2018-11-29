@@ -59,7 +59,6 @@ public class Sprite {
     | Mobs
     |--------------------------------------------------------------------------
      */
-    //BALLOM
     public static Sprite golbat_up1 = new Sprite(9, 4, SpriteSheet.tiles);
     public static Sprite golbat_up2 = new Sprite(10, 4, SpriteSheet.tiles);
     public static Sprite golbat_up3 = new Sprite(11, 4, SpriteSheet.tiles);
@@ -78,7 +77,6 @@ public class Sprite {
 
     public static Sprite golbat_dead = new Sprite(0, 2, SpriteSheet.tiles);
 
-    //ONEAL
     public static Sprite glalie_up1 = new Sprite(6, 4, SpriteSheet.tiles);
     public static Sprite glalie_up2 = new Sprite(7, 4, SpriteSheet.tiles);
     public static Sprite glalie_up3 = new Sprite(8, 4, SpriteSheet.tiles);
@@ -101,6 +99,10 @@ public class Sprite {
     public static Sprite mob_dead1 = new Sprite(15, 0, SpriteSheet.tiles);
     public static Sprite mob_dead2 = new Sprite(15, 1, SpriteSheet.tiles);
     public static Sprite mob_dead3 = new Sprite(15, 2, SpriteSheet.tiles);
+    public static Sprite icebroken_1 = new Sprite(14, 0, SpriteSheet.tiles);
+    public static Sprite icebroken_2 = new Sprite(13, 0, SpriteSheet.tiles);
+    public static Sprite icebroken_3 = new Sprite(12, 0, SpriteSheet.tiles);
+    public static Sprite icebroken_4 = new Sprite(15, 0, SpriteSheet.tiles);
 
     /*
     |--------------------------------------------------------------------------
@@ -153,19 +155,19 @@ public class Sprite {
     public static Sprite brick_exploded1 = new Sprite(5, 0, SpriteSheet.tiles);
     public static Sprite brick_exploded2 = new Sprite(6, 0, SpriteSheet.tiles);
 
-       /*
+    /*
     |--------------------------------------------------------------------------
     | Powerup
     |--------------------------------------------------------------------------
      */
-
     public static Sprite powerup_bombs = new Sprite(4, 2, SpriteSheet.tiles);
     public static Sprite powerup_flames = new Sprite(4, 3, SpriteSheet.tiles);
     public static Sprite powerup_speed = new Sprite(5, 2, SpriteSheet.tiles);
     public static Sprite powerup_slow = new Sprite(3, 0, SpriteSheet.tiles);
     public static Sprite powerup_malus = new Sprite(4, 4, SpriteSheet.tiles);
-    public static Sprite powerup_life = new Sprite(4, 4, SpriteSheet.tiles);
+    public static Sprite powerup_life = new Sprite(5, 4, SpriteSheet.tiles);
     public static Sprite powerup_slow_ice = new Sprite(11, 0, SpriteSheet.tiles);
+    public static Sprite powerup_not_slide = new Sprite(5,5,SpriteSheet.tiles);
     public static Sprite portal = new Sprite(16, 0, SpriteSheet.tiles);
     /**
      * Creates an instance of Sheet, sets its parameters and calls the method to load the related image.

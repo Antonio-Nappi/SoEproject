@@ -13,6 +13,9 @@ import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.powerup.Powerup;
+import pyroduck.entities.tile.powerup.PowerupLife;
+import pyroduck.entities.tile.powerup.PowerupNotSlide;
+import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.input.GrassKeyboard;
@@ -32,6 +35,7 @@ public class Player extends Mob {
     protected List<Bomb> bombs = null;
     protected int timeBetweenPutBombs = 0;
     public static List<Powerup> powerups = new ArrayList<Powerup>();
+    private int lives = 3;
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
@@ -271,9 +275,13 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     public void addPowerup(Powerup p) {
+        if(p instanceof PowerupNotSlide){
+            board.setInput();
+            input = board.getInput();
+        }
         if(!p.isRemoved()) {     
             powerups.add(p);
-            p.setValues();
+            p.setValues(); 
         }
     }
 
@@ -288,6 +296,13 @@ public class Player extends Mob {
         if(!alive) 
             return;
         alive = false;
+        try {
+            Game.getInstance().addLives(-1);
+        } catch (PyroduckException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setChanged();
         notifyObservers();
     }

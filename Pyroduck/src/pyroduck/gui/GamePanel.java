@@ -58,8 +58,8 @@ public class GamePanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        label.setText("Lives " + game.getBoard().getLives());
-        if(game.getBoard().getLives() == 0){
+        label.setText("Lives " + game.getLives());
+        if(game.getLives() == 0){
             JPanel panel1 = new JPanel();
             JLabel label1 = new JLabel("Hai perso.");
             label1.setBackground(Color.red);

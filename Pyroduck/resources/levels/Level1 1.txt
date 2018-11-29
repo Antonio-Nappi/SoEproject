@@ -30,6 +30,7 @@ f - Powerup Flames
 s - Powerup Speed
 o - Malus Decrease Speed
 m - Malus Reverse Keyboard
+l - Powerup Live
 
 Level 1   f-m-o
 Level 2   s-b-m-o

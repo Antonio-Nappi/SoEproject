@@ -92,6 +92,8 @@ public class Board extends Observable implements Observer {
 
     public void setLives(int lives) {
         this.lives = lives;
+        setChanged();
+        notifyObservers();
     }
 
     public void restartLevel() throws IOException {
@@ -372,10 +374,7 @@ public class Board extends Observable implements Observer {
      *
      * @param lives
      */
-    public void addLives(int lives) {
-        this.lives += lives;
-        Game.addLives(lives);
-    }
+
 
     public void addPoints(int points) {
         this.points += points;
@@ -406,9 +405,12 @@ public class Board extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        this.lives--;
         setChanged();
         notifyObservers();
+    }
+
+    public void setInput() {
+        input = GrassKeyboard.getInstance();
     }
 
 }

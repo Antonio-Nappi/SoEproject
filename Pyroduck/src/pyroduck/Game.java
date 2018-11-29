@@ -17,7 +17,7 @@ import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.input.*;
 
-public class Game extends Canvas implements Observer{
+public class Game extends Canvas {
     /*
     |--------------------------------------------------------------------------
     | Options & Configs
@@ -38,7 +38,7 @@ public class Game extends Canvas implements Observer{
     protected static double playerSpeed = PLAYERSPEED;
     protected static boolean reverse=false;
     protected static int rev = 0;
-    protected static int lives= 3;
+    protected static int lives;
     private Keyboard input;
     private final Board board;
     private final Screen screen;
@@ -50,10 +50,11 @@ public class Game extends Canvas implements Observer{
     //Raster è una classe che rappresenta una matrice di pixel. Le immagini contenute nel buffer vengono estratte, e 
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
 
-    private Game() throws PyroduckException, IOException {
+    private Game() throws PyroduckException, IOException  {
         timer = new Timer();
         screen = new Screen();
         board = new Board(screen);
+        lives = 3;
     }
     
     public static Game getInstance() throws PyroduckException, IOException{
@@ -84,6 +85,12 @@ public class Game extends Canvas implements Observer{
         if(input!= getBoard().getInput()){
             this.input = getBoard().getInput();
             addKeyListener(input);
+        }
+        if(lives != board.getLives()){
+            System.out.println("Game lives "+lives);
+            System.out.println("Board lives "+ board.getLives());
+            board.setLives(lives);
+            System.out.println("Board lives "+ board.getLives());
         }
         if (!reverse){
             input.update();  
@@ -117,11 +124,11 @@ public class Game extends Canvas implements Observer{
     }
     
     public static void reverseInput(boolean b){
-        reverse=b;
+        reverse = b;
     }
     
     public static void addLives(int i){
-        lives+=i;
+        lives += i;
     }
 	
     /*
@@ -150,14 +157,9 @@ public class Game extends Canvas implements Observer{
     }
 
     public int getLives() {
-        return board.lives;
+        return lives;
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        
-        addKeyListener(input);
-    }
 
     public void endGame() {
         System.exit(0);
