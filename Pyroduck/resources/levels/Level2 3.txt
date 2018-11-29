@@ -1,14 +1,14 @@
-2 I
+2 G
 ###############################
-#p * #  *   # * o *    #   w  #
+#p * #  *  1# * o *    #   w  #
 # # # # # # # # # # # # # # # #
 #* * o * *     *   *   b # *  #
 # # # # # #*# # #*#*# # # # #*#
-#* * * o #    * * * * *   *   #
+#* * * o #   2* * * * *  3*   #
 # # # # # # # # # #*# #*# # # #
 #*  s      *  *      *  mwo   #
 # # # # #*# # # #*#*# # # # # #
-#o     m  *    *  s      * *  #
+#o     m  *   2*  s      * *  #
 # #*# # # # # # #*# # #*# # # #
 #  b *   #     *   *  *  m    #
 ###############################
@@ -18,12 +18,15 @@
 Meta data:
 (Number or Level) (Rows) (Columns)
 
-In*o Tiles:
+Info Tiles:
 # - Wall
 * - Brick
 
 Mobs:
 p - Player
+1 - Golbat
+2 - Machamp
+3 - Arbok
 
 Powerups:
 b - Powerup Bombs

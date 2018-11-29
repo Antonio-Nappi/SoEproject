@@ -1,26 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.level;
 
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.*;
 import pyroduck.entities.mob.*;
+import pyroduck.entities.mob.enemy.graphic.Darkrai;
 import pyroduck.entities.mob.enemy.graphic.Glalie;
-import pyroduck.entities.mob.enemy.graphic.Golbat;
+import pyroduck.entities.mob.enemy.graphic.Snorunt;
 import pyroduck.entities.tile.*;
 import pyroduck.entities.tile.destroyable.*;
 import pyroduck.entities.tile.powerup.*;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.*;
 
-/**
- *
- * @author Alex
- */
 public class IceStrategy extends FileLevel{
     
     public IceStrategy(String path, Board board) throws LoadLevelException {
@@ -108,11 +100,15 @@ public class IceStrategy extends FileLevel{
                         entities[pos] = layer5;
                         break;
                     case '1':
-                        board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        board.addMob(new Snorunt(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case '2':
                         board.addMob(new Glalie(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        entities[pos] = new GrassTile(x, y, Sprite.ice);
+                        break;
+                    case '3':
+                        board.addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     default: 
