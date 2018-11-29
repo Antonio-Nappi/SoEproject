@@ -6,15 +6,15 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
-import pyroduck.input.Keyboard;
+import pyroduck.input.*;
 
-public class Game extends Canvas {
+public class Game extends Canvas implements Observer{
     /*
     |--------------------------------------------------------------------------
     | Options & Configs
@@ -36,7 +36,7 @@ public class Game extends Canvas {
     protected static boolean reverse=false;
     protected static int rev = 0;
     protected static int lives= 3;
-    private final Keyboard input;
+    private Keyboard input;
     private final Board board;
     private final Screen screen;
     private static Game instance = null;
@@ -48,12 +48,9 @@ public class Game extends Canvas {
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
 
     private Game() throws PyroduckException, IOException {
-
         timer = new Timer();
-        this.screen = new Screen();
-        this.input = new Keyboard();
-        this.board = new Board(this.input, this.screen);
-        addKeyListener(this.input);
+        screen = new Screen();
+        board = new Board(screen);
     }
     
     public static Game getInstance() throws PyroduckException, IOException{
@@ -79,9 +76,13 @@ public class Game extends Canvas {
         bs.show(); //make next buffer visible
     }
 
-    private void update(){
+    private void update(){   
         board.setLives(lives);
         board.update();
+        if(input!= getBoard().getInput()){
+            this.input = getBoard().getInput();
+            addKeyListener(input);
+        }
         if (!reverse){
             input.update();  
         }
@@ -91,6 +92,8 @@ public class Game extends Canvas {
     }
 
     public void start() {
+        this.input = getBoard().getInput();
+        addKeyListener(input);
         requestFocus();
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 15);
     }
@@ -147,9 +150,13 @@ public class Game extends Canvas {
     public int getLives() {
         return board.lives;
     }
-    
-    
-   
+
+    @Override
+    public void update(Observable o, Object arg) {
+        
+        addKeyListener(input);
+    }
+     
     private class ScheduleTask extends TimerTask{
         @Override
         public void run(){

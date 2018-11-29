@@ -10,7 +10,7 @@ import pyroduck.Board;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.Keyboard;
+import pyroduck.input.IceKeyboard;
 
 /**
  *
@@ -48,7 +48,7 @@ public class BrickTileTest {
      */
     @Test
     public void testUpdate() {
-        brick.collide(new DirectionalExplosion(x, y+1, 2, 1, new Board(new Keyboard(), new Screen())));
+        brick.collide(new DirectionalExplosion(x, y+1, 2, 1, new Board(new IceKeyboard(), new Screen())));
         for(int i=0; i<21; i++){
             assertFalse(brick.isRemoved());
             brick.update();
@@ -61,7 +61,7 @@ public class BrickTileTest {
      */
     @Test
     public void testMovingSprite() {
-        brick.collide(new DirectionalExplosion(x, y+1, 2, 1, new Board(new Keyboard(), new Screen())));
+        brick.collide(new DirectionalExplosion(x, y+1, 2, 1, new Board(new IceKeyboard(), new Screen())));
         for(int i=0; i<10; i++){
             assertEquals(Sprite.brick_exploded, brick.movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1, Sprite.brick_exploded2));
             brick.update();
@@ -79,7 +79,7 @@ public class BrickTileTest {
     @Test
     public void testCollide() {
         assertFalse(brick.isDestroyed());
-        brick.collide(new DirectionalExplosion(x, y, 2, 1, new Board(new Keyboard(), new Screen())));
+        brick.collide(new DirectionalExplosion(x, y, 2, 1, new Board(new IceKeyboard(), new Screen())));
         assertTrue(brick.isDestroyed());
     }
 }

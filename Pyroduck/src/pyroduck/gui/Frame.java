@@ -15,7 +15,7 @@ public class Frame extends JFrame {
     private JPanel containerpane;
     public static final String TITLE = "Pyroduck";
 
-    public Frame() {
+    public Frame() throws IOException {
         containerpane = new JPanel(new BorderLayout());
         gamepane = new GamePanel(this);
         containerpane.add(gamepane, BorderLayout.PAGE_END);

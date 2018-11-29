@@ -26,7 +26,7 @@ public class IceStrategy extends FileLevel{
     }
     
     @Override
-    public Entity[] createEntities(Board board, String world) {
+    public Entity[] createEntities(Board board) {
         Entity[] entities = new Entity[WIDTH*HEIGHT];//entity = player, mobs, powerups,..., also tile!!!
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
@@ -66,7 +66,7 @@ public class IceStrategy extends FileLevel{
                     case 'o':
                         entities[pos] = new LayeredEntity(x, y, 
                                             new GrassTile(x ,y, Sprite.ice),
-                                                new MalusSlow(x, y, Sprite.powerup_slow));
+                                                new MalusSlow(x, y, Sprite.powerup_slow_ice));
 
                         break; 
                       case 'b':

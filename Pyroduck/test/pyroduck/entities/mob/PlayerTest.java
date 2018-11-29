@@ -18,7 +18,7 @@ import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.entities.tile.powerup.PowerupBombs;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.Keyboard;
+import pyroduck.input.IceKeyboard;
 
 /**
  *
@@ -40,7 +40,7 @@ public class PlayerTest {
     
     @Before
     public void setUp() {
-        board = new Board(new Keyboard(), new Screen());
+        board = new Board(new IceKeyboard(), new Screen());
         player = new Player(1, 1, board);
         
     }

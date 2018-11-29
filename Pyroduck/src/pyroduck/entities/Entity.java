@@ -1,5 +1,6 @@
 package pyroduck.entities;
 
+import java.util.Observable;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
@@ -10,7 +11,7 @@ import pyroduck.level.Coordinates;
  * @author Montefusco, Nappi
  * @version 1.0
 */
-public abstract class Entity {
+public abstract class Entity extends Observable{
 
     protected double x, y;
     protected boolean removed = false;

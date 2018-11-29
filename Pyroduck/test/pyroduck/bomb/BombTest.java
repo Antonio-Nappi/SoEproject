@@ -12,7 +12,7 @@ import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.BrickTile;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.Keyboard;
+import pyroduck.input.IceKeyboard;
 
 /**
  *
@@ -35,7 +35,7 @@ public class BombTest {
     
     @Before
     public void setUp() {
-        bomb = new  Bomb(1, 1, new Board(new Keyboard(),new Screen()));
+        bomb = new  Bomb(1, 1, new Board(new IceKeyboard(),new Screen()));
     }
     
     @After
@@ -109,10 +109,10 @@ public class BombTest {
     @Test
     public void testCollide() {
         System.out.println("collide");
-        Entity e = new Player(2, 1, new Board(new Keyboard(), new Screen()));
+        Entity e = new Player(2, 1, new Board(new IceKeyboard(), new Screen()));
         boolean test = bomb.collide(e);
         assertEquals(test, true);
-        Entity e1 = new DirectionalExplosion(2, 1, 1,1,new Board(new Keyboard(), new Screen()));
+        Entity e1 = new DirectionalExplosion(2, 1, 1,1,new Board(new IceKeyboard(), new Screen()));
         boolean test1 = bomb.collide(e1);
         assertEquals(test1, false);
         Entity e2 = new BrickTile(2, 2, Sprite.brick);

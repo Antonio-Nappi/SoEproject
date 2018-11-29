@@ -11,7 +11,7 @@ import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.WallTile;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.Keyboard;
+import pyroduck.input.IceKeyboard;
 
 /**
  *
@@ -34,7 +34,7 @@ public class BoardTest {
     
     @Before
     public void setUp() {
-        board = new Board(new Keyboard(), new Screen());
+        board = new Board(new IceKeyboard(), new Screen());
     }
     
     @After

@@ -15,6 +15,7 @@ import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
+import pyroduck.input.GrassKeyboard;
 import pyroduck.input.Keyboard;
 import pyroduck.level.Coordinates;
 
@@ -40,7 +41,8 @@ public class Player extends Mob {
     public Player(int x, int y, Board board) {
         super(x, y, board);
         bombs = board.getBombs();
-        this.input = board.getInput();
+        input = board.getInput();
+        addObserver(board);
     }
 
     /*
@@ -154,6 +156,7 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     private void chooseSprite() {
+        if(input instanceof GrassKeyboard){
         switch(direction) {
             case 0:
                 sprite = Sprite.player_up;
@@ -187,7 +190,41 @@ public class Player extends Mob {
                 break;
             }
     }
-
+        else{
+            switch(direction) {
+            case 0:
+                sprite = Sprite.player_up;
+                if(moving) {
+                    sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_1, animate, 30);
+                }
+                break;
+            case 1:
+                sprite = Sprite.player_right;
+                if(moving) {
+                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
+                }
+                break;
+            case 2:
+                sprite = Sprite.player_down;
+                if(moving) {
+                    sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_1, animate, 30);
+                }
+                break;
+            case 3:
+                sprite = Sprite.player_left;
+                if(moving) {
+                    sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_1, animate, 30);
+                }
+                break;
+            default:
+                sprite = Sprite.player_right;
+                if(moving) {
+                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
+                }
+                break;
+            }
+        }
+    }
     @Override
     public boolean collide(Entity e) {
         if(e instanceof DirectionalExplosion) {
@@ -240,19 +277,6 @@ public class Player extends Mob {
         }
     }
 
-    private void calculateMoveIce() {
-        double xa = 0, ya = 0;
-        if(input.up) ya = - Math.random();
-        if(input.down) ya = Math.random();
-        if(input.left) xa = - Math.random();
-        if(input.right) xa = Math.random();
-        if(xa != 0 || ya != 0)  {
-            move(xa * Game.getPlayerSpeed(), ya*Game.getPlayerSpeed());
-            moving = true;
-        } else {
-            moving = false;
-        }
-    }
     
     /*
     |--------------------------------------------------------------------------
@@ -264,7 +288,8 @@ public class Player extends Mob {
         if(!alive) 
             return;
         alive = false;
-        board.addLives(-1);
+        setChanged();
+        notifyObservers();
     }
 
     @Override

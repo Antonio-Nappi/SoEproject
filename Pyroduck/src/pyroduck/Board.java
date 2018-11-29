@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 import java.util.StringTokenizer;
 import pyroduck.bomb.Bomb;
@@ -16,16 +18,13 @@ import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.Screen;
-import pyroduck.input.Keyboard;
-import pyroduck.level.ContextLevel;
-import pyroduck.level.FileLevel;
-import pyroduck.level.GrassStrategy;
-import pyroduck.level.IceStrategy;
+import pyroduck.input.*;
+import pyroduck.level.*;
 
-public class Board {
+public class Board extends Observable implements Observer {
     
     private ContextLevel clevel;
-    private final Keyboard input;
+    private Keyboard input;
     private final Screen screen;
     public Entity[] entities;
     public List<Mob> mobs = new ArrayList<>();
@@ -34,8 +33,8 @@ public class Board {
     protected int lives = 3;
     private int points = 0;
     String world = "";
-    public Board(Keyboard input, Screen screen) throws IOException {
-        this.input = input;
+    
+    public Board(Screen screen) throws IOException {
         this.screen = screen;
         changeLevel(1); //start in level 1
     }
@@ -104,16 +103,17 @@ public class Board {
             BufferedReader in = new BufferedReader(new FileReader(path));
             String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
             StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
-            int level = Integer.parseInt(tokens.nextToken());
+            tokens.nextToken();
             world = tokens.nextToken();
             in.close();
+            input = getRightKeyboard();           
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path));
-                entities = clevel.exectuteStrategy(this, world);
+                entities = clevel.exectuteStrategy(this);          
             }
             else{
                 this.clevel = new ContextLevel(new IceStrategy(path));
-                entities = clevel.exectuteStrategy(this, world);
+                entities = clevel.exectuteStrategy(this);
             }
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
@@ -133,8 +133,7 @@ public class Board {
 		for (int i = 0; i < mobs.size(); i++) {
 			if(mobs.get(i) instanceof Player == false)
 				++total;
-		}
-		
+		}	
 		return total == 0;
 	}
 
@@ -224,7 +223,7 @@ public class Board {
      * Add the entity and the related position in the entity array.
      */
     public void addEntities() {
-        entities = clevel.exectuteStrategy(this, world);
+        entities = clevel.exectuteStrategy(this);
     }
     
     public void addEntitie(int pos, Entity e) {
@@ -373,5 +372,18 @@ public class Board {
                 return cur;
         }
         return null;
+    }
+
+    private Keyboard getRightKeyboard() {
+        if(world.equals("G"))
+            return GrassKeyboard.getInstance();
+        return IceKeyboard.getInstance();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        lives--;
+        setChanged();
+        notifyObservers();
     }
 }

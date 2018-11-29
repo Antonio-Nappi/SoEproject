@@ -64,7 +64,7 @@ public abstract class FileLevel{
     }
 
     
-    public abstract Entity[] createEntities(Board board, String world);
+    public abstract Entity[] createEntities(Board board);
 
     /**
      * Return the number of level charged.

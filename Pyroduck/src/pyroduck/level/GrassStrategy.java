@@ -25,7 +25,7 @@ public class GrassStrategy extends FileLevel{
     }
 
     @Override
-    public Entity[] createEntities(Board board, String world) {
+    public Entity[] createEntities(Board board) {
         Entity[] entities = new Entity[WIDTH*HEIGHT];//entity = player, mobs, powerups,..., also tile!!!
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
