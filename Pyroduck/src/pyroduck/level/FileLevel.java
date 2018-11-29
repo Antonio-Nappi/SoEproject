@@ -29,6 +29,7 @@ public abstract class FileLevel{
     public static final int WIDTH = 31, HEIGHT = 13;
     protected int level;
     protected String[] lineTiles;
+    protected Board board;
 
 
     /**
@@ -36,11 +37,16 @@ public abstract class FileLevel{
      * @param path related to the ".txt" file.
      * @throws LoadLevelException error in the charge of level.
      */
-    public FileLevel(String path) throws LoadLevelException {
+//    public FileLevel(String path) throws LoadLevelException {
+//        loadLevel(path);
+//        System.out.println(path);
+//    }
 
-        loadLevel(path);  
-
-    }
+    public FileLevel(String path, Board board) throws LoadLevelException {
+		loadLevel(path);
+                this.board = board;
+                System.out.println(path);
+	}
 
     /**
      * Load the level information (level, width, height) and the map information.
@@ -53,7 +59,7 @@ public abstract class FileLevel{
             String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
             StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
             level = Integer.parseInt(tokens.nextToken());
-            lineTiles = new String[HEIGHT];  
+            lineTiles = new String[HEIGHT];
             for(int i = 0; i < HEIGHT; ++i) {
                 lineTiles[i] = in.readLine().substring(0, WIDTH); //It reads each line of "level.txt" and storage it into a String array
             }

@@ -1,27 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.level;
 
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.*;
 import pyroduck.entities.mob.*;
+import pyroduck.entities.mob.enemy.graphic.Glalie;
+import pyroduck.entities.mob.enemy.graphic.Golbat;
 import pyroduck.entities.tile.*;
 import pyroduck.entities.tile.destroyable.*;
 import pyroduck.entities.tile.powerup.*;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.*;
-/**
- *
- * @author Alex
- */
+
 public class GrassStrategy extends FileLevel{
 
-    public GrassStrategy(String path) throws LoadLevelException {
-        super(path);
+    public GrassStrategy(String path, Board board) throws LoadLevelException {
+        super(path, board);
     }
 
     @Override
@@ -46,7 +40,7 @@ public class GrassStrategy extends FileLevel{
                     case 'p': 
                         board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         Screen.setOffset(0, 0);
-                       entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     case 'f':
                         LayeredEntity layer = new LayeredEntity(x, y, 
@@ -94,7 +88,18 @@ public class GrassStrategy extends FileLevel{
                         LayeredEntity layer5= new LayeredEntity(x, y,
                                                new GrassTile (x,y, Sprite.grass),
                                                    new BrickTile(x,y, Sprite.brick));
-                        //layer5.addBeforeTop(new (x,y,Sprite.portal));
+                        layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
+                        entities[pos] = layer5;
+                        break;
+                    case '1':
+                        board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));
+                        System.out.println("pyroduck.level.GrassStrategy.createEntities()->2: "+board.getMobs());
+                        entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        break;
+                    case '2':
+                        board.addMob(new Glalie(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        entities[pos] = new GrassTile(x, y, Sprite.grass);
+                        break;
                     default: 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;

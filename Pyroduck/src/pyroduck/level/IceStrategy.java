@@ -9,6 +9,8 @@ import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.*;
 import pyroduck.entities.mob.*;
+import pyroduck.entities.mob.enemy.graphic.Glalie;
+import pyroduck.entities.mob.enemy.graphic.Golbat;
 import pyroduck.entities.tile.*;
 import pyroduck.entities.tile.destroyable.*;
 import pyroduck.entities.tile.powerup.*;
@@ -21,8 +23,8 @@ import pyroduck.graphics.*;
  */
 public class IceStrategy extends FileLevel{
     
-    public IceStrategy(String path) throws LoadLevelException {
-        super(path);
+    public IceStrategy(String path, Board board) throws LoadLevelException {
+        super(path, board);
     }
     
     @Override
@@ -47,7 +49,7 @@ public class IceStrategy extends FileLevel{
                     case 'p': 
                         board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         Screen.setOffset(0, 0);
-                       entities[pos] = new GrassTile(x, y, Sprite.ice);
+                        entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case 'f':
                         LayeredEntity layer = new LayeredEntity(x, y, 
@@ -95,7 +97,17 @@ public class IceStrategy extends FileLevel{
                         LayeredEntity layer5= new LayeredEntity(x, y,
                                                new GrassTile (x,y, Sprite.ice),
                                                    new BrickTile(x,y, Sprite.brickice));
-                        //layer5.addBeforeTop(new (x,y,Sprite.portal));
+                        layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
+                        entities[pos] = layer5;
+                        break;
+                    case '1':
+                        board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        entities[pos] = new GrassTile(x, y, Sprite.ice);
+                        break;
+                    case '2':
+                        board.addMob(new Glalie(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        entities[pos] = new GrassTile(x, y, Sprite.ice);
+                        break;
                     default: 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
@@ -104,5 +116,4 @@ public class IceStrategy extends FileLevel{
         }
         return entities;
     }
-   
 }

@@ -10,10 +10,13 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import pyroduck.Game;
+import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.PyroduckException;
 
 public class GamePanel extends JPanel implements Observer {
@@ -41,6 +44,8 @@ public class GamePanel extends JPanel implements Observer {
             
         } catch (PyroduckException e) {
             JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
         setVisible(true);
         setFocusable(true);

@@ -1,5 +1,6 @@
 package pyroduck;
 
+import java.awt.Graphics;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,7 +23,7 @@ import pyroduck.input.*;
 import pyroduck.level.*;
 
 public class Board extends Observable implements Observer {
-    
+
     private ContextLevel clevel;
     private Keyboard input;
     private final Screen screen;
@@ -44,13 +45,13 @@ public class Board extends Observable implements Observer {
     | Render & Update
     |--------------------------------------------------------------------------
     */
-    public void update() {       
+    public void update() {
         updateEntities();
         updateMobs();
         updateBombs();
         for (int i = 0; i < mobs.size(); i++) {
             Mob a = mobs.get(i);
-            if(((Entity)a).isRemoved()) 
+            if(((Entity)a).isRemoved())
                 mobs.remove(i);
         }
     }
@@ -84,22 +85,24 @@ public class Board extends Observable implements Observer {
     private void resetProperties() {
         Game.playerSpeed = 1.3;
         Game.bombRadius = 1;
-        Game.bombRate = 1;	
+        Game.bombRate = 1;
     }
 
     public void restartLevel() throws IOException {
         changeLevel(clevel.getFilelevel().getLevel() );
     }
 
+    public void nextLevel() throws IOException {
+	changeLevel(clevel.getFilelevel().getLevel() + 1);
+	}
+
     public void changeLevel(int numlevel) throws FileNotFoundException, IOException { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
-        mobs.clear();
+        mobs = new ArrayList<>();
         bombs.clear();
         try {
             int combination = new Random().nextInt(3)+1;
-            
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
-            
             BufferedReader in = new BufferedReader(new FileReader(path));
             String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
             StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
@@ -108,12 +111,12 @@ public class Board extends Observable implements Observer {
             in.close();
             input = getRightKeyboard();           
             if(world.equals("G")){
-                this.clevel = new ContextLevel(new GrassStrategy(path));
-                entities = clevel.exectuteStrategy(this);          
+                this.clevel = new ContextLevel(new GrassStrategy(path, this));
+                entities = clevel.executeStrategy(this, world); 
             }
             else{
-                this.clevel = new ContextLevel(new IceStrategy(path));
-                entities = clevel.exectuteStrategy(this);
+                this.clevel = new ContextLevel(new IceStrategy(path, this));
+                entities = clevel.executeStrategy(this, world);
             }
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
@@ -121,21 +124,21 @@ public class Board extends Observable implements Observer {
             System.out.println("LEVEL'S FILE .txt NOT FOUND");
         }
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Detections
     |--------------------------------------------------------------------------
     */
-    
+
     public boolean detectNoEnemies() {
-		int total = 0;
-		for (int i = 0; i < mobs.size(); i++) {
-			if(mobs.get(i) instanceof Player == false)
-				++total;
-		}	
-		return total == 0;
-	}
+        int total = 0;
+        for (int i = 0; i < mobs.size(); i++) {
+            if(mobs.get(i) instanceof Player == false)
+                ++total;
+        }
+        return total == 0;
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -145,13 +148,13 @@ public class Board extends Observable implements Observer {
     public Entity getEntity(double x, double y, Mob m) {
         Entity res = null;
         res = getExplosionAt((int)x, (int)y);
-        if( res != null) 
+        if( res != null)
             return res;
         res = getBombAt(x, y);
-        if( res != null) 
+        if( res != null)
             return res;
         res = getMobAtExcluding((int)x, (int)y, m);
-        if( res != null) 
+        if( res != null)
             return res;
         res = getEntityAt((int)x, (int)y);
         return res;
@@ -174,7 +177,6 @@ public class Board extends Observable implements Observer {
 
     public Player getPlayer() {
         Iterator<Mob> itr = mobs.iterator();
-
         Mob cur;
         while(itr.hasNext()) {
             cur = itr.next();
@@ -183,7 +185,7 @@ public class Board extends Observable implements Observer {
         }
         return null;
     }
-    
+
     public Mob getMobAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         Mob cur;
@@ -198,7 +200,7 @@ public class Board extends Observable implements Observer {
         }
         return null;
     }
-    
+
     public Explosion getExplosionAt(int x, int y) {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
@@ -225,22 +227,22 @@ public class Board extends Observable implements Observer {
     public void addEntities() {
         entities = clevel.exectuteStrategy(this);
     }
-    
+
     public void addEntitie(int pos, Entity e) {
 		entities[pos] = e;
 	}
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public List<Mob> getMobs() {
         return mobs;
     }
 
     /**
-     * 
-     * @param e 
+     *
+     * @param e
      */
     public void addMob(Mob e) {
         mobs.add(e);
@@ -254,7 +256,7 @@ public class Board extends Observable implements Observer {
     Possiamo unire i due metodi?
     */
     protected void renderEntities(Screen screen) {
-        for (int i = 0; i < entities.length; i++) 
+        for (int i = 0; i < entities.length; i++)
             entities[i].render(screen);
     }
 
@@ -271,21 +273,42 @@ public class Board extends Observable implements Observer {
     */
     protected void updateMobs() {
         Iterator<Mob> itr = mobs.iterator();
-        while(itr.hasNext())
+        while(itr.hasNext()){
             itr.next().update();
+        }
     }
 
     protected void updateEntities() {
-        for (int i = 0; i < entities.length; i++) 
+        for (int i = 0; i < entities.length; i++)
             entities[i].update();
     }
-    
+
     /**
-     * 
+     *
      */
     public void endGame() {
         screenToShow = 1;
     }
+    
+    	/*
+	|--------------------------------------------------------------------------
+	| Screens
+	|--------------------------------------------------------------------------
+	 */
+	public void drawScreen(Graphics g) {
+		switch (screenToShow) {
+			case 1:
+				//screen.drawEndGame(g, points, level.getActualCode());
+				break;
+			case 2:
+				screen.drawChangeLevel(g, clevel.getFilelevel().getLevel());
+				break;
+			case 3:
+				//screen.drawPaused(g);
+				break;
+		}
+	}
+	
 
     /*
     |--------------------------------------------------------------------------
@@ -293,23 +316,23 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
     */
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public Keyboard getInput() {
         return input;
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getLevel() {
         return clevel.getFilelevel().getLevel();
     }
 
     /**
-     * 
+     *
      */
     protected void updateBombs() {
         Iterator<Bomb> itr = bombs.iterator();
@@ -318,16 +341,16 @@ public class Board extends Observable implements Observer {
     }
 
     /**
-     * 
-     * @param b 
+     *
+     * @param b
      */
     public void addBomb(Bomb b) {
-        bombs.add(b);    
+        bombs.add(b);
     }
-    
+
     /**
-     * 
-     * @param screen 
+     *
+     * @param screen
      */
     protected void renderBombs(Screen screen) {
         Iterator<Bomb> itr = bombs.iterator();
@@ -338,33 +361,32 @@ public class Board extends Observable implements Observer {
     public int getLives() {
         return lives;
     }
-    
+
     public void setLives(int i){
         lives=i;
     }
 
     /**
-     * 
-     * @param lives 
+     *
+     * @param lives
      */
     public void addLives(int lives) {
         this.lives += lives;
         Game.addLives(lives);
     }
- 
+
     public void addPoints(int points) {
         this.points += points;
     }
-    
+
     /**
-     * 
+     *
      * @param x
      * @param y
-     * @return 
+     * @return
      */
     public Mob getMobAt(double x, double y) {
         Iterator<Mob> itr = mobs.iterator();
-
         Mob cur;
         while(itr.hasNext()) {
             cur = itr.next();
