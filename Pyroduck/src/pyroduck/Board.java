@@ -1,4 +1,4 @@
-package pyroduck;
+                                                                                      package pyroduck;
 
 import java.awt.Graphics;
 import java.io.BufferedReader;
@@ -12,8 +12,6 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
