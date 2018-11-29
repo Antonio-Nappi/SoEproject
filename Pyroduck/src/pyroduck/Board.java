@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,12 +13,15 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.LoadLevelException;
+import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.input.*;
 import pyroduck.level.*;
@@ -100,6 +104,14 @@ public class Board extends Observable implements Observer {
 
     public void nextLevel() throws IOException {
 	changeLevel(clevel.getFilelevel().getLevel() + 1);
+        try {
+            Game.getInstance().renderScreen();
+            sleep(5000);
+        } catch (PyroduckException ex) {
+            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+        }
 	}
 
     public void changeLevel(int numlevel) throws FileNotFoundException, IOException { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
@@ -129,6 +141,7 @@ public class Board extends Observable implements Observer {
         } catch (NullPointerException e){
             System.out.println("LEVEL'S FILE .txt NOT FOUND");
         }
+        
     }
 
     /*

@@ -1,6 +1,8 @@
 package pyroduck.graphics;
 
+import com.sun.javafx.tk.Toolkit;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -128,12 +130,13 @@ public class Screen {
     
     public void drawChangeLevel(Graphics g, int level) {
 		g.setColor(Color.black);
-		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+                Dimension d = new Dimension(java.awt.Toolkit.getDefaultToolkit().getScreenSize().width-420, java.awt.Toolkit.getDefaultToolkit().getScreenSize().height-100);
+		g.fillRect(0, 0, d.width, d.height);
 		
-		Font font = new Font("Arial", Font.PLAIN, 20);
+		Font font = new Font("Arial", Font.PLAIN, 48);
 		g.setFont(font);
 		g.setColor(Color.white);
-		drawCenteredString("LEVEL " + level, Game.WIDTH, Game.HEIGHT, g);
+		drawCenteredString("LEVEL " + level, d.width, d.height, g);
 		
 	}
     
