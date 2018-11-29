@@ -14,15 +14,11 @@ import pyroduck.level.Coordinates;
 public abstract class Enemy extends Mob {
 
     protected int points;
-
-    protected double speed; //Speed should change on level transition
+    protected double speed;
     protected EnemyPower ep;
-
-    //necessary to correct move
     protected final double MAX_STEPS;
     protected final double rest;
     protected double steps;
-
     protected int finalAnimation = 30;
     protected Sprite deadSprite;
 
