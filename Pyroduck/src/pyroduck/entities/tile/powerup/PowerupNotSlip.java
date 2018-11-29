@@ -14,9 +14,9 @@ import pyroduck.graphics.Sprite;
  *
  * @author Alex
  */
-public class PowerupNotSlide extends Powerup {
+public class PowerupNotSlip extends Powerup {
 
-     public PowerupNotSlide(int x, int y, Sprite sprite) {
+     public PowerupNotSlip(int x, int y, Sprite sprite) {
         super(x, y, sprite);
     }
 

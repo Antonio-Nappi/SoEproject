@@ -14,7 +14,7 @@ import pyroduck.entities.Entity;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.entities.tile.powerup.PowerupLife;
-import pyroduck.entities.tile.powerup.PowerupNotSlide;
+import pyroduck.entities.tile.powerup.PowerupNotSlip;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -275,7 +275,7 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     public void addPowerup(Powerup p) {
-        if(p instanceof PowerupNotSlide){
+        if(p instanceof PowerupNotSlip){
             board.setInput();
             input = board.getInput();
         }
