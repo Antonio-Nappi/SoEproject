@@ -31,10 +31,8 @@ public class PortalTile extends Tile {
 				return false;
 			
 			if(e.getXTile() == getX() && e.getYTile() == getY()) {
-                                System.out.println("PRIMO IF");
 				if(board.detectNoEnemies())
                                     try{
-                                        System.out.println("TRY");
 					board.nextLevel();
                                     } catch (IOException ex){
                                         Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);

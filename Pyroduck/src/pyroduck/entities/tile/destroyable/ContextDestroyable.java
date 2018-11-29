@@ -13,7 +13,7 @@ public class ContextDestroyable {
     private DestroyableIceTile state;
 
     public ContextDestroyable() {
-        state = null;
+        state = new 
     }
 
     public DestroyableIceTile getState() {

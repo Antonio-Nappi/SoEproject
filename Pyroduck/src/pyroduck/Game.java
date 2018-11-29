@@ -66,7 +66,7 @@ public class Game extends Canvas {
     private void renderGame() { //render will run the maximum times it can per second
         BufferStrategy bs = getBufferStrategy(); //represents the mechanism with which to organize complex memory on a Canvas
         if(bs == null) { //if canvas dont have a bufferstrategy, create it
-            createBufferStrategy(1); //triple buffer
+            createBufferStrategy(1); //buffer
             return;
         }
         screen.clear();
@@ -79,6 +79,24 @@ public class Game extends Canvas {
         g.dispose(); //release resources
         bs.show(); //make next buffer visible
     }
+    
+    public void renderScreen() {
+		BufferStrategy bs = getBufferStrategy();
+		if(bs == null) {
+			createBufferStrategy(3);
+			return;
+		}
+		
+		screen.clear();
+		
+		Graphics g = bs.getDrawGraphics();
+              
+                
+		board.drawScreen(g);
+
+		g.dispose();
+		bs.show();
+	}
 
     private void update(){   
         board.update();
@@ -87,10 +105,7 @@ public class Game extends Canvas {
             addKeyListener(input);
         }
         if(lives != board.getLives()){
-            System.out.println("Game lives "+lives);
-            System.out.println("Board lives "+ board.getLives());
             board.setLives(lives);
-            System.out.println("Board lives "+ board.getLives());
         }
         if (!reverse){
             input.update();  

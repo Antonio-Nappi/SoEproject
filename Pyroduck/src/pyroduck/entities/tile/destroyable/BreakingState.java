@@ -15,8 +15,8 @@ import pyroduck.graphics.Sprite;
  */
 public class BreakingState extends DestroyableIceTile {
     
-    public BreakingState(int x, int y, Sprite sprite,ContextDestroyable context) {
-        super(x, y, sprite,context);
+    public BreakingState(int x, int y, Sprite sprite ) {
+        super(x, y, sprite);
     }
         
     @Override

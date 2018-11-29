@@ -12,16 +12,12 @@ import pyroduck.graphics.Sprite;
  * @author Alex
  */
 public abstract class DestroyableIceTile extends DestroyableTile{
-    
-    protected ContextDestroyable context;
-    
-    public DestroyableIceTile(int x, int y, Sprite sprite, ContextDestroyable context) {
-        super(x, y, sprite);
-        this.context = context;
-    }
 
-    public ContextDestroyable getContext() {
-        return context;
+    
+    public DestroyableIceTile(int x, int y, Sprite sprite ) {
+        super(x, y, sprite);
+
     }
+    public abstract void Collision(ContextDestroyable contextDestroyable);
     
 }
