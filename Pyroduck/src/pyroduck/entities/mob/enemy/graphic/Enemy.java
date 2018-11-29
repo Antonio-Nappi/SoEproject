@@ -103,8 +103,8 @@ public abstract class Enemy extends Mob {
 
     @Override
     public boolean canMove(double x, double y) {
-        double xr = this.x, yr = this.y - 16; //subtract y to get more accurate results
-        //the thing is, subract 15 to 16 (sprite size), so if we add 1 tile we get the next pixel tile with this
+        double xr = this.x, yr = this.y - 32; //subtract y to get more accurate results
+        //the thing is, subract to 32 (sprite size), so if we add 1 tile we get the next pixel tile with this
         //we avoid the shaking inside tiles with the help of steps
         if(direction == 0) { 
             yr += sprite.getSize() -1 ; 
