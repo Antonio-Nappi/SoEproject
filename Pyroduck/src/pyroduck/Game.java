@@ -87,10 +87,7 @@ public class Game extends Canvas {
             addKeyListener(input);
         }
         if(lives != board.getLives()){
-            System.out.println("Game lives "+lives);
-            System.out.println("Board lives "+ board.getLives());
             board.setLives(lives);
-            System.out.println("Board lives "+ board.getLives());
         }
         if (!reverse){
             input.update();  
