@@ -8,7 +8,7 @@ import pyroduck.graphics.Sprite;
 public class Glalie extends Enemy{
     
     public Glalie(int x, int y, Board board){
-        super(x, y, board, Sprite.glalie_dead, Game.getPlayerSpeed(), 200);
+        super(x, y, board, Sprite.glalie_dead, Game.getPlayerSpeed() - 0.3, 200);
         sprite = Sprite.glalie_left1;	
         ep = new MediumPower(board.getPlayer(), this);
         direction = ep.calculateDirection();
