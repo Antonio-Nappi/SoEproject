@@ -298,9 +298,9 @@ public class Player extends Mob {
             --timeAfter;
         else {
             if(bombs.isEmpty()) {
-                if(board.getLives() == 0)
+                if(board.getLives() == 0){
                     board.endGame();
-                else
+                }else
                     try {
                         board.restartLevel();
                 } catch (IOException ex) {

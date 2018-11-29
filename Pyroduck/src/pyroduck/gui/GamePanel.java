@@ -12,6 +12,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,7 +40,7 @@ public class GamePanel extends JPanel implements Observer {
             label.setForeground(Color.WHITE);
             label.setHorizontalTextPosition((int)LEFT_ALIGNMENT);
             panel.add(label);
-                        game.getBoard().addObserver(this);
+            game.getBoard().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
             
         } catch (PyroduckException e) {
@@ -57,10 +58,21 @@ public class GamePanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        remain--;
-        label.setText("Lives " + remain);
-        if(remain == 0){
-        JOptionPane.showMessageDialog(game,"Hai perso");
+        label.setText("Lives " + game.getBoard().getLives());
+        if(game.getBoard().getLives() == 0){
+            JPanel panel1 = new JPanel();
+            JLabel label1 = new JLabel("Hai perso.");
+            label1.setBackground(Color.red);
+            panel1.add(label1);
+            panel1.setBackground(Color.red);
+            panel1.setVisible(true);
+            label1.setVisible(true);
+            game.setVisible(false);
+            System.out.println(label1.getText());
+            JFrame frame = new JFrame();
+            frame.add(panel1,BorderLayout.CENTER);
+            frame.setVisible(true);
+       // game.endGame();
         }
     }
 }

@@ -12,6 +12,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
@@ -88,6 +90,10 @@ public class Board extends Observable implements Observer {
         Game.bombRate = 1;
     }
 
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
     public void restartLevel() throws IOException {
         changeLevel(clevel.getFilelevel().getLevel() );
     }
@@ -101,7 +107,7 @@ public class Board extends Observable implements Observer {
         mobs = new ArrayList<>();
         bombs.clear();
         try {
-            int combination = new Random().nextInt(3)+1;
+            int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
             BufferedReader in = new BufferedReader(new FileReader(path));
             String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
@@ -359,11 +365,7 @@ public class Board extends Observable implements Observer {
     }
 
     public int getLives() {
-        return lives;
-    }
-
-    public void setLives(int i){
-        lives=i;
+        return this.lives;
     }
 
     /**
@@ -404,8 +406,9 @@ public class Board extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        lives--;
+        this.lives--;
         setChanged();
         notifyObservers();
     }
+
 }

@@ -93,7 +93,6 @@ public class GrassStrategy extends FileLevel{
                         break;
                     case '1':
                         board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));
-                        System.out.println("pyroduck.level.GrassStrategy.createEntities()->2: "+board.getMobs());
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     case '2':

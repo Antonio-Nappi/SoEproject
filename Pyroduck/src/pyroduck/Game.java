@@ -10,6 +10,9 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.input.*;
@@ -77,7 +80,6 @@ public class Game extends Canvas implements Observer{
     }
 
     private void update(){   
-        board.setLives(lives);
         board.update();
         if(input!= getBoard().getInput()){
             this.input = getBoard().getInput();
@@ -155,6 +157,10 @@ public class Game extends Canvas implements Observer{
     public void update(Observable o, Object arg) {
         
         addKeyListener(input);
+    }
+
+    public void endGame() {
+        System.exit(0);
     }
      
     private class ScheduleTask extends TimerTask{
