@@ -14,15 +14,11 @@ import pyroduck.level.Coordinates;
 public abstract class Enemy extends Mob {
 
     protected int points;
-
-    protected double speed; //Speed should change on level transition
+    protected double speed;
     protected EnemyPower ep;
-
-    //necessary to correct move
     protected final double MAX_STEPS;
     protected final double rest;
     protected double steps;
-
     protected int finalAnimation = 30;
     protected Sprite deadSprite;
 
@@ -103,8 +99,8 @@ public abstract class Enemy extends Mob {
 
     @Override
     public boolean canMove(double x, double y) {
-        double xr = this.x, yr = this.y - 16; //subtract y to get more accurate results
-        //the thing is, subract 15 to 16 (sprite size), so if we add 1 tile we get the next pixel tile with this
+        double xr = this.x, yr = this.y - 32; //subtract y to get more accurate results
+        //the thing is, subract to 32 (sprite size), so if we add 1 tile we get the next pixel tile with this
         //we avoid the shaking inside tiles with the help of steps
         if(direction == 0) { 
             yr += sprite.getSize() -1 ; 

@@ -93,6 +93,13 @@ public class IceStrategy extends FileLevel{
                         layer6.addBeforeTop(new PowerupLife(x, y, Sprite.powerup_life));				
                         entities[pos] = layer6;
                         break;
+                    case 'u':
+                        LayeredEntity layer7 = new LayeredEntity(x, y, 
+                                                new GrassTile(x ,y, Sprite.ice), 
+                                                    new BrickTile(x ,y, Sprite.brickice));
+                        layer7.addBeforeTop(new PowerupNotSlide(x, y, Sprite.powerup_not_slide));				
+                        entities[pos] = layer7;
+                        break;
                     case 'w': //gestione portale
                         LayeredEntity layer5= new LayeredEntity(x, y,
                                                new GrassTile (x,y, Sprite.ice),

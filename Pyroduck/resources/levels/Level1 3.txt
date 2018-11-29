@@ -30,3 +30,4 @@ f - Powerup Flames
 s - Powerup Speed
 o - Malus Decrease Speed
 m - Malus Reverse Keyboard
+l - Powerup Live
