@@ -112,11 +112,11 @@ public class Board extends Observable implements Observer {
             input = getRightKeyboard();           
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path, this));
-                entities = clevel.executeStrategy(this, world); 
+                entities = clevel.executeStrategy(this); 
             }
             else{
                 this.clevel = new ContextLevel(new IceStrategy(path, this));
-                entities = clevel.executeStrategy(this, world);
+                entities = clevel.executeStrategy(this);
             }
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
@@ -225,7 +225,7 @@ public class Board extends Observable implements Observer {
      * Add the entity and the related position in the entity array.
      */
     public void addEntities() {
-        entities = clevel.exectuteStrategy(this);
+        entities = clevel.executeStrategy(this);
     }
 
     public void addEntitie(int pos, Entity e) {

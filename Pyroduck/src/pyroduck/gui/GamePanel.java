@@ -59,7 +59,6 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         remain--;
         label.setText("Lives " + remain);
-        System.out.println("GamePanel " + game.getBoard().getLives());
         if(remain == 0){
         JOptionPane.showMessageDialog(game,"Hai perso");
         }

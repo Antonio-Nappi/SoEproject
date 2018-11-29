@@ -10,7 +10,7 @@ public class ContextLevel {
         this.filelevel = filelevel;
     }
 
-    public Entity[] exectuteStrategy(Board board){
+    public Entity[] executeStrategy(Board board){
         return filelevel.createEntities(board);
     }
 
