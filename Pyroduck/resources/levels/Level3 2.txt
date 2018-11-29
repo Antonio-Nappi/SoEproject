@@ -1,0 +1,36 @@
+3 I
+###############################
+#p * #  *   # * * *    #   *  #
+# # # # # # # # # # # # # # # #
+#* * o * *    1*   *   * # *  #
+# # # # # #*# # #*#*# # # # #*#
+#* b * o #    * s * b *   *   #
+# # # # # # # # # #*# #*# # # #
+#*  *     1*  *      o   2    #
+# # # # #*# # # #*#*# # # # # #
+#o     m  *    *  s    3 * *  #
+# #*# # # # # # #*# # #*# # # #
+#  * *   #    mwo   *  *  m   #
+###############################
+
+
+
+Meta data:
+(Number or Level) (Rows) (Columns)
+
+Info Tiles:
+# - Wall
+* - Brick
+
+Mobs:
+p - Player
+1 - Snorunt
+2 - Glalie
+3 - Darkrai
+
+Powerups:
+b - Powerup Bombs
+* - Powerup *lames
+s - Powerup Speed
+o - Malus Decrease Speed
+m - Malus Reverse Keyboard
