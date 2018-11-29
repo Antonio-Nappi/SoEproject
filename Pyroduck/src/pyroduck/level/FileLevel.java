@@ -5,19 +5,8 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import java.io.FileReader;
 import pyroduck.Board;
-import pyroduck.Game;
 import pyroduck.entities.Entity;
-import pyroduck.entities.LayeredEntity;
-import pyroduck.entities.mob.Player;
-import pyroduck.entities.tile.GrassTile;
-import pyroduck.entities.tile.PortalTile;
-import pyroduck.entities.tile.WallTile;
-import pyroduck.entities.tile.destroyable.BrickTile;
-import pyroduck.entities.tile.powerup.MalusSlow;
-import pyroduck.entities.tile.powerup.*;
 import pyroduck.exceptions.LoadLevelException;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
 
 /**
  * It is the level loader.
@@ -37,15 +26,9 @@ public abstract class FileLevel{
      * @param path related to the ".txt" file.
      * @throws LoadLevelException error in the charge of level.
      */
-//    public FileLevel(String path) throws LoadLevelException {
-//        loadLevel(path);
-//        System.out.println(path);
-//    }
-
     public FileLevel(String path, Board board) throws LoadLevelException {
 		loadLevel(path);
                 this.board = board;
-                System.out.println(path);
 	}
 
     /**
@@ -68,8 +51,7 @@ public abstract class FileLevel{
             throw new LoadLevelException("Error loading level ");
         }
     }
-
-    
+  
     public abstract Entity[] createEntities(Board board);
 
     /**

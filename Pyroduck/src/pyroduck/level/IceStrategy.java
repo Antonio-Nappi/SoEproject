@@ -97,7 +97,7 @@ public class IceStrategy extends FileLevel{
                         LayeredEntity layer7 = new LayeredEntity(x, y, 
                                                 new GrassTile(x ,y, Sprite.ice), 
                                                     new BrickTile(x ,y, Sprite.brickice));
-                        layer7.addBeforeTop(new PowerupNotSlide(x, y, Sprite.powerup_not_slide));				
+                        layer7.addBeforeTop(new PowerupNotSlip(x, y, Sprite.powerup_not_slip));				
                         entities[pos] = layer7;
                         break;
                     case 'w': //gestione portale
@@ -106,6 +106,12 @@ public class IceStrategy extends FileLevel{
                                                    new BrickTile(x,y, Sprite.brickice));
                         layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
                         entities[pos] = layer5;
+                        break;
+                    case 'z':
+                        ContextDestroyable context = new ContextDestroyable();
+                        DestroyableIceTile intactState = new IntactState(x, y, Sprite.ice, context);
+                        context.setState(intactState);
+                        entities[pos] = intactState;
                         break;
                     case '1':
                         board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
