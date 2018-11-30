@@ -1,23 +1,13 @@
 package pyroduck.entities.tile.destroyable;
 
 import pyroduck.entities.Entity;
-import pyroduck.entities.mob.Player;
 import pyroduck.graphics.Sprite;
 
 
 public class DestroyedState extends DestroyableIceTile {
-    
+
     public DestroyedState(int x, int y, Sprite sprite ) {
         super(x, y, sprite);
-    }
-
-    @Override
-    public boolean collide(Entity e){
-        if(e instanceof Player){
-            System.out.println("Collisione destroyed");
-            return false;
-        }
-        return false;
     }
 
     @Override
@@ -25,4 +15,21 @@ public class DestroyedState extends DestroyableIceTile {
         System.out.println("Chiamata di destroyed");
         context.setState(new WaterState((int)x, (int)y, Sprite.icebroken_4));
     }
+    
+    @Override
+    public boolean getChange() {
+        return change;
+    }
+    
+    @Override
+    public void setChange(boolean change){
+        this.change = change;
+    }
+    
+//    @Override
+//    public boolean collide(Entity e) {
+//        if(e instanceof WaterState)
+//            change=true;
+//        return false;
+//    }
 }

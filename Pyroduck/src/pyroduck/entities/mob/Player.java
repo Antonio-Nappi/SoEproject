@@ -23,6 +23,7 @@ import pyroduck.graphics.Sprite;
 import pyroduck.input.GrassKeyboard;
 import pyroduck.input.Keyboard;
 import pyroduck.level.Coordinates;
+import pyroduck.level.FileLevel;
 
 /**
  * Describes the behavior of the player controllable via keyboard.
@@ -134,19 +135,22 @@ public class Player extends Mob {
             double xt = ((this.x + x) + c % 2 * 24 +2) / Game.TILES_SIZE; // 
             double yt = ((this.y + y) + c / 2 * 15 - 16) / Game.TILES_SIZE; // the multiply factor control bottom collision and the additional factor control top collision
             Entity a = board.getEntity(xt, yt, this);
+            double diffX = a.getX() - Coordinates.tileToPixel(getX());
+            double diffY = a.getY() - Coordinates.tileToPixel(getY());
             if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -               
                 con.setState((DestroyableIceTile)a);
-                System.out.println("STATO PRIMA:  " + con.getState().toString());
-                con.getState().nextState(con);
-                System.out.println("STATO DOPO:  " + con.getState().toString());
-                con.getState().nextState(con);
-                System.out.println("STATO DOPO:  " + con.getState().toString());
-                return true;
+                if((!(diffX >= -26 && diffX < 30 && diffY >= 1 && diffY <= 47)) && con.getState().getChange()) { // differences to see if the player has moved out of the bomb, tested values
+                    con.getState().nextState(con);
+                    con.getState().setChange(false);
+                    board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
+                    System.out.println("CIAO");
+                }              
             }
+
+            
             if(a.collide(this)){
                 return false;
-            }
-            
+            }       
         }
         return true;
     }

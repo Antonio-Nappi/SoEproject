@@ -172,9 +172,9 @@ public class Sprite {
     public static Sprite mob_dead2 = new Sprite(15, 1, SpriteSheet.tiles);
     public static Sprite mob_dead3 = new Sprite(15, 2, SpriteSheet.tiles);
     
-    public static Sprite icebroken_1 = new Sprite(14, 0, SpriteSheet.tiles);
+    public static Sprite icebroken_1 = new Sprite(12, 0, SpriteSheet.tiles);
     public static Sprite icebroken_2 = new Sprite(13, 0, SpriteSheet.tiles);
-    public static Sprite icebroken_3 = new Sprite(12, 0, SpriteSheet.tiles);
+    public static Sprite icebroken_3 = new Sprite(14, 0, SpriteSheet.tiles);
     public static Sprite icebroken_4 = new Sprite(15, 0, SpriteSheet.tiles);
 
     /*
