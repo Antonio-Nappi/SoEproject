@@ -139,7 +139,7 @@ public class Board extends Observable implements Observer {
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
-            System.out.println("LEVEL'S FILE .txt NOT FOUND");
+            System.out.println("LEVEL'S FILE .txt NOT FOUND!");
         }
         
     }

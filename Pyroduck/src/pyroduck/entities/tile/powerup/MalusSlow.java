@@ -4,6 +4,7 @@ import pyroduck.Game;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
+import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -23,6 +24,9 @@ public class MalusSlow extends Powerup {
         if(e instanceof Player) {
             ((Player) e).addPowerup(this);
             remove();
+            return true;
+        }
+        if(e instanceof Enemy){
             return true;
         }
         return false;

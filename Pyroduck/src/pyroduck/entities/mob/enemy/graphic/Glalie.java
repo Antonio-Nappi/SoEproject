@@ -18,16 +18,20 @@ public class Glalie extends Enemy{
     protected void chooseSprite() {
         switch(direction) {
             case 0:
-                sprite = Sprite.movingSprite(Sprite.glalie_up1, Sprite.glalie_up2, Sprite.glalie_up3, animate, 60);
+               if(moving) sprite = Sprite.movingSprite(Sprite.glalie_up1, Sprite.glalie_up2, Sprite.glalie_up3, animate, 60);
+               else sprite = Sprite.glalie_down1;
                 break;
             case 1:
-                sprite = Sprite.movingSprite(Sprite.glalie_right1, Sprite.glalie_right2, Sprite.glalie_right3, animate, 60);
+                if(moving) sprite = Sprite.movingSprite(Sprite.glalie_right1, Sprite.glalie_right2, Sprite.glalie_right3, animate, 60);
+                else sprite = Sprite.glalie_down1;
                 break;
             case 2:
-                sprite = Sprite.movingSprite(Sprite.glalie_down1, Sprite.glalie_down2, Sprite.glalie_down3, animate, 60);
+              if(moving)  sprite = Sprite.movingSprite(Sprite.glalie_down1, Sprite.glalie_down2, Sprite.glalie_down3, animate, 60);
+                else sprite = Sprite.glalie_down1;
                 break;
             case 3:
-                sprite = Sprite.movingSprite(Sprite.glalie_left1, Sprite.glalie_left2, Sprite.glalie_left3, animate, 60);
+               if(moving) sprite = Sprite.movingSprite(Sprite.glalie_left1, Sprite.glalie_left2, Sprite.glalie_left3, animate, 60);
+                else sprite = Sprite.glalie_down1;
                 break;
         }    
     }   

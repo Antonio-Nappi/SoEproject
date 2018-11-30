@@ -49,7 +49,8 @@ public class Game extends Canvas {
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); 
     //Raster è una classe che rappresenta una matrice di pixel. Le immagini contenute nel buffer vengono estratte, e 
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
-
+    protected int selected = 0; 
+            
     private Game() throws PyroduckException, IOException  {
         timer = new Timer();
         screen = new Screen();
@@ -167,6 +168,10 @@ public class Game extends Canvas {
         return input;
     }
 
+    public int getSelected() {
+        return selected;
+    }
+
     public Board getBoard() {
         return board;
     }
@@ -175,6 +180,9 @@ public class Game extends Canvas {
         return lives;
     }
 
+    public void setSelected(int selected) {
+        this.selected = selected;
+    }
 
     public void endGame() {
         System.exit(0);
