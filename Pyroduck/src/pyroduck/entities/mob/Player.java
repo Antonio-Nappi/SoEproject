@@ -97,7 +97,18 @@ public class Player extends Mob {
         if(alive)
             chooseSprite();
         else
-            sprite = Sprite.player_dead1;
+            try {
+                if(Game.getInstance().getSelected() == 0){
+                    sprite = Sprite.player_dead1;
+                }
+                else{
+                    sprite = Sprite.player_dead1i;
+                }
+        } catch (PyroduckException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        }
         screen.renderEntity((int)x, (int)y - sprite.SIZE, this);
     }
 
@@ -143,7 +154,6 @@ public class Player extends Mob {
                     con.getState().nextState(con);
                     con.getState().setChange(false);
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
-                    System.out.println("CIAO");
                 }              
             }
 

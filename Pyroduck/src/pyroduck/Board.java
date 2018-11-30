@@ -1,4 +1,4 @@
-                                                                                      package pyroduck;
+package pyroduck;
 
 import java.awt.Graphics;
 import java.io.BufferedReader;
