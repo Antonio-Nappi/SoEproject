@@ -82,22 +82,22 @@ public class Game extends Canvas {
     }
     
     public void renderScreen() {
-		BufferStrategy bs = getBufferStrategy();
-		if(bs == null) {
-			createBufferStrategy(3);
-			return;
-		}
-		
-		screen.clear();
-		
-		Graphics g = bs.getDrawGraphics();
-              
-                
-		board.drawScreen(g);
+        BufferStrategy bs = getBufferStrategy();
+        if(bs == null) {
+            createBufferStrategy(3);
+            return;
+        }
 
-		g.dispose();
-		bs.show();
-	}
+        screen.clear();
+
+        Graphics g = bs.getDrawGraphics();
+
+
+        board.drawScreen(g);
+
+        g.dispose();
+        bs.show();
+    }
 
     private void update(){   
         board.update();

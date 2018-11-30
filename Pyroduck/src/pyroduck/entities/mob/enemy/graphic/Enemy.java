@@ -7,6 +7,8 @@ import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.enemy.EnemyPower;
+import pyroduck.entities.tile.destroyable.BrickTile;
+import pyroduck.entities.tile.powerup.MalusSlow;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
@@ -138,6 +140,10 @@ public abstract class Enemy extends Mob {
         if(e instanceof Player) {
             ((Player) e).kill();
             return true;
+        }
+        if(e instanceof MalusSlow){
+            System.out.println("si tocca");
+            return false;
         }
         return false;
     }

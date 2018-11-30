@@ -12,6 +12,8 @@ import pyroduck.bomb.Bomb;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
+import pyroduck.entities.tile.destroyable.ContextDestroyable;
+import pyroduck.entities.tile.destroyable.DestroyableIceTile;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.entities.tile.powerup.PowerupLife;
 import pyroduck.entities.tile.powerup.PowerupNotSlip;
@@ -36,6 +38,7 @@ public class Player extends Mob {
     protected int timeBetweenPutBombs = 0;
     public static List<Powerup> powerups = new ArrayList<Powerup>();
     private int lives = 3;
+    private ContextDestroyable con;
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
@@ -46,6 +49,7 @@ public class Player extends Mob {
         super(x, y, board);
         bombs = board.getBombs();
         input = board.getInput();
+        con = new ContextDestroyable();
         addObserver(board);
     }
 
@@ -130,8 +134,19 @@ public class Player extends Mob {
             double xt = ((this.x + x) + c % 2 * 24 +2) / Game.TILES_SIZE; // 
             double yt = ((this.y + y) + c / 2 * 15 - 16) / Game.TILES_SIZE; // the multiply factor control bottom collision and the additional factor control top collision
             Entity a = board.getEntity(xt, yt, this);
-            if(a.collide(this))
+            if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -               
+                con.setState((DestroyableIceTile)a);
+                System.out.println("STATO PRIMA:  " + con.getState().toString());
+                con.getState().nextState(con);
+                System.out.println("STATO DOPO:  " + con.getState().toString());
+                con.getState().nextState(con);
+                System.out.println("STATO DOPO:  " + con.getState().toString());
+                return true;
+            }
+            if(a.collide(this)){
                 return false;
+            }
+            
         }
         return true;
     }

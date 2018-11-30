@@ -15,8 +15,8 @@ import pyroduck.graphics.Sprite;
  */
 public class WaterState extends DestroyableIceTile{
     
-    public WaterState(int x, int y, Sprite sprite,ContextDestroyable contextDestroyable) {
-        super(x, y, sprite,contextDestroyable);
+    public WaterState(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
     }
        
     @Override
@@ -26,4 +26,10 @@ public class WaterState extends DestroyableIceTile{
            ((Player) e).kill();
         return true;
     } 
+
+    @Override
+    public void nextState(ContextDestroyable context){
+        System.out.println("Chiamata di water");
+
+    }
 }
