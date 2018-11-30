@@ -309,24 +309,24 @@ public class Board extends Observable implements Observer {
         screenToShow = 1;
     }
     
-    	/*
-	|--------------------------------------------------------------------------
-	| Screens
-	|--------------------------------------------------------------------------
-	 */
-	public void drawScreen(Graphics g) {
-		switch (screenToShow) {
-			case 1:
-				//screen.drawEndGame(g, points, level.getActualCode());
-				break;
-			case 2:
-				screen.drawChangeLevel(g, clevel.getFilelevel().getLevel());
-				break;
-			case 3:
-				//screen.drawPaused(g);
-				break;
-		}
-	}
+    /*
+    |--------------------------------------------------------------------------
+    | Screens
+    |--------------------------------------------------------------------------
+     */
+    public void drawScreen(Graphics g) {
+        switch (screenToShow) {
+            case 1:
+                //screen.drawEndGame(g, points, level.getActualCode());
+                break;
+            case 2:
+                screen.drawChangeLevel(g, clevel.getFilelevel().getLevel());
+                break;
+            case 3:
+                //screen.drawPaused(g);
+                break;
+        }
+    }
 	
 
     /*
