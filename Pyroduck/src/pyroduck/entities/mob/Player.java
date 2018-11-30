@@ -51,6 +51,7 @@ public class Player extends Mob {
         bombs = board.getBombs();
         input = board.getInput();
         con = new ContextDestroyable();
+      
         addObserver(board);
     }
 

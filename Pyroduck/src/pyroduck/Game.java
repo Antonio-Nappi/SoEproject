@@ -181,7 +181,12 @@ public class Game extends Canvas {
     }
 
     public void setSelected(int selected) {
+        
         this.selected = selected;
+        if(selected==1){
+            playerSpeed=1;
+            
+        }
     }
 
     public void endGame() {
