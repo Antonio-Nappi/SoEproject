@@ -1,6 +1,5 @@
 package pyroduck.entities.tile.destroyable;
 
-import pyroduck.entities.Entity;
 import pyroduck.graphics.Sprite;
 
 public class IntactState extends DestroyableIceTile {
@@ -12,7 +11,7 @@ public class IntactState extends DestroyableIceTile {
     @Override
     public void nextState(ContextDestroyable context){
         System.out.println("Chiamata di intact");
-        context.setState(new BreakingState((int)x, (int)y, Sprite.icebroken_1));
+        context.setState(new BreakingState((int)x, (int)y, Sprite.icebroken_2));
     }
 
     @Override

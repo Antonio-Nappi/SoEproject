@@ -13,7 +13,7 @@ public class DestroyedState extends DestroyableIceTile {
     @Override
     public void nextState(ContextDestroyable context){
         System.out.println("Chiamata di destroyed");
-        context.setState(new WaterState((int)x, (int)y, Sprite.icebroken_4));
+        context.setState(new WaterState((int)x, (int)y, Sprite.icebroken_3));
     }
     
     @Override

@@ -22,7 +22,7 @@ public abstract class DestroyableIceTile extends Tile{
     public boolean collide(Entity e) {
         double diffX = e.getX() - Coordinates.tileToPixel(getX());
         double diffY = e.getY() - Coordinates.tileToPixel(getY());
-        if(!((diffX >= -26 && diffX < 30 && diffY >= 1 && diffY <= 47)))
+        if(!((diffX >= -26 && diffX < 30 && diffY >= 7 && diffY <= 47)))
             change = true;
         return false;
     }
