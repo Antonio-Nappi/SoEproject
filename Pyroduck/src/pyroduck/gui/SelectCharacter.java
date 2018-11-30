@@ -5,6 +5,11 @@
  */
 package pyroduck.gui;
 
+import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -100,7 +105,7 @@ public class SelectCharacter extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(previous, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                         .addGap(19, 19, 19)
-                        .addComponent(Next, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(Next, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                         .addGap(23, 23, 23))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(imageLabel)
@@ -137,7 +142,7 @@ public class SelectCharacter extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bombLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(imgBomb))
-                        .addGap(0, 50, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))
                     .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +150,7 @@ public class SelectCharacter extends javax.swing.JFrame {
                     .addComponent(previous))
                 .addGap(18, 18, 18)
                 .addComponent(select)
-                .addGap(41, 41, 41))
+                .addGap(1, 1, 1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,15 +183,17 @@ public class SelectCharacter extends javax.swing.JFrame {
     private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
         if( selected == 0){
             imageLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Golduck.png"));
+            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\501.png"));
+            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\01.png"));
+            imgBomb.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\501.png"));
             selected=1;
-            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
-            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
         }
         else{
             imageLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Psyduck.png"));
+            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
+            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
+            imgBomb.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
             selected=0;
-            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\01.png"));
-            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\501.png"));
         }
     }//GEN-LAST:event_previousActionPerformed
 
@@ -194,14 +201,16 @@ public class SelectCharacter extends javax.swing.JFrame {
         if( selected == 0){
             imageLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Golduck.png"));
             selected=1;
-            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
-            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
+            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\501.png"));
+            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\01.png"));
+            imgBomb.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\501.png"));
         }
         else{
             imageLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Psyduck.png"));
             selected=0;
-            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\01.png"));
-            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\501.png"));
+            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
+            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
+            imgBomb.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
         }
     }//GEN-LAST:event_NextActionPerformed
 
@@ -235,10 +244,12 @@ public class SelectCharacter extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SelectCharacter s;
-                s = new SelectCharacter();
-                s.setVisible(true);
-                s.setLocationRelativeTo(null);
+            SelectCharacter s;
+            Point middle = new Point(0, 0);
+            s = new SelectCharacter();
+            s.setVisible(true);
+            s.setLocation(middle);
+            s.setBounds(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize().width,Toolkit.getDefaultToolkit().getScreenSize().height-40));
             }
         });
     }
