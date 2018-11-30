@@ -5,15 +5,12 @@
  */
 package pyroduck.gui;
 
-import java.awt.Dimension;
-import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.Pyroduck;
 import pyroduck.exceptions.PyroduckException;

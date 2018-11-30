@@ -410,13 +410,11 @@ public class Board extends Observable implements Observer {
     }
 
     private Keyboard getRightKeyboard() {
-        System.out.println(player);
         if(player == 1){
             return GrassKeyboard.getInstance();
         }
         if(world.equals("G"))
             return GrassKeyboard.getInstance();
-        System.out.println("pyroduck.Board.getRightKeyboard() non va");
         return IceKeyboard.getInstance();
     }
 
@@ -431,8 +429,6 @@ public class Board extends Observable implements Observer {
     }
     
     public void setPlayer(int p){
-        System.out.println("fatto");
         player = p;
-        System.out.println(player);
     }
 }
