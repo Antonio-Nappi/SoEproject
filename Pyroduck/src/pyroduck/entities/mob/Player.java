@@ -15,7 +15,6 @@ import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.destroyable.ContextDestroyable;
 import pyroduck.entities.tile.destroyable.DestroyableIceTile;
 import pyroduck.entities.tile.powerup.Powerup;
-import pyroduck.entities.tile.powerup.PowerupLife;
 import pyroduck.entities.tile.powerup.PowerupNotSlip;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
@@ -191,7 +190,7 @@ public class Player extends Mob {
      */
     private void chooseSprite() {
         try {
-            if( Game.getInstance().getSelected()==0){
+            if( Game.getInstance().getSelected() == 0){
                 if(input instanceof GrassKeyboard){
                     switch(direction) {
                         case 0:

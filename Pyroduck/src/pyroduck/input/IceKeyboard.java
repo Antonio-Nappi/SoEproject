@@ -1,6 +1,3 @@
-/*
- * THIS CLASS IMPLEMENTS KEYLISTENER INTERFACE BECAUSE IT MENAGES THE CONTROL COMMAND OF THE PLAYER
- */
 package pyroduck.input;
 
 import java.awt.event.KeyEvent;
@@ -14,14 +11,17 @@ private static IceKeyboard ice = null;
      * Method not implemented.
      * @param e 
      */
+    @Override
     public void keyTyped(KeyEvent e) {}
 
+    @Override
     public void keyPressed(KeyEvent e) {
         try{
             keys[e.getKeyCode()] = true;
         }catch(ArrayIndexOutOfBoundsException ex){}
     }
 
+    @Override
     public void keyReleased(KeyEvent e) {
         try{
             if(e.getKeyCode() == KeyEvent.VK_SPACE||e.getKeyCode() == KeyEvent.VK_X)

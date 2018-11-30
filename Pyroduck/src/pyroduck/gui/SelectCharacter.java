@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.Pyroduck;
 import pyroduck.exceptions.PyroduckException;
@@ -170,6 +171,7 @@ public class SelectCharacter extends javax.swing.JFrame {
     private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
         try {
             Game.getInstance().setSelected(selected);
+            Game.getInstance().getBoard().setPlayer(selected);
             Pyroduck p = new Pyroduck();
             p.main(args);
             this.setVisible(false);
