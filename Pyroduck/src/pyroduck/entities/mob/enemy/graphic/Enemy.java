@@ -87,6 +87,7 @@ public abstract class Enemy extends Mob {
             move(xa * speed, ya * speed);
             moving = true;
         } else {
+            
             steps = 0;
             moving = false;
         }
@@ -141,10 +142,7 @@ public abstract class Enemy extends Mob {
             ((Player) e).kill();
             return true;
         }
-        if(e instanceof MalusSlow){
-            System.out.println("si tocca");
-            return false;
-        }
+      
         return false;
     }
 
