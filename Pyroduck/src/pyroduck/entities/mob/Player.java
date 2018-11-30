@@ -175,73 +175,150 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     private void chooseSprite() {
-        if(input instanceof GrassKeyboard){
-        switch(direction) {
-            case 0:
-                sprite = Sprite.player_up;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 30);
+        try {
+            if( Game.getInstance().getSelected()==0){
+                if(input instanceof GrassKeyboard){
+                    switch(direction) {
+                        case 0:
+                            sprite = Sprite.player_up;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 30);
+                            }
+                            break;
+                        case 1:
+                            sprite = Sprite.player_right;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
+                            }
+                            break;
+                        case 2:
+                            sprite = Sprite.player_down;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 30);
+                            }
+                            break;
+                        case 3:
+                            sprite = Sprite.player_left;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 30);
+                            }
+                            break;
+                        default:
+                            sprite = Sprite.player_right;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
+                            }
+                            break;
+                    }
                 }
-                break;
-            case 1:
-                sprite = Sprite.player_right;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
+                else{
+                    switch(direction) {
+                        case 0:
+                            sprite = Sprite.player_up;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_1, animate, 30);
+                            }
+                            break;
+                        case 1:
+                            sprite = Sprite.player_right;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
+                            }
+                            break;
+                        case 2:
+                            sprite = Sprite.player_down;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_1, animate, 30);
+                            }
+                            break;
+                        case 3:
+                            sprite = Sprite.player_left;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_1, animate, 30);
+                            }
+                            break;
+                        default:
+                            sprite = Sprite.player_right;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
+                            }
+                            break;
+                    }
                 }
-                break;
-            case 2:
-                sprite = Sprite.player_down;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 30);
+            }else{
+                if(input instanceof GrassKeyboard){
+                    switch(direction) {
+                        case 0:
+                            sprite = Sprite.player_upi;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_2i, animate, 30);
+                            }
+                            break;
+                        case 1:
+                            sprite = Sprite.player_righti;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
+                            }
+                            break;
+                        case 2:
+                            sprite = Sprite.player_downi;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_2i, animate, 30);
+                            }
+                            break;
+                        case 3:
+                            sprite = Sprite.player_lefti;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_2i, animate, 30);
+                            }
+                            break;
+                        default:
+                            sprite = Sprite.player_righti;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
+                            }
+                            break;
+                    }
                 }
-                break;
-            case 3:
-                sprite = Sprite.player_left;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 30);
+                else{
+                    switch(direction) {
+                        case 0:
+                            sprite = Sprite.player_upi;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_1i, animate, 30);
+                            }
+                            break;
+                        case 1:
+                            sprite = Sprite.player_righti;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_1i, animate, 30);
+                            }
+                            break;
+                        case 2:
+                            sprite = Sprite.player_downi;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_1i, animate, 30);
+                            }
+                            break;
+                        case 3:
+                            sprite = Sprite.player_lefti;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_1i, animate, 30);
+                            }
+                            break;
+                        default:
+                            sprite = Sprite.player_righti;
+                            if(moving) {
+                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_1i, animate, 30);
+                            }
+                            break;
+                    }
                 }
-                break;
-            default:
-                sprite = Sprite.player_right;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
-                }
-                break;
             }
-    }
-        else{
-            switch(direction) {
-            case 0:
-                sprite = Sprite.player_up;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_1, animate, 30);
-                }
-                break;
-            case 1:
-                sprite = Sprite.player_right;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
-                }
-                break;
-            case 2:
-                sprite = Sprite.player_down;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_1, animate, 30);
-                }
-                break;
-            case 3:
-                sprite = Sprite.player_left;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_1, animate, 30);
-                }
-                break;
-            default:
-                sprite = Sprite.player_right;
-                if(moving) {
-                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
-                }
-                break;
-            }
+        } catch (PyroduckException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     @Override
