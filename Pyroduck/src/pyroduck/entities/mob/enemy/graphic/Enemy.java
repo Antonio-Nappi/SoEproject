@@ -60,7 +60,7 @@ public abstract class Enemy extends Mob {
                 sprite = deadSprite;
                 animate = 0;
             } else {
-                sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 60);
+                sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 30);
             }
         }
         screen.renderEntity((int)x, (int)y - sprite.SIZE, this);

@@ -110,8 +110,6 @@ public class Player extends Mob {
                 }
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
         screen.renderEntity((int)x, (int)y - sprite.SIZE, this);
     }
@@ -335,8 +333,6 @@ public class Player extends Mob {
             }
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     @Override
@@ -416,8 +412,6 @@ public class Player extends Mob {
             Game.getInstance().addLives(-1);
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
         setChanged();
         notifyObservers();
@@ -432,11 +426,7 @@ public class Player extends Mob {
                 if(board.getLives() == 0){
                     board.endGame();
                 }else
-                    try {
-                        board.restartLevel();
-                } catch (IOException ex) {
-                    Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    board.restartLevel();
             }
         }
     }

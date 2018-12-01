@@ -41,7 +41,7 @@ public class Board extends Observable implements Observer {
     private String world = "";
     private int player;
     
-    public Board(Screen screen) throws IOException {
+    public Board(Screen screen) {
         this.screen = screen;
         changeLevel(1); //start in level 1
     }
@@ -100,7 +100,7 @@ public class Board extends Observable implements Observer {
         notifyObservers();
     }
 
-    public void restartLevel() throws IOException {
+    public void restartLevel() {
         changeLevel(clevel.getFilelevel().getLevel() );
     }
 
@@ -108,7 +108,7 @@ public class Board extends Observable implements Observer {
 	changeLevel(clevel.getFilelevel().getLevel() + 1);
         try {
             Game.getInstance().renderScreen();
-            sleep(2500);      //wait 2,5 sec and often shows the next level
+            Thread.sleep(2500);      //wait 2,5 sec and often shows the next level
         } catch (PyroduckException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
@@ -120,25 +120,29 @@ public class Board extends Observable implements Observer {
         screenToShow = 2;
         mobs = new ArrayList<>();
         bombs.clear();
+        
         try {
             int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
             BufferedReader in = null;
             String data = null;
+            
             try {
                 in = new BufferedReader(new FileReader(path));
                 data = in.readLine();
                 in.close();
+                
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
             } catch (IOException ex){
                 JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
             }
-                 //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
-            StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
+            
+            StringTokenizer tokens = new StringTokenizer(data); 
             tokens.nextToken();
             world = tokens.nextToken();     
-            input = getRightKeyboard();           
+            input = getRightKeyboard();
+            
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path, this));
                 entities = clevel.executeStrategy(this); 
@@ -269,7 +273,6 @@ public class Board extends Observable implements Observer {
     public List<Mob> getMobs() {
         return mobs;
     }
-
     /**
      *
      * @param e
@@ -281,9 +284,6 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
     | Renders
     |--------------------------------------------------------------------------
-    */
-    /*
-    Possiamo unire i due metodi?
     */
     protected void renderEntities(Screen screen) {
         for (int i = 0; i < entities.length; i++)
@@ -392,10 +392,6 @@ public class Board extends Observable implements Observer {
         return this.lives;
     }
 
-    /**
-     *
-     * @param lives
-     */
 
 
     public void addPoints(int points) {

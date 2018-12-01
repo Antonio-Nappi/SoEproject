@@ -46,14 +46,14 @@ public class Game extends Canvas {
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
     protected int selected = 0; 
             
-    private Game() throws PyroduckException, IOException  {
+    private Game() throws PyroduckException {
         timer = new Timer();
         screen = new Screen();
         board = new Board(screen);
         lives = 3;
     }
     
-    public static Game getInstance() throws PyroduckException, IOException{
+    public static Game getInstance() throws PyroduckException{
         if (instance == null)
             instance = new Game();
         return instance;
@@ -67,9 +67,7 @@ public class Game extends Canvas {
         }
         screen.clear();
         board.render(screen);
-        for (int i = 0; i < pixels.length; i++) { //create the image to be rendered
-            pixels[i] = screen.pixels[i];
-        }
+        System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length); //create the image to be rendered
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
         g.dispose(); //release resources
@@ -128,7 +126,7 @@ public class Game extends Canvas {
     
     public static void addPlayerSpeed(double i) {
 		playerSpeed += i;
-	}
+    }
 	
     public static void decreasePlayerSpeed(double i) {        
         playerSpeed = playerSpeed -i;
@@ -182,10 +180,6 @@ public class Game extends Canvas {
             playerSpeed=1;
             
         }
-    }
-
-    public void endGame() {
-        System.exit(0);
     }
      
     private class ScheduleTask extends TimerTask{
