@@ -137,8 +137,11 @@ public abstract class Enemy extends Mob {
             return true;
         }
         if(e instanceof Player) {
-            ((Player) e).kill();
-            return true;
+            if(checkRealCollision(e, 0.2)){
+                //System.out.println("IL NEMICO HA COLLISO CON IL PLAYER, Enemy.collide");
+                ((Player) e).kill();
+                return true;
+            }
         }
       
         return false;

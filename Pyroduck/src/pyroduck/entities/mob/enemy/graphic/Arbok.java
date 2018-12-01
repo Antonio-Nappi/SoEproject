@@ -7,8 +7,10 @@ import pyroduck.graphics.Sprite;
 
 public class Arbok extends Enemy{
         
-    public Arbok(int x, int y, Board board){
+    public Arbok(int x, int y, Board board, int realWidth, int realHeight){
         super(x, y, board, Sprite.arbok_dead, Game.getPlayerSpeed() - 0.1, 200);
+        this.realWidth = realWidth;
+        this.realHeight = realHeight;
         sprite = Sprite.arbok_left1;	
         ep = new MediumPower(board.getPlayer(), this);
         direction = ep.calculateDirection();

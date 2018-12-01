@@ -7,8 +7,10 @@ import pyroduck.graphics.Sprite;
 
 public class Machamp extends Enemy{
     
-    public Machamp(int x, int y, Board board){
+    public Machamp(int x, int y, Board board, int realWidth, int realHeight){
         super(x, y, board, Sprite.machamp_dead, Game.getPlayerSpeed() / 2, 200);
+        this.realWidth = realWidth;
+        this.realHeight = realHeight;
         sprite = Sprite.machamp_left1;	
         ep = new MediumPower(board.getPlayer(), this);
         direction = ep.calculateDirection();

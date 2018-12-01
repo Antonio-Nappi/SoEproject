@@ -32,7 +32,7 @@ import pyroduck.level.FileLevel;
  * @version 1.0
  */
 public class Player extends Mob {
-	
+
     protected Keyboard input;
     protected List<Bomb> bombs = null;
     protected int timeBetweenPutBombs = 0;
@@ -46,8 +46,10 @@ public class Player extends Mob {
      * @param y vertical coordinate.
      * @param board to take the keyboard related at the player commands.
      */
-    public Player(int x, int y, Board board) {
+    public Player(int x, int y, Board board, int realWidth, int realHeight) {
         super(x, y, board);
+        this.realWidth = realWidth;
+        this.realHeight = realHeight;
         bombs = board.getBombs();
         input = board.getInput();
         con = new ContextDestroyable();
@@ -62,7 +64,7 @@ public class Player extends Mob {
 
     /**
      * Allows to update the state of player checking if something is changed.
-     * Updates the state of the bomb and the related animation at the player, 
+     * Updates the state of the bomb and the related animation at the player,
      * it calculates the movement and it checks if he has placed a bomb.
      */
     @Override
@@ -71,17 +73,17 @@ public class Player extends Mob {
         if(done == false){
             correctKeybord();
             done = true;
-        }   
+        }
         if(alive == false) {
             afterKill();
             return;
         }
-        if(timeBetweenPutBombs < -7500) 
-            timeBetweenPutBombs = 0; 
-        else 
+        if(timeBetweenPutBombs < -7500)
+            timeBetweenPutBombs = 0;
+        else
             --timeBetweenPutBombs;
 
-        animate(); 
+        animate();
 //        if(level==2)
 //            calculateMoveIce();
 
@@ -92,8 +94,8 @@ public class Player extends Mob {
     }
 
     /**
-     * 
-     * @param screen 
+     *
+     * @param screen
      */
     @Override
     public void render(Screen screen) {
@@ -115,7 +117,7 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      */
     public void calculateXOffset() {
         int xScroll = Screen.calculateXOffset(board, this);
@@ -145,37 +147,37 @@ public class Player extends Mob {
     @Override
     public boolean canMove(double x, double y) {
         for (int c = 0; c < 4; c++) { //colision detection for each corner of the player
-            double xt = ((this.x + x) + c % 2 * 24 +2) / Game.TILES_SIZE; // 
+            double xt = ((this.x + x) + c % 2 * 24 +2) / Game.TILES_SIZE; //
             double yt = ((this.y + y) + c / 2 * 15 - 16) / Game.TILES_SIZE; // the multiply factor control bottom collision and the additional factor control top collision
             Entity a = board.getEntity(xt, yt, this);
             double diffX = a.getX() - Coordinates.tileToPixel(getX());
             double diffY = a.getY() - Coordinates.tileToPixel(getY());
-            if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -               
+            if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
                 con.setState((DestroyableIceTile)a);
                 if((!(diffX >= -26 && diffX < 30 && diffY >= 1 && diffY <= 47)) && con.getState().getChange()) { // differences to see if the player has moved out of the bomb, tested values
                     con.getState().nextState(con);
                     con.getState().setChange(false);
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
-                }              
+                }
             }
 
-            
+
             if(a.collide(this)){
                 return false;
-            }       
+            }
         }
         return true;
     }
 
     @Override
     public void move(double xa, double ya) {
-        if(xa > 0) 
+        if(xa > 0)
             direction = 1;
-        if(xa < 0) 
+        if(xa < 0)
             direction = 3;
-        if(ya > 0) 
+        if(ya > 0)
             direction = 2;
-        if(ya < 0) 
+        if(ya < 0)
             direction = 0;
         if(canMove(0, ya)) { //separate the moves for the player can slide when is colliding
             this.y += ya;
@@ -184,7 +186,7 @@ public class Player extends Mob {
             this.x += xa;
         }
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Mob Sprite
@@ -342,12 +344,15 @@ public class Player extends Mob {
             return true;
         }
         if(e instanceof Enemy) {
-            kill();
-            return false;
+            if(checkRealCollision(e, 0.2)){
+                //System.out.println("IL Player HA COLLISO CON IL nemico, Player.collide");
+                kill();
+                return true;
+            }
         }
         return false;
     }
-    
+
     private void detectPlaceBomb() {
         if(input.space && Game.getBombRate() > 0 && timeBetweenPutBombs < 0) {
             int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
@@ -374,14 +379,14 @@ public class Player extends Mob {
             }
         }
     }
-    
+
     public void correctKeybord(){
         if(board.getPlayerRight() == 1){
            board.setInput();
-           input = board.getInput(); 
+           input = board.getInput();
         }
     }
-    
+
      /*
     |--------------------------------------------------------------------------
     | Powerups
@@ -392,12 +397,12 @@ public class Player extends Mob {
             board.setInput();
             input = board.getInput();
         }
-        if(!p.isRemoved()) {     
+        if(!p.isRemoved()) {
             powerups.add(p);
-            p.setValues(); 
+            p.setValues();
         }
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Mob Colide & Kill
@@ -405,7 +410,7 @@ public class Player extends Mob {
      */
     @Override
     public void kill() {
-        if(!alive) 
+        if(!alive)
             return;
         alive = false;
         try {
@@ -419,7 +424,7 @@ public class Player extends Mob {
 
     @Override
     protected void afterKill() {
-        if(timeAfter > 0) 
+        if(timeAfter > 0)
             --timeAfter;
         else {
             if(bombs.isEmpty()) {
