@@ -53,6 +53,29 @@ public class Sprite {
     public static Sprite player_dead1 = new Sprite(3, 2, SpriteSheet.tiles);
     public static Sprite player_dead2 = new Sprite(3, 3, SpriteSheet.tiles);
     public static Sprite player_dead3 = new Sprite(3, 4, SpriteSheet.tiles);
+    
+    
+    public static Sprite player_upi = new Sprite(0, 5, SpriteSheet.tiles);
+    public static Sprite player_downi = new Sprite(0, 6, SpriteSheet.tiles);
+    public static Sprite player_lefti = new Sprite(0, 7, SpriteSheet.tiles);
+    public static Sprite player_righti = new Sprite(0, 8, SpriteSheet.tiles);
+
+    public static Sprite player_up_1i = new Sprite(1, 6, SpriteSheet.tiles);
+    public static Sprite player_up_2i = new Sprite(2, 6, SpriteSheet.tiles);
+
+    public static Sprite player_down_1i = new Sprite(1, 5, SpriteSheet.tiles);
+    public static Sprite player_down_2i = new Sprite(2, 5, SpriteSheet.tiles);
+
+    public static Sprite player_left_1i = new Sprite(1, 7, SpriteSheet.tiles);
+    public static Sprite player_left_2i = new Sprite(2, 7, SpriteSheet.tiles);
+
+    public static Sprite player_right_1i = new Sprite(1, 8, SpriteSheet.tiles);
+    public static Sprite player_right_2i = new Sprite(2, 8, SpriteSheet.tiles);
+
+    public static Sprite player_dead1i = new Sprite(3, 6, SpriteSheet.tiles);
+    public static Sprite player_dead2i = new Sprite(3, 7, SpriteSheet.tiles);
+    public static Sprite player_dead3i = new Sprite(3, 8, SpriteSheet.tiles);
+
 
     /*
     |--------------------------------------------------------------------------
@@ -172,9 +195,9 @@ public class Sprite {
     public static Sprite mob_dead2 = new Sprite(15, 1, SpriteSheet.tiles);
     public static Sprite mob_dead3 = new Sprite(15, 2, SpriteSheet.tiles);
     
-    public static Sprite icebroken_1 = new Sprite(14, 0, SpriteSheet.tiles);
+    public static Sprite icebroken_1 = new Sprite(12, 0, SpriteSheet.tiles);
     public static Sprite icebroken_2 = new Sprite(13, 0, SpriteSheet.tiles);
-    public static Sprite icebroken_3 = new Sprite(12, 0, SpriteSheet.tiles);
+    public static Sprite icebroken_3 = new Sprite(14, 0, SpriteSheet.tiles);
     public static Sprite icebroken_4 = new Sprite(15, 0, SpriteSheet.tiles);
 
     /*

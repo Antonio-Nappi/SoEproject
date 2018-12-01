@@ -6,13 +6,8 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.input.*;
@@ -49,7 +44,8 @@ public class Game extends Canvas {
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); 
     //Raster è una classe che rappresenta una matrice di pixel. Le immagini contenute nel buffer vengono estratte, e 
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
-
+    protected int selected = 0; 
+            
     private Game() throws PyroduckException, IOException  {
         timer = new Timer();
         screen = new Screen();
@@ -81,22 +77,22 @@ public class Game extends Canvas {
     }
     
     public void renderScreen() {
-		BufferStrategy bs = getBufferStrategy();
-		if(bs == null) {
-			createBufferStrategy(3);
-			return;
-		}
-		
-		screen.clear();
-		
-		Graphics g = bs.getDrawGraphics();
-              
-                
-		board.drawScreen(g);
+        BufferStrategy bs = getBufferStrategy();
+        if(bs == null) {
+            createBufferStrategy(3);
+            return;
+        }
 
-		g.dispose();
-		bs.show();
-	}
+        screen.clear();
+
+        Graphics g = bs.getDrawGraphics();
+
+
+        board.drawScreen(g);
+
+        g.dispose();
+        bs.show();
+    }
 
     private void update(){   
         board.update();
@@ -167,6 +163,10 @@ public class Game extends Canvas {
         return input;
     }
 
+    public int getSelected() {
+        return selected;
+    }
+
     public Board getBoard() {
         return board;
     }
@@ -175,6 +175,14 @@ public class Game extends Canvas {
         return lives;
     }
 
+    public void setSelected(int selected) {
+        
+        this.selected = selected;
+        if(selected==1){
+            playerSpeed=1;
+            
+        }
+    }
 
     public void endGame() {
         System.exit(0);
@@ -192,5 +200,5 @@ public class Game extends Canvas {
             renderGame();
             update();
         }
-    }             
+    }  
 }

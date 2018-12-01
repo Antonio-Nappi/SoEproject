@@ -1,5 +1,6 @@
 package pyroduck.entities.tile.destroyable;
 
+import pyroduck.entities.Entity;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;

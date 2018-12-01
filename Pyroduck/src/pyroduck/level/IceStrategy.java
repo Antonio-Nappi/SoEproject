@@ -100,10 +100,7 @@ public class IceStrategy extends FileLevel{
                         entities[pos] = layer5;
                         break;
                     case 'z':
-                        ContextDestroyable context = new ContextDestroyable();
-                        DestroyableIceTile intactState = new IntactState(x, y, Sprite.ice, context);
-                        context.setState(intactState);
-                        entities[pos] = intactState;
+                        entities[pos] = new IntactState(x, y, Sprite.ice);
                         break;
                     case '1':
                         board.addMob(new Snorunt(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 

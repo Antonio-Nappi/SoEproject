@@ -1,4 +1,4 @@
-                                                                                      package pyroduck;
+package pyroduck;
 
 import java.awt.Graphics;
 import java.io.BufferedReader;
@@ -38,7 +38,8 @@ public class Board extends Observable implements Observer {
     protected List<Bomb> bombs = new ArrayList<>();
     protected int lives = 3;
     private int points = 0;
-    String world = "";
+    private String world = "";
+    private int player;
     
     public Board(Screen screen) throws IOException {
         this.screen = screen;
@@ -149,7 +150,7 @@ public class Board extends Observable implements Observer {
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
-            System.out.println("LEVEL'S FILE .txt NOT FOUND");
+            System.out.println("LEVEL'S FILE .txt NOT FOUND!");
         }
         
     }
@@ -319,24 +320,24 @@ public class Board extends Observable implements Observer {
         screenToShow = 1;
     }
     
-    	/*
-	|--------------------------------------------------------------------------
-	| Screens
-	|--------------------------------------------------------------------------
-	 */
-	public void drawScreen(Graphics g) {
-		switch (screenToShow) {
-			case 1:
-				//screen.drawEndGame(g, points, level.getActualCode());
-				break;
-			case 2:
-				screen.drawChangeLevel(g, clevel.getFilelevel().getLevel());
-				break;
-			case 3:
-				//screen.drawPaused(g);
-				break;
-		}
-	}
+    /*
+    |--------------------------------------------------------------------------
+    | Screens
+    |--------------------------------------------------------------------------
+     */
+    public void drawScreen(Graphics g) {
+        switch (screenToShow) {
+            case 1:
+                //screen.drawEndGame(g, points, level.getActualCode());
+                break;
+            case 2:
+                screen.drawChangeLevel(g, clevel.getFilelevel().getLevel());
+                break;
+            case 3:
+                //screen.drawPaused(g);
+                break;
+        }
+    }
 	
 
     /*
@@ -419,6 +420,9 @@ public class Board extends Observable implements Observer {
     }
 
     private Keyboard getRightKeyboard() {
+        if(player == 1){
+            return GrassKeyboard.getInstance();
+        }
         if(world.equals("G"))
             return GrassKeyboard.getInstance();
         return IceKeyboard.getInstance();
@@ -433,5 +437,12 @@ public class Board extends Observable implements Observer {
     public void setInput() {
         input = GrassKeyboard.getInstance();
     }
-
+    
+    public void setPlayer(int p){
+        player = p;
+    }
+    
+    public int getPlayerRight(){
+        return player;
+    }
 }
