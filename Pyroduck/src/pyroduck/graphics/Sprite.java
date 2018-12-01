@@ -9,8 +9,6 @@ public class Sprite {
     public final int SIZE = 32;
     private int x, y;
     public int[] pixels;
-    protected final int realWidth = 32;
-    protected final int realHeight = 32;
     private final SpriteSheet sheet;
 
     /*
@@ -278,6 +276,7 @@ public class Sprite {
         this.sheet = sheet;
         load();
     }
+    
 
     /**
      * Loads each pixel of the image in the pixels array.

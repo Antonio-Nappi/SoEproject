@@ -1,9 +1,15 @@
 package pyroduck.entities;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.util.Observable;
+import javafx.geometry.BoundingBox;
+import pyroduck.Game;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
+import java.lang.*;
 
 /**
  * The abstract class represents the entities' backbone
@@ -16,6 +22,9 @@ public abstract class Entity extends Observable{
     protected double x, y;
     protected boolean removed = false;
     protected Sprite sprite;
+    protected int realWidth = 32;     //set by each specific entity if it doesn't have a standard dimension (32x32 pixels)
+    protected int realHeight = 32;  
+    
 
     /**
     * Allows to update the state of the entity and it checks if something is changed
@@ -49,6 +58,31 @@ public abstract class Entity extends Observable{
      * @return true if the entities can collide with each other, false otherwise.
      */
     public abstract boolean collide(Entity e);
+    
+    public boolean checkRealCollision(Entity e, double tune){
+        
+        int x0_rectOffset = (Game.TILES_SIZE - realWidth)/2;
+        int y0_rectOffset = (Game.TILES_SIZE - realHeight)/2;
+        int x0_rect = (int)this.getX() + x0_rectOffset;
+        int y0_rect = (int)this.getY() + y0_rectOffset;
+        Rectangle thisEntityRectangle = new Rectangle(x0_rect, y0_rect, realWidth, realHeight);
+        
+        int x0_EntityRectOffset = (Game.TILES_SIZE - e.realWidth)/2; 
+        int y0_EntityRectOffset = (Game.TILES_SIZE - e.realHeight)/2;
+        int x0_EntityRect = (int)e.getX() + x0_EntityRectOffset;
+        int y0_EntityRect = (int)e.getY() + y0_EntityRectOffset;
+        Rectangle entityCollideRectangle = new Rectangle(x0_EntityRect, y0_EntityRect, e.realWidth, e.realHeight);
+        
+        Rectangle intersection = thisEntityRectangle.intersection(entityCollideRectangle);
+        //System.out.println((intersection.getWidth() * intersection.getHeight() ) / (realWidth * realHeight));
+        if( (intersection.getWidth() * intersection.getHeight() ) / (realWidth * realHeight) >= tune){
+            //System.out.println("RILEVATA VERA COLLISIONE");
+            //System.out.println((intersection.getWidth() * intersection.getHeight() ) / (realWidth * realHeight));
+            return true;
+        }
+        else 
+            return false;
+    }
 
     /**
      * Returns the sprite of the entity.
@@ -88,5 +122,13 @@ public abstract class Entity extends Observable{
      */
     public int getYTile() {
         return Coordinates.pixelToTile(y - 16); //plus half block
+    }
+    
+    public int getRealWidth(){
+        return realWidth;
+    }
+    
+    public int getRealHeight(){
+        return realHeight;
     }
 }

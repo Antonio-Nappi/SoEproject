@@ -7,8 +7,10 @@ import pyroduck.graphics.Sprite;
 
 public class Golbat extends Enemy{
 
-    public Golbat(int x, int y, Board board){
+    public Golbat(int x, int y, Board board, int realWidth, int realHeight){
         super(x, y, board, Sprite.golbat_dead, Game.getPlayerSpeed() / 2, 100);
+        this.realWidth = realWidth;
+        this.realHeight = realHeight;
         sprite = Sprite.golbat_left1;	
         ep = new LowPower();
         direction = ep.calculateDirection();

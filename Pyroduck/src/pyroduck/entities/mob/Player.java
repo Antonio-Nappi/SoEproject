@@ -45,11 +45,13 @@ public class Player extends Mob {
      * @param y vertical coordinate.
      * @param board to take the keyboard related at the player commands.
      */
-    public Player(int x, int y, Board board) {
+    public Player(int x, int y, Board board, int realWidth, int realHeight) {
         super(x, y, board);
         bombs = board.getBombs();
         input = board.getInput();
         con = new ContextDestroyable();
+        this.realWidth = realWidth;
+        this.realHeight = realHeight;
       
         addObserver(board);
     }
@@ -342,8 +344,11 @@ public class Player extends Mob {
             return true;
         }
         if(e instanceof Enemy) {
-            kill();
-            return false;
+            if(checkRealCollision(e, 0.2)){
+                //System.out.println("IL Player HA COLLISO CON IL nemico, Player.collide");
+                kill();
+                return true;
+            }
         }
         return false;
     }
