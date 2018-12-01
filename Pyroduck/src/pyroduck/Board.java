@@ -263,8 +263,8 @@ public class Board extends Observable implements Observer {
     }
 
     public void addEntitie(int pos, Entity e) {
-		entities[pos] = e;
-	}
+        entities[pos] = e;
+    }
 
     /**
      *
