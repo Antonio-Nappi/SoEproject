@@ -191,9 +191,9 @@ public class Sprite {
     public static Sprite darkrai_dead = new Sprite(13, 2, SpriteSheet.tiles);
 
     //ALL
-    public static Sprite mob_dead1 = new Sprite(13, 2, SpriteSheet.tiles);
+    public static Sprite mob_dead1 = new Sprite(13, 1, SpriteSheet.tiles);
     public static Sprite mob_dead2 = new Sprite(13, 2, SpriteSheet.tiles);
-    public static Sprite mob_dead3 = new Sprite(13, 2, SpriteSheet.tiles);
+    public static Sprite mob_dead3 = new Sprite(13, 3, SpriteSheet.tiles);
     
     public static Sprite icebroken_1 = new Sprite(12, 0, SpriteSheet.tiles);
     public static Sprite icebroken_2 = new Sprite(13, 0, SpriteSheet.tiles);
