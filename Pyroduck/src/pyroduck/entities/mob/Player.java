@@ -39,6 +39,7 @@ public class Player extends Mob {
     public static List<Powerup> powerups = new ArrayList<Powerup>();
     private int lives = 3;
     private ContextDestroyable con;
+    private boolean done = false;
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
@@ -50,7 +51,6 @@ public class Player extends Mob {
         bombs = board.getBombs();
         input = board.getInput();
         con = new ContextDestroyable();
-      
         addObserver(board);
     }
 
@@ -68,6 +68,10 @@ public class Player extends Mob {
     @Override
     public void update() {
         clearBombs();
+        if(done == false){
+            correctKeybord();
+            done = true;
+        }   
         if(alive == false) {
             afterKill();
             return;
@@ -375,6 +379,13 @@ public class Player extends Mob {
         }
     }
     
+    public void correctKeybord(){
+        if(board.getPlayerRight() == 1){
+           board.setInput();
+           input = board.getInput(); 
+        }
+    }
+    
      /*
     |--------------------------------------------------------------------------
     | Powerups
@@ -390,7 +401,6 @@ public class Player extends Mob {
             p.setValues(); 
         }
     }
-
     
     /*
     |--------------------------------------------------------------------------

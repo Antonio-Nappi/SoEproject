@@ -431,4 +431,8 @@ public class Board extends Observable implements Observer {
     public void setPlayer(int p){
         player = p;
     }
+    
+    public int getPlayerRight(){
+        return player;
+    }
 }
