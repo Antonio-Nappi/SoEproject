@@ -128,6 +128,7 @@ public class Board extends Observable implements Observer {
             try {
                 in = new BufferedReader(new FileReader(path));
                 data = in.readLine();
+                in.close();
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
             } catch (IOException ex){
@@ -136,8 +137,7 @@ public class Board extends Observable implements Observer {
                  //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
             StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
             tokens.nextToken();
-            world = tokens.nextToken();
-            in.close();
+            world = tokens.nextToken();     
             input = getRightKeyboard();           
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path, this));
