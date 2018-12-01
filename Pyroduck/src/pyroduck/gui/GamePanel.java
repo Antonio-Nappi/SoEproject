@@ -47,8 +47,6 @@ public class GamePanel extends JPanel implements Observer {
             
         } catch (PyroduckException e) {
             JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
         setVisible(true);
         setFocusable(true);
@@ -73,12 +71,9 @@ public class GamePanel extends JPanel implements Observer {
                 Game.getInstance().setVisible(false);
                 this.setBackground(Color.WHITE);
                 this.add(label1);
-            } catch (PyroduckException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+            }catch (PyroduckException ex) {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //game.endGame();
         }
     }
 }

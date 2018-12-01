@@ -7,8 +7,6 @@ import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.enemy.EnemyPower;
-import pyroduck.entities.tile.destroyable.BrickTile;
-import pyroduck.entities.tile.powerup.MalusSlow;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
@@ -60,7 +58,7 @@ public abstract class Enemy extends Mob {
                 sprite = deadSprite;
                 animate = 0;
             } else {
-                sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 60);
+                sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 30);
             }
         }
         screen.renderEntity((int)x, (int)y - sprite.SIZE, this);

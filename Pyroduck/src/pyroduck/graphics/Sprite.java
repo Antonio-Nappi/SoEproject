@@ -96,7 +96,7 @@ public class Sprite {
     public static Sprite golbat_right2 = new Sprite(7, 5, SpriteSheet.tiles);
     public static Sprite golbat_right3 = new Sprite(8, 5, SpriteSheet.tiles);
 
-    public static Sprite golbat_dead = new Sprite(0, 2, SpriteSheet.tiles);
+    public static Sprite golbat_dead = new Sprite(13, 2, SpriteSheet.tiles);
     
     public static Sprite machamp_up1 = new Sprite(9, 5, SpriteSheet.tiles);
     public static Sprite machamp_up2 = new Sprite(10, 5, SpriteSheet.tiles);
@@ -114,7 +114,7 @@ public class Sprite {
     public static Sprite machamp_right2 = new Sprite(10, 7, SpriteSheet.tiles);
     public static Sprite machamp_right3 = new Sprite(11, 7, SpriteSheet.tiles);
 
-    public static Sprite machamp_dead = new Sprite(0, 2, SpriteSheet.tiles);
+    public static Sprite machamp_dead = new Sprite(13, 2, SpriteSheet.tiles);
     
     public static Sprite arbok_up1 = new Sprite(12, 4, SpriteSheet.tiles);
     public static Sprite arbok_up2 = new Sprite(13, 4, SpriteSheet.tiles);
@@ -132,7 +132,7 @@ public class Sprite {
     public static Sprite arbok_right2 = new Sprite(13, 7, SpriteSheet.tiles);
     public static Sprite arbok_right3 = new Sprite(14, 7, SpriteSheet.tiles);
 
-    public static Sprite arbok_dead = new Sprite(0, 2, SpriteSheet.tiles);
+    public static Sprite arbok_dead = new Sprite(13, 2, SpriteSheet.tiles);
     
     public static Sprite snorunt_up1 = new Sprite(6, 8, SpriteSheet.tiles);
     public static Sprite snorunt_up2 = new Sprite(7, 8, SpriteSheet.tiles);
@@ -150,7 +150,7 @@ public class Sprite {
     public static Sprite snorunt_right2 = new Sprite(7, 9, SpriteSheet.tiles);
     public static Sprite snorunt_right3 = new Sprite(8, 9, SpriteSheet.tiles);
 
-    public static Sprite snorunt_dead = new Sprite(0, 2, SpriteSheet.tiles);
+    public static Sprite snorunt_dead = new Sprite(13, 2, SpriteSheet.tiles);
 
     public static Sprite glalie_up1 = new Sprite(9, 8, SpriteSheet.tiles);
     public static Sprite glalie_up2 = new Sprite(10, 8, SpriteSheet.tiles);
@@ -168,7 +168,7 @@ public class Sprite {
     public static Sprite glalie_right2 = new Sprite(10, 9, SpriteSheet.tiles);
     public static Sprite glalie_right3 = new Sprite(11, 9, SpriteSheet.tiles);
 
-    public static Sprite glalie_dead = new Sprite(0, 2, SpriteSheet.tiles);
+    public static Sprite glalie_dead = new Sprite(13, 2, SpriteSheet.tiles);
     
     public static Sprite darkrai_up1 = new Sprite(12, 8, SpriteSheet.tiles);
     public static Sprite darkrai_up2 = new Sprite(13, 8, SpriteSheet.tiles);
@@ -186,12 +186,12 @@ public class Sprite {
     public static Sprite darkrai_right2 = new Sprite(13, 9, SpriteSheet.tiles);
     public static Sprite darkrai_right3 = new Sprite(14, 9, SpriteSheet.tiles);
 
-    public static Sprite darkrai_dead = new Sprite(0, 2, SpriteSheet.tiles);
+    public static Sprite darkrai_dead = new Sprite(13, 2, SpriteSheet.tiles);
 
     //ALL
-    public static Sprite mob_dead1 = new Sprite(15, 0, SpriteSheet.tiles);
-    public static Sprite mob_dead2 = new Sprite(15, 1, SpriteSheet.tiles);
-    public static Sprite mob_dead3 = new Sprite(15, 2, SpriteSheet.tiles);
+    public static Sprite mob_dead1 = new Sprite(13, 1, SpriteSheet.tiles);
+    public static Sprite mob_dead2 = new Sprite(13, 2, SpriteSheet.tiles);
+    public static Sprite mob_dead3 = new Sprite(13, 3, SpriteSheet.tiles);
     
     public static Sprite icebroken_1 = new Sprite(12, 0, SpriteSheet.tiles);
     public static Sprite icebroken_2 = new Sprite(13, 0, SpriteSheet.tiles);
