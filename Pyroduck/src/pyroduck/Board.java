@@ -15,6 +15,7 @@ import java.util.Random;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
@@ -114,15 +115,24 @@ public class Board extends Observable implements Observer {
         }
 	}
 
-    public void changeLevel(int numlevel) throws FileNotFoundException, IOException { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
+    public void changeLevel(int numlevel) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
         mobs = new ArrayList<>();
         bombs.clear();
         try {
             int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
-            BufferedReader in = new BufferedReader(new FileReader(path));
-            String data = in.readLine();      //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
+            BufferedReader in = null;
+            String data = null;
+            try {
+                in = new BufferedReader(new FileReader(path));
+                data = in.readLine();
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException ex){
+                JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
+            }
+                 //the first line of the ".txt" file-level has 3 int: 1->level, 2->map-height, 3->map-width
             StringTokenizer tokens = new StringTokenizer(data);  //because this int are separated from a space
             tokens.nextToken();
             world = tokens.nextToken();
