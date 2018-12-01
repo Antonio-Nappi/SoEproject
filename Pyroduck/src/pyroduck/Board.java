@@ -272,7 +272,7 @@ public class Board extends Observable implements Observer {
      */
     public List<Mob> getMobs() {
         return mobs;
-        }
+    }
     /**
      *
      * @param e

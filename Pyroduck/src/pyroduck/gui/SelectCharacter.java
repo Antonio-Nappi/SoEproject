@@ -5,12 +5,14 @@
  */
 package pyroduck.gui;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import pyroduck.Game;
 import pyroduck.Pyroduck;
 import pyroduck.exceptions.PyroduckException;
@@ -23,11 +25,16 @@ public class SelectCharacter extends javax.swing.JFrame {
 
     private int selected=0;
     String[] args;
+    public static final String TITLE = "Choose your player";
     /**
      * Creates new form SelectCharacter
      */
     public SelectCharacter() {
         initComponents();
+        this.setTitle(TITLE);
+        ImageIcon imgi = new ImageIcon("resources\\textures\\duck.png");
+        Image img = imgi.getImage();
+        this.setIconImage(img);
         imageLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Psyduck.png"));
         imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
         imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
