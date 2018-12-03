@@ -11,18 +11,15 @@ import pyroduck.graphics.Sprite;
  */
 public class Glalie extends Enemy{
     
+    public int realWidth = 28, realHeight = 28;
     /**
      * Creates an instance of <b>Glalie</b> enemy.
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordinate in pixels.
      * @param board 
-     * @param realWidth real width of this enemy.
-     * @param realHeight real height of this enemy.
      */
-    public Glalie(int x, int y, Board board, int realWidth, int realHeight){
+    public Glalie(int x, int y, Board board){
         super(x, y, board, Sprite.glalie_dead, Game.getPlayerSpeed() / 2, 200);
-        this.realWidth = realWidth;
-        this.realHeight = realHeight;
         sprite = Sprite.glalie_left1;	
         ep = new MediumPower(board.getPlayer(), this);
         direction = ep.calculateDirection();

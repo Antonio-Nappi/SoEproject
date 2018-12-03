@@ -39,16 +39,16 @@ public class Player extends Mob {
     private int lives = 3;
     private ContextDestroyable con;
     private boolean done = false;
+    public static int realWidth = 32, realHeight = 32;
+    
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param board to take the keyboard related at the player commands.
      */
-    public Player(int x, int y, Board board, int realWidth, int realHeight) {
+    public Player(int x, int y, Board board) {
         super(x, y, board);
-        this.realWidth = realWidth;
-        this.realHeight = realHeight;
         bombs = board.getBombs();
         input = board.getInput();
         con = new ContextDestroyable();

@@ -1,0 +1,73 @@
+package pyroduck.entities.mob.enemy;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import pyroduck.Board;
+import pyroduck.entities.mob.Player;
+import pyroduck.entities.mob.enemy.graphic.Arbok;
+import pyroduck.graphics.Screen;
+
+/**
+ *
+ * @author Bini, Petruzzello
+ */
+public class MediumPowerTest {
+    
+    private Board board;
+    private Player player;
+    private Arbok e;
+    private MediumPower enemy;
+        
+    public MediumPowerTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+        board = new Board(new Screen());
+        player = new Player(0, 0, board);
+        e = new Arbok(32, 32, board);
+        enemy = new MediumPower(player, e);
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of calculateDirection method, of class MediumPower.
+     */
+    @Test
+    public void testCalculateDirection() {
+                
+    }
+
+    /**
+     * Test of calculateColDirection method, of class MediumPower.
+     */
+    @Test
+    public void testCalculateColDirection() {
+        
+    }
+
+    /**
+     * Test of calculateRowDirection method, of class MediumPower.
+     */
+    @Test
+    public void testCalculateRowDirection() {
+        
+    }
+    
+}

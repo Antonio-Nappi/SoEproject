@@ -11,18 +11,15 @@ import pyroduck.graphics.Sprite;
  */
 public class Darkrai extends Enemy{
     
+    public int realWidth = 28, realHeight = 28;
     /**
      * Creates an instance of <b>Darkrai</b> enemy.
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordinate in pixels.
      * @param board 
-     * @param realWidth real width of this enemy.
-     * @param realHeight real height of this enemy.
      */
-    public Darkrai(int x, int y, Board board, int realWidth, int realHeight){
+    public Darkrai(int x, int y, Board board){
         super(x, y, board, Sprite.darkrai_dead, Game.getPlayerSpeed() - 0.1, 200);
-        this.realWidth = realWidth;
-        this.realHeight = realHeight;
         sprite = Sprite.darkrai_left1;	
         ep = new MediumPower(board.getPlayer(), this);
         direction = ep.calculateDirection();
