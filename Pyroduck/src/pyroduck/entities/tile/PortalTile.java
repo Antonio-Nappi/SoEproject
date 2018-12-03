@@ -10,34 +10,28 @@ import pyroduck.graphics.Sprite;
 
 public class PortalTile extends Tile {
 
-	protected Board board;
-	
-	public PortalTile(int x, int y, Board board, Sprite sprite) {
-		super(x, y, sprite);
-		this.board = board;
-	}
-	
-	@Override
-	public boolean collide(Entity e) {
-		
-		if(e instanceof Player ) {
-			
-			if(board.detectNoEnemies() == false)
-				return false;
-			
-			if(e.getXTile() == getX() && e.getYTile() == getY()) {
-				if(board.detectNoEnemies())
-                                    try{
-					board.nextLevel();
-                                    } catch (IOException ex){
-                                        Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
-			}
-			
-			return false;
-		}
-		
-		return true;
-	}
+    protected Board board;
 
+    public PortalTile(int x, int y, Board board, Sprite sprite) {
+            super(x, y, sprite);
+            this.board = board;
+    }
+
+    @Override
+    public boolean collide(Entity e) {
+        if(e instanceof Player ) {
+            if(!board.detectNoEnemies())
+                    return false;
+            if(e.getXTile() == getX() && e.getYTile() == getY()) {
+                if(board.detectNoEnemies())
+                    try{
+                        board.nextLevel();
+                    } catch (IOException ex){
+                        Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+            return false;
+        }
+        return true;
+    }
 }

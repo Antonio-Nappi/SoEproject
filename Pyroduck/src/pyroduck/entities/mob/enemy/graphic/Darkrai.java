@@ -13,8 +13,8 @@ public class Darkrai extends Enemy{
     
     /**
      * Creates an instance of <b>Darkrai</b> enemy.
-     * @param x horizontal coordinate of this instance.
-     * @param y vertical coordinate of this instance.
+     * @param x horizontal coordinate in pixels.
+     * @param y vertical coordinate in pixels.
      * @param board 
      * @param realWidth real width of this enemy.
      * @param realHeight real height of this enemy.
@@ -28,6 +28,9 @@ public class Darkrai extends Enemy{
         direction = ep.calculateDirection();
     }
     
+    /**
+     * Chooses the sprite to show on the screen.
+     */
     @Override
     protected void chooseSprite() {
         switch(direction) {
