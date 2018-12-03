@@ -168,7 +168,7 @@ public class Game extends Canvas {
         return board;
     }
 
-    public int getLives() {
+    public static int getLives() {
         return lives;
     }
 
@@ -193,5 +193,5 @@ public class Game extends Canvas {
             renderGame();
             update();
         }
-    }  
+    }
 }
