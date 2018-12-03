@@ -11,6 +11,14 @@ import pyroduck.graphics.Sprite;
  */
 public class Golbat extends Enemy{
 
+    /**
+     * Creates an instance of <b>Golbat</b> enemy.
+     * @param x horizontal coordinate of this instance.
+     * @param y vertical coordinate of this instance.
+     * @param board 
+     * @param realWidth real width of this enemy.
+     * @param realHeight real height of this enemy.
+     */
     public Golbat(int x, int y, Board board, int realWidth, int realHeight){
         super(x, y, board, Sprite.golbat_dead, Game.getPlayerSpeed() / 2, 100);
         this.realWidth = realWidth;

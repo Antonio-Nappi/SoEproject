@@ -11,10 +11,18 @@ import pyroduck.graphics.Sprite;
  */
 public class Snorunt extends Enemy{
     
+    /**
+     * Creates an instance of <b>Snorunt</b> enemy.
+     * @param x horizontal coordinate of this instance.
+     * @param y vertical coordinate of this instance.
+     * @param board 
+     * @param realWidth real width of this enemy.
+     * @param realHeight real height of this enemy.
+     */
     public Snorunt(int x, int y, Board board, int realWidth, int realHeight){
         super(x, y, board, Sprite.snorunt_dead, Game.getPlayerSpeed() / 2, 100);
         this.realWidth = realWidth;
-        this.realHeight = this.realHeight;
+        this.realHeight = realHeight;
         sprite = Sprite.snorunt_left1;	
         ep = new LowPower();
         direction = ep.calculateDirection();

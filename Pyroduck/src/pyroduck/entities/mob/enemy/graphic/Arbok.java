@@ -10,7 +10,15 @@ import pyroduck.graphics.Sprite;
  * @author Bini, Petruzzello
  */
 public class Arbok extends Enemy{
-        
+    
+    /**
+     * Creates an instance of <b>Arbok</b> enemy.
+     * @param x horizontal coordinate of this instance.
+     * @param y vertical coordinate of this instance.
+     * @param board 
+     * @param realWidth real width of this enemy.
+     * @param realHeight real height of this enemy.
+     */
     public Arbok(int x, int y, Board board, int realWidth, int realHeight){
         super(x, y, board, Sprite.arbok_dead, Game.getPlayerSpeed() - 0.1, 200);
         this.realWidth = realWidth;

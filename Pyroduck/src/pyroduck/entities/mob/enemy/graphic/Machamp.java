@@ -11,6 +11,14 @@ import pyroduck.graphics.Sprite;
  */
 public class Machamp extends Enemy{
     
+    /**
+     * Creates an instance of <b>Machamp</b> enemy.
+     * @param x horizontal coordinate of this instance.
+     * @param y vertical coordinate of this instance.
+     * @param board 
+     * @param realWidth real width of this enemy.
+     * @param realHeight real height of this enemy.
+     */
     public Machamp(int x, int y, Board board, int realWidth, int realHeight){
         super(x, y, board, Sprite.machamp_dead, Game.getPlayerSpeed() / 2, 200);
         this.realWidth = realWidth;

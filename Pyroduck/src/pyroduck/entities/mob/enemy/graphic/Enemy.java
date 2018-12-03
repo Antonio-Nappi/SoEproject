@@ -26,6 +26,15 @@ public abstract class Enemy extends Mob {
     protected int finalAnimation = 30;
     protected Sprite deadSprite;
 
+    /**
+     * Creates an instance of Enemy
+     * @param x
+     * @param y
+     * @param board
+     * @param dead
+     * @param speed
+     * @param points 
+     */
     public Enemy(int x, int y, Board board, Sprite dead, double speed, int points) {
         super(x, y, board);
         this.points = points;
