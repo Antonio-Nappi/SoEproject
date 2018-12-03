@@ -19,12 +19,12 @@ public class WaterState extends DestroyableIceTile{
         super(x, y, sprite);
     }
        
-//    @Override
-//    public boolean collide(Entity e){
-//        if(e instanceof Player)
-//           ((Player) e).kill();
-//        return false;
-//    } 
+    @Override
+    public boolean collide(Entity e){
+        if(e instanceof Player)
+           ;//((Player) e).kill();
+        return false;
+    } 
 
     @Override
     public void nextState(ContextDestroyable context){

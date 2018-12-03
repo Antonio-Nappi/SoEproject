@@ -1,6 +1,7 @@
 package pyroduck.entities.tile.destroyable;
 
 import pyroduck.entities.Entity;
+import pyroduck.entities.mob.Player;
 import pyroduck.graphics.Sprite;
 
 
@@ -25,6 +26,14 @@ public class DestroyedState extends DestroyableIceTile {
     public void setChange(boolean change){
         this.change = change;
     }
+    
+    @Override
+    public boolean collide(Entity e){
+        if(e instanceof Player)
+           ((Player) e).kill();
+        return false;
+    } 
+
     
 //    @Override
 //    public boolean collide(Entity e) {
