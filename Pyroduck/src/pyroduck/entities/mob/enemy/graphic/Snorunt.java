@@ -14,7 +14,7 @@ public class Snorunt extends Enemy{
     public Snorunt(int x, int y, Board board, int realWidth, int realHeight){
         super(x, y, board, Sprite.snorunt_dead, Game.getPlayerSpeed() / 2, 100);
         this.realWidth = realWidth;
-        this.realHeight = this.realHeight;
+        this.realHeight = realHeight;
         sprite = Sprite.snorunt_left1;	
         ep = new LowPower();
         direction = ep.calculateDirection();

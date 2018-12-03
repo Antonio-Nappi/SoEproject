@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 public class IceKeyboard extends Keyboard {
 private static IceKeyboard ice = null;
     private IceKeyboard(){};
+    
     /**
      * Method not implemented.
      * @param e 
