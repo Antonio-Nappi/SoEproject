@@ -1,15 +1,11 @@
 package pyroduck.entities;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.Observable;
-import javafx.geometry.BoundingBox;
 import pyroduck.Game;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
-import java.lang.*;
 
 /**
  * The abstract class represents the entities' backbone

@@ -1,7 +1,6 @@
 package pyroduck.entities;
 
 import java.util.LinkedList;
-
 import pyroduck.entities.tile.destroyable.DestroyableTile;
 import pyroduck.graphics.Screen;
 

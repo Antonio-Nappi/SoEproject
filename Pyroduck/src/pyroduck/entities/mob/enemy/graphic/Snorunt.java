@@ -6,7 +6,7 @@ import pyroduck.entities.mob.enemy.LowPower;
 import pyroduck.graphics.Sprite;
 
 /**
- * Implements the behavior of this enemy.
+ * Implements the behavior, select the image and manage the animation of this enemy.
  * @author Bini, Petruzzello
  */
 public class Snorunt extends Enemy{
