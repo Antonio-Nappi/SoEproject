@@ -1,5 +1,8 @@
 package pyroduck;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,7 +54,11 @@ public class GameTest {
     @Test
     public void testAddBombRate() {
         System.out.println("addBombRate");
-        game.getBoard().newGame();
+        try {
+            game.getBoard().newGame();
+        } catch (IOException ex) {
+            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Game.addBombRate(0);
         assertEquals(Game.bombRate, 1);
         Game.addBombRate(1);
@@ -64,7 +71,11 @@ public class GameTest {
     @Test
     public void testAddBombRadius() {
         System.out.println("addBombRadius");
-        game.getBoard().newGame();
+        try {
+            game.getBoard().newGame();
+        } catch (IOException ex) {
+            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Game.addBombRadius(0);
         assertEquals(Game.bombRadius, 1);
         Game.addBombRadius(1);
@@ -77,7 +88,11 @@ public class GameTest {
     @Test
     public void testAddPlayerSpeed() {
         System.out.println("addPlayerSpeed");
-        game.getBoard().newGame();
+        try {
+            game.getBoard().newGame();
+        } catch (IOException ex) {
+            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Game.addPlayerSpeed(0);
         assertEquals(Game.playerSpeed, 1.3,0);
         Game.addPlayerSpeed(1.0);
@@ -90,7 +105,11 @@ public class GameTest {
     @Test
     public void testDecreasePlayerSpeed() {
         System.out.println("decreasePlayerSpeed");
-        game.getBoard().newGame();
+        try {
+            game.getBoard().newGame();
+        } catch (IOException ex) {
+            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Game.decreasePlayerSpeed(0.5);
         assertEquals(Game.playerSpeed, 0.8,0);
     }

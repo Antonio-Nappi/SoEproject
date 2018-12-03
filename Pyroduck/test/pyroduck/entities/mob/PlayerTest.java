@@ -40,9 +40,8 @@ public class PlayerTest {
     
     @Before
     public void setUp() {
-        board = new Board(new IceKeyboard(), new Screen());
-        player = new Player(1, 1, board);
-        
+        board = new Board(new Screen());
+        player = new Player(1, 1, board, 32, 32);  
     }
     
     @After

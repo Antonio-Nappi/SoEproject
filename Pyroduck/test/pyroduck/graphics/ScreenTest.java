@@ -9,7 +9,6 @@ import static org.junit.Assert.*;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.mob.Player;
-import pyroduck.input.IceKeyboard;
 
 /**
  *
@@ -68,8 +67,8 @@ public class ScreenTest {
     @Test
     public void testCalculateXOffset() {
         System.out.println("calculateXOffset");
-        Board board = new Board(new IceKeyboard(), new Screen());
-        Player player = new Player(1, 0, board);
+        Board board = new Board(new Screen());
+        Player player = new Player(1, 0, board, 32, 32);
         int expResult = 0;
         int result = Screen.calculateXOffset(board, player);
         assertEquals(expResult, result);

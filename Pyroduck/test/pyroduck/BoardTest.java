@@ -1,5 +1,8 @@
 package pyroduck;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -11,7 +14,6 @@ import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.WallTile;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.IceKeyboard;
 
 /**
  *
@@ -34,7 +36,7 @@ public class BoardTest {
     
     @Before
     public void setUp() {
-        board = new Board(new IceKeyboard(), new Screen());
+        board = new Board(new Screen());
     }
     
     @After
@@ -46,7 +48,7 @@ public class BoardTest {
      */
     @Test
     public void testUpdate() {
-        board.addMob(new Player(0, 0, board));
+        board.addMob(new Player(0, 0, board, 32, 32));
         assertTrue(board.mobs.get(0) instanceof Player);
         board.mobs.get(0).remove();
         board.update();
@@ -61,13 +63,17 @@ public class BoardTest {
         Game.addBombRadius(1);
         Game.addBombRate(1);
         Game.addPlayerSpeed(1);
-        board.addMob(new Player(0, 0, board));
+        board.addMob(new Player(0, 0, board, 32, 32));
         assertTrue(board.mobs.get(0) instanceof Player);
         board.addBomb(new Bomb(0, 0, board));
         board.addBomb(new Bomb(0, 0, board));
         board.addBomb(new Bomb(0, 0, board));
         assertEquals(board.bombs.size(), 3);
-        board.newGame();
+        try {
+            board.newGame();
+        } catch (IOException ex) {
+            Logger.getLogger(BoardTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
         assertEquals(1, Game.bombRadius);
         assertEquals(1, Game.bombRate);
         assertEquals(1.3, Game.playerSpeed, 0);
@@ -100,7 +106,7 @@ public class BoardTest {
      */
     @Test
     public void testGetPlayer() {
-        Player player = new Player(1, 2, board);
+        Player player = new Player(1, 2, board, 32, 32);
         board.addMob(player);
         assertTrue(board.getPlayer() instanceof Player);
     }
