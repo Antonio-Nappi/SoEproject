@@ -8,10 +8,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import pyroduck.Board;
 import pyroduck.entities.Entity;
-import pyroduck.entities.tile.*;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.*;
-import pyroduck.input.IceKeyboard;
 
 /**
  *
@@ -55,7 +53,7 @@ public class FileLevelTest {
     @Test(expected = LoadLevelException.class)
     public void testCreateEntities() throws LoadLevelException{
         System.out.println("createEntities");
-        Board board = new Board(new IceKeyboard(), new Screen());
+        Board board = new Board(new Screen());
         FileLevel instance = new FileLevel("./resources/level/test.txt");
         FileLevel instance1 = new FileLevel("./resources/level/Level1.txt");
         Entity[] result = instance.createEntities(board);
