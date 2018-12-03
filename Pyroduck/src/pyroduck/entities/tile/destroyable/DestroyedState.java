@@ -1,6 +1,5 @@
 package pyroduck.entities.tile.destroyable;
 
-import pyroduck.entities.Entity;
 import pyroduck.graphics.Sprite;
 
 
