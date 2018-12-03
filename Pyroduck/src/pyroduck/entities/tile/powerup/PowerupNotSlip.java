@@ -28,7 +28,5 @@ public class PowerupNotSlip extends Powerup {
         return false;
     }
     @Override
-    public void setValues() {
-       ; 
-    }    
+    public void setValues() {}    
 }
