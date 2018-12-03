@@ -43,14 +43,7 @@ public class GolbatTest {
     @After
     public void tearDown() {
     }
-        
-    /**
-     * Test of calculateMove method, of class Enemy.
-     */
-    @Test
-    public void testCalculateMove() {
-    }
-    
+
     /**
      * Test of move method, of class Enemy.
      */
