@@ -11,6 +11,10 @@ import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
 
+/**
+ * The abstract class describes the behavior of each type of enemies.
+ * @author Bini, Petruzzello
+ */
 public abstract class Enemy extends Mob {
 
     protected int points;

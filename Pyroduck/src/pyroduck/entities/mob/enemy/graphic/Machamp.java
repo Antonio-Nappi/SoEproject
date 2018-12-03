@@ -5,6 +5,10 @@ import pyroduck.Game;
 import pyroduck.entities.mob.enemy.MediumPower;
 import pyroduck.graphics.Sprite;
 
+/**
+ * Implements the behavior of this enemy.
+ * @author Bini, Petruzzello
+ */
 public class Machamp extends Enemy{
     
     public Machamp(int x, int y, Board board, int realWidth, int realHeight){

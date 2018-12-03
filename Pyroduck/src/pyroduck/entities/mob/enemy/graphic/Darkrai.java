@@ -5,6 +5,10 @@ import pyroduck.Game;
 import pyroduck.entities.mob.enemy.MediumPower;
 import pyroduck.graphics.Sprite;
 
+/**
+ * Implements the behavior of this enemy.
+ * @author Bini, Petruzzello
+ */
 public class Darkrai extends Enemy{
   public Darkrai(int x, int y, Board board, int realWidth, int realHeight){
         super(x, y, board, Sprite.darkrai_dead, Game.getPlayerSpeed() - 0.1, 200);
