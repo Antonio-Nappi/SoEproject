@@ -26,8 +26,8 @@ public class Bomb extends AnimatedEntity {
 
     /**
      * Creates an instance of the Bomb.
-     * @param x horizontal coordinate of the bomb.
-     * @param y vertical coordinate of the bomb.
+     * @param x horizontal coordinate in pixels.
+     * @param y vertical coordinate in pixels.
      * @param board ...
      */
     public Bomb(int x, int y,Board board) {
@@ -60,7 +60,7 @@ public class Bomb extends AnimatedEntity {
     }
 
     /**
-     * Checks which animation must appear on the screen. It also invokes the method to print on the scree.
+     * Checks which animation must appear on the screen. It also invokes the method to print on the screen.
      * @param screen screen on which the print is called. 
      */
     @Override

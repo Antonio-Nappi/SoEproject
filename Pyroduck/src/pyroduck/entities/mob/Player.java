@@ -1,6 +1,5 @@
 package pyroduck.entities.mob;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -40,16 +39,16 @@ public class Player extends Mob {
     private int lives = 3;
     private ContextDestroyable con;
     private boolean done = false;
+    public static int realWidth = 32, realHeight = 32;
+    
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param board to take the keyboard related at the player commands.
      */
-    public Player(int x, int y, Board board, int realWidth, int realHeight) {
+    public Player(int x, int y, Board board) {
         super(x, y, board);
-        this.realWidth = realWidth;
-        this.realHeight = realHeight;
         bombs = board.getBombs();
         input = board.getInput();
         con = new ContextDestroyable();
@@ -129,6 +128,9 @@ public class Player extends Mob {
     | Mob Movement
     |--------------------------------------------------------------------------
      */
+    /**
+     * 
+     */
     @Override
     protected void calculateMove() {
         int xa = 0, ya = 0;
@@ -144,6 +146,12 @@ public class Player extends Mob {
         }
     }
 
+    /**
+     * 
+     * @param x
+     * @param y
+     * @return 
+     */
     @Override
     public boolean canMove(double x, double y) {
         for (int c = 0; c < 4; c++) { //colision detection for each corner of the player
@@ -169,6 +177,11 @@ public class Player extends Mob {
         return true;
     }
 
+    /**
+     * 
+     * @param xa
+     * @param ya 
+     */
     @Override
     public void move(double xa, double ya) {
         if(xa > 0)
@@ -191,6 +204,9 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
     | Mob Sprite
     |--------------------------------------------------------------------------
+     */
+    /**
+     * 
      */
     private void chooseSprite() {
         try {
@@ -337,6 +353,12 @@ public class Player extends Mob {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    /**
+     * 
+     * @param e
+     * @return 
+     */
     @Override
     public boolean collide(Entity e) {
         if(e instanceof DirectionalExplosion) {
@@ -353,6 +375,9 @@ public class Player extends Mob {
         return false;
     }
 
+    /**
+     * 
+     */
     private void detectPlaceBomb() {
         if(input.space && Game.getBombRate() > 0 && timeBetweenPutBombs < 0) {
             int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
@@ -363,11 +388,19 @@ public class Player extends Mob {
         }
     }
 
+    /**
+     * 
+     * @param x
+     * @param y 
+     */
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y, board);
         board.addBomb(b);
     }
 
+    /**
+     * 
+     */
     private void clearBombs() {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
@@ -380,6 +413,9 @@ public class Player extends Mob {
         }
     }
 
+    /**
+     * 
+     */
     public void correctKeybord(){
         if(board.getPlayerRight() == 1){
            board.setInput();
@@ -391,6 +427,10 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
     | Powerups
     |--------------------------------------------------------------------------
+     */
+    /**
+     * 
+     * @param p 
      */
     public void addPowerup(Powerup p) {
         if(p instanceof PowerupNotSlip){
@@ -408,6 +448,9 @@ public class Player extends Mob {
     | Mob Colide & Kill
     |--------------------------------------------------------------------------
      */
+    /**
+     * 
+     */
     @Override
     public void kill() {
         if(!alive)
@@ -422,6 +465,9 @@ public class Player extends Mob {
         notifyObservers();
     }
 
+    /**
+     * 
+     */
     @Override
     protected void afterKill() {
         if(timeAfter > 0)

@@ -1,6 +1,3 @@
-/*
- * ITS THE FRAME OF THE GAME
- */
 package pyroduck.gui;
 
 import java.awt.BorderLayout;

@@ -39,7 +39,7 @@ public class GrassStrategy extends FileLevel{
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     case 'p': 
-                        board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 24, 24));   //24 are real width and height of player
+                        board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));   //24 are real width and height of player
                         Screen.setOffset(0, 0);
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
@@ -93,15 +93,15 @@ public class GrassStrategy extends FileLevel{
                         entities[pos] = layer5;
                         break;
                     case '1':
-                        board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 24, 24));
+                        board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     case '2':
-                        board.addMob(new Machamp(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 28, 28)); 
+                        board.addMob(new Machamp(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     case '3':
-                        board.addMob(new Arbok(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 28, 28)); 
+                        board.addMob(new Arbok(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     default: 

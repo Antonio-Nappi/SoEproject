@@ -1,6 +1,3 @@
-/*
- * THIS ABSTRACT CLASS EXTENDS "ENTITY" AND ADDS FEATURES TO ALL THE ANIMATED ENTITES
- */
 package pyroduck.entities;
 
 /**

@@ -5,17 +5,29 @@ import pyroduck.Game;
 import pyroduck.entities.mob.enemy.MediumPower;
 import pyroduck.graphics.Sprite;
 
+/**
+ * Implements the behavior, select the image and manage the animation of this enemy.
+ * @author Bini, Petruzzello
+ */
 public class Machamp extends Enemy{
     
-    public Machamp(int x, int y, Board board, int realWidth, int realHeight){
+    public int realWidth = 28, realHeight = 28;
+    /**
+     * Creates an instance of <b>Machamp</b> enemy.
+     * @param x horizontal coordinate in pixels.
+     * @param y vertical coordinate in pixels.
+     * @param board 
+     */
+    public Machamp(int x, int y, Board board){
         super(x, y, board, Sprite.machamp_dead, Game.getPlayerSpeed() / 2, 200);
-        this.realWidth = realWidth;
-        this.realHeight = realHeight;
         sprite = Sprite.machamp_left1;	
         ep = new MediumPower(board.getPlayer(), this);
         direction = ep.calculateDirection();
     }
     
+    /**
+     * Chooses the sprite to show on the screen.
+     */
     @Override
     protected void chooseSprite() {
         switch(direction) {

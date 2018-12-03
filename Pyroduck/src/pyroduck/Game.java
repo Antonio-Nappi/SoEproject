@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import pyroduck.exceptions.PyroduckException;
@@ -169,7 +168,7 @@ public class Game extends Canvas {
         return board;
     }
 
-    public int getLives() {
+    public static int getLives() {
         return lives;
     }
 
@@ -194,5 +193,5 @@ public class Game extends Canvas {
             renderGame();
             update();
         }
-    }  
+    }
 }

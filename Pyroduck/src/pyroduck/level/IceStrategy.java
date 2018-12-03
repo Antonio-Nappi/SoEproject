@@ -39,7 +39,7 @@ public class IceStrategy extends FileLevel{
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case 'p': 
-                        board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 24, 24)); 
+                        board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         Screen.setOffset(0, 0);
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
@@ -103,15 +103,15 @@ public class IceStrategy extends FileLevel{
                         entities[pos] = new IntactState(x, y, Sprite.ice);
                         break;
                     case '1':
-                        board.addMob(new Snorunt(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 28, 28)); 
+                        board.addMob(new Snorunt(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case '2':
-                        board.addMob(new Glalie(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 28, 28)); 
+                        board.addMob(new Glalie(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case '3':
-                        board.addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 28, 28)); 
+                        board.addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     default: 

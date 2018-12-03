@@ -1,6 +1,5 @@
 package pyroduck.graphics;
 
-import com.sun.javafx.tk.Toolkit;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
