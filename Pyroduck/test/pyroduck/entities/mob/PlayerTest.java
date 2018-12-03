@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.entities.mob;
 
 import org.junit.After;
@@ -18,7 +13,6 @@ import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.entities.tile.powerup.PowerupBombs;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.IceKeyboard;
 
 /**
  *
@@ -41,7 +35,7 @@ public class PlayerTest {
     @Before
     public void setUp() {
         board = new Board(new Screen());
-        player = new Player(1, 1, board, 32, 32);  
+        player = new Player(1, 1, board);  
     }
     
     @After
@@ -130,6 +124,5 @@ public class PlayerTest {
         player.addPowerup(p);
         assertEquals(Game.getBombRate(), 2);
 
-    }
-    
+    }   
 }

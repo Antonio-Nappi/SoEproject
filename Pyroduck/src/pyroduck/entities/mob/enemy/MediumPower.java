@@ -62,6 +62,7 @@ public class MediumPower extends EnemyPower {
      * @return the movement direction of the enemy on the horizontal axis.
      */
     protected int calculateRowDirection() {
+        System.out.println(player.getYTile() + e.getYTile());
         if(player.getYTile() < e.getYTile())
             return 0;
         else if(player.getYTile() > e.getYTile())

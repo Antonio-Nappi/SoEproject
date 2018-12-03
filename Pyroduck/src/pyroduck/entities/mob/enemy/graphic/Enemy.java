@@ -108,8 +108,7 @@ public abstract class Enemy extends Mob {
             steps -= 1 + rest;
             move(xa * speed, ya * speed);
             moving = true;
-        } else {
-            
+        } else {          
             steps = 0;
             moving = false;
         }

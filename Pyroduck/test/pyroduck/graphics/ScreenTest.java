@@ -68,7 +68,7 @@ public class ScreenTest {
     public void testCalculateXOffset() {
         System.out.println("calculateXOffset");
         Board board = new Board(new Screen());
-        Player player = new Player(1, 0, board, 32, 32);
+        Player player = new Player(1, 0, board);
         int expResult = 0;
         int result = Screen.calculateXOffset(board, player);
         assertEquals(expResult, result);
@@ -96,6 +96,5 @@ public class ScreenTest {
         int expResult = Game.HEIGHT;
         int result = instance.getHeight();
         assertEquals(expResult, result);
-    }
-    
+    } 
 }

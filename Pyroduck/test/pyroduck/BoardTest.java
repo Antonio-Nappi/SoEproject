@@ -48,7 +48,7 @@ public class BoardTest {
      */
     @Test
     public void testUpdate() {
-        board.addMob(new Player(0, 0, board, 32, 32));
+        board.addMob(new Player(0, 0, board));
         assertTrue(board.mobs.get(0) instanceof Player);
         board.mobs.get(0).remove();
         board.update();
@@ -63,7 +63,7 @@ public class BoardTest {
         Game.addBombRadius(1);
         Game.addBombRate(1);
         Game.addPlayerSpeed(1);
-        board.addMob(new Player(0, 0, board, 32, 32));
+        board.addMob(new Player(0, 0, board));
         assertTrue(board.mobs.get(0) instanceof Player);
         board.addBomb(new Bomb(0, 0, board));
         board.addBomb(new Bomb(0, 0, board));
@@ -106,7 +106,7 @@ public class BoardTest {
      */
     @Test
     public void testGetPlayer() {
-        Player player = new Player(1, 2, board, 32, 32);
+        Player player = new Player(1, 2, board);
         board.addMob(player);
         assertTrue(board.getPlayer() instanceof Player);
     }

@@ -48,7 +48,7 @@ public class MalusSlowTest {
         System.out.println("collide");
         Board b = new Board(new Screen());
         Entity e1 = new DirectionalExplosion(1, 2, 0, 1, b);
-        Entity e2 = new Player(1, 1, b, 32, 32);
+        Entity e2 = new Player(1, 1, b);
         Entity e3 = new BrickTile(1, 1, Sprite.brick);
         MalusSlow instance = new MalusSlow(1, 1, Sprite.brick);
         boolean des = instance.collide(e1);

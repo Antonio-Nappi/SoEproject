@@ -3,7 +3,6 @@ package pyroduck.entities.mob.enemy;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -38,7 +37,7 @@ public class MediumPowerTest {
     public void setUp() {
         board = new Board(new Screen());
         player = new Player(0, 0, board);
-        e = new Arbok(32, 32, board);
+        e = new Arbok(64, 64, board);
         enemy = new MediumPower(player, e);
     }
     
@@ -51,7 +50,7 @@ public class MediumPowerTest {
      */
     @Test
     public void testCalculateDirection() {
-                
+        assertEquals(0, enemy.calculateDirection(), 4);
     }
 
     /**
@@ -59,7 +58,7 @@ public class MediumPowerTest {
      */
     @Test
     public void testCalculateColDirection() {
-        
+        assertEquals(enemy.calculateColDirection(), 3, 0);
     }
 
     /**
@@ -67,7 +66,6 @@ public class MediumPowerTest {
      */
     @Test
     public void testCalculateRowDirection() {
-        
+        assertEquals(enemy.calculateRowDirection(), 0, 0);
     }
-    
 }
