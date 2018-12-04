@@ -8,10 +8,12 @@ public class IntactState extends DestroyableIceTile {
         super(x, y, sprite);
     }
 
-    @Override
-    public void nextState(ContextDestroyable context){
+   
+    public DestroyableIceTile nextState(ContextDestroyable context){
         System.out.println("Chiamata di intact");
-        context.setState(new BreakingState((int)x, (int)y, Sprite.icebroken_2));
+        DestroyableIceTile newState = new BreakingState((int)x, (int)y, Sprite.icebroken_2);
+        context.setState(newState);
+        return newState;
     }
 
     @Override

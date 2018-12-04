@@ -14,7 +14,7 @@ import pyroduck.graphics.Sprite;
 public abstract class DestroyableTile extends Tile {
 
     private final int MAX_ANIMATE = 7500; //save the animation status and dont let this get too big
-    private int animate = 0;
+    protected int animate = 0;
     protected boolean destroyed = false;
     protected int timeToDisapear = 20;
     protected Sprite belowSprite = Sprite.grass; //default

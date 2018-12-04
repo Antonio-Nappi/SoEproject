@@ -32,7 +32,8 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     public static Sprite player_up = new Sprite(0, 2, SpriteSheet.tiles);
-    public static Sprite player_down = new Sprite(0, 1, SpriteSheet.tiles);
+    //public static Sprite player_down = new Sprite(0, 1, SpriteSheet.tiles);
+    public static Sprite player_down = new Sprite(15, 2, SpriteSheet.tiles);
     public static Sprite player_left = new Sprite(0, 3, SpriteSheet.tiles);
     public static Sprite player_right = new Sprite(0, 4, SpriteSheet.tiles);
 

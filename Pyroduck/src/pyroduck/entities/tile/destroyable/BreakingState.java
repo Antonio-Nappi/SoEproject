@@ -8,13 +8,16 @@ public class BreakingState extends DestroyableIceTile {
     
     public BreakingState(int x, int y, Sprite sprite) {
         super(x, y, sprite);
+        this.timerBreak = 70;
         change = true;
     }
 
     @Override
-    public void nextState(ContextDestroyable context){
+    public DestroyableIceTile nextState(ContextDestroyable context){
         System.out.println("Chiamata di breaking");
-        context.setState(new DestroyedState((int)x, (int)y, Sprite.icebroken_2));
+        DestroyableIceTile newState = new DestroyedState((int)x, (int)y, Sprite.icebroken_3);
+        context.setState(newState);
+        return newState;
     }
     
     @Override

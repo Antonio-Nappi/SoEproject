@@ -100,7 +100,10 @@ public class IceStrategy extends FileLevel{
                         entities[pos] = layer5;
                         break;
                     case 'z':
-                        entities[pos] = new IntactState(x, y, Sprite.ice);
+                        ContextDestroyable con = board.getContextState();
+                        IntactState intact = new IntactState(x, y, Sprite.ice);
+                        con.setState(intact);
+                        entities[pos] = intact;
                         break;
                     case '1':
                         board.addMob(new Snorunt(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 28, 28)); 
@@ -111,7 +114,7 @@ public class IceStrategy extends FileLevel{
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case '3':
-                        board.addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 28, 28)); 
+                        //board.addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 28, 28)); 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     default: 

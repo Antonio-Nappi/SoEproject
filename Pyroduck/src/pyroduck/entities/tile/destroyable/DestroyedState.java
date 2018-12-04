@@ -6,14 +6,17 @@ import pyroduck.graphics.Sprite;
 
 public class DestroyedState extends DestroyableIceTile {
 
-    public DestroyedState(int x, int y, Sprite sprite ) {
+    public DestroyedState(int x, int y, Sprite sprite) {
         super(x, y, sprite);
+        this.timerBreak = 70;
     }
 
     @Override
-    public void nextState(ContextDestroyable context){
+    public DestroyableIceTile nextState(ContextDestroyable context){
         System.out.println("Chiamata di destroyed");
-        context.setState(new WaterState((int)x, (int)y, Sprite.icebroken_3));
+        DestroyableIceTile newState = new WaterState((int)x, (int)y, Sprite.icebroken_4);
+        context.setState(newState);
+        return newState;
     }
     
     @Override

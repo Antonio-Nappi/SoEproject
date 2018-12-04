@@ -21,6 +21,8 @@ import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
+import pyroduck.entities.tile.destroyable.ContextDestroyable;
+import pyroduck.entities.tile.destroyable.DestroyableIceTile;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
@@ -40,9 +42,12 @@ public class Board extends Observable implements Observer {
     private int points = 0;
     private String world = "";
     private int player;
+    private ContextDestroyable con;
+    private List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
     
     public Board(Screen screen) {
         this.screen = screen;
+        con = new ContextDestroyable();
         changeLevel(1); //start in level 1
     }
 
@@ -151,6 +156,8 @@ public class Board extends Observable implements Observer {
                 this.clevel = new ContextLevel(new IceStrategy(path, this));
                 entities = clevel.executeStrategy(this);
             }
+            
+            destroyableIceTiles = createDestroyableIceTile();
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
@@ -387,6 +394,14 @@ public class Board extends Observable implements Observer {
         while(itr.hasNext())
             itr.next().render(screen);
     }
+    
+    public List<DestroyableIceTile> createDestroyableIceTile(){
+        for(Entity e : entities){
+            if (e instanceof DestroyableIceTile)
+                destroyableIceTiles.add((DestroyableIceTile) e);       
+        }
+        return destroyableIceTiles;
+    }
 
     public int getLives() {
         return this.lives;
@@ -440,5 +455,13 @@ public class Board extends Observable implements Observer {
     
     public int getPlayerRight(){
         return player;
+    }
+    
+    public ContextDestroyable getContextState(){
+        return con;
+    }
+    
+    public List<DestroyableIceTile> getDestroyableIceTile(){
+        return destroyableIceTiles;
     }
 }

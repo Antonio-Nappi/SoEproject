@@ -31,7 +31,7 @@ import pyroduck.level.FileLevel;
  * @author Montefusco, Nappi
  * @version 1.0
  */
-public class Player extends Mob {
+public class Player extends Mob implements IPlayer{
 
     protected Keyboard input;
     protected List<Bomb> bombs = null;
@@ -52,7 +52,7 @@ public class Player extends Mob {
         this.realHeight = realHeight;
         bombs = board.getBombs();
         input = board.getInput();
-        con = new ContextDestroyable();
+        con = board.getContextState();
         addObserver(board);
     }
 
@@ -83,14 +83,14 @@ public class Player extends Mob {
         else
             --timeBetweenPutBombs;
 
-        animate();
-//        if(level==2)
-//            calculateMoveIce();
 
         animate();
 
         calculateMove();
         detectPlaceBomb();
+        
+        updateTimerBreaker();
+        
     }
 
     /**
@@ -152,15 +152,19 @@ public class Player extends Mob {
             Entity a = board.getEntity(xt, yt, this);
             double diffX = a.getX() - Coordinates.tileToPixel(getX());
             double diffY = a.getY() - Coordinates.tileToPixel(getY());
+            DestroyableIceTile newState;
             if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
                 con.setState((DestroyableIceTile)a);
-                if((!(diffX >= -26 && diffX < 30 && diffY >= 1 && diffY <= 47)) && con.getState().getChange()) { // differences to see if the player has moved out of the bomb, tested values
-                    con.getState().nextState(con);
-                    con.getState().setChange(false);
+                if(((DestroyableIceTile) a).getTimerBreak()<=0) { // differences to see if the player has moved out of the bomb, tested values
+                    ((DestroyableIceTile) a).setTimerBreak(80);
+                    newState = con.getState().nextState(con);
+                    board.getDestroyableIceTile().add(newState);
+                    
+                    //con.getState().setChange(false);
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
+                    
                 }
             }
-
 
             if(a.collide(this)){
                 return false;
@@ -433,6 +437,15 @@ public class Player extends Mob {
                 }else
                     board.restartLevel();
             }
+        }
+    }
+    
+    private void updateTimerBreaker(){
+        for(DestroyableIceTile d : board.getDestroyableIceTile()){
+            if(d.getTimerBreak()>0){
+                d.setTimerBreak(d.getTimerBreak()-1);
+                System.out.println(d.getTimerBreak());
+            }   
         }
     }
 }
