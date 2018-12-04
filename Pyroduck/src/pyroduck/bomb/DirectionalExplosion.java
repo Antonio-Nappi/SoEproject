@@ -15,7 +15,7 @@ public class DirectionalExplosion extends Entity {
 
     protected Board board;
     protected int direction;
-    private int radius;
+    private final int radius;
     protected int xOrigin, yOrigin;
     protected Explosion[] explosions;
 

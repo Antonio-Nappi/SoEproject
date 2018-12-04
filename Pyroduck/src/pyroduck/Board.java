@@ -43,7 +43,7 @@ public class Board extends Observable implements Observer {
     private String world = "";
     private int player;
 
-    private ContextDestroyable con;
+    private final ContextDestroyable con;
     private List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
 
     protected boolean pause=false;

@@ -1,5 +1,9 @@
 package pyroduck.entities.tile.destroyable;
 
+/**
+ *
+ * @author Montefusco
+ */
 public class ContextDestroyable {
     
     private DestroyableIceTile state;
