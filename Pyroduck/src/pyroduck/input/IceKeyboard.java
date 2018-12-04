@@ -3,6 +3,8 @@ package pyroduck.input;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pyroduck.Game;
+import pyroduck.exceptions.PyroduckException;
 
 public class IceKeyboard extends Keyboard {
 private static IceKeyboard ice = null;
@@ -20,6 +22,26 @@ private static IceKeyboard ice = null;
         try{
             keys[e.getKeyCode()] = true;
         }catch(ArrayIndexOutOfBoundsException ex){}
+        
+         if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){
+            try {
+                Game.getInstance().pause();           
+                isPaused=true;
+
+            } catch (PyroduckException ex) {
+                Logger.getLogger(IceKeyboard.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+         else if(e.getKeyCode() == KeyEvent.VK_P && isPaused==true){
+            try {
+                Game.getInstance().resume();              
+                isPaused=false;
+
+            } catch (PyroduckException ex) {
+                Logger.getLogger(IceKeyboard.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
@@ -36,6 +58,9 @@ private static IceKeyboard ice = null;
                 }
             }
         }catch(ArrayIndexOutOfBoundsException ex){}
+        
+       
+            
     }
     public static IceKeyboard getInstance(){
         if (ice == null)

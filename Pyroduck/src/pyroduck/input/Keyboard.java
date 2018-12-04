@@ -10,7 +10,7 @@ import java.awt.event.KeyListener;
 public abstract class Keyboard implements KeyListener{
     
      protected boolean[] keys = new boolean[256];
-     public boolean up, down, left, right, space;
+     public boolean up, down, left, right, space,isPaused=false;
       
     /**
      * Setta quale comando è stato premuto.
@@ -28,5 +28,6 @@ public abstract class Keyboard implements KeyListener{
         right = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
         left = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
         space = keys[KeyEvent.VK_SPACE] || keys[KeyEvent.VK_X];
+
     }
 }
