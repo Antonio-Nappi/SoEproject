@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public abstract class EnemyPower {
 	
-    protected Random random = new Random();
+    protected Random random = new Random(System.currentTimeMillis());
 
     /**
      * Return the movement direction of the enemies.
