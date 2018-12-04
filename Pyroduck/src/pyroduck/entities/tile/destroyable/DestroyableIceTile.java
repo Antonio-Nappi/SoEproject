@@ -11,8 +11,8 @@ public abstract class DestroyableIceTile extends Tile{
     
     public DestroyableIceTile(int x, int y, Sprite sprite) {
         super(x, y, sprite);
-        this.realWidth = 40;
-        this.realHeight = 40;
+        this.realWidth = 32;
+        this.realHeight = 32;
         change = true;
         timerBreak = 0;
     }
