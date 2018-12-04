@@ -70,6 +70,10 @@ public abstract class Mob extends AnimatedEntity {
     public boolean isMoving() {
         return moving;
     }
+    
+    public boolean isAlive() {
+        return alive;
+    }
 
     /**
      * Returns the direction where the mob wants to move.

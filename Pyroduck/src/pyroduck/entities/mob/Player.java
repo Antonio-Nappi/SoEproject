@@ -30,7 +30,7 @@ import pyroduck.level.FileLevel;
  * @author Montefusco, Nappi
  * @version 1.0
  */
-public class Player extends Mob {
+public class Player extends Mob implements IPlayer{
 
     protected Keyboard input;
     protected List<Bomb> bombs = null;
@@ -40,7 +40,7 @@ public class Player extends Mob {
     private ContextDestroyable con;
     private boolean done = false;
     public static int realWidth = 32, realHeight = 32;
-    
+
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
@@ -51,7 +51,7 @@ public class Player extends Mob {
         super(x, y, board);
         bombs = board.getBombs();
         input = board.getInput();
-        con = new ContextDestroyable();
+        con = board.getContextState();
         addObserver(board);
     }
 
@@ -86,6 +86,9 @@ public class Player extends Mob {
 
         calculateMove();
         detectPlaceBomb();
+
+        updateTimerBreaker();
+
     }
 
     /**
@@ -125,7 +128,7 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     /**
-     * 
+     *
      */
     @Override
     protected void calculateMove() {
@@ -143,10 +146,10 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      * @param x
      * @param y
-     * @return 
+     * @return
      */
     @Override
     public boolean canMove(double x, double y) {
@@ -156,12 +159,17 @@ public class Player extends Mob {
             Entity a = board.getEntity(xt, yt, this);
             double diffX = a.getX() - Coordinates.tileToPixel(getX());
             double diffY = a.getY() - Coordinates.tileToPixel(getY());
+            DestroyableIceTile newState;
             if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
                 con.setState((DestroyableIceTile)a);
-                if((!(diffX >= -26 && diffX < 30 && diffY >= 1 && diffY <= 47)) && con.getState().getChange()) { // differences to see if the player has moved out of the bomb, tested values
-                    con.getState().nextState(con);
-                    con.getState().setChange(false);
+                if(((DestroyableIceTile) a).getTimerBreak()<=0) { // differences to see if the player has moved out of the bomb, tested values
+                    ((DestroyableIceTile) a).setTimerBreak(80);
+                    newState = con.getState().nextState(con);
+                    board.getDestroyableIceTile().add(newState);
+
+                    //con.getState().setChange(false);
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
+
                 }
             }
             if(a.collide(this)){
@@ -172,9 +180,9 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      * @param xa
-     * @param ya 
+     * @param ya
      */
     @Override
     public void move(double xa, double ya) {
@@ -200,7 +208,7 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     /**
-     * 
+     *
      */
     private void chooseSprite() {
         try {
@@ -347,11 +355,11 @@ public class Player extends Mob {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
-     * 
+     *
      * @param e
-     * @return 
+     * @return
      */
     @Override
     public boolean collide(Entity e) {
@@ -369,7 +377,7 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      */
     private void detectPlaceBomb() {
         if(input.space && Game.getBombRate() > 0 && timeBetweenPutBombs < 0) {
@@ -382,9 +390,9 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      * @param x
-     * @param y 
+     * @param y
      */
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y, board);
@@ -392,7 +400,7 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      */
     private void clearBombs() {
         Iterator<Bomb> bs = bombs.iterator();
@@ -407,7 +415,7 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      */
     public void correctKeyboard(){
         if(board.getPlayerRight() == 1){
@@ -422,8 +430,8 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     /**
-     * 
-     * @param p 
+     *
+     * @param p
      */
     public void addPowerup(Powerup p) {
         if(p instanceof PowerupNotSlip){
@@ -442,7 +450,7 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     /**
-     * 
+     *
      */
     @Override
     public void kill() {
@@ -459,7 +467,7 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      */
     @Override
     protected void afterKill() {
@@ -471,6 +479,15 @@ public class Player extends Mob {
                     board.endGame();
                 }else
                     board.restartLevel();
+            }
+        }
+    }
+
+    private void updateTimerBreaker(){
+        for(DestroyableIceTile d : board.getDestroyableIceTile()){
+            if(d.getTimerBreak()>0){
+                d.setTimerBreak(d.getTimerBreak()-1);
+                System.out.println(d.getTimerBreak());
             }
         }
     }

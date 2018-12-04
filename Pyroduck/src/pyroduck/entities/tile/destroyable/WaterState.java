@@ -6,30 +6,31 @@ import pyroduck.graphics.Sprite;
 
 /**
  *
- * @author 
+ * @author
  */
 public class WaterState extends DestroyableIceTile{
 
     public WaterState(int x, int y, Sprite sprite) {
         super(x, y, sprite);
     }
-       
+
     public boolean collide(Entity e){
         if(e instanceof Player)
-           ;//((Player) e).kill();
+           ((Player) e).kill();
         return false;
-    } 
+    }
 
     @Override
-    public void nextState(ContextDestroyable context){
-        context.setState(new IntactState((int)x, (int)y, Sprite.icebroken_4));
+    public DestroyableIceTile nextState(ContextDestroyable context){
+        //context.setState(new IntactState((int)x, (int)y, Sprite.icebroken_4));
+        return this;
     }
-    
+
     @Override
     public boolean getChange() {
         return change;
     }
-    
+
     @Override
     public void setChange(boolean change){
         this.change = change;

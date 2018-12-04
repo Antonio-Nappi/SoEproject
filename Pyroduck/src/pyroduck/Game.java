@@ -34,6 +34,7 @@ public class Game extends Canvas {
     protected static int rev = 0;
     protected static int lives;
     protected static int points;
+    protected static boolean pause=false;
     private Keyboard input;
     private final Board board;
     private final Screen screen;
@@ -100,10 +101,13 @@ public class Game extends Canvas {
     public void resume(){
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 15);
+        board.setPause(false);
     }
     public void pause(){
         timer.cancel();
+        board.setPause(true);
     }
+    
     private void update(){   
         board.update();
         if(input!= getBoard().getInput()){
