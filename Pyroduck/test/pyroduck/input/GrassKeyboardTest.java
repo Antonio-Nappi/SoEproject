@@ -5,6 +5,8 @@
  */
 package pyroduck.input;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,29 +43,10 @@ public class GrassKeyboardTest {
     }
 
     /**
-     * Test of keyTyped method, of class GrassKeyboard.
-     */
-    @Test
-    public void testKeyTyped() {
-        System.out.println("keyTyped");
-        KeyEvent e = null;
-        GrassKeyboard instance = null;
-        instance.keyTyped(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of keyPressed method, of class GrassKeyboard.
      */
     @Test
-    public void testKeyPressed() {
-        System.out.println("keyPressed");
-        KeyEvent e = null;
-        GrassKeyboard instance = null;
-        instance.keyPressed(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testKeyPressed() throws AWTException {
     }
 
     /**
@@ -71,12 +54,6 @@ public class GrassKeyboardTest {
      */
     @Test
     public void testKeyReleased() {
-        System.out.println("keyReleased");
-        KeyEvent e = null;
-        GrassKeyboard instance = null;
-        instance.keyReleased(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,11 +62,7 @@ public class GrassKeyboardTest {
     @Test
     public void testGetInstance() {
         System.out.println("getInstance");
-        GrassKeyboard expResult = null;
-        GrassKeyboard result = GrassKeyboard.getInstance();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertSame(grass, GrassKeyboard.getInstance());
     }
     
 }
