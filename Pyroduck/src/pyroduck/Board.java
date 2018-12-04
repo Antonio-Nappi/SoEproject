@@ -303,7 +303,7 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
     */
     protected void updateMobs() {
-        ListIterator<Mob> itr = mobs.listIterator(mobs.size()-1);
+        ListIterator<Mob> itr = mobs.listIterator(mobs.size());
         while(itr.hasPrevious()){
             itr.previous().update();
         }
