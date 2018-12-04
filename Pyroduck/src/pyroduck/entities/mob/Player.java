@@ -70,7 +70,7 @@ public class Player extends Mob {
     public void update() {
         clearBombs();
         if(done == false){
-            correctKeybord();
+            correctKeyboard();
             done = true;
         }
         if(alive == false) {
@@ -81,10 +81,6 @@ public class Player extends Mob {
             timeBetweenPutBombs = 0;
         else
             --timeBetweenPutBombs;
-
-        animate();
-//        if(level==2)
-//            calculateMoveIce();
 
         animate();
 
@@ -413,7 +409,7 @@ public class Player extends Mob {
     /**
      * 
      */
-    public void correctKeybord(){
+    public void correctKeyboard(){
         if(board.getPlayerRight() == 1){
            board.setInput();
            input = board.getInput();
