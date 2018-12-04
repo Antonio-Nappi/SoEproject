@@ -14,6 +14,7 @@ public class WaterState extends DestroyableIceTile{
         super(x, y, sprite);
     }
 
+    @Override
     public boolean collide(Entity e){
         if(e instanceof Player)
            ((Player) e).kill();
@@ -22,7 +23,6 @@ public class WaterState extends DestroyableIceTile{
 
     @Override
     public DestroyableIceTile nextState(ContextDestroyable context){
-        //context.setState(new IntactState((int)x, (int)y, Sprite.icebroken_4));
         return this;
     }
 

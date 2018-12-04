@@ -477,7 +477,7 @@ public class Board extends Observable implements Observer {
         return destroyableIceTiles;
     }
 
-      public boolean isPause() {
+    public boolean isPause() {
         return this.pause;
     }
 

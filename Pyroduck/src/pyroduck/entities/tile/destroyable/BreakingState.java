@@ -13,7 +13,6 @@ public class BreakingState extends DestroyableIceTile {
 
     @Override
     public DestroyableIceTile nextState(ContextDestroyable context){
-        System.out.println("Chiamata di breaking");
         DestroyableIceTile newState = new DestroyedState((int)x, (int)y, Sprite.icebroken_3);
         context.setState(newState);
         return newState;
@@ -28,11 +27,4 @@ public class BreakingState extends DestroyableIceTile {
     public void setChange(boolean change){
         this.change = change;
     }
-    
-//    @Override
-//    public boolean collide(Entity e) {
-//        if(e instanceof DestroyedState)
-//            change=true;
-//        return false;
-//    }
 }
