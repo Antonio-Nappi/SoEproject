@@ -393,8 +393,10 @@ public class Board extends Observable implements Observer {
 
 
 
-    public void addPoints(int points) {
+    public void setPoints(int points) {
         this.points += points;
+        setChanged();
+        notifyObservers();
     }
 
     /**
@@ -440,4 +442,9 @@ public class Board extends Observable implements Observer {
     public int getPlayerRight(){
         return player;
     }
+
+    public int getPoints() {
+        return points;
+    }
+    
 }
