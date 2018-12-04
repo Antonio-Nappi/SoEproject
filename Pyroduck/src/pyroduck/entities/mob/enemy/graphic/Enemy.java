@@ -176,12 +176,6 @@ public abstract class Enemy extends Mob {
             kill();
             return true;
         }
-        if(e instanceof Player) {
-            if(checkRealCollision(e, 0.2)){
-                ((Player) e).kill();
-                return true;
-            }
-        }
         return false;
     }
 

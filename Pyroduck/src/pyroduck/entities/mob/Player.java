@@ -164,8 +164,6 @@ public class Player extends Mob {
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
                 }
             }
-
-
             if(a.collide(this)){
                 return false;
             }
