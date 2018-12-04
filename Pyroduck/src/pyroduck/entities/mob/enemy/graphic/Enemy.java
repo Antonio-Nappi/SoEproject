@@ -5,7 +5,6 @@ import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.mob.Mob;
-import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.enemy.EnemyPower;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -185,6 +184,7 @@ public abstract class Enemy extends Mob {
     @Override
     public void kill() {
         alive = false;
+        board.addPoints(points);
     }
 
     /**
