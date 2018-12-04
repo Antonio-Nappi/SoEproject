@@ -91,6 +91,10 @@ public class Game extends Canvas {
         bs.show();
     }
 
+    public Timer getTimer() {
+        return timer;
+    }
+
     public void resume(){
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 15);
