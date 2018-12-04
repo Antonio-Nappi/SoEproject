@@ -53,8 +53,8 @@ public class Sprite {
     public static Sprite player_dead3 = new Sprite(3, 4, SpriteSheet.tiles);
     
     
-    public static Sprite player_upi = new Sprite(0, 5, SpriteSheet.tiles);
-    public static Sprite player_downi = new Sprite(0, 6, SpriteSheet.tiles);
+    public static Sprite player_upi = new Sprite(0, 6, SpriteSheet.tiles);
+    public static Sprite player_downi = new Sprite(0, 5, SpriteSheet.tiles);
     public static Sprite player_lefti = new Sprite(0, 7, SpriteSheet.tiles);
     public static Sprite player_righti = new Sprite(0, 8, SpriteSheet.tiles);
 
