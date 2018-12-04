@@ -30,15 +30,14 @@ import pyroduck.level.FileLevel;
  * @author Montefusco, Nappi
  * @version 1.0
  */
-public class Player extends Mob implements IPlayer{
+public class Player extends Mob{
 
     protected Keyboard input;
     protected List<Bomb> bombs = null;
     protected int timeBetweenPutBombs = 0;
     public static List<Powerup> powerups = new ArrayList<Powerup>();
-    private int lives = 3;
-    private ContextDestroyable con;
-    private boolean done = false;
+    protected int lives = 3;
+    protected boolean done = false;
     public static int realWidth = 32, realHeight = 32;
 
     /**
@@ -51,7 +50,6 @@ public class Player extends Mob implements IPlayer{
         super(x, y, board);
         bombs = board.getBombs();
         input = board.getInput();
-        con = board.getContextState();
         addObserver(board);
     }
 
@@ -160,6 +158,7 @@ public class Player extends Mob implements IPlayer{
             double diffX = a.getX() - Coordinates.tileToPixel(getX());
             double diffY = a.getY() - Coordinates.tileToPixel(getY());
             DestroyableIceTile newState;
+            ContextDestroyable con = board.getContextState();
             if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
                 con.setState((DestroyableIceTile)a);
                 if(((DestroyableIceTile) a).getTimerBreak()<=0) { // differences to see if the player has moved out of the bomb, tested values
@@ -213,7 +212,6 @@ public class Player extends Mob implements IPlayer{
     private void chooseSprite() {
         try {
             if( Game.getInstance().getSelected() == 0){
-                if(input instanceof GrassKeyboard){
                     switch(direction) {
                         case 0:
                             sprite = Sprite.player_up;
@@ -246,43 +244,9 @@ public class Player extends Mob implements IPlayer{
                             }
                             break;
                     }
-                }
-                else{
-                    switch(direction) {
-                        case 0:
-                            sprite = Sprite.player_up;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_1, animate, 30);
-                            }
-                            break;
-                        case 1:
-                            sprite = Sprite.player_right;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
-                            }
-                            break;
-                        case 2:
-                            sprite = Sprite.player_down;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_1, animate, 30);
-                            }
-                            break;
-                        case 3:
-                            sprite = Sprite.player_left;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_1, animate, 30);
-                            }
-                            break;
-                        default:
-                            sprite = Sprite.player_right;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
-                            }
-                            break;
-                    }
-                }
+                
+                
             }else{
-                if(input instanceof GrassKeyboard){
                     switch(direction) {
                         case 0:
                             sprite = Sprite.player_upi;
@@ -316,41 +280,7 @@ public class Player extends Mob implements IPlayer{
                             break;
                     }
                 }
-                else{
-                    switch(direction) {
-                        case 0:
-                            sprite = Sprite.player_upi;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_1i, animate, 30);
-                            }
-                            break;
-                        case 1:
-                            sprite = Sprite.player_righti;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_1i, animate, 30);
-                            }
-                            break;
-                        case 2:
-                            sprite = Sprite.player_downi;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_1i, animate, 30);
-                            }
-                            break;
-                        case 3:
-                            sprite = Sprite.player_lefti;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_1i, animate, 30);
-                            }
-                            break;
-                        default:
-                            sprite = Sprite.player_righti;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_1i, animate, 30);
-                            }
-                            break;
-                    }
-                }
-            }
+                
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -402,7 +332,7 @@ public class Player extends Mob implements IPlayer{
     /**
      *
      */
-    private void clearBombs() {
+    protected void clearBombs() {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
         while(bs.hasNext()) {
