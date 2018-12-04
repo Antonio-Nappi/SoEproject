@@ -5,10 +5,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -31,7 +31,7 @@ import pyroduck.level.*;
 
 public class Board extends Observable implements Observer {
 
-    private ContextLevel clevel;
+    protected ContextLevel clevel;
     private Keyboard input;
     private final Screen screen;
     public Entity[] entities;
@@ -42,8 +42,13 @@ public class Board extends Observable implements Observer {
     private int points = 0;
     private String world = "";
     private int player;
+
     private ContextDestroyable con;
     private List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
+
+    protected boolean pause=false;
+
+
     
     public Board(Screen screen) {
         this.screen = screen;
@@ -113,41 +118,37 @@ public class Board extends Observable implements Observer {
 	changeLevel(clevel.getFilelevel().getLevel() + 1);
         try {
             Game.getInstance().renderScreen();
-            Thread.sleep(2500);      //wait 2,5 sec and often shows the next level
+            Thread.sleep(2500);
+            Game.getInstance().resume();//wait 2,5 sec and often shows the next level
         } catch (PyroduckException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
-	}
+    }
 
     public void changeLevel(int numlevel) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
         mobs = new ArrayList<>();
         bombs.clear();
-        
         try {
             int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
             BufferedReader in = null;
             String data = null;
-            
             try {
                 in = new BufferedReader(new FileReader(path));
                 data = in.readLine();
                 in.close();
-                
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
             } catch (IOException ex){
                 JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
             }
-            
             StringTokenizer tokens = new StringTokenizer(data); 
             tokens.nextToken();
             world = tokens.nextToken();     
             input = getRightKeyboard();
-            
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path, this));
                 entities = clevel.executeStrategy(this); 
@@ -163,15 +164,20 @@ public class Board extends Observable implements Observer {
         } catch (NullPointerException e){
             System.out.println("LEVEL'S FILE .txt NOT FOUND!");
         }
-        
     }
+
+  
 
     /*
     |--------------------------------------------------------------------------
     | Detections
     |--------------------------------------------------------------------------
     */
-
+    
+    /**
+     * Return a boolean that say if there is enemies alive in the map or not.
+     * @return true if there is not enemies alive in the map, false otherwise.
+     */
     public boolean detectNoEnemies() {
         int total = 0;
         for (int i = 0; i < mobs.size(); i++) {
@@ -309,9 +315,9 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
     */
     protected void updateMobs() {
-        Iterator<Mob> itr = mobs.iterator();
-        while(itr.hasNext()){
-            itr.next().update();
+        ListIterator<Mob> itr = mobs.listIterator(mobs.size());
+        while(itr.hasPrevious()){
+            itr.previous().update();
         }
     }
 
@@ -457,11 +463,24 @@ public class Board extends Observable implements Observer {
         return player;
     }
     
+
     public ContextDestroyable getContextState(){
         return con;
     }
     
     public List<DestroyableIceTile> getDestroyableIceTile(){
         return destroyableIceTiles;
+    }
+
+
+      public boolean isPause() {
+        return this.pause;
+    }
+
+    public void setPause(boolean pause) {
+
+        this.pause = pause;
+        setChanged();
+        notifyObservers();
     }
 }

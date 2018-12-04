@@ -5,16 +5,29 @@ import pyroduck.Game;
 import pyroduck.entities.mob.enemy.LowPower;
 import pyroduck.graphics.Sprite;
 
+/**
+ * Implements the behavior, select the image and manage the animation of this enemy.
+ * @author Bini, Petruzzello
+ */
 public class Snorunt extends Enemy{
-    public Snorunt(int x, int y, Board board, int realWidth, int realHeight){
+    
+    public int realWidth = 28, realHeight = 28;
+    /**
+     * Creates an instance of <b>Snorunt</b> enemy.
+     * @param x horizontal coordinate in pixels.
+     * @param y vertical coordinate in pixels.
+     * @param board 
+     */
+    public Snorunt(int x, int y, Board board){
         super(x, y, board, Sprite.snorunt_dead, Game.getPlayerSpeed() / 2, 100);
-        this.realWidth = realWidth;
-        this.realHeight = this.realHeight;
         sprite = Sprite.snorunt_left1;	
         ep = new LowPower();
         direction = ep.calculateDirection();
     }
     
+    /**
+     * Chooses the sprite to show on the screen.
+     */
     @Override
     protected void chooseSprite() {
         switch(direction) {

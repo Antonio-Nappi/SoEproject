@@ -1,33 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.gui;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javax.swing.ImageIcon;
 import pyroduck.Game;
 import pyroduck.Pyroduck;
 import pyroduck.exceptions.PyroduckException;
 
+
 /**
  *
- * @author Vincenzo
+ * @author 
  */
 public class SelectCharacter extends javax.swing.JFrame {
 
     private int selected=0;
     String[] args;
+    public static final String TITLE = "Choose your player";
+    private static Media clip;
+    private static MediaPlayer media;
+    static {
+                   JFXPanel fxPanel = new JFXPanel();
+
+    }
+    
     /**
      * Creates new form SelectCharacter
      */
     public SelectCharacter() {
         initComponents();
+        this.setTitle(TITLE);
+        ImageIcon imgi = new ImageIcon("resources\\textures\\duck.png");
+        Image img = imgi.getImage();
+        this.setIconImage(img);
         imageLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Psyduck.png"));
         imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
         imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
@@ -35,6 +49,12 @@ public class SelectCharacter extends javax.swing.JFrame {
         imgSpeed.setText("");
         imgSliding.setText("");
         imgBomb.setText("");
+         URL file = getClass().getResource("opening.mp3");
+    final Media media = new Media(file.toString());
+    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+    mediaPlayer.play();
+
+      
     }
 
     /**
@@ -239,10 +259,13 @@ public class SelectCharacter extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(SelectCharacter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+// Open an input stream  to the audio file.
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
+
             SelectCharacter s;
             Point middle = new Point(0, 0);
             s = new SelectCharacter();

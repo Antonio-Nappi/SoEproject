@@ -1,10 +1,6 @@
-/*
- * THIS CLASS REPRESENT THE PANEL OF THE GAME
- */
 package pyroduck.gui;
 
 import java.awt.BorderLayout;
-import static java.awt.BorderLayout.CENTER;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,12 +10,10 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import pyroduck.Game;
-import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.PyroduckException;
 
 public class GamePanel extends JPanel implements Observer {
@@ -58,11 +52,14 @@ public class GamePanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        
         label.setText("Lives " + game.getBoard().getLives());
         JLabel label1 = new JLabel();
         label1.setText("Hai perso");
         Font myFont = new Font("Serif", Font.BOLD, 30);
         label1.setFont(myFont);
+        JLabel label2 = new JLabel();
+        label2.setText("PAUSED");
         
         if(game.getBoard().getLives() == 0){
             label.setText("Hai perso.");
@@ -75,5 +72,18 @@ public class GamePanel extends JPanel implements Observer {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+       
+        
+        if(game.getBoard().isPause() == true){
+            label.setText("PAUSED");
+                this.setBackground(Color.WHITE);
+                this.add(label2);
+         }
+        if(game.getBoard().isPause() == false){
+            
+                this.remove(label2);
+         }
+        
     }
 }

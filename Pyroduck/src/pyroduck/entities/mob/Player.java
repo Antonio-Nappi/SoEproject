@@ -1,6 +1,5 @@
 package pyroduck.entities.mob;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -40,16 +39,16 @@ public class Player extends Mob implements IPlayer{
     private int lives = 3;
     private ContextDestroyable con;
     private boolean done = false;
+    public static int realWidth = 32, realHeight = 32;
+
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param board to take the keyboard related at the player commands.
      */
-    public Player(int x, int y, Board board, int realWidth, int realHeight) {
+    public Player(int x, int y, Board board) {
         super(x, y, board);
-        this.realWidth = realWidth;
-        this.realHeight = realHeight;
         bombs = board.getBombs();
         input = board.getInput();
         con = board.getContextState();
@@ -71,7 +70,7 @@ public class Player extends Mob implements IPlayer{
     public void update() {
         clearBombs();
         if(done == false){
-            correctKeybord();
+            correctKeyboard();
             done = true;
         }
         if(alive == false) {
@@ -83,14 +82,13 @@ public class Player extends Mob implements IPlayer{
         else
             --timeBetweenPutBombs;
 
-
         animate();
 
         calculateMove();
         detectPlaceBomb();
-        
+
         updateTimerBreaker();
-        
+
     }
 
     /**
@@ -129,6 +127,9 @@ public class Player extends Mob implements IPlayer{
     | Mob Movement
     |--------------------------------------------------------------------------
      */
+    /**
+     *
+     */
     @Override
     protected void calculateMove() {
         int xa = 0, ya = 0;
@@ -144,6 +145,12 @@ public class Player extends Mob implements IPlayer{
         }
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     @Override
     public boolean canMove(double x, double y) {
         for (int c = 0; c < 4; c++) { //colision detection for each corner of the player
@@ -159,13 +166,12 @@ public class Player extends Mob implements IPlayer{
                     ((DestroyableIceTile) a).setTimerBreak(80);
                     newState = con.getState().nextState(con);
                     board.getDestroyableIceTile().add(newState);
-                    
+
                     //con.getState().setChange(false);
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
-                    
+
                 }
             }
-
             if(a.collide(this)){
                 return false;
             }
@@ -173,6 +179,11 @@ public class Player extends Mob implements IPlayer{
         return true;
     }
 
+    /**
+     *
+     * @param xa
+     * @param ya
+     */
     @Override
     public void move(double xa, double ya) {
         if(xa > 0)
@@ -195,6 +206,9 @@ public class Player extends Mob implements IPlayer{
     |--------------------------------------------------------------------------
     | Mob Sprite
     |--------------------------------------------------------------------------
+     */
+    /**
+     *
      */
     private void chooseSprite() {
         try {
@@ -341,6 +355,12 @@ public class Player extends Mob implements IPlayer{
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    /**
+     *
+     * @param e
+     * @return
+     */
     @Override
     public boolean collide(Entity e) {
         if(e instanceof DirectionalExplosion) {
@@ -349,7 +369,6 @@ public class Player extends Mob implements IPlayer{
         }
         if(e instanceof Enemy) {
             if(checkRealCollision(e, 0.2)){
-                //System.out.println("IL Player HA COLLISO CON IL nemico, Player.collide");
                 kill();
                 return true;
             }
@@ -357,6 +376,9 @@ public class Player extends Mob implements IPlayer{
         return false;
     }
 
+    /**
+     *
+     */
     private void detectPlaceBomb() {
         if(input.space && Game.getBombRate() > 0 && timeBetweenPutBombs < 0) {
             int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
@@ -367,11 +389,19 @@ public class Player extends Mob implements IPlayer{
         }
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y, board);
         board.addBomb(b);
     }
 
+    /**
+     *
+     */
     private void clearBombs() {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
@@ -384,7 +414,10 @@ public class Player extends Mob implements IPlayer{
         }
     }
 
-    public void correctKeybord(){
+    /**
+     *
+     */
+    public void correctKeyboard(){
         if(board.getPlayerRight() == 1){
            board.setInput();
            input = board.getInput();
@@ -395,6 +428,10 @@ public class Player extends Mob implements IPlayer{
     |--------------------------------------------------------------------------
     | Powerups
     |--------------------------------------------------------------------------
+     */
+    /**
+     *
+     * @param p
      */
     public void addPowerup(Powerup p) {
         if(p instanceof PowerupNotSlip){
@@ -412,6 +449,9 @@ public class Player extends Mob implements IPlayer{
     | Mob Colide & Kill
     |--------------------------------------------------------------------------
      */
+    /**
+     *
+     */
     @Override
     public void kill() {
         if(!alive)
@@ -426,6 +466,9 @@ public class Player extends Mob implements IPlayer{
         notifyObservers();
     }
 
+    /**
+     *
+     */
     @Override
     protected void afterKill() {
         if(timeAfter > 0)
@@ -439,13 +482,13 @@ public class Player extends Mob implements IPlayer{
             }
         }
     }
-    
+
     private void updateTimerBreaker(){
         for(DestroyableIceTile d : board.getDestroyableIceTile()){
             if(d.getTimerBreak()>0){
                 d.setTimerBreak(d.getTimerBreak()-1);
                 System.out.println(d.getTimerBreak());
-            }   
+            }
         }
     }
 }

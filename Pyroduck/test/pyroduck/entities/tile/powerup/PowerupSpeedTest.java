@@ -14,7 +14,6 @@ import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.BrickTile;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.IceKeyboard;
 
 /**
  *
@@ -47,7 +46,7 @@ public class PowerupSpeedTest {
     @Test
     public void testCollide() {
         System.out.println("collide");
-        Board b = new Board(new IceKeyboard(), new Screen());
+        Board b = new Board(new Screen());
         Entity e1 = new DirectionalExplosion(1, 2, 0, 1, b);
         Entity e2 = new Player(1, 1, b);
         Entity e3 = new BrickTile(1, 1, Sprite.brick);

@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import pyroduck.exceptions.PyroduckException;
@@ -34,11 +33,12 @@ public class Game extends Canvas {
     protected static boolean reverse=false;
     protected static int rev = 0;
     protected static int lives;
+    protected static boolean pause=false;
     private Keyboard input;
     private final Board board;
     private final Screen screen;
     private static Game instance = null;
-    private final Timer timer;
+    private Timer timer;
     //this will be used to render the game, each render is a calculated image saved here
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); 
@@ -92,6 +92,20 @@ public class Game extends Canvas {
         bs.show();
     }
 
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void resume(){
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new ScheduleTask(), 100, 15);
+        board.setPause(false);
+    }
+    public void pause(){
+        timer.cancel();
+        board.setPause(true);
+    }
+    
     private void update(){   
         board.update();
         if(input!= getBoard().getInput()){
@@ -169,9 +183,11 @@ public class Game extends Canvas {
         return board;
     }
 
-    public int getLives() {
+    public static int getLives() {
         return lives;
     }
+    
+
 
     public void setSelected(int selected) {
         
@@ -194,5 +210,5 @@ public class Game extends Canvas {
             renderGame();
             update();
         }
-    }  
+    }
 }

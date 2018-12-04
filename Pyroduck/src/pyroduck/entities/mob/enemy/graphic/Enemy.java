@@ -5,12 +5,15 @@ import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.mob.Mob;
-import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.enemy.EnemyPower;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
 
+/**
+ * The abstract class describes the behavior of each type of enemies.
+ * @author Bini, Petruzzello
+ */
 public abstract class Enemy extends Mob {
 
     protected int points;
@@ -22,6 +25,15 @@ public abstract class Enemy extends Mob {
     protected int finalAnimation = 30;
     protected Sprite deadSprite;
 
+    /**
+     * Creates an instance of Enemy
+     * @param x horizontal coordinate in pixels.
+     * @param y vertical coordiante in pixels.
+     * @param board
+     * @param dead sprite to show when the enemy will die.
+     * @param speed speed of the enemy.
+     * @param points point to receve when the enemy will die.
+     */
     public Enemy(int x, int y, Board board, Sprite dead, double speed, int points) {
         super(x, y, board);
         this.points = points;
@@ -38,6 +50,10 @@ public abstract class Enemy extends Mob {
     | Mob Render & Update
     |--------------------------------------------------------------------------
      */
+    /**
+     * Allows to update the state of the enemy checking if something is changed.
+     * Checks if the enemy is dead and if it is not calls the function that calcolates the movement.
+     */
     @Override
     public void update() {
         animate();
@@ -49,6 +65,10 @@ public abstract class Enemy extends Mob {
             calculateMove();
     }
 
+    /**
+     * Manage the print on screen of the right enemy sprite. Invoke the screen method.
+     * @param screen screen on which the print is called. 
+     */
     @Override
     public void render(Screen screen) {
         if(alive)
@@ -69,6 +89,9 @@ public abstract class Enemy extends Mob {
     | Mob Move
     |--------------------------------------------------------------------------
      */
+    /**
+     * Calculates of each pixels the enemy have to move.
+     */
     @Override
     public void calculateMove() {
         int xa = 0, ya = 0;
@@ -84,20 +107,31 @@ public abstract class Enemy extends Mob {
             steps -= 1 + rest;
             move(xa * speed, ya * speed);
             moving = true;
-        } else {
-            
+        } else {          
             steps = 0;
             moving = false;
         }
     }
 
+    /**
+     * Changes the enemy position if it is alive.
+     * @param xa horizontal coordinate in pixels.
+     * @param ya vertical coordinate in pixels.
+     */
     @Override
     public void move(double xa, double ya) {
-        if(!alive) return;
-            y += ya;
-            x += xa;
+        if(!alive) 
+            return;
+        y += ya;
+        x += xa;
     }
 
+    /**
+     * Return a boolean that say whether the enemy can move in a specific coordinate or not.
+     * @param x horizontal coordinate in pixels.
+     * @param y vertical coordinate in pixels.
+     * @return true if the enemy can move in <b>(x, y)</b> coordinate, false otherwise.
+     */
     @Override
     public boolean canMove(double x, double y) {
         double xr = this.x, yr = this.y - 32; //subtract y to get more accurate results
@@ -130,30 +164,32 @@ public abstract class Enemy extends Mob {
     | Mob Colide & Kill
     |--------------------------------------------------------------------------
      */
+    /**
+     * Manage the collision between two entities.
+     * @param e instance of the entity which the enemy collide.
+     * @return true if the entities cannot overlap between them, false otherwise.
+     */
     @Override
     public boolean collide(Entity e) {
         if(e instanceof DirectionalExplosion) {
             kill();
             return true;
         }
-        if(e instanceof Player) {
-            if(checkRealCollision(e, 0.2)){
-                //System.out.println("IL NEMICO HA COLLISO CON IL PLAYER, Enemy.collide");
-                ((Player) e).kill();
-                return true;
-            }
-        }
-      
         return false;
     }
 
+    /**
+     * Set the state of the enemy to dead.
+     */
     @Override
     public void kill() {
-        if(alive == false) 
-            return;
         alive = false;
+        board.addPoints(points);
     }
 
+    /**
+     * Manage the deth of the enemy.
+     */
     @Override
     protected void afterKill() {
         if(timeAfter > 0) --timeAfter;
@@ -164,6 +200,9 @@ public abstract class Enemy extends Mob {
                 remove();
         }
     }
-	
+
+    /**
+     * Chooses the sprite to show on the screen.
+     */
     protected abstract void chooseSprite();
 }

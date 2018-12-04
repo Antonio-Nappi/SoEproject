@@ -5,17 +5,29 @@ import pyroduck.Game;
 import pyroduck.entities.mob.enemy.LowPower;
 import pyroduck.graphics.Sprite;
 
+/**
+ * Implements the behavior, select the image and manage the animation of this enemy.
+ * @author Bini, Petruzzello
+ */
 public class Golbat extends Enemy{
 
-    public Golbat(int x, int y, Board board, int realWidth, int realHeight){
+    public int realWidth = 24, realHeight = 24;
+    /**
+     * Creates an instance of <b>Golbat</b> enemy.
+     * @param x horizontal coordinate in pixels.
+     * @param y vertical coordinate in pixels.
+     * @param board 
+     */
+    public Golbat(int x, int y, Board board){
         super(x, y, board, Sprite.golbat_dead, Game.getPlayerSpeed() / 2, 100);
-        this.realWidth = realWidth;
-        this.realHeight = realHeight;
         sprite = Sprite.golbat_left1;	
         ep = new LowPower();
         direction = ep.calculateDirection();
     }
     
+    /**
+     * Chooses the sprite to show on the screen.
+     */
     @Override
     protected void chooseSprite() {
         switch(direction) {
