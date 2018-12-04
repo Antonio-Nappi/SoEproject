@@ -155,8 +155,6 @@ public class Player extends Mob{
             double xt = ((this.x + x) + c % 2 * 24 +2) / Game.TILES_SIZE; //
             double yt = ((this.y + y) + c / 2 * 15 - 16) / Game.TILES_SIZE; // the multiply factor control bottom collision and the additional factor control top collision
             Entity a = board.getEntity(xt, yt, this);
-            double diffX = a.getX() - Coordinates.tileToPixel(getX());
-            double diffY = a.getY() - Coordinates.tileToPixel(getY());
             DestroyableIceTile newState;
             ContextDestroyable con = board.getContextState();
             if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
@@ -165,15 +163,11 @@ public class Player extends Mob{
                     ((DestroyableIceTile) a).setTimerBreak(80);
                     newState = con.getState().nextState(con);
                     board.getDestroyableIceTile().add(newState);
-
-                    //con.getState().setChange(false);
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
-
                 }
             }
-            if(a.collide(this)){
+            if(a.collide(this))
                 return false;
-            }
         }
         return true;
     }
@@ -244,8 +238,8 @@ public class Player extends Mob{
                             }
                             break;
                     }
-                
-                
+
+
             }else{
                     switch(direction) {
                         case 0:
@@ -280,7 +274,7 @@ public class Player extends Mob{
                             break;
                     }
                 }
-                
+
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -414,11 +408,8 @@ public class Player extends Mob{
     }
 
     private void updateTimerBreaker(){
-        for(DestroyableIceTile d : board.getDestroyableIceTile()){
-            if(d.getTimerBreak()>0){
+        for(DestroyableIceTile d : board.getDestroyableIceTile())
+            if(d.getTimerBreak()>0)
                 d.setTimerBreak(d.getTimerBreak()-1);
-                System.out.println(d.getTimerBreak());
-            }
-        }
     }
 }

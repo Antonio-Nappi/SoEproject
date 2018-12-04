@@ -26,8 +26,6 @@ public class SelectCharacter extends javax.swing.JFrame {
     private int selected=0;
     String[] args;
     public static final String TITLE = "Choose your player";
-    private static Media clip;
-    private static MediaPlayer media;
     static {
                    JFXPanel fxPanel = new JFXPanel();
 

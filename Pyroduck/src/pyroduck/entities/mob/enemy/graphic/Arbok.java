@@ -19,7 +19,7 @@ public class Arbok extends Enemy{
      * @param board
      */
     public Arbok(int x, int y, Board board){
-        super(x, y, board, Sprite.arbok_dead, Game.getPlayerSpeed() - 0.1, 200);
+        super(x, y, board, Sprite.arbok_dead, Game.getPlayerSpeed() - 0.1, 300);
         sprite = Sprite.arbok_left1;	
         ep = new MediumPower(board.getPlayer(), this);
         direction = ep.calculateDirection();

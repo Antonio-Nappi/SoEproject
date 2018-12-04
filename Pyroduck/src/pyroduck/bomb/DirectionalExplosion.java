@@ -2,6 +2,7 @@ package pyroduck.bomb;
 
 import pyroduck.Board;
 import pyroduck.entities.Entity;
+import pyroduck.entities.LayeredEntity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.graphics.Screen;
 
@@ -106,9 +107,8 @@ public class DirectionalExplosion extends Entity {
      */
     @Override
     public void render(Screen screen) {
-        for (int i = 0; i < explosions.length; i++) {
+        for (int i = 0; i < explosions.length; i++)
             explosions[i].render(screen);
-        }
     }
 
     /**

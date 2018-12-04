@@ -33,6 +33,7 @@ public class Game extends Canvas {
     protected static boolean reverse=false;
     protected static int rev = 0;
     protected static int lives;
+    protected static int points;
     protected static boolean pause=false;
     private Keyboard input;
     private final Board board;
@@ -51,6 +52,7 @@ public class Game extends Canvas {
         screen = new Screen();
         board = new Board(screen);
         lives = 3;
+        points = 0;
     }
     
     public static Game getInstance() throws PyroduckException{
@@ -112,15 +114,14 @@ public class Game extends Canvas {
             this.input = getBoard().getInput();
             addKeyListener(input);
         }
-        if(lives != board.getLives()){
+        if(lives != board.getLives())
             board.setLives(lives);
-        }
-        if (!reverse){
-            input.update();  
-        }
-        else {
-            input.updateReverse();  
-        }     
+        if(points != board.getPoints())
+            board.setPoints(points);
+        if (!reverse)
+            input.update();
+        else 
+            input.updateReverse();
     }
 
     public void start() {
@@ -153,7 +154,10 @@ public class Game extends Canvas {
     public static void addLives(int i){
         lives += i;
     }
-	
+    
+    public static void addPoints(int i){
+        points += i;
+    }
     /*
     |--------------------------------------------------------------------------
     | Getters & Setters
@@ -187,10 +191,11 @@ public class Game extends Canvas {
         return lives;
     }
     
-
+    public static int getPoints() {
+        return points;
+    }
 
     public void setSelected(int selected) {
-        
         this.selected = selected;
         if(selected==1){
             playerSpeed=1;
