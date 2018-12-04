@@ -1,6 +1,7 @@
 package pyroduck;
 
 import java.io.IOException;
+import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -10,6 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import pyroduck.exceptions.PyroduckException;
+import pyroduck.input.GrassKeyboard;
 
 /**
  *
@@ -120,7 +122,7 @@ public class GameTest {
     @Test
     public void testGetPlayerSpeed() {
         System.out.println("getPlayerSpeed");
-        double expResult = 1.3;
+        double expResult = 1;
         double result = Game.getPlayerSpeed();
         assertEquals(expResult, result, 0.0);
     }
@@ -145,5 +147,68 @@ public class GameTest {
         int expResult = 1;
         int result = Game.getBombRadius();
         assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of setSelected method, of class Game.
+     */
+    @Test
+    public void testSetSelected() {
+        int selected = 1;
+        game.setSelected(selected);
+        assertEquals(selected, Game.playerSpeed, 0);
+    }
+    
+    /**
+     * Test of getLives method, of class Game.
+     */
+    @Test
+    public void testGetLives() {
+        assertEquals(Game.getLives(), 3.0, 0); 
+    }
+    
+    /**
+     * Test of getSelected method, of class Game.
+     */
+    @Test
+    public void testGetSelected() {
+        assertEquals(game.getSelected(), 1.0, 0); 
+    }
+    
+    /**
+     * Test of addLives method, of class Game.
+     */
+    @Test
+    public void testAddLives() {
+        assertEquals(Game.getLives(), 3.0, 0);
+        Game.addLives(-1);
+        assertEquals(Game.getLives(), 2.0, 0);
+    }
+    
+    /**
+     * Test of reverseInput method, of class Game.
+     */
+    @Test
+    public void testReverseInput() {
+        assertFalse(Game.reverse);
+        game.reverseInput(true);
+        assertTrue(game.reverse);
+    }
+      /**
+     * Test of start method, of class Game.
+     */
+    @Test
+    public void testStart() {
+        game.start();
+        assertSame(game.getInput(), GrassKeyboard.getInstance());
+    }
+          /**
+     * Test of resume method, of class Game.
+     */
+    @Test
+    public void testResume() {
+        Timer t1 = game.getTimer();
+        game.resume();
+        assertNotSame(t1, game.getTimer());
     }
 }

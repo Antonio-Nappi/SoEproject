@@ -29,7 +29,7 @@ import pyroduck.level.*;
 
 public class Board extends Observable implements Observer {
 
-    private ContextLevel clevel;
+    protected ContextLevel clevel;
     private Keyboard input;
     private final Screen screen;
     public Entity[] entities;
@@ -115,35 +115,30 @@ public class Board extends Observable implements Observer {
         } catch (InterruptedException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
-	}
+    }
 
     public void changeLevel(int numlevel) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
         mobs = new ArrayList<>();
         bombs.clear();
-        
         try {
             int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
             BufferedReader in = null;
             String data = null;
-            
             try {
                 in = new BufferedReader(new FileReader(path));
                 data = in.readLine();
                 in.close();
-                
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
             } catch (IOException ex){
                 JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
             }
-            
             StringTokenizer tokens = new StringTokenizer(data); 
             tokens.nextToken();
             world = tokens.nextToken();     
             input = getRightKeyboard();
-            
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path, this));
                 entities = clevel.executeStrategy(this); 
@@ -157,7 +152,6 @@ public class Board extends Observable implements Observer {
         } catch (NullPointerException e){
             System.out.println("LEVEL'S FILE .txt NOT FOUND!");
         }
-        
     }
 
     /*
@@ -165,7 +159,11 @@ public class Board extends Observable implements Observer {
     | Detections
     |--------------------------------------------------------------------------
     */
-
+    
+    /**
+     * Return a boolean that say if there is enemies alive in the map or not.
+     * @return true if there is not enemies alive in the map, false otherwise.
+     */
     public boolean detectNoEnemies() {
         int total = 0;
         for (int i = 0; i < mobs.size(); i++) {

@@ -1,5 +1,7 @@
 package pyroduck.entities.mob;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,8 +13,10 @@ import pyroduck.Game;
 import pyroduck.bomb.Bomb;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.entities.tile.powerup.PowerupBombs;
+import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
+import pyroduck.input.GrassKeyboard;
 
 /**
  *
@@ -52,6 +56,7 @@ public class PlayerTest {
         for (int j = 0; j<7500;j++){
             player.update();
         }
+        assertNotNull(player.input);
         assertEquals(player.timeBetweenPutBombs, -7500);
     }
 
@@ -84,6 +89,21 @@ public class PlayerTest {
         double x = 0.0;
         double y = 0.0;
         assertFalse(player.canMove(x, y));
+//        
+//        x = 1.0;
+//        y = 0.0;
+//        assertTrue(player.canMove(x, y));
+//        
+//        x = 1.0;
+//        y = 1.0;
+//        assertTrue(player.canMove(x, y));
+//        x = 1.0;
+//        y = 0.0;
+//        assertTrue(player.canMove(x, y));
+//                x = 1.0;
+//        y = 0.0;
+//        assertTrue(player.canMove(x, y));
+        
     }
 
     /**
@@ -98,6 +118,35 @@ public class PlayerTest {
         assertEquals(player.direction, -1);
         assertEquals(player.getX(), 1.0,0);
         assertEquals(player.getY(), 1.0,0);
+//        
+//        xa = 1.0;
+//        ya = 0.0;
+//        player.move(xa, ya);
+//        assertEquals(player.direction, 1);
+//        System.out.println("player.getX() " + player.getX());
+//        assertEquals(player.getX(), 2.0,0);
+//        assertEquals(player.getY(), 1.0,0);
+//        
+//        xa = 0.0;
+//        ya = 1.0;
+//        player.move(xa, ya);
+//        assertEquals(player.direction, 2);
+//        assertEquals(player.getX(), 2.0,0);
+//        assertEquals(player.getY(), 2.0,0);
+//        
+//        xa = -1.0;
+//        ya = 0.0;
+//        player.move(xa, ya);
+//        assertEquals(player.direction, 3);
+//        assertEquals(player.getX(), 1.0,0);
+//        assertEquals(player.getY(), 2.0,0);
+//        
+//        xa = 0.0;
+//        ya = -1.0;
+//        player.move(xa, ya);
+//        assertEquals(player.direction, 0);
+//        assertEquals(player.getX(), 1.0,0);
+//        assertEquals(player.getY(), 1.0,0);
     }
 
 
@@ -123,6 +172,39 @@ public class PlayerTest {
         Powerup p = new PowerupBombs(1, 1, Sprite.powerup_bombs);
         player.addPowerup(p);
         assertEquals(Game.getBombRate(), 2);
-
     }   
+    
+    /**
+     * Test of correctKeyboard method, of class Player.
+     */
+    @Test
+    public void testCorrectKeyboard(){
+        board.setPlayer(1);
+        player.correctKeyboard();
+        assertEquals(player.input, GrassKeyboard.getInstance());   
+    }
+    
+        
+    /**
+     * Test of kill method, of class Player.
+     */
+    @Test
+    public void testKill() {
+        player.alive = true;
+        
+        assertEquals(3.0, board.getLives(),0);
+        player.kill();
+        assertFalse(player.alive);
+        assertEquals(2.0, Game.getLives(),0);
+    }
+            
+    /**
+     * Test of afterKill method, of class Player.
+     */
+    @Test
+    public void testAfterKill() {
+        assertEquals(80, player.timeAfter, 0);
+        player.afterKill();
+         assertEquals(79, player.timeAfter, 0);
+    }
 }
