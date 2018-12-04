@@ -168,8 +168,6 @@ public class Player extends Mob {
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
                 }
             }
-
-
             if(a.collide(this)){
                 return false;
             }
@@ -367,7 +365,6 @@ public class Player extends Mob {
         }
         if(e instanceof Enemy) {
             if(checkRealCollision(e, 0.2)){
-                //System.out.println("IL Player HA COLLISO CON IL nemico, Player.collide");
                 kill();
                 return true;
             }

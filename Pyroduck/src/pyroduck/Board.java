@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -301,9 +302,9 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
     */
     protected void updateMobs() {
-        Iterator<Mob> itr = mobs.iterator();
-        while(itr.hasNext()){
-            itr.next().update();
+        ListIterator<Mob> itr = mobs.listIterator(mobs.size()-1);
+        while(itr.hasPrevious()){
+            itr.previous().update();
         }
     }
 
