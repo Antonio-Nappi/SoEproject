@@ -30,18 +30,5 @@ public class DestroyedState extends DestroyableIceTile {
         this.change = change;
     }
     
-    @Override
-    public boolean collide(Entity e){
-        if(e instanceof Player)
-           ((Player) e).kill();
-        return false;
-    } 
-
     
-//    @Override
-//    public boolean collide(Entity e) {
-//        if(e instanceof WaterState)
-//            change=true;
-//        return false;
-//    }
 }

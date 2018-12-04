@@ -114,7 +114,7 @@ public class IceStrategy extends FileLevel{
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case '3':
-                        board.addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board, 28, 28)); 
+                        board.addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     default:

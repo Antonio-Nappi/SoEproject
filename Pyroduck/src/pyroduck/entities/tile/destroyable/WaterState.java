@@ -16,7 +16,7 @@ public class WaterState extends DestroyableIceTile{
 
     public boolean collide(Entity e){
         if(e instanceof Player)
-           ;//((Player) e).kill();
+           ((Player) e).kill();
         return false;
     }
 
