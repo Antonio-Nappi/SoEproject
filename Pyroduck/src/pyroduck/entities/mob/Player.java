@@ -157,19 +157,15 @@ public class Player extends Mob implements IPlayer{
             double xt = ((this.x + x) + c % 2 * 24 +2) / Game.TILES_SIZE; //
             double yt = ((this.y + y) + c / 2 * 15 - 16) / Game.TILES_SIZE; // the multiply factor control bottom collision and the additional factor control top collision
             Entity a = board.getEntity(xt, yt, this);
-            double diffX = a.getX() - Coordinates.tileToPixel(getX());
-            double diffY = a.getY() - Coordinates.tileToPixel(getY());
+           
             DestroyableIceTile newState;
-            if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
+            if(a instanceof DestroyableIceTile){
                 con.setState((DestroyableIceTile)a);
                 if(((DestroyableIceTile) a).getTimerBreak()<=0) { // differences to see if the player has moved out of the bomb, tested values
                     ((DestroyableIceTile) a).setTimerBreak(80);
                     newState = con.getState().nextState(con);
                     board.getDestroyableIceTile().add(newState);
-
-                    //con.getState().setChange(false);
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
-
                 }
             }
             if(a.collide(this)){
@@ -487,7 +483,6 @@ public class Player extends Mob implements IPlayer{
         for(DestroyableIceTile d : board.getDestroyableIceTile()){
             if(d.getTimerBreak()>0){
                 d.setTimerBreak(d.getTimerBreak()-1);
-                System.out.println(d.getTimerBreak());
             }
         }
     }

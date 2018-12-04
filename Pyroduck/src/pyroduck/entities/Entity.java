@@ -69,19 +69,11 @@ public abstract class Entity extends Observable{
         int y0_EntityRect = (int)e.getY() + y0_EntityRectOffset;
         Rectangle entityCollideRectangle = new Rectangle(x0_EntityRect, y0_EntityRect, e.realWidth, e.realHeight);
        
-            Rectangle intersection = thisEntityRectangle.intersection(entityCollideRectangle);
-            System.out.println("WIDTH INTERSECTION " + intersection.getWidth());
-            System.out.println("HEIGHT INTERSECTION " + intersection.getHeight());
-        
-            System.out.println((intersection.getWidth() * intersection.getHeight() ) / (realWidth * realHeight));
-        
-            if( (intersection.getWidth() * intersection.getHeight() ) / (realWidth * realHeight) >= tune){
-                System.out.println("RILEVATA VERA COLLISIONE");
-                System.out.println((intersection.getWidth() * intersection.getHeight() ) / (realWidth * realHeight));
-                return true;
-            }
-           
-        
+        Rectangle intersection = thisEntityRectangle.intersection(entityCollideRectangle);
+       
+        if( (intersection.getWidth() * intersection.getHeight() ) / (realWidth * realHeight) >= tune){
+            return true;
+        }
         else 
             return false;
     }

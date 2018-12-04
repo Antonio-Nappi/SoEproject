@@ -3,7 +3,6 @@ package pyroduck.entities.tile.destroyable;
 import pyroduck.entities.Entity;
 import pyroduck.entities.tile.Tile;
 import pyroduck.graphics.Sprite;
-import pyroduck.level.Coordinates;
 
 public abstract class DestroyableIceTile extends Tile{
     protected ContextDestroyable context;
@@ -24,8 +23,6 @@ public abstract class DestroyableIceTile extends Tile{
     
     @Override
     public boolean collide(Entity e) {
-        //double diffX = e.getX() - Coordinates.tileToPixel(getX());
-        //double diffY = e.getY() - Coordinates.tileToPixel(getY());
         return false;
     }
     
