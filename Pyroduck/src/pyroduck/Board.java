@@ -107,7 +107,8 @@ public class Board extends Observable implements Observer {
 	changeLevel(clevel.getFilelevel().getLevel() + 1);
         try {
             Game.getInstance().renderScreen();
-            Thread.sleep(2500);      //wait 2,5 sec and often shows the next level
+            Thread.sleep(2500);
+            Game.getInstance().resume();//wait 2,5 sec and often shows the next level
         } catch (PyroduckException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
