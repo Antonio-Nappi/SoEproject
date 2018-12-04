@@ -40,6 +40,8 @@ public class Board extends Observable implements Observer {
     private int points = 0;
     private String world = "";
     private int player;
+    protected boolean pause=false;
+
     
     public Board(Screen screen) {
         this.screen = screen;
@@ -153,6 +155,8 @@ public class Board extends Observable implements Observer {
             System.out.println("LEVEL'S FILE .txt NOT FOUND!");
         }
     }
+
+  
 
     /*
     |--------------------------------------------------------------------------
@@ -439,5 +443,16 @@ public class Board extends Observable implements Observer {
     
     public int getPlayerRight(){
         return player;
+    }
+    
+      public boolean isPause() {
+        return this.pause;
+    }
+
+    public void setPause(boolean pause) {
+
+        this.pause = pause;
+        setChanged();
+        notifyObservers();
     }
 }

@@ -32,6 +32,7 @@ public class SelectCharacter extends javax.swing.JFrame {
                    JFXPanel fxPanel = new JFXPanel();
 
     }
+    
     /**
      * Creates new form SelectCharacter
      */
