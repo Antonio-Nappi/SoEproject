@@ -1,16 +1,16 @@
-1 I
+1 G
 ###############################
-#p u   *f *    *   *  * * *   #
-# # # #*# # #*#*# # # #*#*#*# #
-# a  *  1 * *  *      *   * * #
-# # # # # #*# # #*#*# # # # #*#
-#*  *  *  o   *  m  *        3#
-# # # # # # # # # #*# #*# # # #
-#*  * 3   1*   *    2*        #
-# # # # #*# # # #*#*# # # #*# #
-#f    m*  *       *       owo #
-# #*# # # # # # #*# # # # #*# #
-#  *  *     *   *  o     *    #
+#p  *    *        1  o    m   #
+# # # # # # # # # # # # # # # #
+# *  *   *   f   *    *   *2  #
+# # # # # # # # # # # # # #o# #
+# *    *   *    *     *  *   *#
+#*# # # # # # # # # # # # # # #
+# *  *   2     *     *  *  *  #
+# # # # # # # # # # # # # # # #
+#  *  *  o   f  *  *       1  #
+# # # # # # # # # # # #*# # # #
+#* *   1   *   m  *   o   *w  #
 ###############################
 
 Meta data:
@@ -26,6 +26,10 @@ p - Player
 2 - Machamp
 3 - Arbok
 
+1 - Snorunt
+2 - Glalie
+3 - Darkrai
+
 Powerups:
 b - Powerup Bombs
 f - Powerup Flames
@@ -33,9 +37,16 @@ s - Powerup Speed
 o - Malus Decrease Speed
 m - Malus Reverse Keyboard
 l - Powerup Live
+z - Tile rompibile (iceland)
 
-Level 1   f-m-o
+Grassland
+Level 1   due f- due m- tre o, tre 1 , due 2
 Level 2   s-b-m-o
 
+Iceland
 Level 3   
 Level 4
+
+per la prova facciamo
+1 grassland
+2 iceland
