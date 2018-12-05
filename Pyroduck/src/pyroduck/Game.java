@@ -36,7 +36,7 @@ public class Game extends Canvas {
     protected static int points;
     protected static boolean pause=false;
     private Keyboard input;
-    private final Board board;
+    private Board board;
     private final Screen screen;
     private static Game instance = null;
     private Timer timer;
@@ -53,7 +53,7 @@ public class Game extends Canvas {
         timer = new Timer();
         screen = new Screen();
         board = new Board(screen);
-        lives = 3;
+        lives = 1;
         points = 0;
     }
     
@@ -63,6 +63,12 @@ public class Game extends Canvas {
         return instance;
     }
 
+    public void restartGame(){
+        board.changeLevel(1);
+        lives = 3;
+        points = 0;
+    }
+    
     private void renderGame() { //render will run the maximum times it can per second
         BufferStrategy bs = getBufferStrategy(); //represents the mechanism with which to organize complex memory on a Canvas
         if(bs == null) { //if canvas dont have a bufferstrategy, create it
@@ -84,14 +90,9 @@ public class Game extends Canvas {
             createBufferStrategy(3);
             return;
         }
-
         screen.clear();
-
         Graphics g = bs.getDrawGraphics();
-
-
         board.drawScreen(g);
-
         g.dispose();
         bs.show();
     }
@@ -105,6 +106,7 @@ public class Game extends Canvas {
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 15);
         board.setPause(false);
     }
+    
     public void pause(){
         timer.cancel();
         board.setPause(true);
@@ -160,6 +162,7 @@ public class Game extends Canvas {
     public static void addPoints(int i){
         points += i;
     }
+    
     /*
     |--------------------------------------------------------------------------
     | Getters & Setters
