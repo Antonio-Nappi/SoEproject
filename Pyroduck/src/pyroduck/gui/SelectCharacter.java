@@ -11,9 +11,12 @@ import java.util.logging.Logger;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import pyroduck.Game;
 import pyroduck.Pyroduck;
+import pyroduck.audio.AudioPlayer;
 import pyroduck.exceptions.PyroduckException;
 
 
@@ -26,8 +29,10 @@ public class SelectCharacter extends javax.swing.JFrame {
     private int selected=0;
     String[] args;
     public static final String TITLE = "Choose your player";
-    private static Media clip;
-    private static MediaPlayer media;
+    private static Media media;
+     private static  MediaPlayer mediaPlayer;
+     private static AudioPlayer audio;
+    
     static {
                    JFXPanel fxPanel = new JFXPanel();
 
@@ -49,10 +54,15 @@ public class SelectCharacter extends javax.swing.JFrame {
         imgSpeed.setText("");
         imgSliding.setText("");
         imgBomb.setText("");
-         URL file = getClass().getResource("opening.mp3");
-    final Media media = new Media(file.toString());
-    final MediaPlayer mediaPlayer = new MediaPlayer(media);
-    mediaPlayer.play();
+        try {
+            audio= new AudioPlayer("opening 1.wav");
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(SelectCharacter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(SelectCharacter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SelectCharacter.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
       
     }
