@@ -14,11 +14,12 @@ import java.util.List;
  *
  * @author Bini, Petruzzello
  */
+@SuppressWarnings("unchecked")
 public class ListPointsSerialize {
     List<PointsSerialize> list;
 
     public ListPointsSerialize() {
-        list = new ArrayList<PointsSerialize>();
+        list = new ArrayList<>();
     }
     
     public ListPointsSerialize charge() throws FileNotFoundException, IOException, ClassNotFoundException{

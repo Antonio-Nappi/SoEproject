@@ -76,13 +76,6 @@ public class GamePanel extends JPanel implements Observer {
                 frame.setVisible(false);
                 game.pause();
                 game.restartGame();
-                //this.setVisible(false);
-    //            frame.dispose();
-//                try {
-//                    Game.getInstance().setVisible(false);
-//                } catch (PyroduckException ex) {
-//                    Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-//                }
             }
         }
         else{
