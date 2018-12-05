@@ -13,6 +13,7 @@ public class PointsSerialize implements Serializable{
     
     private int points;
     private String name;
+    private int lives;
     
     public PointsSerialize(String name){
         try {
@@ -21,6 +22,11 @@ public class PointsSerialize implements Serializable{
             Logger.getLogger(PointsSerialize.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.name = name;
+        try {
+            this.lives = Game.getInstance().getBoard().getLives();
+        } catch (PyroduckException ex) {
+            Logger.getLogger(PointsSerialize.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public int getPoints() {
@@ -37,5 +43,13 @@ public class PointsSerialize implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
     }
 }
