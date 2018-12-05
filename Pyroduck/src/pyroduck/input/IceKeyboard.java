@@ -51,7 +51,7 @@ private static IceKeyboard ice = null;
             keys[e.getKeyCode()] = false;
             else{
                 try {
-                    Thread.sleep(240);
+                    Thread.sleep(300);
                     keys[e.getKeyCode()] = false;
                 } catch (InterruptedException ex) {
                     Logger.getLogger(IceKeyboard.class.getName()).log(Level.SEVERE, null, ex);

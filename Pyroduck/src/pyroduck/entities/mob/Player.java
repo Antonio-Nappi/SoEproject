@@ -15,6 +15,7 @@ import pyroduck.entities.tile.destroyable.ContextDestroyable;
 import pyroduck.entities.tile.destroyable.DestroyableIceTile;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.entities.tile.powerup.PowerupNotSlip;
+import pyroduck.entities.tile.powerup.PowerupVehicles;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
@@ -50,6 +51,7 @@ public class Player extends Mob{
         bombs = board.getBombs();
         input = board.getInput();
         addObserver(board);
+        this.bombs = board.getBombs();
     }
 
     /*
@@ -202,7 +204,7 @@ public class Player extends Mob{
     /**
      *
      */
-    private void chooseSprite() {
+    protected void chooseSprite() {
         try {
             if( Game.getInstance().getSelected() == 0){
                     switch(direction) {
@@ -302,7 +304,7 @@ public class Player extends Mob{
     /**
      *
      */
-    private void detectPlaceBomb() {
+    protected void detectPlaceBomb() {
         if(input.space && Game.getBombRate() > 0 && timeBetweenPutBombs < 0) {
             int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
             int yt = Coordinates.pixelToTile( (y + sprite.getSize() / 2) - sprite.getSize() ); //subtract half player height and minus 1 y position
@@ -320,6 +322,7 @@ public class Player extends Mob{
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y, board);
         board.addBomb(b);
+        System.out.println("Bomba piazzata");
     }
 
     /**
@@ -361,6 +364,12 @@ public class Player extends Mob{
             board.setInput();
             input = board.getInput();
         }
+      
+        if(p instanceof PowerupVehicles){
+            setChanged();
+            notifyObservers();
+        }
+        
         if(!p.isRemoved()) {
             powerups.add(p);
             p.setValues();

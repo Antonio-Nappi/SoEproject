@@ -68,4 +68,15 @@ public class MediumPower extends EnemyPower {
             return 2;
         return -1;
     }
+
+    @Override
+    public boolean isPlayerReferenceUpdatable() {
+        return true;
+    }
+    
+    @Override
+    public void updateReferencePlayer(Player player){
+        this.player = player;
+    }
+   
 }

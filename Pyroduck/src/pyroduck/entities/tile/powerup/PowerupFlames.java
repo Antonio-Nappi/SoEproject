@@ -16,17 +16,6 @@ public class PowerupFlames extends Powerup {
         super(x, y, sprite);
     }
 
-    @Override
-    public boolean collide(Entity e) {
-        if(e instanceof DirectionalExplosion)
-            destroyed = true;
-        if(e instanceof Player) {
-            ((Player) e).addPowerup(this);
-            remove();
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public void setValues() {

@@ -46,6 +46,8 @@ public class Game extends Canvas {
     //Raster è una classe che rappresenta una matrice di pixel. Le immagini contenute nel buffer vengono estratte, e 
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
     protected int selected = 0; 
+
+    
             
     private Game() throws PyroduckException {
         timer = new Timer();
@@ -128,7 +130,7 @@ public class Game extends Canvas {
         this.input = getBoard().getInput();
         addKeyListener(input);
         requestFocus();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 100, 15);
+        timer.scheduleAtFixedRate(new ScheduleTask(), 1, 15);
     }
     
     public static void addBombRate(int i) {
@@ -201,6 +203,18 @@ public class Game extends Canvas {
             playerSpeed=1;
             
         }
+    }
+    
+    public static void setBombRate(int bombRate) {
+        Game.bombRate = bombRate;
+    }
+
+    public static void setBombRadius(int bombRadius) {
+        Game.bombRadius = bombRadius;
+    }
+
+    public static void setPlayerSpeed(double playerSpeed) {
+        Game.playerSpeed = playerSpeed;
     }
      
     private class ScheduleTask extends TimerTask{

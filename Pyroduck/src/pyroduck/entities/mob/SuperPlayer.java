@@ -8,11 +8,13 @@ package pyroduck.entities.mob;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pyroduck.Game;
+import pyroduck.bomb.Bomb;
 import pyroduck.entities.tile.powerup.Powerup;
 
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Sprite;
 import pyroduck.input.GrassKeyboard;
+import pyroduck.level.Coordinates;
 
 
 /**
@@ -23,46 +25,46 @@ public class SuperPlayer extends Player{
     
     public SuperPlayer(Player player) {
         super((int)player.getX(), (int)player.getY(), player.board);
-        this.input = GrassKeyboard.getInstance();
-        this.lives = lives;
-        this.done = false;
+        this.input = player.input;
+        this.lives = player.lives;
+        this.done = false;   //It has just correct keyboard
         
     }
     
-    private void chooseSprite() {
-        System.out.println("STAMPA CORRETTA");
+    @Override
+    protected void chooseSprite() {
         
         try {
             if( Game.getInstance().getSelected() == 0){
                     switch(direction) {
                         case 0:
-                            sprite = Sprite.player_up;
+                            sprite = Sprite.articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                             }
                             break;
                         case 1:
-                            sprite = Sprite.player_right;
+                            sprite = Sprite.articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                             }
                             break;
                         case 2:
-                            sprite = Sprite.player_down;
+                            sprite = Sprite.articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                             }
                             break;
                         case 3:
-                            sprite = Sprite.player_left;
+                            sprite = Sprite.articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                             }
                             break;
                         default:
-                            sprite = Sprite.player_right;
+                            sprite = Sprite.articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                             }
                             break;
                     }
@@ -113,7 +115,20 @@ public class SuperPlayer extends Player{
     protected void placeBomb(int x, int y) {    //NOW we can shoot missiles
         //Bomb b = new Bomb(x, y, board);
         //board.addBomb(b);
-        //DEVE SPARARE MISSILI 
+        //DEVE SPARARE MISSILI
+        System.out.println("Missile Sparato!");
+        Game.addBombRate(1);
+    }
+    
+    @Override
+    protected void detectPlaceBomb() {
+        if(input.space && timeBetweenPutBombs < 0) {
+            int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
+            int yt = Coordinates.pixelToTile( (y + sprite.getSize() / 2) - sprite.getSize() ); //subtract half player height and minus 1 y position
+            placeBomb(xt,yt);
+            Game.addBombRate(-1);
+            timeBetweenPutBombs = 30;
+        }
     }
     
     @Override
@@ -133,6 +148,13 @@ public class SuperPlayer extends Player{
                     board.restartLevel();
             }
         }
+    }
+    @Override
+        public void correctKeyboard(){
+        
+           board.setInput();
+           input = board.getInput();
+        
     }
 }
     
