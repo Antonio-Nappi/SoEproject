@@ -404,6 +404,11 @@ public class Player extends Mob{
                     board.restartLevel();
             }
         }
+        try {
+            Game.getInstance().getBoard().resetProperties();
+        } catch (PyroduckException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void updateTimerBreaker(){
