@@ -58,7 +58,7 @@ public class Board extends Observable implements Observer {
     public Board(Screen screen) {
         this.screen = screen;
         con = new ContextDestroyable();
-        changeLevel(2); //start in level 1
+        changeLevel(1); //start in level 1
     }
 
     /*
