@@ -36,7 +36,7 @@ public class Game extends Canvas {
     protected static int points;
     protected static boolean pause=false;
     private Keyboard input;
-    private Board board;
+    private final Board board;
     private final Screen screen;
     private static Game instance = null;
     private Timer timer;
