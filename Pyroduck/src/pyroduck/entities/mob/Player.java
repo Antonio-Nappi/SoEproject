@@ -19,6 +19,7 @@ import pyroduck.entities.tile.powerup.PowerupVehicles;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
+import pyroduck.input.IceKeyboard;
 import pyroduck.input.Keyboard;
 import pyroduck.level.Coordinates;
 import pyroduck.level.FileLevel;
@@ -211,31 +212,46 @@ public class Player extends Mob{
                         case 0:
                             sprite = Sprite.player_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 30);
+                                if(input.getClass() == IceKeyboard.class)
+                                    sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_1, animate, 30);
+                                else
+                                    sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 30);
                             }
                             break;
                         case 1:
                             sprite = Sprite.player_right;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
+                                if(input.getClass() == IceKeyboard.class)
+                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
+                                else
+                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
                             }
                             break;
                         case 2:
                             sprite = Sprite.player_down;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 30);
+                                if(input.getClass() == IceKeyboard.class)
+                                    sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_1, animate, 30);
+                                else
+                                    sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 30);
                             }
                             break;
                         case 3:
                             sprite = Sprite.player_left;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 30);
+                                if(input.getClass() == IceKeyboard.class)
+                                    sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_1, animate, 30);
+                                else
+                                    sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 30);
                             }
                             break;
                         default:
                             sprite = Sprite.player_right;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
+                                if(input.getClass() == IceKeyboard.class)
+                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
+                                else
+                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
                             }
                             break;
                     }
