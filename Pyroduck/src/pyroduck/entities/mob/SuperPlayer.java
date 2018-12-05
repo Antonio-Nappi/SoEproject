@@ -109,12 +109,14 @@ public class SuperPlayer extends Player{
     }
     
     
+    @Override
     protected void placeBomb(int x, int y) {    //NOW we can shoot missiles
         //Bomb b = new Bomb(x, y, board);
         //board.addBomb(b);
         //DEVE SPARARE MISSILI 
     }
     
+    @Override
     public void addPowerup(Powerup p) {
         //nothing...
     }

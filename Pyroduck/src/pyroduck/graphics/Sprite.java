@@ -32,8 +32,8 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     public static Sprite player_up = new Sprite(0, 2, SpriteSheet.tiles);
-    //public static Sprite player_down = new Sprite(0, 1, SpriteSheet.tiles);
-    public static Sprite player_down = new Sprite(15, 2, SpriteSheet.tiles);
+    public static Sprite player_down = new Sprite(0, 1, SpriteSheet.tiles);
+    //public static Sprite player_down = new Sprite(15, 2, SpriteSheet.tiles); ARTICUNO 
     public static Sprite player_left = new Sprite(0, 3, SpriteSheet.tiles);
     public static Sprite player_right = new Sprite(0, 4, SpriteSheet.tiles);
 
@@ -74,6 +74,10 @@ public class Sprite {
     public static Sprite player_dead1i = new Sprite(3, 6, SpriteSheet.tiles);
     public static Sprite player_dead2i = new Sprite(3, 7, SpriteSheet.tiles);
     public static Sprite player_dead3i = new Sprite(3, 8, SpriteSheet.tiles);
+    
+    
+    //ARTICUNO & PSYDUCK
+    public static Sprite articuno_up = new Sprite(15, 2, SpriteSheet.tiles);
 
 
     /*
