@@ -20,6 +20,7 @@ public class GrassKeyboard extends Keyboard {
     public void keyPressed(KeyEvent e) {
         try{
             keys[e.getKeyCode()] = true;
+            if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)  
             last = e;
         }catch(ArrayIndexOutOfBoundsException ex){}
         if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){

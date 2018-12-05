@@ -72,6 +72,7 @@ public class Game extends Canvas {
 
     public void restartGame(){
         board.changeLevel(1);
+        board.resetProperties();
         lives = 3;
         points = 0;
     }
