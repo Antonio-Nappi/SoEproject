@@ -8,10 +8,7 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,10 +24,12 @@ public class GamePanel extends JPanel implements Observer {
     private JLabel messageLabel = new JLabel();
     private JPanel panel = new JPanel();
     private Frame frame;
+    private JFrame endGame;
 
 
     public GamePanel(Frame frame) throws IOException {
         this.frame = frame;
+        endGame = null;
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width-420, Toolkit.getDefaultToolkit().getScreenSize().height-100));
         try {
@@ -45,6 +44,8 @@ public class GamePanel extends JPanel implements Observer {
             pointsLabel.setForeground(Color.WHITE);
             
             messageLabel = new JLabel("     Paused     ");
+            Font font = new Font(Font.DIALOG, Font.BOLD, 24);
+            messageLabel.setFont(font);
             messageLabel.setForeground(Color.black);
             
             panel.setBackground(Color.black);
@@ -70,17 +71,19 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + game.getBoard().getLives());
         pointsLabel.setText("Points: " + game.getBoard().getPoints());
-        if(game.getBoard().getLives() == 0){
-            messageLabel.setText("Hai perso");
-            
-            JFrame endGame = new EndGame();
-            frame.setVisible(false);
-            endGame.setVisible(true);
-            try {
-                Game.getInstance().setVisible(false);
-            } catch (PyroduckException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+
+        if(game.getBoard().getLives() <= 0){
+            if(endGame == null){
+                endGame = new EndGame();
+                endGame.setVisible(true);
+                frame.setVisible(false);
+                game.pause();
+                game.restartGame();
             }
+        }
+        else{
+            endGame = null;
+            frame.setVisible(true);
         }
         if(game.getBoard().isPause() == true){
             messageLabel.setForeground(Color.white);
@@ -92,7 +95,5 @@ public class GamePanel extends JPanel implements Observer {
             livesLabel.setForeground(Color.white);
             pointsLabel.setForeground(Color.white);
         }
-        
     }
-    
 }

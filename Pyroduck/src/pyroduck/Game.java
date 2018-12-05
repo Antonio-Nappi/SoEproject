@@ -53,6 +53,8 @@ public class Game extends Canvas {
     //Raster è una classe che rappresenta una matrice di pixel. Le immagini contenute nel buffer vengono estratte, e 
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
     protected int selected = 0; 
+
+    
             
     private Game() throws PyroduckException {
         timer = new Timer();
@@ -68,6 +70,12 @@ public class Game extends Canvas {
         return instance;
     }
 
+    public void restartGame(){
+        board.changeLevel(1);
+        lives = 3;
+        points = 0;
+    }
+    
     private void renderGame() { //render will run the maximum times it can per second
         BufferStrategy bs = getBufferStrategy(); //represents the mechanism with which to organize complex memory on a Canvas
         if(bs == null) { //if canvas dont have a bufferstrategy, create it
@@ -89,14 +97,9 @@ public class Game extends Canvas {
             createBufferStrategy(3);
             return;
         }
-
         screen.clear();
-
         Graphics g = bs.getDrawGraphics();
-
-
         board.drawScreen(g);
-
         g.dispose();
         bs.show();
     }
@@ -119,6 +122,7 @@ public class Game extends Canvas {
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 15);
         board.setPause(false);
     }
+    
     public void pause(){
         audio.pause();
         timer.cancel();
@@ -146,7 +150,7 @@ public class Game extends Canvas {
         this.input = getBoard().getInput();
         addKeyListener(input);
         requestFocus();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 100, 15);
+        timer.scheduleAtFixedRate(new ScheduleTask(), 1, 15);
     }
     
     public static void addBombRate(int i) {
@@ -176,6 +180,7 @@ public class Game extends Canvas {
     public static void addPoints(int i){
         points += i;
     }
+    
     /*
     |--------------------------------------------------------------------------
     | Getters & Setters
@@ -219,6 +224,18 @@ public class Game extends Canvas {
             playerSpeed=1;
             
         }
+    }
+    
+    public static void setBombRate(int bombRate) {
+        Game.bombRate = bombRate;
+    }
+
+    public static void setBombRadius(int bombRadius) {
+        Game.bombRadius = bombRadius;
+    }
+
+    public static void setPlayerSpeed(double playerSpeed) {
+        Game.playerSpeed = playerSpeed;
     }
      
     private class ScheduleTask extends TimerTask{

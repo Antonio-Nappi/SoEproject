@@ -205,4 +205,8 @@ public abstract class Enemy extends Mob {
      * Chooses the sprite to show on the screen.
      */
     protected abstract void chooseSprite();
+    
+    public EnemyPower getEp() {
+        return ep;
+    }
 }

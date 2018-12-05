@@ -14,11 +14,12 @@ import java.util.List;
  *
  * @author Bini, Petruzzello
  */
+@SuppressWarnings("unchecked")
 public class ListPointsSerialize {
     List<PointsSerialize> list;
 
     public ListPointsSerialize() {
-        list = new ArrayList();
+        list = new ArrayList<>();
     }
     
     public ListPointsSerialize charge() throws FileNotFoundException, IOException, ClassNotFoundException{
@@ -42,7 +43,7 @@ public class ListPointsSerialize {
         for(int i = 0; i < list.size(); i++) {
             boolean s = false;
             for(int j = 0; j < list.size()-1; j++) {
-                if(list.get(j).getPoints()>list.get(j+1).getPoints()) {
+                if((list.get(j).getPoints()<list.get(j+1).getPoints()) ||((list.get(j).getPoints() == list.get(j+1).getPoints()) && list.get(j).getLives()>list.get(j+1).getLives()) ) {
                     PointsSerialize k = list.get(j);
                     list.add(j, list.get(j+1));
                     list.add(j+1, k);

@@ -21,8 +21,12 @@ import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
+import pyroduck.entities.mob.SuperPlayer;
+import pyroduck.entities.mob.enemy.EnemyPower;
+import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.destroyable.ContextDestroyable;
 import pyroduck.entities.tile.destroyable.DestroyableIceTile;
+import pyroduck.entities.tile.powerup.PowerupVehicles;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
@@ -42,6 +46,7 @@ public class Board extends Observable implements Observer {
     private int points = 0;
     private String world = "";
     private int player;
+    private Player oldPlayer;
 
     private final ContextDestroyable con;
     private List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
@@ -98,10 +103,17 @@ public class Board extends Observable implements Observer {
     }
 
     @SuppressWarnings("static-access")
-    private void resetProperties() {
-        Game.playerSpeed = 1.3;
-        Game.bombRadius = 1;
-        Game.bombRate = 1;
+    public void resetProperties() {
+        if(this.getPlayerRight() == 0){
+            Game.playerSpeed = 1.3;
+            Game.bombRadius = 1;
+            Game.bombRate = 1;
+        }
+        else if(this.getPlayerRight() == 1){
+            Game.playerSpeed = 1;
+            Game.bombRadius = 1;
+            Game.bombRate = 1;
+        }
     }
 
     public void setLives(int lives) {
@@ -130,7 +142,7 @@ public class Board extends Observable implements Observer {
     public void changeLevel(int numlevel) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
         mobs = new ArrayList<>();
-        bombs.clear();
+        bombs = new ArrayList<>();
         try {
             int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
@@ -159,6 +171,7 @@ public class Board extends Observable implements Observer {
             }
             
             destroyableIceTiles = createDestroyableIceTile();
+            System.out.println(input);
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
@@ -351,7 +364,6 @@ public class Board extends Observable implements Observer {
                 break;
         }
     }
-	
 
     /*
     |--------------------------------------------------------------------------
@@ -449,8 +461,24 @@ public class Board extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        setChanged();
-        notifyObservers();
+        
+        Player pl = (Player)o;
+        if(pl.isAlive()){
+            Player p = getPlayer();
+            p = new SuperPlayer(p);
+            this.oldPlayer = (Player) mobs.set(0, p);   //player is the first element of the list mobs
+            for(int i=1; i<mobs.size(); i++){
+                EnemyPower enemyPower = ((Enemy)mobs.get(i)).getEp();
+                if(enemyPower.isPlayerReferenceUpdatable()){
+                    enemyPower.updateReferencePlayer(p);
+                }
+                    
+            }
+        }
+        else {      //if is called by kill notify this to Game
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public void setInput() {
