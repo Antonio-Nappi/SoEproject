@@ -18,6 +18,7 @@ public class GrassKeyboard extends Keyboard {
     public void keyPressed(KeyEvent e) {
         try{
             keys[e.getKeyCode()] = true;
+            System.out.println("pyroduck.input.GrassKeyboard.keyPressed(): "+e);
         }catch(ArrayIndexOutOfBoundsException ex){}
          if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){
             try {

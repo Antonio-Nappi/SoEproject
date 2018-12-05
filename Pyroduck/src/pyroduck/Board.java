@@ -130,7 +130,7 @@ public class Board extends Observable implements Observer {
     public void changeLevel(int numlevel) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         screenToShow = 2;
         mobs = new ArrayList<>();
-        bombs.clear();
+        bombs = new ArrayList<>();
         try {
             int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
@@ -331,7 +331,6 @@ public class Board extends Observable implements Observer {
      */
     public void endGame() {
         screenToShow = 1;
-        setPause(true);
     }
     
     /*
@@ -352,7 +351,6 @@ public class Board extends Observable implements Observer {
                 break;
         }
     }
-	
 
     /*
     |--------------------------------------------------------------------------
