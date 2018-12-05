@@ -53,7 +53,7 @@ public class Game extends Canvas {
         timer = new Timer();
         screen = new Screen();
         board = new Board(screen);
-        lives = 1;
+        lives = 3;
         points = 0;
     }
     
