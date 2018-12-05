@@ -19,7 +19,6 @@ public class GrassKeyboard extends Keyboard {
         try{
             keys[e.getKeyCode()] = true;
         }catch(ArrayIndexOutOfBoundsException ex){}
-        
          if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){
             try {
                 Game.getInstance().pause();           
@@ -29,12 +28,10 @@ public class GrassKeyboard extends Keyboard {
                 Logger.getLogger(IceKeyboard.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
          else if(e.getKeyCode() == KeyEvent.VK_P && isPaused==true){
             try {
                 Game.getInstance().resume();              
                 isPaused=false;
-
             } catch (PyroduckException ex) {
                 Logger.getLogger(IceKeyboard.class.getName()).log(Level.SEVERE, null, ex);
             }

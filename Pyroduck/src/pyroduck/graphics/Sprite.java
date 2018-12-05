@@ -7,7 +7,8 @@ package pyroduck.graphics;
 public class Sprite {
 
     public final int SIZE = 32;
-    private int x, y;
+    private final int x;
+    private final int y;
     public int[] pixels;
     private final SpriteSheet sheet;
 
@@ -32,7 +33,8 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     public static Sprite player_up = new Sprite(0, 2, SpriteSheet.tiles);
-    public static Sprite player_down = new Sprite(0, 1, SpriteSheet.tiles);
+    //public static Sprite player_down = new Sprite(0, 1, SpriteSheet.tiles);
+    public static Sprite player_down = new Sprite(15, 2, SpriteSheet.tiles);
     public static Sprite player_left = new Sprite(0, 3, SpriteSheet.tiles);
     public static Sprite player_right = new Sprite(0, 4, SpriteSheet.tiles);
 
@@ -53,8 +55,8 @@ public class Sprite {
     public static Sprite player_dead3 = new Sprite(3, 4, SpriteSheet.tiles);
     
     
-    public static Sprite player_upi = new Sprite(0, 5, SpriteSheet.tiles);
-    public static Sprite player_downi = new Sprite(0, 6, SpriteSheet.tiles);
+    public static Sprite player_upi = new Sprite(0, 6, SpriteSheet.tiles);
+    public static Sprite player_downi = new Sprite(0, 5, SpriteSheet.tiles);
     public static Sprite player_lefti = new Sprite(0, 7, SpriteSheet.tiles);
     public static Sprite player_righti = new Sprite(0, 8, SpriteSheet.tiles);
 

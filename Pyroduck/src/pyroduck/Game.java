@@ -33,6 +33,7 @@ public class Game extends Canvas {
     protected static boolean reverse=false;
     protected static int rev = 0;
     protected static int lives;
+    protected static int points;
     protected static boolean pause=false;
     private Keyboard input;
     private final Board board;
@@ -40,8 +41,8 @@ public class Game extends Canvas {
     private static Game instance = null;
     private Timer timer;
     //this will be used to render the game, each render is a calculated image saved here
-    private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-    private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); 
+    private final BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); 
     //Raster è una classe che rappresenta una matrice di pixel. Le immagini contenute nel buffer vengono estratte, e 
     //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
     protected int selected = 0; 
@@ -51,6 +52,7 @@ public class Game extends Canvas {
         screen = new Screen();
         board = new Board(screen);
         lives = 3;
+        points = 0;
     }
     
     public static Game getInstance() throws PyroduckException{
@@ -112,15 +114,14 @@ public class Game extends Canvas {
             this.input = getBoard().getInput();
             addKeyListener(input);
         }
-        if(lives != board.getLives()){
+        if(lives != board.getLives())
             board.setLives(lives);
-        }
-        if (!reverse){
-            input.update();  
-        }
-        else {
-            input.updateReverse();  
-        }     
+        if(points != board.getPoints())
+            board.setPoints(points);
+        if (!reverse)
+            input.update();
+        else 
+            input.updateReverse();
     }
 
     public void start() {
@@ -153,7 +154,10 @@ public class Game extends Canvas {
     public static void addLives(int i){
         lives += i;
     }
-	
+    
+    public static void addPoints(int i){
+        points += i;
+    }
     /*
     |--------------------------------------------------------------------------
     | Getters & Setters
@@ -187,10 +191,11 @@ public class Game extends Canvas {
         return lives;
     }
     
-
+    public static int getPoints() {
+        return points;
+    }
 
     public void setSelected(int selected) {
-        
         this.selected = selected;
         if(selected==1){
             playerSpeed=1;

@@ -2,32 +2,22 @@ package pyroduck.entities.tile.destroyable;
 
 import pyroduck.graphics.Sprite;
 
+/**
+ *
+ * @author Montefusco
+ */
 public class IntactState extends DestroyableIceTile {
     
     public IntactState(int x, int y, Sprite sprite) {
         super(x, y, sprite);
     }
 
-    @Override
-    public void nextState(ContextDestroyable context){
-        System.out.println("Chiamata di intact");
-        context.setState(new BreakingState((int)x, (int)y, Sprite.icebroken_2));
-    }
 
     @Override
-    public boolean getChange() {
-        return change;
+    public DestroyableIceTile nextState(ContextDestroyable context){
+        DestroyableIceTile newState = new BreakingState((int)x, (int)y, Sprite.icebroken_2);
+        context.setState(newState);
+        return newState;
     }
-    
-    @Override
-    public void setChange(boolean change){
-        this.change = change;
-    }
-    
-//    @Override
-//    public boolean collide(Entity e) {
-//        if(e instanceof BreakingState)
-//            change=true;
-//        return false;
-//    }
+
 }

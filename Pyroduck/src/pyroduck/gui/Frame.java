@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class Frame extends JFrame {
     public GamePanel gamepane;
-    private JPanel containerpane;
+    private final JPanel containerpane;
     public static final String TITLE = "Pyroduck";
 
     public Frame() throws IOException {

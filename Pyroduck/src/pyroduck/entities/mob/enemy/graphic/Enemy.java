@@ -184,7 +184,7 @@ public abstract class Enemy extends Mob {
     @Override
     public void kill() {
         alive = false;
-        board.addPoints(points);
+        board.setPoints(points);
     }
 
     /**

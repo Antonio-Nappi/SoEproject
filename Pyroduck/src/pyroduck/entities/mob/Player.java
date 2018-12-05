@@ -18,7 +18,6 @@ import pyroduck.entities.tile.powerup.PowerupNotSlip;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.GrassKeyboard;
 import pyroduck.input.Keyboard;
 import pyroduck.level.Coordinates;
 import pyroduck.level.FileLevel;
@@ -30,17 +29,16 @@ import pyroduck.level.FileLevel;
  * @author Montefusco, Nappi
  * @version 1.0
  */
-public class Player extends Mob {
+public class Player extends Mob{
 
     protected Keyboard input;
     protected List<Bomb> bombs = null;
     protected int timeBetweenPutBombs = 0;
     public static List<Powerup> powerups = new ArrayList<Powerup>();
-    private int lives = 3;
-    private ContextDestroyable con;
-    private boolean done = false;
+    protected int lives = 3;
+    protected boolean done = false;
     public static int realWidth = 32, realHeight = 32;
-    
+
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
@@ -51,7 +49,6 @@ public class Player extends Mob {
         super(x, y, board);
         bombs = board.getBombs();
         input = board.getInput();
-        con = new ContextDestroyable();
         addObserver(board);
     }
 
@@ -86,6 +83,9 @@ public class Player extends Mob {
 
         calculateMove();
         detectPlaceBomb();
+
+        updateTimerBreaker();
+
     }
 
     /**
@@ -125,7 +125,7 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     /**
-     * 
+     *
      */
     @Override
     protected void calculateMove() {
@@ -143,10 +143,10 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      * @param x
      * @param y
-     * @return 
+     * @return
      */
     @Override
     public boolean canMove(double x, double y) {
@@ -154,27 +154,27 @@ public class Player extends Mob {
             double xt = ((this.x + x) + c % 2 * 24 +2) / Game.TILES_SIZE; //
             double yt = ((this.y + y) + c / 2 * 15 - 16) / Game.TILES_SIZE; // the multiply factor control bottom collision and the additional factor control top collision
             Entity a = board.getEntity(xt, yt, this);
-            double diffX = a.getX() - Coordinates.tileToPixel(getX());
-            double diffY = a.getY() - Coordinates.tileToPixel(getY());
+            DestroyableIceTile newState;
+            ContextDestroyable con = board.getContextState();
             if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
                 con.setState((DestroyableIceTile)a);
-                if((!(diffX >= -26 && diffX < 30 && diffY >= 1 && diffY <= 47)) && con.getState().getChange()) { // differences to see if the player has moved out of the bomb, tested values
-                    con.getState().nextState(con);
-                    con.getState().setChange(false);
+                if(((DestroyableIceTile) a).getTimerBreak()<=0) { // differences to see if the player has moved out of the bomb, tested values
+                    ((DestroyableIceTile) a).setTimerBreak(80);
+                    newState = con.getState().nextState(con);
+                    board.getDestroyableIceTile().add(newState);
                     board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
                 }
             }
-            if(a.collide(this)){
+            if(a.collide(this))
                 return false;
-            }
         }
         return true;
     }
 
     /**
-     * 
+     *
      * @param xa
-     * @param ya 
+     * @param ya
      */
     @Override
     public void move(double xa, double ya) {
@@ -200,12 +200,11 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     /**
-     * 
+     *
      */
     private void chooseSprite() {
         try {
             if( Game.getInstance().getSelected() == 0){
-                if(input instanceof GrassKeyboard){
                     switch(direction) {
                         case 0:
                             sprite = Sprite.player_up;
@@ -238,43 +237,9 @@ public class Player extends Mob {
                             }
                             break;
                     }
-                }
-                else{
-                    switch(direction) {
-                        case 0:
-                            sprite = Sprite.player_up;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_1, animate, 30);
-                            }
-                            break;
-                        case 1:
-                            sprite = Sprite.player_right;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
-                            }
-                            break;
-                        case 2:
-                            sprite = Sprite.player_down;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_1, animate, 30);
-                            }
-                            break;
-                        case 3:
-                            sprite = Sprite.player_left;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_1, animate, 30);
-                            }
-                            break;
-                        default:
-                            sprite = Sprite.player_right;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
-                            }
-                            break;
-                    }
-                }
+
+
             }else{
-                if(input instanceof GrassKeyboard){
                     switch(direction) {
                         case 0:
                             sprite = Sprite.player_upi;
@@ -308,50 +273,16 @@ public class Player extends Mob {
                             break;
                     }
                 }
-                else{
-                    switch(direction) {
-                        case 0:
-                            sprite = Sprite.player_upi;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_1i, animate, 30);
-                            }
-                            break;
-                        case 1:
-                            sprite = Sprite.player_righti;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_1i, animate, 30);
-                            }
-                            break;
-                        case 2:
-                            sprite = Sprite.player_downi;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_1i, animate, 30);
-                            }
-                            break;
-                        case 3:
-                            sprite = Sprite.player_lefti;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_1i, animate, 30);
-                            }
-                            break;
-                        default:
-                            sprite = Sprite.player_righti;
-                            if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_1i, animate, 30);
-                            }
-                            break;
-                    }
-                }
-            }
+
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
-     * 
+     *
      * @param e
-     * @return 
+     * @return
      */
     @Override
     public boolean collide(Entity e) {
@@ -369,7 +300,7 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      */
     private void detectPlaceBomb() {
         if(input.space && Game.getBombRate() > 0 && timeBetweenPutBombs < 0) {
@@ -382,9 +313,9 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      * @param x
-     * @param y 
+     * @param y
      */
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y, board);
@@ -392,9 +323,9 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      */
-    private void clearBombs() {
+    protected void clearBombs() {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
         while(bs.hasNext()) {
@@ -407,7 +338,7 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      */
     public void correctKeyboard(){
         if(board.getPlayerRight() == 1){
@@ -422,8 +353,8 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     /**
-     * 
-     * @param p 
+     *
+     * @param p
      */
     public void addPowerup(Powerup p) {
         if(p instanceof PowerupNotSlip){
@@ -442,7 +373,7 @@ public class Player extends Mob {
     |--------------------------------------------------------------------------
      */
     /**
-     * 
+     *
      */
     @Override
     public void kill() {
@@ -459,7 +390,7 @@ public class Player extends Mob {
     }
 
     /**
-     * 
+     *
      */
     @Override
     protected void afterKill() {
@@ -473,5 +404,11 @@ public class Player extends Mob {
                     board.restartLevel();
             }
         }
+    }
+
+    private void updateTimerBreaker(){
+        for(DestroyableIceTile d : board.getDestroyableIceTile())
+            if(d.getTimerBreak()>0)
+                d.setTimerBreak(d.getTimerBreak()-1);
     }
 }

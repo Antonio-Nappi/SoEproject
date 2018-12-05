@@ -19,7 +19,7 @@ public class Darkrai extends Enemy{
      * @param board 
      */
     public Darkrai(int x, int y, Board board){
-        super(x, y, board, Sprite.darkrai_dead, Game.getPlayerSpeed() - 0.1, 200);
+        super(x, y, board, Sprite.darkrai_dead, Game.getPlayerSpeed() - 0.1, 300);
         sprite = Sprite.darkrai_left1;	
         ep = new MediumPower(board.getPlayer(), this);
         direction = ep.calculateDirection();
