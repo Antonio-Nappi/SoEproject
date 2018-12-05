@@ -18,7 +18,6 @@ import pyroduck.entities.tile.powerup.PowerupNotSlip;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.GrassKeyboard;
 import pyroduck.input.Keyboard;
 import pyroduck.level.Coordinates;
 import pyroduck.level.FileLevel;

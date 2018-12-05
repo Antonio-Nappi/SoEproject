@@ -7,7 +7,8 @@ package pyroduck.graphics;
 public class Sprite {
 
     public final int SIZE = 32;
-    private int x, y;
+    private final int x;
+    private final int y;
     public int[] pixels;
     private final SpriteSheet sheet;
 

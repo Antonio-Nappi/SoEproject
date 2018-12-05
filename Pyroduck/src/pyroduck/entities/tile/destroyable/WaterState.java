@@ -6,7 +6,7 @@ import pyroduck.graphics.Sprite;
 
 /**
  *
- * @author
+ * @author Montefusco
  */
 public class WaterState extends DestroyableIceTile{
 
@@ -27,14 +27,5 @@ public class WaterState extends DestroyableIceTile{
     public DestroyableIceTile nextState(ContextDestroyable context){
         return this;
     }
-
-    @Override
-    public boolean getChange() {
-        return change;
-    }
-
-    @Override
-    public void setChange(boolean change){
-        this.change = change;
-    }
+    
 }

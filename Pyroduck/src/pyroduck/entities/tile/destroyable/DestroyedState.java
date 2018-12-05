@@ -2,7 +2,10 @@ package pyroduck.entities.tile.destroyable;
 
 import pyroduck.graphics.Sprite;
 
-
+/**
+ *
+ * @author Montefusco
+ */
 public class DestroyedState extends DestroyableIceTile {
 
     public DestroyedState(int x, int y, Sprite sprite) {
@@ -16,14 +19,5 @@ public class DestroyedState extends DestroyableIceTile {
         context.setState(newState);
         return newState;
     }
-    
-    @Override
-    public boolean getChange() {
-        return change;
-    }
-    
-    @Override
-    public void setChange(boolean change){
-        this.change = change;
-    }    
+  
 }

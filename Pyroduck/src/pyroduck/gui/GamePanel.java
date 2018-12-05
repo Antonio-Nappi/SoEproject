@@ -10,6 +10,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,30 +21,34 @@ public class GamePanel extends JPanel implements Observer {
     private Game game;
     private JLabel livesLabel = new JLabel();
     private JLabel pointsLabel = new JLabel();
+    private JLabel messageLabel = new JLabel();
     private JPanel panel = new JPanel();
-    
+    private Frame frame;
+
 
     public GamePanel(Frame frame) throws IOException {
+        this.frame = frame;
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width-420, Toolkit.getDefaultToolkit().getScreenSize().height-100));
         try {
             game = Game.getInstance();
             add(game);
             game.setVisible(true);
-
+            
             livesLabel.setText("Lives: " + game.getBoard().getLives());
             livesLabel.setForeground(Color.WHITE);
-            livesLabel.setHorizontalAlignment(JLabel.LEFT);
             
             pointsLabel = new JLabel("Points: " + game.getBoard().getPoints());
             pointsLabel.setForeground(Color.WHITE);
-            pointsLabel.setHorizontalAlignment(JLabel.RIGHT);
             
+            messageLabel = new JLabel("     Paused     ");
+            messageLabel.setForeground(Color.black);
             
-            panel.setSize(Toolkit.getDefaultToolkit().getScreenSize().width-420, 60);
             panel.setBackground(Color.black);
             panel.add(livesLabel, 0);
-            panel.add(pointsLabel, 1);
+            panel.add(messageLabel, 1);
+            panel.add(pointsLabel, 2);
+            
             game.getBoard().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
             
@@ -62,29 +67,28 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + game.getBoard().getLives());
         pointsLabel.setText("Points: " + game.getBoard().getPoints());
-        JLabel label1 = new JLabel();
-        label1.setText("Hai perso");
-        Font myFont = new Font("Serif", Font.BOLD, 30);
-        label1.setFont(myFont);
-        JLabel label2 = new JLabel();
-        label2.setText("PAUSED");
         if(game.getBoard().getLives() == 0){
-            livesLabel.setText("Hai perso.");
-            panel.setBackground(Color.RED);
+            messageLabel.setText("Hai perso");
+            JFrame endGame = new EndGame();
+            frame.setVisible(false);
+            endGame.setVisible(true);
             try {
                 Game.getInstance().setVisible(false);
-                this.setBackground(Color.WHITE);
-                this.add(label1);
-            }catch (PyroduckException ex) {
+            } catch (PyroduckException ex) {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if(game.getBoard().isPause() == true){
-            label2.setText("PAUSED");
-            this.setBackground(Color.WHITE);
-            this.add(label2);
+            messageLabel.setForeground(Color.white);
+            livesLabel.setForeground(Color.GRAY);
+            pointsLabel.setForeground(Color.GRAY);
         }
-        if(game.getBoard().isPause() == false)
-            this.remove(label2);
+        if(game.getBoard().isPause() == false){
+            messageLabel.setForeground(Color.black);
+            livesLabel.setForeground(Color.white);
+            pointsLabel.setForeground(Color.white);
+        }
+        
     }
+    
 }
