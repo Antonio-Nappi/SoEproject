@@ -98,10 +98,17 @@ public class Board extends Observable implements Observer {
     }
 
     @SuppressWarnings("static-access")
-    private void resetProperties() {
-        Game.playerSpeed = 1.3;
-        Game.bombRadius = 1;
-        Game.bombRate = 1;
+    public void resetProperties() {
+        if(this.getPlayerRight() == 0){
+            Game.playerSpeed = 1.3;
+            Game.bombRadius = 1;
+            Game.bombRate = 1;
+        }
+        else if(this.getPlayerRight() == 1){
+            Game.playerSpeed = 1;
+            Game.bombRadius = 1;
+            Game.bombRate = 1;
+        }
     }
 
     public void setLives(int lives) {
