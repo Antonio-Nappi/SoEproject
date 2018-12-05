@@ -18,7 +18,7 @@ public class ListPointsSerialize {
     List<PointsSerialize> list;
 
     public ListPointsSerialize() {
-        list = new ArrayList();
+        list = new ArrayList<PointsSerialize>();
     }
     
     public ListPointsSerialize charge() throws FileNotFoundException, IOException, ClassNotFoundException{
