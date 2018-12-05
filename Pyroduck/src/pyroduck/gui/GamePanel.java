@@ -19,7 +19,9 @@ import pyroduck.exceptions.PyroduckException;
 
 public class GamePanel extends JPanel implements Observer {
     private Game game;
-    private JLabel label = new JLabel();
+    private JLabel livesLabel = new JLabel();
+    private JLabel pointsLabel = new JLabel();
+    private JLabel messageLabel = new JLabel();
     private JPanel panel = new JPanel();
     private Frame frame;
 
@@ -33,12 +35,20 @@ public class GamePanel extends JPanel implements Observer {
             add(game);
             game.setVisible(true);
             
-            label.setText("Lives " + game.getBoard().getLives());
-            panel.setBackground(Color.BLACK);
-            panel.setSize(Toolkit.getDefaultToolkit().getScreenSize().width-420, 60);
-            label.setForeground(Color.WHITE);
-            label.setHorizontalTextPosition((int)LEFT_ALIGNMENT);
-            panel.add(label);
+            livesLabel.setText("Lives: " + game.getBoard().getLives());
+            livesLabel.setForeground(Color.WHITE);
+            
+            pointsLabel = new JLabel("Points: " + game.getBoard().getPoints());
+            pointsLabel.setForeground(Color.WHITE);
+            
+            messageLabel = new JLabel("     Paused     ");
+            messageLabel.setForeground(Color.black);
+            
+            panel.setBackground(Color.black);
+            panel.add(livesLabel, 0);
+            panel.add(messageLabel, 1);
+            panel.add(pointsLabel, 2);
+            
             game.getBoard().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
             
@@ -55,37 +65,30 @@ public class GamePanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        
-        label.setText("Lives " + game.getBoard().getLives());
-        JLabel label1 = new JLabel();
-        label1.setText("Hai perso");
-        Font myFont = new Font("Serif", Font.BOLD, 30);
-        label1.setFont(myFont);
-        JLabel label2 = new JLabel();
-        label2.setText("PAUSED");
-        
+        livesLabel.setText("Lives: " + game.getBoard().getLives());
+        pointsLabel.setText("Points: " + game.getBoard().getPoints());
         if(game.getBoard().getLives() == 0){
+            messageLabel.setText("Hai perso");
             JFrame endGame = new EndGame();
-            endGame.setVisible(true);
             frame.setVisible(false);
+            endGame.setVisible(true);
             try {
                 Game.getInstance().setVisible(false);
-                
             } catch (PyroduckException ex) {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
         if(game.getBoard().isPause() == true){
-            label.setText("PAUSED");
-                this.setBackground(Color.WHITE);
-                this.add(label2);
+            messageLabel.setForeground(Color.white);
+            livesLabel.setForeground(Color.GRAY);
+            pointsLabel.setForeground(Color.GRAY);
+        }
+        if(game.getBoard().isPause() == false){
+            messageLabel.setForeground(Color.black);
+            livesLabel.setForeground(Color.white);
+            pointsLabel.setForeground(Color.white);
         }
         
-        if(game.getBoard().isPause() == false){
-            
-                this.remove(label2);
-        }
     }
     
 }
