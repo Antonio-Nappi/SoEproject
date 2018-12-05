@@ -5,12 +5,9 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.io.IOException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
@@ -32,10 +29,6 @@ public class SelectCharacter extends javax.swing.JFrame {
 
      private static AudioPlayer audio;
 
-    static {
-                   JFXPanel fxPanel = new JFXPanel();
-
-    }
     
     /**
      * Creates new form SelectCharacter
@@ -53,15 +46,8 @@ public class SelectCharacter extends javax.swing.JFrame {
         imgSpeed.setText("");
         imgSliding.setText("");
         imgBomb.setText("");
-        try {
-            audio= new AudioPlayer("opening 1.wav");
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(SelectCharacter.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(SelectCharacter.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SelectCharacter.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       audio= AudioPlayer.getAudioPlayer("opening.wav");
+       audio.play();
 
       
     }
@@ -197,6 +183,13 @@ public class SelectCharacter extends javax.swing.JFrame {
     private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
         try {
             Game.getInstance().setSelected(selected);
+            try {
+                audio.stop();
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(SelectCharacter.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(SelectCharacter.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Game.getInstance().getBoard().setPlayer(selected);
             Pyroduck p = new Pyroduck();
             p.main(args);

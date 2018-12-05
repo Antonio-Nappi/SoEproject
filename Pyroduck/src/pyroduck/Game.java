@@ -5,8 +5,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import pyroduck.audio.AudioPlayer;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.input.*;
@@ -40,6 +46,7 @@ public class Game extends Canvas {
     private final Screen screen;
     private static Game instance = null;
     private Timer timer;
+    private static AudioPlayer audio;
     //this will be used to render the game, each render is a calculated image saved here
     private final BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); 
@@ -99,11 +106,21 @@ public class Game extends Canvas {
     }
 
     public void resume(){
+        try {
+            audio.resumeAudio();
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 15);
         board.setPause(false);
     }
     public void pause(){
+        audio.pause();
         timer.cancel();
         board.setPause(true);
     }
@@ -125,6 +142,7 @@ public class Game extends Canvas {
     }
 
     public void start() {
+        audio=AudioPlayer.getAudioPlayer("gametheme.wav");
         this.input = getBoard().getInput();
         addKeyListener(input);
         requestFocus();

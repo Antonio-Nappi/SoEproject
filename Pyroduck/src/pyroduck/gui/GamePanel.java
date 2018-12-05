@@ -10,11 +10,14 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import pyroduck.Game;
+import pyroduck.audio.AudioPlayer;
 import pyroduck.exceptions.PyroduckException;
 
 public class GamePanel extends JPanel implements Observer {
@@ -69,6 +72,7 @@ public class GamePanel extends JPanel implements Observer {
         pointsLabel.setText("Points: " + game.getBoard().getPoints());
         if(game.getBoard().getLives() == 0){
             messageLabel.setText("Hai perso");
+            
             JFrame endGame = new EndGame();
             frame.setVisible(false);
             endGame.setVisible(true);

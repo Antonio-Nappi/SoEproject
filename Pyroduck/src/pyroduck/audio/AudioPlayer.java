@@ -11,24 +11,32 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException; 
 import java.io.File; 
 import java.io.IOException;
-import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.JFXPanel;
 /**
  *
  * @author Acer 5744 i5
  */
-public class AudioPlayer {
+public class  AudioPlayer {
+    
+    static {
+                   JFXPanel fxPanel = new JFXPanel();
+
+    }
+    
     // to store current position 
     private Long currentFrame; 
     private Clip clip; 
       
     // current status of clip 
-   private  String status; 
-      
+    private static String status ; 
     private AudioInputStream audioInputStream; 
     private static String filepath;
+    private static AudioPlayer audio=null;
   
     // constructor to initialize streams and clip 
-    public AudioPlayer(String filepath) throws UnsupportedAudioFileException, LineUnavailableException, IOException { 
+    private AudioPlayer(String filepath) throws UnsupportedAudioFileException, LineUnavailableException, IOException { 
         // create AudioInputStream object 
         this.filepath=filepath;
         audioInputStream =  AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile()); 
@@ -45,6 +53,25 @@ public class AudioPlayer {
     
       
     // Method to play the audio 
+    
+    public static AudioPlayer getAudioPlayer(String filepath){
+        if (audio==null || status==null || status.equals("stop")){
+            try {
+                audio= new AudioPlayer(filepath);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return audio;
+        }
+        
+        else return audio;
+        
+    }
+  
     public void play()  
     { 
         //start the clip 
@@ -96,6 +123,7 @@ public class AudioPlayer {
     public void stop() throws UnsupportedAudioFileException, 
     IOException, LineUnavailableException  
     { 
+        status="stop";
         currentFrame = 0L; 
         clip.stop(); 
         clip.close(); 
@@ -130,8 +158,6 @@ public class AudioPlayer {
         return currentFrame;
     }
 
-   
-
     public Clip getClip() {
         return clip;
     }
@@ -142,16 +168,6 @@ public class AudioPlayer {
 
     public String getStatus() {
         return status;
-    }
-
-   
-
-    public AudioInputStream getAudioInputStream() {
-        return audioInputStream;
-    }
-
-    public void setAudioInputStream(AudioInputStream audioInputStream) {
-        this.audioInputStream = audioInputStream;
     }
 
    
