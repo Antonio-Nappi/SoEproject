@@ -7,7 +7,10 @@ import pyroduck.Game;
 import pyroduck.exceptions.PyroduckException;
 
 public class IceKeyboard extends Keyboard {
-private static IceKeyboard ice = null;
+    
+    private KeyEvent last;
+    private static IceKeyboard ice = null;
+    
     private IceKeyboard(){};
     
     /**
@@ -21,6 +24,8 @@ private static IceKeyboard ice = null;
     public void keyPressed(KeyEvent e) {
         try{
             keys[e.getKeyCode()] = true;
+            if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
+                last = e;
         }catch(ArrayIndexOutOfBoundsException ex){}
         
         if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){
@@ -64,5 +69,8 @@ private static IceKeyboard ice = null;
             ice = new IceKeyboard();
         return ice;
     }
-}    
-
+    
+    public KeyEvent getLast(){
+        return last;
+    }
+}

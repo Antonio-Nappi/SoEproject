@@ -7,7 +7,9 @@ import pyroduck.Game;
 import pyroduck.exceptions.PyroduckException;
 
 public class GrassKeyboard extends Keyboard {
+    
     private static GrassKeyboard grass= null;
+    private KeyEvent last;
 
     private GrassKeyboard(){}
     
@@ -18,8 +20,9 @@ public class GrassKeyboard extends Keyboard {
     public void keyPressed(KeyEvent e) {
         try{
             keys[e.getKeyCode()] = true;
+            last = e;
         }catch(ArrayIndexOutOfBoundsException ex){}
-         if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){
+        if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){
             try {
                 Game.getInstance().pause();           
                 isPaused=true;
@@ -28,7 +31,7 @@ public class GrassKeyboard extends Keyboard {
             }
         }
          else if(e.getKeyCode() == KeyEvent.VK_P && isPaused==true){
-            try {
+            try {  
                 Game.getInstance().resume();              
                 isPaused=false;
             } catch (PyroduckException ex) {
@@ -43,9 +46,14 @@ public class GrassKeyboard extends Keyboard {
             keys[e.getKeyCode()] = false;                
         }catch(ArrayIndexOutOfBoundsException ex){}
     }
-   public static GrassKeyboard getInstance(){
-       if(grass == null)
-           grass = new GrassKeyboard();
-       return grass;
-   }
+    
+    public static GrassKeyboard getInstance(){
+        if(grass == null)
+            grass = new GrassKeyboard();
+        return grass;
+    }  
+   
+    public KeyEvent getLast(){
+        return last;
+    }
 }
