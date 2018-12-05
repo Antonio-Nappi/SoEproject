@@ -36,6 +36,6 @@ public class MalusSlow extends Powerup {
     public void setValues() {
         active = true;
         if(Game.getPlayerSpeed() >= 1.3)
-            Game.decreasePlayerSpeed(0.4);
+            Game.decreasePlayerSpeed(0.3);
     }
 }
