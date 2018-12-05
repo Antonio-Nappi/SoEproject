@@ -331,6 +331,7 @@ public class Board extends Observable implements Observer {
      */
     public void endGame() {
         screenToShow = 1;
+        setPause(true);
     }
     
     /*

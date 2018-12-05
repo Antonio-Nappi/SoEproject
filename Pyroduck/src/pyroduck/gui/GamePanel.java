@@ -42,6 +42,8 @@ public class GamePanel extends JPanel implements Observer {
             pointsLabel.setForeground(Color.WHITE);
             
             messageLabel = new JLabel("     Paused     ");
+            Font font = new Font(Font.DIALOG, Font.BOLD, 24);
+            messageLabel.setFont(font);
             messageLabel.setForeground(Color.black);
             
             panel.setBackground(Color.black);
@@ -70,13 +72,13 @@ public class GamePanel extends JPanel implements Observer {
         if(game.getBoard().getLives() == 0){
             messageLabel.setText("Hai perso");
             JFrame endGame = new EndGame();
-            frame.setVisible(false);
             endGame.setVisible(true);
-            try {
-                Game.getInstance().setVisible(false);
-            } catch (PyroduckException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            frame.dispose();
+//            try {
+//                Game.getInstance().setVisible(false);
+//            } catch (PyroduckException ex) {
+//                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
         if(game.getBoard().isPause() == true){
             messageLabel.setForeground(Color.white);
@@ -88,7 +90,5 @@ public class GamePanel extends JPanel implements Observer {
             livesLabel.setForeground(Color.white);
             pointsLabel.setForeground(Color.white);
         }
-        
     }
-    
 }
