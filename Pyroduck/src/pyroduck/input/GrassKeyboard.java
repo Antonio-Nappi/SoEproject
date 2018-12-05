@@ -23,7 +23,6 @@ public class GrassKeyboard extends Keyboard {
             try {
                 Game.getInstance().pause();           
                 isPaused=true;
-
             } catch (PyroduckException ex) {
                 Logger.getLogger(IceKeyboard.class.getName()).log(Level.SEVERE, null, ex);
             }
