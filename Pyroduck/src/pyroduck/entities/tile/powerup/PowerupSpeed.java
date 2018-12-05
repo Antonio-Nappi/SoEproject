@@ -17,19 +17,6 @@ public class PowerupSpeed extends Powerup {
     }
 
     @Override
-    public boolean collide(Entity e) {
-        if(e instanceof DirectionalExplosion)
-            destroyed = true;
-        if(e instanceof Player) {
-            ((Player) e).addPowerup(this);
-            remove();
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
     public void setValues() {
         active = true;
         if(Game.getPlayerSpeed()<= 2.3)

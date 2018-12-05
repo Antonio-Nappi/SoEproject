@@ -8,8 +8,6 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,10 +22,12 @@ public class GamePanel extends JPanel implements Observer {
     private JLabel messageLabel = new JLabel();
     private JPanel panel = new JPanel();
     private Frame frame;
+    private JFrame endGame;
 
 
     public GamePanel(Frame frame) throws IOException {
         this.frame = frame;
+        endGame = null;
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width-420, Toolkit.getDefaultToolkit().getScreenSize().height-100));
         try {
@@ -69,16 +69,18 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + game.getBoard().getLives());
         pointsLabel.setText("Points: " + game.getBoard().getPoints());
-        if(game.getBoard().getLives() == 0){
-            messageLabel.setText("Hai perso");
-            JFrame endGame = new EndGame();
-            endGame.setVisible(true);
-            frame.dispose();
-//            try {
-//                Game.getInstance().setVisible(false);
-//            } catch (PyroduckException ex) {
-//                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+        if(game.getBoard().getLives() <= 0){
+            if(endGame == null){
+                endGame = new EndGame();
+                endGame.setVisible(true);
+                frame.setVisible(false);
+                game.pause();
+                game.restartGame();
+            }
+        }
+        else{
+            endGame = null;
+            frame.setVisible(true);
         }
         if(game.getBoard().isPause() == true){
             messageLabel.setForeground(Color.white);

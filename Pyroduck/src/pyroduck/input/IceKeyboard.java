@@ -23,21 +23,18 @@ private static IceKeyboard ice = null;
             keys[e.getKeyCode()] = true;
         }catch(ArrayIndexOutOfBoundsException ex){}
         
-         if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){
+        if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){
             try {
                 Game.getInstance().pause();           
                 isPaused=true;
-
             } catch (PyroduckException ex) {
                 Logger.getLogger(IceKeyboard.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-         else if(e.getKeyCode() == KeyEvent.VK_P && isPaused==true){
+        else if(e.getKeyCode() == KeyEvent.VK_P && isPaused==true){
             try {
                 Game.getInstance().resume();              
                 isPaused=false;
-
             } catch (PyroduckException ex) {
                 Logger.getLogger(IceKeyboard.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -51,7 +48,7 @@ private static IceKeyboard ice = null;
             keys[e.getKeyCode()] = false;
             else{
                 try {
-                    Thread.sleep(240);
+                    Thread.sleep(300);
                     keys[e.getKeyCode()] = false;
                 } catch (InterruptedException ex) {
                     Logger.getLogger(IceKeyboard.class.getName()).log(Level.SEVERE, null, ex);
