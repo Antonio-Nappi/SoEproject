@@ -8,12 +8,15 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import pyroduck.Game;
+import pyroduck.audio.AudioPlayer;
 import pyroduck.exceptions.PyroduckException;
+import pyroduck.input.*;
 
 public class GamePanel extends JPanel implements Observer {
     private Game game;
@@ -69,12 +72,28 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + game.getBoard().getLives());
         pointsLabel.setText("Points: " + game.getBoard().getPoints());
+
         if(game.getBoard().getLives() <= 0){
             if(endGame == null){
                 endGame = new EndGame();
                 endGame.setVisible(true);
                 frame.setVisible(false);
                 game.pause();
+                System.out.println("pyroduck.gui.GamePanel.update()" + IceKeyboard.getInstance().getLast());
+                try{
+                    if(IceKeyboard.getInstance().getLast() != null)
+                        IceKeyboard.getInstance().keyReleased(IceKeyboard.getInstance().getLast());
+                }catch(NullPointerException nul){
+                    if(GrassKeyboard.getInstance().getLast() != null)
+                        GrassKeyboard.getInstance().keyReleased(GrassKeyboard.getInstance().getLast());
+                }
+                try{
+                    if(GrassKeyboard.getInstance().getLast() != null)
+                        GrassKeyboard.getInstance().keyReleased(GrassKeyboard.getInstance().getLast());
+                }catch(NullPointerException nul){
+                    if(IceKeyboard.getInstance().getLast() != null)
+                        IceKeyboard.getInstance().keyReleased(IceKeyboard.getInstance().getLast());
+                }
                 game.restartGame();
             }
         }

@@ -9,8 +9,8 @@ import java.awt.event.KeyListener;
  */
 public abstract class Keyboard implements KeyListener{
     
-     protected boolean[] keys = new boolean[256];
-     public boolean up, down, left, right, space,isPaused=false;
+    protected boolean[] keys = new boolean[256];
+    public boolean up, down, left, right, space,isPaused=false;
       
     /**
      * Setta quale comando è stato premuto.
@@ -22,12 +22,12 @@ public abstract class Keyboard implements KeyListener{
         right = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
         space = keys[KeyEvent.VK_SPACE] || keys[KeyEvent.VK_X];
     }
-        public void updateReverse() {
+    
+    public void updateReverse() {
         down = keys[KeyEvent.VK_UP] || keys[KeyEvent.VK_W];
         up = keys[KeyEvent.VK_DOWN] || keys[KeyEvent.VK_S];
         right = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
         left = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
         space = keys[KeyEvent.VK_SPACE] || keys[KeyEvent.VK_X];
-
     }
 }
