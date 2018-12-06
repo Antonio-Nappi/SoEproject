@@ -155,7 +155,7 @@ public class Board extends Observable implements Observer {
             }
             StringTokenizer tokens = new StringTokenizer(data); 
             tokens.nextToken();
-            world = tokens.nextToken();     
+            world = tokens.nextToken();
             input = getRightKeyboard();
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path, this));
@@ -446,11 +446,15 @@ public class Board extends Observable implements Observer {
 
     private Keyboard getRightKeyboard() {
         if(player == 1){
-            return GrassKeyboard.getInstance();
+            Keyboard.getInstance().setIce(false);
+            return Keyboard.getInstance();
         }
-        if(world.equals("G"))
-            return GrassKeyboard.getInstance();
-        return IceKeyboard.getInstance();
+        if(world.equals("G")){
+            Keyboard.getInstance().setIce(false);
+            return Keyboard.getInstance();
+        }
+        Keyboard.getInstance().setIce(true);
+        return Keyboard.getInstance();
     }
 
     @Override
@@ -476,7 +480,8 @@ public class Board extends Observable implements Observer {
     }
 
     public void setInput() {
-        input = GrassKeyboard.getInstance();
+        Keyboard.getInstance().setIce(false);
+        input = Keyboard.getInstance();
     }
     
     public void setPlayer(int p){

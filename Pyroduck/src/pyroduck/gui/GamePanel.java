@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import pyroduck.Game;
-import pyroduck.audio.AudioPlayer;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.input.*;
 
@@ -79,11 +78,8 @@ public class GamePanel extends JPanel implements Observer {
                 endGame.setVisible(true);
                 frame.setVisible(false);
                 game.pause();
-                System.out.println("pyroduck.gui.GamePanel.update()" + IceKeyboard.getInstance().getLast());
-                if(IceKeyboard.getInstance().getLast() != null  && IceKeyboard.getInstance() != null)
-                    IceKeyboard.getInstance().keyReleased(IceKeyboard.getInstance().getLast());
-                if(GrassKeyboard.getInstance().getLast() != null && GrassKeyboard.getInstance() != null)
-                    GrassKeyboard.getInstance().keyReleased(GrassKeyboard.getInstance().getLast());
+                if(Keyboard.getInstance().getLast() != null)
+                    Keyboard.getInstance().keyReleased(Keyboard.getInstance().getLast());
                 game.restartGame();
             }
         }
