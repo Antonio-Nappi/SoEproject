@@ -338,7 +338,6 @@ public class Player extends Mob{
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y, board);
         board.addBomb(b);
-        System.out.println("Bomba piazzata");
     }
 
     /**

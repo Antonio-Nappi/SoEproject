@@ -50,7 +50,7 @@ public class IceKeyboard extends Keyboard {
     public void keyReleased(KeyEvent e) {
         try{
             if(e.getKeyCode() == KeyEvent.VK_SPACE||e.getKeyCode() == KeyEvent.VK_X)
-            keys[e.getKeyCode()] = false;
+                keys[e.getKeyCode()] = false;
             else{
                 try {
                     Thread.sleep(300);

@@ -80,20 +80,10 @@ public class GamePanel extends JPanel implements Observer {
                 frame.setVisible(false);
                 game.pause();
                 System.out.println("pyroduck.gui.GamePanel.update()" + IceKeyboard.getInstance().getLast());
-                try{
-                    if(IceKeyboard.getInstance().getLast() != null)
-                        IceKeyboard.getInstance().keyReleased(IceKeyboard.getInstance().getLast());
-                }catch(NullPointerException nul){
-                    if(GrassKeyboard.getInstance().getLast() != null)
-                        GrassKeyboard.getInstance().keyReleased(GrassKeyboard.getInstance().getLast());
-                }
-                try{
-                    if(GrassKeyboard.getInstance().getLast() != null)
-                        GrassKeyboard.getInstance().keyReleased(GrassKeyboard.getInstance().getLast());
-                }catch(NullPointerException nul){
-                    if(IceKeyboard.getInstance().getLast() != null)
-                        IceKeyboard.getInstance().keyReleased(IceKeyboard.getInstance().getLast());
-                }
+                if(IceKeyboard.getInstance().getLast() != null  && IceKeyboard.getInstance() != null)
+                    IceKeyboard.getInstance().keyReleased(IceKeyboard.getInstance().getLast());
+                if(GrassKeyboard.getInstance().getLast() != null && GrassKeyboard.getInstance() != null)
+                    GrassKeyboard.getInstance().keyReleased(GrassKeyboard.getInstance().getLast());
                 game.restartGame();
             }
         }

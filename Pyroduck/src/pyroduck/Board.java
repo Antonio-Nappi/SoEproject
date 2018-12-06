@@ -164,10 +164,8 @@ public class Board extends Observable implements Observer {
             else{
                 this.clevel = new ContextLevel(new IceStrategy(path, this));
                 entities = clevel.executeStrategy(this);
+                destroyableIceTiles = createDestroyableIceTile();
             }
-            
-            destroyableIceTiles = createDestroyableIceTile();
-            System.out.println(input);
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
