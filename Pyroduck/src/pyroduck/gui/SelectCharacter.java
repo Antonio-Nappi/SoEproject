@@ -211,8 +211,8 @@ public class SelectCharacter extends javax.swing.JFrame {
         }
         else{
             imageLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Psyduck.png"));
-            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
-            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
+            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
+            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
             imgBomb.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
             selected=0;
         }
@@ -229,8 +229,8 @@ public class SelectCharacter extends javax.swing.JFrame {
         else{
             imageLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Psyduck.png"));
             selected=0;
-            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
-            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
+            imgSpeed.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
+            imgSliding.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\0.png"));
             imgBomb.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\50.png"));
         }
     }//GEN-LAST:event_NextActionPerformed
