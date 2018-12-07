@@ -110,6 +110,7 @@ public class Board extends Observable implements Observer {
             Game.bombRadius = 1;
             Game.bombRate = 1;
         }
+        Game.reverse=false;
     }
 
     public void setLives(int lives) {
@@ -155,7 +156,7 @@ public class Board extends Observable implements Observer {
             }
             StringTokenizer tokens = new StringTokenizer(data); 
             tokens.nextToken();
-            world = tokens.nextToken();     
+            world = tokens.nextToken();
             input = getRightKeyboard();
             if(world.equals("G")){
                 this.clevel = new ContextLevel(new GrassStrategy(path, this));
@@ -164,10 +165,8 @@ public class Board extends Observable implements Observer {
             else{
                 this.clevel = new ContextLevel(new IceStrategy(path, this));
                 entities = clevel.executeStrategy(this);
+                destroyableIceTiles = createDestroyableIceTile();
             }
-            
-            destroyableIceTiles = createDestroyableIceTile();
-            System.out.println(input);
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
@@ -448,11 +447,15 @@ public class Board extends Observable implements Observer {
 
     private Keyboard getRightKeyboard() {
         if(player == 1){
-            return GrassKeyboard.getInstance();
+            Keyboard.getInstance().setIce(false);
+            return Keyboard.getInstance();
         }
-        if(world.equals("G"))
-            return GrassKeyboard.getInstance();
-        return IceKeyboard.getInstance();
+        if(world.equals("G")){
+            Keyboard.getInstance().setIce(false);
+            return Keyboard.getInstance();
+        }
+        Keyboard.getInstance().setIce(true);
+        return Keyboard.getInstance();
     }
 
     @Override
@@ -478,7 +481,8 @@ public class Board extends Observable implements Observer {
     }
 
     public void setInput() {
-        input = GrassKeyboard.getInstance();
+        Keyboard.getInstance().setIce(false);
+        input = Keyboard.getInstance();
     }
     
     public void setPlayer(int p){
