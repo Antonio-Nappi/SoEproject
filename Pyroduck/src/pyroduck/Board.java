@@ -50,10 +50,10 @@ public class Board extends Observable implements Observer {
     private List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
     protected boolean pause=false;
     private static Board instance = null;
-    
+
     private Board() {
         con = new ContextDestroyable();
-        
+
     }
 
     /*
@@ -147,19 +147,14 @@ public class Board extends Observable implements Observer {
             in = new BufferedReader(new FileReader(path));
             data = in.readLine();
             in.close();
-            StringTokenizer tokens = new StringTokenizer(data); 
+            StringTokenizer tokens = new StringTokenizer(data);
             tokens.nextToken();
             world = tokens.nextToken();
             input = getRightKeyboard();
-            if(world.equals("G")){
-                clevel = new ContextLevel(new GrassStrategy(path));
-                entities = clevel.executeStrategy(); 
-            }
-            else{
-                clevel = new ContextLevel(new IceStrategy(path));
-                entities = clevel.executeStrategy();
+            clevel = new ContextLevel(new FileLevel(path));
+            entities = clevel.executeStrategy();
+            if(Keyboard.getInstance().isIce())
                 destroyableIceTiles = createDestroyableIceTile();
-            }
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
@@ -171,14 +166,14 @@ public class Board extends Observable implements Observer {
         }
     }
 
-  
+
 
     /*
     |--------------------------------------------------------------------------
     | Detections
     |--------------------------------------------------------------------------
     */
-    
+
     /**
      * Return a boolean that say if there is enemies alive in the map or not.
      * @return true if there is not enemies alive in the map, false otherwise.
@@ -337,7 +332,7 @@ public class Board extends Observable implements Observer {
     public void endGame() {
         screenToShow = 1;
     }
-    
+
     /*
     |--------------------------------------------------------------------------
     | Screens
@@ -404,11 +399,11 @@ public class Board extends Observable implements Observer {
         while(itr.hasNext())
             itr.next().render(screen);
     }
-    
+
     public List<DestroyableIceTile> createDestroyableIceTile(){
         for(Entity e : entities){
             if (e instanceof DestroyableIceTile)
-                destroyableIceTiles.add((DestroyableIceTile) e);       
+                destroyableIceTiles.add((DestroyableIceTile) e);
         }
         return destroyableIceTiles;
     }
@@ -457,7 +452,7 @@ public class Board extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        
+
         Player pl = (Player)o;
         if(pl.isAlive()){
             Player p = getPlayer();
@@ -468,8 +463,9 @@ public class Board extends Observable implements Observer {
                 if(enemyPower.isPlayerReferenceUpdatable()){
                     enemyPower.updateReferencePlayer(p);
                 }
-                    
+
             }
+            ((SuperPlayer)p).setGraphicalExtension((SuperPlayer) p);
         }
         else {      //if is called by kill notify this to Game
             setChanged();
@@ -481,11 +477,11 @@ public class Board extends Observable implements Observer {
         Keyboard.getInstance().setIce(false);
         input = Keyboard.getInstance();
     }
-    
+
     public void setPlayer(int p){
         player = p;
     }
-    
+
     public int getPlayerRight(){
         return player;
     }
@@ -493,11 +489,11 @@ public class Board extends Observable implements Observer {
     public int getPoints() {
         return points;
     }
-    
+
     public ContextDestroyable getContextState(){
         return con;
     }
-    
+
     public List<DestroyableIceTile> getDestroyableIceTile(){
         return destroyableIceTiles;
     }
@@ -520,7 +516,6 @@ public class Board extends Observable implements Observer {
             instance = new Board();
         }
         return instance;
-    
     }
 
     public void resetPoints() {

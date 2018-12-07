@@ -69,8 +69,9 @@ public class LayeredEntity extends Entity {
     }
     
     public void addBeforeTop(Entity e) {
-		entities.add(entities.size() - 1, e);
-	}
+	entities.add(entities.size() - 1, e);
+    }
+    
 
     /**
      * Checks if the top entity collides with the one passed as a parameter.
