@@ -1,8 +1,5 @@
 package pyroduck.entities.tile.powerup;
 
-import pyroduck.bomb.DirectionalExplosion;
-import pyroduck.entities.Entity;
-import pyroduck.entities.mob.Player;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -15,7 +12,6 @@ public class PowerupNotSlip extends Powerup {
         super(x, y, sprite);
     }
 
-    
     @Override
     public void setValues() {}    
 }

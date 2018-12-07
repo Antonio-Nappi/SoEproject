@@ -59,7 +59,9 @@ public class Game extends Canvas {
     private Game() throws PyroduckException {
         timer = new Timer();
         screen = new Screen();
-        board = new Board(screen);
+        board = Board.getInstance();
+        board.changeLevel(1);
+        board.setScreen(screen);
         lives = 3;
         points = 0;
     }
@@ -132,8 +134,8 @@ public class Game extends Canvas {
     
     private void update(){   
         board.update();
-        if(input!= getBoard().getInput()){
-            this.input = getBoard().getInput();
+        if(input!= Board.getInstance().getInput()){
+            this.input = Board.getInstance().getInput();
             addKeyListener(input);
         }
         if(lives != board.getLives())
@@ -148,7 +150,7 @@ public class Game extends Canvas {
 
     public void start() {
         audio=AudioPlayer.getAudioPlayer("gametheme.wav");
-        this.input = getBoard().getInput();
+        this.input =Board.getInstance().getInput();
         addKeyListener(input);
         requestFocus();
         timer.scheduleAtFixedRate(new ScheduleTask(), 1, 15);
@@ -206,11 +208,7 @@ public class Game extends Canvas {
     public int getSelected() {
         return selected;
     }
-
-    public Board getBoard() {
-        return board;
-    }
-
+    
     public static int getLives() {
         return lives;
     }

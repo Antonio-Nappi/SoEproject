@@ -39,7 +39,6 @@ public class SpriteSheet {
             int h = image.getHeight();
             image.getRGB(0, 0, w, h, pixels, 0, w);  // getRGB write the information about pixels of the image into "pixels" passed as parameter
         } catch (IOException e) {
-            e.printStackTrace();
             System.exit(0);
         }
     }

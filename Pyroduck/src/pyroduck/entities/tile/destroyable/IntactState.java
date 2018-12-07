@@ -19,5 +19,4 @@ public class IntactState extends DestroyableIceTile {
         context.setState(newState);
         return newState;
     }
-
 }

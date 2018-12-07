@@ -34,8 +34,8 @@ public abstract class Enemy extends Mob {
      * @param speed speed of the enemy.
      * @param points point to receve when the enemy will die.
      */
-    public Enemy(int x, int y, Board board, Sprite dead, double speed, int points) {
-        super(x, y, board);
+    public Enemy(int x, int y, Sprite dead, double speed, int points) {
+        super(x, y);
         this.points = points;
         this.speed = speed;
         MAX_STEPS = Game.TILES_SIZE / speed;
@@ -155,7 +155,7 @@ public abstract class Enemy extends Mob {
         }
         int xx = Coordinates.pixelToTile(xr) +(int)x;
         int yy = Coordinates.pixelToTile(yr) +(int)y;
-        Entity a = board.getEntity(xx, yy, this); //entity of the position we want to go
+        Entity a = Board.getInstance().getEntity(xx, yy, this); //entity of the position we want to go
         return !a.collide(this);
     }
 
@@ -184,7 +184,7 @@ public abstract class Enemy extends Mob {
     @Override
     public void kill() {
         alive = false;
-        board.setPoints(points);
+        Board.getInstance().setPoints(points);
     }
 
     /**

@@ -1,6 +1,5 @@
 package pyroduck.level;
 
-import pyroduck.Board;
 import pyroduck.entities.Entity;
 
 public class ContextLevel {
@@ -10,8 +9,8 @@ public class ContextLevel {
         this.filelevel = filelevel;
     }
 
-    public Entity[] executeStrategy(Board board){
-        return filelevel.createEntities(board);
+    public Entity[] executeStrategy(){
+        return filelevel.createEntities();
     }
 
     public FileLevel getFilelevel() {

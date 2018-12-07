@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
@@ -109,11 +108,10 @@ public class Screen {
 
     /**
      * Return the horizontal offset related
-     * @param board ...
      * @param player ...
      * @return ...
      */
-    public static int calculateXOffset(Board board, Player player) {
+    public static int calculateXOffset( Player player) {
         if(player == null)
             return 0;
         int temp = xOffset;

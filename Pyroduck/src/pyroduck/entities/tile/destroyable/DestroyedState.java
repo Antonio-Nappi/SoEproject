@@ -19,5 +19,4 @@ public class DestroyedState extends DestroyableIceTile {
         context.setState(newState);
         return newState;
     }
-  
 }

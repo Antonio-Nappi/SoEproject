@@ -2,6 +2,7 @@ package pyroduck.gui;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.exceptions.PyroduckException;
 
@@ -45,7 +46,6 @@ public class EndGame extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(550, 550));
 
         resumeButton.setText("Restart game");
-        resumeButton.setActionCommand("Restart game");
         resumeButton.setMaximumSize(new java.awt.Dimension(180, 90));
         resumeButton.setMinimumSize(new java.awt.Dimension(180, 90));
         resumeButton.setPreferredSize(new java.awt.Dimension(180, 90));
@@ -115,6 +115,7 @@ public class EndGame extends javax.swing.JFrame {
     private void resumeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeButtonActionPerformed
         this.setVisible(false);
         try {
+            Board.getInstance().resetPoints();
             Game.getInstance().resume();
         } catch (PyroduckException ex) {
             Logger.getLogger(EndGame.class.getName()).log(Level.SEVERE, null, ex);

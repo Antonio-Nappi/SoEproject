@@ -96,7 +96,6 @@
         <Component class="javax.swing.JButton" name="resumeButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Restart game"/>
-            <Property name="actionCommand" type="java.lang.String" value="Restart game"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[180, 90]"/>
             </Property>

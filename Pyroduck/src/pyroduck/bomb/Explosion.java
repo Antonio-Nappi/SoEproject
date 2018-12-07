@@ -1,6 +1,5 @@
 package pyroduck.bomb;
 
-import pyroduck.Board;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.graphics.Screen;
@@ -14,7 +13,6 @@ import pyroduck.graphics.Sprite;
 public class Explosion extends Entity {
 
     protected boolean last = false;
-    protected Board board;
     protected Sprite sprite1, sprite2;
 
     /**
@@ -23,13 +21,12 @@ public class Explosion extends Entity {
      * @param y
      * @param direction
      * @param last
-     * @param board 
      */
-    public Explosion(int x, int y, int direction, boolean last, Board board) {
+    public Explosion(int x, int y, int direction, boolean last) {
         this.x = x;
         this.y = y;
         this.last = last;
-        this.board = board;
+
         switch (direction) {
             case 0:
                 if(last == false) {

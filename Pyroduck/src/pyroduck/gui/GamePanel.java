@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.input.*;
@@ -35,26 +36,20 @@ public class GamePanel extends JPanel implements Observer {
             game = Game.getInstance();
             add(game);
             game.setVisible(true);
-            
-            livesLabel.setText("Lives: " + game.getBoard().getLives());
+            livesLabel.setText("Lives: " + Board.getInstance().getLives());
             livesLabel.setForeground(Color.WHITE);
-            
-            pointsLabel = new JLabel("Points: " + game.getBoard().getPoints());
+            pointsLabel = new JLabel("Points: " + Board.getInstance().getPoints());
             pointsLabel.setForeground(Color.WHITE);
-            
             messageLabel = new JLabel("     Paused     ");
             Font font = new Font(Font.DIALOG, Font.BOLD, 24);
             messageLabel.setFont(font);
             messageLabel.setForeground(Color.black);
-            
             panel.setBackground(Color.black);
             panel.add(livesLabel, 0);
             panel.add(messageLabel, 1);
             panel.add(pointsLabel, 2);
-            
-            game.getBoard().addObserver(this);
+            Board.getInstance().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
-            
         } catch (PyroduckException e) {
             JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
         }
@@ -68,10 +63,9 @@ public class GamePanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        livesLabel.setText("Lives: " + game.getBoard().getLives());
-        pointsLabel.setText("Points: " + game.getBoard().getPoints());
-
-        if(game.getBoard().getLives() <= 0){
+        livesLabel.setText("Lives: " + Board.getInstance().getLives());
+        pointsLabel.setText("Points: " + Board.getInstance().getPoints());
+        if(Board.getInstance().getLives() <= 0){
             if(endGame == null){
                 endGame = new EndGame();
                 endGame.setVisible(true);
@@ -86,12 +80,12 @@ public class GamePanel extends JPanel implements Observer {
             endGame = null;
             frame.setVisible(true);
         }
-        if(game.getBoard().isPause() == true){
+        if(Board.getInstance().isPause() == true){
             messageLabel.setForeground(Color.white);
             livesLabel.setForeground(Color.GRAY);
             pointsLabel.setForeground(Color.GRAY);
         }
-        if(game.getBoard().isPause() == false){
+        if(Board.getInstance().isPause() == false){
             messageLabel.setForeground(Color.black);
             livesLabel.setForeground(Color.white);
             pointsLabel.setForeground(Color.white);

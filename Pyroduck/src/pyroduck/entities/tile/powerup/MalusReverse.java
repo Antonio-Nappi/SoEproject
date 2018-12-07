@@ -1,9 +1,6 @@
 package pyroduck.entities.tile.powerup;
 
 import pyroduck.Game;
-import pyroduck.bomb.DirectionalExplosion;
-import pyroduck.entities.Entity;
-import pyroduck.entities.mob.Player;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -16,11 +13,8 @@ public class MalusReverse extends Powerup {
         super(x, y, sprite);
     }
 
-
     @Override
     public void setValues() {
         Game.reverseInput(true);
     }
-     
-    
 }

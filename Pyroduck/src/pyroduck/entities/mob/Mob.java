@@ -1,6 +1,5 @@
 package pyroduck.entities.mob;
 
-import pyroduck.Board;
 import pyroduck.entities.AnimatedEntity;
 import pyroduck.graphics.Screen;
 
@@ -12,7 +11,6 @@ import pyroduck.graphics.Screen;
  */
 public abstract class Mob extends AnimatedEntity {
 	
-    protected Board board;
     protected int direction = -1;
     protected boolean alive = true;
     protected boolean moving = false;
@@ -22,12 +20,10 @@ public abstract class Mob extends AnimatedEntity {
      * Creates an object of Mob.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
-     * @param board ...
      */
-    public Mob(int x, int y, Board board) {
+    public Mob(int x, int y) {
         this.x = x;
-        this.y = y;
-        this.board = board;
+        this.y = y;   
     }
 
     /**

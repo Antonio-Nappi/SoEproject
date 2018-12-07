@@ -16,12 +16,11 @@ public class Arbok extends Enemy{
      * Creates an instance of <b>Arbok</b> enemy.
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordinate in pixels.
-     * @param board
      */
-    public Arbok(int x, int y, Board board){
-        super(x, y, board, Sprite.arbok_dead, Game.getPlayerSpeed() - 0.1, 300);
+    public Arbok(int x, int y){
+        super(x, y, Sprite.arbok_dead, Game.getPlayerSpeed() - 0.1, 300);
         sprite = Sprite.arbok_left1;	
-        ep = new MediumPower(board.getPlayer(), this);
+        ep = new MediumPower(Board.getInstance().getPlayer(), this);
         direction = ep.calculateDirection();
     }
     
@@ -32,21 +31,29 @@ public class Arbok extends Enemy{
     protected void chooseSprite() {
         switch(direction) {
             case 0:
-                if(moving) sprite = Sprite.movingSprite(Sprite.arbok_up1, Sprite.arbok_up2, Sprite.arbok_up3, animate, 60);
-                else sprite= Sprite.arbok_down1;
+                if(moving)
+                    sprite = Sprite.movingSprite(Sprite.arbok_up1, Sprite.arbok_up2, Sprite.arbok_up3, animate, 60);
+                else 
+                    sprite= Sprite.arbok_down1;
                 break;
             case 1:
-                if(moving) sprite = Sprite.movingSprite(Sprite.arbok_right1, Sprite.arbok_right2, Sprite.arbok_right3, animate, 60);
-                else sprite= Sprite.arbok_down1;
+                if(moving) 
+                    sprite = Sprite.movingSprite(Sprite.arbok_right1, Sprite.arbok_right2, Sprite.arbok_right3, animate, 60);
+                else 
+                    sprite= Sprite.arbok_down1;
                 break;
             case 2:
-                if(moving) sprite = Sprite.movingSprite(Sprite.arbok_down1, Sprite.arbok_down2, Sprite.arbok_down3, animate, 60);
-                else sprite= Sprite.arbok_down1;
+                if(moving) 
+                    sprite = Sprite.movingSprite(Sprite.arbok_down1, Sprite.arbok_down2, Sprite.arbok_down3, animate, 60);
+                else 
+                    sprite= Sprite.arbok_down1;
 
                 break;
             case 3:
-               if(moving) sprite = Sprite.movingSprite(Sprite.arbok_left1, Sprite.arbok_left2, Sprite.arbok_left3, animate, 60);
-                else sprite= Sprite.arbok_down1;
+               if(moving) 
+                   sprite = Sprite.movingSprite(Sprite.arbok_left1, Sprite.arbok_left2, Sprite.arbok_left3, animate, 60);
+                else 
+                   sprite= Sprite.arbok_down1;
                 break;
         }    
     }
