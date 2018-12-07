@@ -3,8 +3,7 @@ package pyroduck.entities;
 import java.awt.Rectangle;
 import java.util.Observable;
 import pyroduck.Game;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
+import pyroduck.graphics.*;
 import pyroduck.level.Coordinates;
 
 /**

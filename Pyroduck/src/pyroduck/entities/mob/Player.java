@@ -1,27 +1,17 @@
 package pyroduck.entities.mob;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import pyroduck.Board;
-import pyroduck.Game;
-import pyroduck.bomb.Bomb;
-import pyroduck.bomb.DirectionalExplosion;
+import java.util.*;
+import java.util.logging.*;
+import pyroduck.*;
+import pyroduck.bomb.*;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
-import pyroduck.entities.tile.destroyable.ContextDestroyable;
-import pyroduck.entities.tile.destroyable.DestroyableIceTile;
-import pyroduck.entities.tile.powerup.Powerup;
-import pyroduck.entities.tile.powerup.PowerupNotSlip;
-import pyroduck.entities.tile.powerup.PowerupVehicles;
+import pyroduck.entities.tile.destroyable.*;
+import pyroduck.entities.tile.powerup.*;
 import pyroduck.exceptions.PyroduckException;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
+import pyroduck.graphics.*;
 import pyroduck.input.Keyboard;
-import pyroduck.level.Coordinates;
-import pyroduck.level.FileLevel;
+import pyroduck.level.*;
 
 /**
  * Describes the behavior of the player controllable via keyboard.

@@ -1,13 +1,9 @@
 package pyroduck.bomb;
 
-import pyroduck.Board;
-import pyroduck.Game;
-import pyroduck.entities.AnimatedEntity;
-import pyroduck.entities.Entity;
-import pyroduck.entities.mob.Mob;
-import pyroduck.entities.mob.Player;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
+import pyroduck.*;
+import pyroduck.entities.*;
+import pyroduck.entities.mob.*;
+import pyroduck.graphics.*;
 import pyroduck.level.Coordinates;
 
 /**

@@ -1,14 +1,11 @@
 package pyroduck.entities.mob;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import pyroduck.Board;
-import pyroduck.Game;
+import java.util.logging.*;
+import pyroduck.*;
 import pyroduck.entities.tile.powerup.Powerup;
 
 import pyroduck.exceptions.PyroduckException;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
+import pyroduck.graphics.*;
 import pyroduck.level.Coordinates;
 
 /**

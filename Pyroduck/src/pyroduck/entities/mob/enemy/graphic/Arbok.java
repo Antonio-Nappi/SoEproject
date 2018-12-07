@@ -1,7 +1,6 @@
 package pyroduck.entities.mob.enemy.graphic;
 
-import pyroduck.Board;
-import pyroduck.Game;
+import pyroduck.*;
 import pyroduck.entities.mob.enemy.MediumPower;
 import pyroduck.graphics.Sprite;
 

@@ -2,8 +2,7 @@ package pyroduck.bomb;
 
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
+import pyroduck.graphics.*;
 
 /**
  * Represents the class able to manage the graphic of the explosion and 

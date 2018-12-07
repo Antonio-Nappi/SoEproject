@@ -1,8 +1,7 @@
 package pyroduck.entities.mob;
 
 import pyroduck.entities.Entity;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
+import pyroduck.graphics.*;
 
 /**
  *
