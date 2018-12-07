@@ -1,40 +1,17 @@
-2 I
+1 I
 ###############################
-#p  z *  * * * s       o  3   #
+#p    a  f     1   *  *   *   #
 # # # # # # # # # # # # # # # #
-#* * * * * * * * * * * * * * *#
+#   *    m  1    *   *   o w  #
 # # # # # # # # # # # # # # # #
-# *   *   *    *  m   *  o    #
+#  o *  *   *  *    f  *      #
 # # # # # # # # # # # # # # # #
-# *   *  b   *      *  2  o   #
-# # # # # # # # # # # # # # # #
-# * s *    *  2    *    o     #
-# # # # # # # # #*# # # # # # #
-# 1  *m  *   *  w    b   3    #
+#  *   *   *  2    *  *   *   #
+#*# # # # # # # # # # # # # # #
+#     o *  f     *   *   *    #
+#*# # # # # # # # # # # # # # #
+# * 1 m  *  *  *     *   o  2 #
 ###############################
-
-
-
-
-Meta data:
-(Number or Level) (Rows) (Columns)
-
-Info Tiles:
-# - Wall
-* - Brick
-
-Mobs:
-p - Player
-1 - Golbat
-2 - Machamp
-3 - Arbok
-
-Powerups:
-b - Powerup Bombs
-* - Powerup *lames
-s - Powerup Speed
-o - Malus Decrease Speed
-m - Malus Reverse Keyboard
 
 Meta data:
 (Number or Level) (Rows) (Columns)
@@ -67,7 +44,7 @@ Level 1   due f- due m- tre o, tre 1 , due 2
 Level 2   s-b-m-o
 
 Iceland
-Level 3   
+Level 3
 Level 4
 
 per la prova facciamo

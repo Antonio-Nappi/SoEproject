@@ -121,7 +121,7 @@ public class IceStrategy extends FileLevel{
                         LayeredEntity layer8= new LayeredEntity(x, y,
                                                new GrassTile (x,y, Sprite.ice),
                                                    new BrickTile(x,y, Sprite.brickice));
-                        layer8.addBeforeTop(new PowerupVehicles(x,y,Sprite.articuno_up));
+                        layer8.addBeforeTop(new PowerupVehicles(x,y,Sprite.powerup_articuno));
                         entities[pos] = layer8;
                         break;
                     default:
