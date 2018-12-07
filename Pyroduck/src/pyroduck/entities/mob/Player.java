@@ -417,15 +417,15 @@ public class Player extends Mob{
      */
     @Override
     protected void afterKill() {
-        Board.getInstance().resetPoints();
         if(timeAfter > 0)
             --timeAfter;
         else {
             if(bombs.isEmpty()) {
                 if(Board.getInstance().getLives() == 0){
                     Board.getInstance().endGame();
-                }else
+                }else{
                     Board.getInstance().restartLevel();
+                }  
             }
         }
         Board.getInstance().resetProperties();
