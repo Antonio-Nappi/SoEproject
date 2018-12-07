@@ -110,6 +110,7 @@ public class Board extends Observable implements Observer {
             Game.bombRadius = 1;
             Game.bombRate = 1;
         }
+        Game.reverse=false;
     }
 
     public void setLives(int lives) {
