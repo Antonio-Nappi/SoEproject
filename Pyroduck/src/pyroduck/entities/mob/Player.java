@@ -1,17 +1,27 @@
 package pyroduck.entities.mob;
 
-import java.util.*;
-import java.util.logging.*;
-import pyroduck.*;
-import pyroduck.bomb.*;
-import pyroduck.entities.*;
-import pyroduck.entities.mob.enemy.graphic.*;
-import pyroduck.entities.tile.destroyable.*;
-import pyroduck.entities.tile.powerup.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import pyroduck.Board;
+import pyroduck.Game;
+import pyroduck.bomb.Bomb;
+import pyroduck.bomb.DirectionalExplosion;
+import pyroduck.entities.Entity;
+import pyroduck.entities.mob.enemy.graphic.Enemy;
+import pyroduck.entities.tile.destroyable.ContextDestroyable;
+import pyroduck.entities.tile.destroyable.DestroyableIceTile;
+import pyroduck.entities.tile.powerup.Powerup;
+import pyroduck.entities.tile.powerup.PowerupNotSlip;
+import pyroduck.entities.tile.powerup.PowerupVehicles;
 import pyroduck.exceptions.PyroduckException;
-import pyroduck.graphics.*;
-import pyroduck.input.*;
-import pyroduck.level.*;
+import pyroduck.graphics.Screen;
+import pyroduck.graphics.Sprite;
+import pyroduck.input.Keyboard;
+import pyroduck.level.Coordinates;
+import pyroduck.level.FileLevel;
 
 /**
  * Describes the behavior of the player controllable via keyboard.
@@ -29,56 +39,12 @@ public class Player extends Mob{
     protected int lives = 3;
     protected boolean done = false;
     public static int realWidth = 32, realHeight = 32;
-    
-    private final Sprite player_up = new Sprite(0, 2 );
-        
-    private final Sprite player_down = new Sprite(0, 1);
-
-    private final Sprite player_left = new Sprite(0, 3 );
-    private final Sprite player_right = new Sprite(0, 4);
-
-    private final Sprite player_up_1 = new Sprite(1, 2);
-    private final Sprite player_up_2 = new Sprite(2, 2);
-
-    private final Sprite player_down_1 = new Sprite(1, 1);
-    private final Sprite player_down_2 = new Sprite(2, 1);
-
-    private final Sprite player_left_1 = new Sprite(1, 3);
-    private final Sprite player_left_2 = new Sprite(2, 3);
-
-    private final Sprite player_right_1 = new Sprite(1, 4);
-    private final Sprite player_right_2 = new Sprite(2, 4);
-
-    private final Sprite player_dead1 = new Sprite(3, 2);
-    private final Sprite player_dead2 = new Sprite(3, 3);
-    private final Sprite player_dead3 = new Sprite(3, 4);
-    
-    
-     final Sprite player_upi = new Sprite(0, 6);
-     final Sprite player_downi = new Sprite(0, 5);
-     final Sprite player_lefti = new Sprite(0, 7);
-     final Sprite player_righti = new Sprite(0, 8);
-
-     final Sprite player_up_1i = new Sprite(1, 6);
-     final Sprite player_up_2i = new Sprite(2, 6);
-
-     final Sprite player_down_1i = new Sprite(1, 5);
-     final Sprite player_down_2i = new Sprite(2, 5);
-
-     final Sprite player_left_1i = new Sprite(1, 7);
-     final Sprite player_left_2i = new Sprite(2, 7);
-
-     final Sprite player_right_1i = new Sprite(1, 8);
-     final Sprite player_right_2i = new Sprite(2, 8);
-
-     final Sprite player_dead1i = new Sprite(3, 6);
-     final Sprite player_dead2i = new Sprite(3, 7);
-     final Sprite player_dead3i = new Sprite(3, 8 );
 
     /**
      * Creates an instance of the player.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
+     * @param board to take the keyboard related at the player commands.
      */
     public Player(int x, int y) {
         super(x, y);
@@ -136,10 +102,10 @@ public class Player extends Mob{
         else
             try {
                 if(Game.getInstance().getSelected() == 0){
-                    sprite = player_dead1;
+                    sprite = Sprite.player_dead1;
                 }
                 else{
-                    sprite = player_dead1i;
+                    sprite = Sprite.player_dead1i;
                 }
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,48 +209,48 @@ public class Player extends Mob{
             if( Game.getInstance().getSelected() == 0){
                     switch(direction) {
                         case 0:
-                            sprite = player_up;
+                            sprite = Sprite.player_up;
                             if(moving) {
                                 if(input.isIce())
-                                    sprite = Sprite.movingSprite(player_up_1, player_up_1, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_1, animate, 30);
                                 else
-                                    sprite = Sprite.movingSprite(player_up_1, player_up_2, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 30);
                             }
                             break;
                         case 1:
-                            sprite = player_right;
+                            sprite = Sprite.player_right;
                             if(moving) {
                                 if(input.isIce())
-                                    sprite = Sprite.movingSprite(player_right_1, player_right_1, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
                                 else
-                                    sprite = Sprite.movingSprite(player_right_1, player_right_2, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
                             }
                             break;
                         case 2:
-                            sprite = player_down;
+                            sprite = Sprite.player_down;
                             if(moving) {
                                 if(input.isIce())
-                                    sprite = Sprite.movingSprite(player_down_1, player_down_1, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_1, animate, 30);
                                 else
-                                    sprite = Sprite.movingSprite(player_down_1, player_down_2, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 30);
                             }
                             break;
                         case 3:
-                            sprite = player_left;
+                            sprite = Sprite.player_left;
                             if(moving) {
                                 if(input.isIce())
-                                    sprite = Sprite.movingSprite(player_left_1, player_left_1, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_1, animate, 30);
                                 else
-                                    sprite = Sprite.movingSprite(player_left_1, player_left_2, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 30);
                             }
                             break;
                         default:
-                            sprite = player_right;
+                            sprite = Sprite.player_right;
                             if(moving) {
                                 if(input.isIce())
-                                    sprite = Sprite.movingSprite(player_right_1, player_right_1, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
                                 else
-                                    sprite = Sprite.movingSprite(player_right_1, player_right_1, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
                             }
                             break;
                     }
@@ -293,33 +259,33 @@ public class Player extends Mob{
             }else{
                     switch(direction) {
                         case 0:
-                            sprite = player_upi;
+                            sprite = Sprite.player_upi;
                             if(moving) {
-                                sprite = Sprite.movingSprite(player_up_1i, player_up_2i, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_2i, animate, 30);
                             }
                             break;
                         case 1:
-                            sprite = player_righti;
+                            sprite = Sprite.player_righti;
                             if(moving) {
-                                sprite = Sprite.movingSprite(player_right_1i, player_right_2i, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
                             }
                             break;
                         case 2:
-                            sprite = player_downi;
+                            sprite = Sprite.player_downi;
                             if(moving) {
-                                sprite = Sprite.movingSprite(player_down_1i, player_down_2i, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_2i, animate, 30);
                             }
                             break;
                         case 3:
-                            sprite = player_lefti;
+                            sprite = Sprite.player_lefti;
                             if(moving) {
-                                sprite = Sprite.movingSprite(player_left_1i, player_left_2i, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_2i, animate, 30);
                             }
                             break;
                         default:
-                            sprite = player_righti;
+                            sprite = Sprite.player_righti;
                             if(moving) {
-                                sprite = Sprite.movingSprite(player_right_1i, player_right_2i, animate, 30);
+                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
                             }
                             break;
                     }

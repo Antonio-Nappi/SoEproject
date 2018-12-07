@@ -8,7 +8,6 @@ import pyroduck.graphics.Sprite;
  * @version 1.0
  */
 public class WallTile extends Tile {
-    public static Sprite wall = new Sprite(0, 0);
 
     /**
      * Creates an object of the WallTile.
@@ -16,7 +15,7 @@ public class WallTile extends Tile {
      * @param y vertical coordinate.
      * @param sprite related to the tile.
      */
-    public WallTile(int x, int y) {
-        super(x, y, wall);
+    public WallTile(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
     }
 }

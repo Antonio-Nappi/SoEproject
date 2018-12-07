@@ -7,16 +7,15 @@ import pyroduck.graphics.Sprite;
  * @author Montefusco
  */
 public class DestroyedState extends DestroyableIceTile {
-     public static Sprite icebroken_3 = new Sprite(14, 0);
 
-    public DestroyedState(int x, int y) {
-        super(x, y, icebroken_3);
+    public DestroyedState(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
         this.timerBreak = 70;
     }
 
     @Override
     public DestroyableIceTile nextState(ContextDestroyable context){
-        DestroyableIceTile newState = new WaterState((int)x, (int)y);
+        DestroyableIceTile newState = new WaterState((int)x, (int)y, Sprite.icebroken_4);
         context.setState(newState);
         return newState;
     }

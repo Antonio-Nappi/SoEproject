@@ -10,19 +10,15 @@ import pyroduck.level.Coordinates;
  * @version 1.0
  */
 public class BrickTile extends DestroyableTile {
-    
-public static Sprite brick = new Sprite(3, 0);
-    public static Sprite brick_exploded = new Sprite(4, 0);
-    public static Sprite brick_exploded1 = new Sprite(5, 0);
-    public static Sprite brick_exploded2 = new Sprite(6, 0);
+
     /**
      * Creates an object of BrickTile.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
      * @param sprite related to the tile.
      */
-    public BrickTile(int x, int y) {
-        super(x, y, brick);
+    public BrickTile(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
     }
 
     /**
@@ -37,7 +33,7 @@ public static Sprite brick = new Sprite(3, 0);
         if(!destroyed)
             screen.renderEntity( x, y, this);
         else{
-            sprite = movingSprite(brick_exploded, brick_exploded1, brick_exploded2);
+            sprite = movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1, Sprite.brick_exploded2);
             screen.renderEntityWithBelowSprite(x, y, this, belowSprite);
         }       
     }  
