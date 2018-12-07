@@ -44,7 +44,7 @@ public class EndGame extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(550, 550));
         jPanel1.setPreferredSize(new java.awt.Dimension(550, 550));
 
-        resumeButton.setText("Resume Game");
+        resumeButton.setText("Restart game");
         resumeButton.setActionCommand("Restart game");
         resumeButton.setMaximumSize(new java.awt.Dimension(180, 90));
         resumeButton.setMinimumSize(new java.awt.Dimension(180, 90));

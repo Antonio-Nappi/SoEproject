@@ -159,7 +159,7 @@ public class Player extends Mob{
             Entity a = board.getEntity(xt, yt, this);
             DestroyableIceTile newState;
             ContextDestroyable con = board.getContextState();
-            if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
+            if(a instanceof DestroyableIceTile){ 
                 con.setState((DestroyableIceTile)a);
                 if(((DestroyableIceTile) a).getTimerBreak()<=0) { // differences to see if the player has moved out of the bomb, tested values
                     ((DestroyableIceTile) a).setTimerBreak(80);
