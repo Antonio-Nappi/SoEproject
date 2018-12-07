@@ -8,9 +8,9 @@ import pyroduck.graphics.Sprite;
  * @author La Femina, Petruzzello
  */
 public class MalusReverse extends Powerup {
-
-    public MalusReverse(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+public static Sprite powerupReverse = new Sprite(4, 4);
+    public MalusReverse(int x, int y) {
+        super(x, y, powerupReverse);
     }
 
     @Override

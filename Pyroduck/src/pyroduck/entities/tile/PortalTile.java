@@ -9,13 +9,14 @@ import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Sprite;
+import pyroduck.graphics.SpriteSheet;
 
 public class PortalTile extends Tile {
 
-  
+      public static Sprite portal = new Sprite(16, 0);
 
-    public PortalTile(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+    public PortalTile(int x, int y) {
+        super(x, y, portal);
     }
 
     @Override

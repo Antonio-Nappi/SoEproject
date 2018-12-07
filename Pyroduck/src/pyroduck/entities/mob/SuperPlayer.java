@@ -22,13 +22,14 @@ import pyroduck.level.Coordinates;
  * @author Gerry
  */
 public class SuperPlayer extends Player{
-    
+     public static Sprite articuno_up = new Sprite(15, 2);
+        
     public SuperPlayer(Player player) {
         super((int)player.getX(), (int)player.getY());
         this.input = player.input;
         this.lives = player.lives;
         this.done = false;   //It has just correct keyboard
-        
+       
     }
     
     @Override
@@ -38,68 +39,67 @@ public class SuperPlayer extends Player{
             if( Game.getInstance().getSelected() == 0){
                     switch(direction) {
                         case 0:
-                            sprite = Sprite.articuno_up;
+                            sprite = articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                                sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                             }
                             break;
                         case 1:
-                            sprite = Sprite.articuno_up;
+                            sprite = articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                                sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                             }
                             break;
                         case 2:
-                            sprite = Sprite.articuno_up;
+                            sprite = articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                                sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                             }
                             break;
                         case 3:
-                            sprite = Sprite.articuno_up;
+                            sprite = articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                                sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                             }
                             break;
                         default:
-                            sprite = Sprite.articuno_up;
+                            sprite = articuno_up;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                                sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                             }
                             break;
                     }
                 
-                
             }else{
                     switch(direction) {
                         case 0:
-                            sprite = Sprite.player_upi;
+                            sprite = player_upi;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_2i, animate, 30);
+                                sprite = Sprite.movingSprite(player_up_1i, player_up_2i, animate, 30);
                             }
                             break;
                         case 1:
-                            sprite = Sprite.player_righti;
+                            sprite = player_righti;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
+                                sprite = Sprite.movingSprite(player_right_1i, player_right_2i, animate, 30);
                             }
                             break;
                         case 2:
-                            sprite = Sprite.player_downi;
+                            sprite = player_downi;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_2i, animate, 30);
+                                sprite = Sprite.movingSprite(player_down_1i, player_down_2i, animate, 30);
                             }
                             break;
                         case 3:
-                            sprite = Sprite.player_lefti;
+                            sprite = player_lefti;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_2i, animate, 30);
+                                sprite = Sprite.movingSprite(player_left_1i, player_left_2i, animate, 30);
                             }
                             break;
                         default:
-                            sprite = Sprite.player_righti;
+                            sprite = player_righti;
                             if(moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
+                                sprite = Sprite.movingSprite(player_right_1i, player_right_2i, animate, 30);
                             }
                             break;
                     }

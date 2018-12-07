@@ -28,20 +28,20 @@ public class IceStrategy extends FileLevel{
                 int pos = x + y * WIDTH;
                 switch(c) {
                     case '#':
-                       entities[pos] = new WallTile(x, y, Sprite.wallice);
+                       entities[pos] = new WallTile(x, y);
                         break;
                     case '*':
                        entities[pos] = new LayeredEntity(x, y,
-                                        new GrassTile(x ,y, Sprite.ice),
+                                        new IceTile(x ,y),
                                             new BrickTile(x ,y, Sprite.brickice));
                         break;
                     case ' ':
-                        entities[pos] = new GrassTile(x, y, Sprite.ice);
+                        entities[pos] = new IceTile(x, y);
                         break;
                     case 'p':
                         Board.getInstance().addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));
                         Screen.setOffset(0, 0);
-                        entities[pos] = new GrassTile(x, y, Sprite.ice);
+                        entities[pos] = new IceTile(x, y);
                         break;
                     case 'f':
                         LayeredEntity layer = new LayeredEntity(x, y,

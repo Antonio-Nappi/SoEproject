@@ -9,9 +9,10 @@ import pyroduck.graphics.Sprite;
  * @author Montefusco
  */
 public class WaterState extends DestroyableIceTile{
+    public static Sprite icebroken_4 = new Sprite(15, 0);
 
-    public WaterState(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+    public WaterState(int x, int y) {
+        super(x, y, icebroken_4);
     }
 
     @Override
