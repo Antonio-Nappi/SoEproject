@@ -16,12 +16,11 @@ public class Arbok extends Enemy{
      * Creates an instance of <b>Arbok</b> enemy.
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordinate in pixels.
-     * @param board
      */
-    public Arbok(int x, int y, Board board){
-        super(x, y, board, Sprite.arbok_dead, Game.getPlayerSpeed() - 0.1, 300);
+    public Arbok(int x, int y){
+        super(x, y, Sprite.arbok_dead, Game.getPlayerSpeed() - 0.1, 300);
         sprite = Sprite.arbok_left1;	
-        ep = new MediumPower(board.getPlayer(), this);
+        ep = new MediumPower(Board.getInstance().getPlayer(), this);
         direction = ep.calculateDirection();
     }
     

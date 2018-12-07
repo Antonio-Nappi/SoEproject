@@ -16,12 +16,11 @@ public class Machamp extends Enemy{
      * Creates an instance of <b>Machamp</b> enemy.
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordinate in pixels.
-     * @param board 
      */
-    public Machamp(int x, int y, Board board){
-        super(x, y, board, Sprite.machamp_dead, Game.getPlayerSpeed() / 2, 200);
+    public Machamp(int x, int y){
+        super(x, y, Sprite.machamp_dead, Game.getPlayerSpeed() / 2, 200);
         sprite = Sprite.machamp_left1;	
-        ep = new MediumPower(board.getPlayer(), this);
+        ep = new MediumPower(Board.getInstance().getPlayer(), this);
         direction = ep.calculateDirection();
     }
     

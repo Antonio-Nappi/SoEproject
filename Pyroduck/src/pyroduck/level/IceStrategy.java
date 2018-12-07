@@ -15,12 +15,12 @@ import pyroduck.graphics.*;
 
 public class IceStrategy extends FileLevel{
 
-    public IceStrategy(String path, Board board) throws LoadLevelException {
-        super(path, board);
+    public IceStrategy(String path) throws LoadLevelException {
+        super(path);
     }
 
     @Override
-    public Entity[] createEntities(Board board) {
+    public Entity[] createEntities() {
         Entity[] entities = new Entity[WIDTH*HEIGHT];//entity = player, mobs, powerups,..., also tile!!!
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
@@ -39,7 +39,7 @@ public class IceStrategy extends FileLevel{
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case 'p':
-                        board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));
+                        Board.getInstance().addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));
                         Screen.setOffset(0, 0);
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
@@ -96,25 +96,25 @@ public class IceStrategy extends FileLevel{
                         LayeredEntity layer5= new LayeredEntity(x, y,
                                                new GrassTile (x,y, Sprite.ice),
                                                    new BrickTile(x,y, Sprite.brickice));
-                        layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
+                        layer5.addBeforeTop(new PortalTile(x,y, Sprite.portal));
                         entities[pos] = layer5;
                         break;
                     case 'z':
-                        ContextDestroyable con = board.getContextState();
+                        ContextDestroyable con = Board.getInstance().getContextState();
                         IntactState intact = new IntactState(x, y, Sprite.ice);
                         con.setState(intact);
                         entities[pos] = intact;
                         break;
                     case '1':
-                        board.addMob(new Snorunt(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));
+                        Board.getInstance().addMob(new Snorunt(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case '2':
-                        board.addMob(new Glalie(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));
+                        Board.getInstance().addMob(new Glalie(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case '3':
-                        board.addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        Board.getInstance().addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE)); 
                         entities[pos] = new GrassTile(x, y, Sprite.ice);
                         break;
                     case 'a':

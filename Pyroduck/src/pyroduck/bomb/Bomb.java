@@ -19,7 +19,6 @@ public class Bomb extends AnimatedEntity {
 
     protected double timeToExplode = 120; //2 seconds
     public int timeAfter = 20; //time to explosions disapear
-    protected Board board;
     protected boolean allowedToPassThru = false;
     protected DirectionalExplosion[] explosions = null;
     protected boolean exploded = false;
@@ -28,12 +27,10 @@ public class Bomb extends AnimatedEntity {
      * Creates an instance of the Bomb.
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordinate in pixels.
-     * @param board ...
      */
-    public Bomb(int x, int y,Board board) {
+    public Bomb(int x, int y) {
         this.x = x;
         this.y = y;
-        this.board = board;
         sprite = Sprite.bomb;
     }
 
@@ -100,12 +97,12 @@ public class Bomb extends AnimatedEntity {
     protected void explosion() {
         allowedToPassThru = false;
         exploded = true;
-        Mob a = board.getMobAt(x, y);
+        Mob a = Board.getInstance().getMobAt(x, y);
         if(a != null)
             a.kill();
         explosions = new DirectionalExplosion[4];
         for (int i = 0; i < explosions.length; i++) {
-            explosions[i] = new DirectionalExplosion((int)x, (int)y, i, Game.getBombRadius(), board);
+            explosions[i] = new DirectionalExplosion((int)x, (int)y, i, Game.getBombRadius());
         }
     }
 

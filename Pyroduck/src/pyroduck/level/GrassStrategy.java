@@ -15,12 +15,12 @@ import pyroduck.graphics.*;
 
 public class GrassStrategy extends FileLevel{
 
-    public GrassStrategy(String path, Board board) throws LoadLevelException {
-        super(path, board);
+    public GrassStrategy(String path) throws LoadLevelException {
+        super(path);
     }
 
     @Override
-    public Entity[] createEntities(Board board) {
+    public Entity[] createEntities() {
         Entity[] entities = new Entity[WIDTH*HEIGHT];//entity = player, mobs, powerups,..., also tile!!!
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
@@ -39,7 +39,7 @@ public class GrassStrategy extends FileLevel{
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     case 'p': 
-                        board.addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));   //24 are real width and height of player
+                        Board.getInstance().addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));   //24 are real width and height of player
                         Screen.setOffset(0, 0);
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
@@ -89,19 +89,19 @@ public class GrassStrategy extends FileLevel{
                         LayeredEntity layer5= new LayeredEntity(x, y,
                                                new GrassTile (x,y, Sprite.grass),
                                                    new BrickTile(x,y, Sprite.brick));
-                        layer5.addBeforeTop(new PortalTile(x,y, this.board, Sprite.portal));
+                        layer5.addBeforeTop(new PortalTile(x,y, Sprite.portal));
                         entities[pos] = layer5;
                         break;
                     case '1':
-                        board.addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board));
+                        Board.getInstance().addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     case '2':
-                        board.addMob(new Machamp(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        Board.getInstance().addMob(new Machamp(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE)); 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     case '3':
-                        board.addMob(new Arbok(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE, board)); 
+                        Board.getInstance().addMob(new Arbok(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE)); 
                         entities[pos] = new GrassTile(x, y, Sprite.grass);
                         break;
                     default: 

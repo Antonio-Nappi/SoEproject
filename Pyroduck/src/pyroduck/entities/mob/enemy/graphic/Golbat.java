@@ -16,10 +16,9 @@ public class Golbat extends Enemy{
      * Creates an instance of <b>Golbat</b> enemy.
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordinate in pixels.
-     * @param board 
      */
-    public Golbat(int x, int y, Board board){
-        super(x, y, board, Sprite.golbat_dead, Game.getPlayerSpeed() / 2, 100);
+    public Golbat(int x, int y){
+        super(x, y, Sprite.golbat_dead, Game.getPlayerSpeed() / 2, 100);
         sprite = Sprite.golbat_left1;	
         ep = new LowPower();
         direction = ep.calculateDirection();

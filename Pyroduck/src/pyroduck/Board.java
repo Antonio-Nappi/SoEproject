@@ -37,7 +37,7 @@ public class Board extends Observable implements Observer {
 
     protected ContextLevel clevel;
     private Keyboard input;
-    private final Screen screen;
+    private Screen screen;
     public Entity[] entities;
     public List<Mob> mobs = new ArrayList<>();
     private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
@@ -50,11 +50,11 @@ public class Board extends Observable implements Observer {
     private final ContextDestroyable con;
     private List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
     protected boolean pause=false;
+    private static Board instance = null;
     
-    public Board(Screen screen) {
-        this.screen = screen;
+    private Board() {
         con = new ContextDestroyable();
-        changeLevel(1); //start in level 1
+        
     }
 
     /*
@@ -143,34 +143,32 @@ public class Board extends Observable implements Observer {
         try {
             int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
-            BufferedReader in = null;
-            String data = null;
-            try {
-                in = new BufferedReader(new FileReader(path));
-                data = in.readLine();
-                in.close();
-            } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
-            } catch (IOException ex){
-                JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
-            }
+            BufferedReader in;
+            String data;
+            in = new BufferedReader(new FileReader(path));
+            data = in.readLine();
+            in.close();
             StringTokenizer tokens = new StringTokenizer(data); 
             tokens.nextToken();
             world = tokens.nextToken();
             input = getRightKeyboard();
             if(world.equals("G")){
-                this.clevel = new ContextLevel(new GrassStrategy(path, this));
-                entities = clevel.executeStrategy(this); 
+                clevel = new ContextLevel(new GrassStrategy(path));
+                entities = clevel.executeStrategy(); 
             }
             else{
-                this.clevel = new ContextLevel(new IceStrategy(path, this));
-                entities = clevel.executeStrategy(this);
+                clevel = new ContextLevel(new IceStrategy(path));
+                entities = clevel.executeStrategy();
                 destroyableIceTiles = createDestroyableIceTile();
             }
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
             System.out.println("LEVEL'S FILE .txt NOT FOUND!");
+        }catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex){
+            JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -280,7 +278,7 @@ public class Board extends Observable implements Observer {
      * Add the entity and the related position in the entity array.
      */
     public void addEntities() {
-        entities = clevel.executeStrategy(this);
+        entities = clevel.executeStrategy();
     }
 
     public void addEntitie(int pos, Entity e) {
@@ -513,5 +511,16 @@ public class Board extends Observable implements Observer {
         this.pause = pause;
         setChanged();
         notifyObservers();
+    }
+
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+    public static Board getInstance(){
+        if(instance==null){
+            instance = new Board();
+        }
+        return instance;
+    
     }
 }

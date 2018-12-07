@@ -1,8 +1,5 @@
 package pyroduck.entities.tile.powerup;
 
-import pyroduck.bomb.DirectionalExplosion;
-import pyroduck.entities.Entity;
-import pyroduck.entities.mob.Player;
 import pyroduck.graphics.Sprite;
 
 /**

@@ -16,10 +16,9 @@ public class Snorunt extends Enemy{
      * Creates an instance of <b>Snorunt</b> enemy.
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordinate in pixels.
-     * @param board 
      */
-    public Snorunt(int x, int y, Board board){
-        super(x, y, board, Sprite.snorunt_dead, Game.getPlayerSpeed() / 2, 100);
+    public Snorunt(int x, int y){
+        super(x, y, Sprite.snorunt_dead, Game.getPlayerSpeed() / 2, 100);
         sprite = Sprite.snorunt_left1;	
         ep = new LowPower();
         direction = ep.calculateDirection();

@@ -15,13 +15,12 @@ public class Glalie extends Enemy{
     /**
      * Creates an instance of <b>Glalie</b> enemy.
      * @param x horizontal coordinate in pixels.
-     * @param y vertical coordinate in pixels.
-     * @param board 
+     * @param y vertical coordinate in pixels. 
      */
-    public Glalie(int x, int y, Board board){
-        super(x, y, board, Sprite.glalie_dead, Game.getPlayerSpeed() / 2, 200);
+    public Glalie(int x, int y){
+        super(x, y, Sprite.glalie_dead, Game.getPlayerSpeed() / 2, 200);
         sprite = Sprite.glalie_left1;	
-        ep = new MediumPower(board.getPlayer(), this);
+        ep = new MediumPower(Board.getInstance().getPlayer(), this);
         direction = ep.calculateDirection();
     }
     

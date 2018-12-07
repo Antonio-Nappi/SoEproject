@@ -11,6 +11,7 @@ import javafx.embed.swing.JFXPanel;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.Pyroduck;
 import pyroduck.audio.AudioPlayer;
@@ -190,7 +191,7 @@ public class SelectCharacter extends javax.swing.JFrame {
             } catch (LineUnavailableException ex) {
                 Logger.getLogger(SelectCharacter.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Game.getInstance().getBoard().setPlayer(selected);
+            Board.getInstance().setPlayer(selected);
             Pyroduck p = new Pyroduck();
             p.main(args);
             this.setVisible(false);

@@ -12,23 +12,22 @@ import pyroduck.graphics.Sprite;
 
 public class PortalTile extends Tile {
 
-    protected Board board;
+  
 
-    public PortalTile(int x, int y, Board board, Sprite sprite) {
-            super(x, y, sprite);
-            this.board = board;
+    public PortalTile(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
     }
 
     @Override
     public boolean collide(Entity e) {
         if(e instanceof Player ) {
-            if(!board.detectNoEnemies())
+            if(!Board.getInstance().detectNoEnemies())
                     return false;
             if(e.getXTile() == getX() && e.getYTile() == getY()) {
-                if(board.detectNoEnemies())
+                if(Board.getInstance().detectNoEnemies())
                     try{
                         Game.getInstance().pause();
-                        board.nextLevel();
+                        Board.getInstance().nextLevel();
                     } catch (IOException ex){
                         Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (PyroduckException ex) {

@@ -15,13 +15,12 @@ public class Darkrai extends Enemy{
     /**
      * Creates an instance of <b>Darkrai</b> enemy.
      * @param x horizontal coordinate in pixels.
-     * @param y vertical coordinate in pixels.
-     * @param board 
+     * @param y vertical coordinate in pixels. 
      */
-    public Darkrai(int x, int y, Board board){
-        super(x, y, board, Sprite.darkrai_dead, Game.getPlayerSpeed() - 0.1, 300);
+    public Darkrai(int x, int y){
+        super(x, y, Sprite.darkrai_dead, Game.getPlayerSpeed() - 0.1, 300);
         sprite = Sprite.darkrai_left1;	
-        ep = new MediumPower(board.getPlayer(), this);
+        ep = new MediumPower(Board.getInstance().getPlayer(), this);
         direction = ep.calculateDirection();
     }
     

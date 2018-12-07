@@ -46,12 +46,12 @@ public class Player extends Mob{
      * @param y vertical coordinate.
      * @param board to take the keyboard related at the player commands.
      */
-    public Player(int x, int y, Board board) {
-        super(x, y, board);
-        bombs = board.getBombs();
-        input = board.getInput();
-        addObserver(board);
-        this.bombs = board.getBombs();
+    public Player(int x, int y) {
+        super(x, y);
+        bombs = Board.getInstance().getBombs();
+        input = Board.getInstance().getInput();
+        addObserver(Board.getInstance());
+        
     }
 
     /*
@@ -117,7 +117,7 @@ public class Player extends Mob{
      *
      */
     public void calculateXOffset() {
-        int xScroll = Screen.calculateXOffset(board, this);
+        int xScroll = Screen.calculateXOffset(this);
         Screen.setOffset(xScroll, 0);
     }
 
@@ -155,16 +155,16 @@ public class Player extends Mob{
         for (int c = 0; c < 4; c++) { //colision detection for each corner of the player
             double xt = ((this.x + x) + c % 2 * 24 +2) / Game.TILES_SIZE; //
             double yt = ((this.y + y) + c / 2 * 15 - 16) / Game.TILES_SIZE; // the multiply factor control bottom collision and the additional factor control top collision
-            Entity a = board.getEntity(xt, yt, this);
+            Entity a = Board.getInstance().getEntity(xt, yt, this);
             DestroyableIceTile newState;
-            ContextDestroyable con = board.getContextState();
+            ContextDestroyable con = Board.getInstance().getContextState();
             if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
                 con.setState((DestroyableIceTile)a);
                 if(((DestroyableIceTile) a).getTimerBreak()<=0) { // differences to see if the player has moved out of the bomb, tested values
                     ((DestroyableIceTile) a).setTimerBreak(80);
                     newState = con.getState().nextState(con);
-                    board.getDestroyableIceTile().add(newState);
-                    board.entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
+                    Board.getInstance().getDestroyableIceTile().add(newState);
+                    Board.getInstance().entities[((int)xt + (int)yt * FileLevel.WIDTH)] = con.getState();
                 }
             }
             if(a.collide(this))
@@ -335,8 +335,8 @@ public class Player extends Mob{
      * @param y
      */
     protected void placeBomb(int x, int y) {
-        Bomb b = new Bomb(x, y, board);
-        board.addBomb(b);
+        Bomb b = new Bomb(x, y);
+        Board.getInstance().addBomb(b);
     }
 
     /**
@@ -358,9 +358,9 @@ public class Player extends Mob{
      *
      */
     public void correctKeyboard(){
-        if(board.getPlayerRight() == 1){
-           board.setInput();
-           input = board.getInput();
+        if(Board.getInstance().getPlayerRight() == 1){
+           Board.getInstance().setInput();
+           input = Board.getInstance().getInput();
         }
     }
 
@@ -375,8 +375,8 @@ public class Player extends Mob{
      */
     public void addPowerup(Powerup p) {
         if(p instanceof PowerupNotSlip){
-            board.setInput();
-            input = board.getInput();
+            Board.getInstance().setInput();
+            input = Board.getInstance().getInput();
         }
       
         if(p instanceof PowerupVehicles){
@@ -421,21 +421,18 @@ public class Player extends Mob{
             --timeAfter;
         else {
             if(bombs.isEmpty()) {
-                if(board.getLives() == 0){
-                    board.endGame();
+                if(Board.getInstance().getLives() == 0){
+                    Board.getInstance().endGame();
                 }else
-                    board.restartLevel();
+                    Board.getInstance().restartLevel();
             }
         }
-        try {
-            Game.getInstance().getBoard().resetProperties();
-        } catch (PyroduckException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Board.getInstance().resetProperties();
+        
     }
 
     private void updateTimerBreaker(){
-        for(DestroyableIceTile d : board.getDestroyableIceTile())
+        for(DestroyableIceTile d : Board.getInstance().getDestroyableIceTile())
             if(d.getTimerBreak()>0)
                 d.setTimerBreak(d.getTimerBreak()-1);
     }

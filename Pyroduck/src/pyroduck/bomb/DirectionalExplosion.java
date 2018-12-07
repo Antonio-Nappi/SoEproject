@@ -13,7 +13,6 @@ import pyroduck.graphics.Screen;
  */
 public class DirectionalExplosion extends Entity {
 
-    protected Board board;
     protected int direction;
     private final int radius;
     protected int xOrigin, yOrigin;
@@ -25,16 +24,14 @@ public class DirectionalExplosion extends Entity {
      * @param y
      * @param direction
      * @param radius
-     * @param board 
      */
-    public DirectionalExplosion(int x, int y, int direction, int radius, Board board) {
+    public DirectionalExplosion(int x, int y, int direction, int radius ) {
         xOrigin = x;
         yOrigin = y;
         this.x = x;
         this.y = y;
         this.direction = direction;
         this.radius = radius;
-        this.board = board;
         this.explosions = new Explosion[calculatePermitedDistance()];
         createExplosions();
     }
@@ -43,7 +40,7 @@ public class DirectionalExplosion extends Entity {
      *Generates the horizontally and vertically propagative explosion from the point where it borns
      */
     private void createExplosions() {
-        boolean last = false;
+        boolean last;
         int x = (int)this.x; // qui c'e il problema
         int y = (int)this.y;
         for (int i = 0; i < explosions.length; i++) {
@@ -54,7 +51,7 @@ public class DirectionalExplosion extends Entity {
                 case 2: y++; break;
                 case 3: x--; break;
             }
-            explosions[i] = new Explosion(x, y, direction, last, board);
+            explosions[i] = new Explosion(x, y, direction, last);
         }
     }
 
@@ -63,22 +60,22 @@ public class DirectionalExplosion extends Entity {
      * @return Return an int meaning the range of the explosion in a certain position
      */
     private int calculatePermitedDistance() {
-        int radius = 0;
+        int rad = 0;
         int x = (int)this.x;
         int y = (int)this.y;
-        while(radius < this.radius) {
+        while(rad < radius) {
             if(direction == 0) y--;
             if(direction == 1) x++;
             if(direction == 2) y++;
             if(direction == 3) x--;
-            Entity a = board.getEntity(x, y, null);
+            Entity a = Board.getInstance().getEntity(x, y, null);
             if(a instanceof Mob)
-                ++radius; //explosion has to be below the mob
+                ++rad; //explosion has to be below the mob
             if(a.collide(this))//cannot pass thru
                 break;
-            ++radius;
+            ++rad;
         }
-        return radius;
+        return rad;
     }
 
     /**
@@ -88,9 +85,10 @@ public class DirectionalExplosion extends Entity {
      * @return an Explosion if an explosion is appened in a certain position.
  */
     public Explosion explosionAt(int x, int y) {
-        for (int i = 0; i < explosions.length; i++) {
-            if(explosions[i].getX() == x && explosions[i].getY() == y) 
-                return explosions[i];
+        for (Explosion explosion : explosions) {
+            if (explosion.getX() == x && explosion.getY() == y) {
+                return explosion;
+            }
         }
         return null;
     }
@@ -107,8 +105,9 @@ public class DirectionalExplosion extends Entity {
      */
     @Override
     public void render(Screen screen) {
-        for (int i = 0; i < explosions.length; i++)
-            explosions[i].render(screen);
+        for (Explosion explosion : explosions) {
+            explosion.render(screen);
+        }
     }
 
     /**

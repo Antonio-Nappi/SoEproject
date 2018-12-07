@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 import java.io.FileReader;
-import pyroduck.Board;
 import pyroduck.entities.Entity;
 import pyroduck.exceptions.LoadLevelException;
 
@@ -18,7 +17,7 @@ public abstract class FileLevel{
     public static final int WIDTH = 31, HEIGHT = 13;
     protected int level;
     protected String[] lineTiles;
-    protected Board board;
+    
 
 
     /**
@@ -26,9 +25,9 @@ public abstract class FileLevel{
      * @param path related to the ".txt" file.
      * @throws LoadLevelException error in the charge of level.
      */
-    public FileLevel(String path, Board board) throws LoadLevelException {
+    public FileLevel(String path) throws LoadLevelException {
 		loadLevel(path);
-                this.board = board;
+                
 	}
 
     /**
@@ -52,7 +51,7 @@ public abstract class FileLevel{
         }
     }
   
-    public abstract Entity[] createEntities(Board board);
+    public abstract Entity[] createEntities();
 
     /**
      * Return the number of level charged.

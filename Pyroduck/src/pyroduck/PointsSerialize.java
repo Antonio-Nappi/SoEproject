@@ -16,17 +16,9 @@ public class PointsSerialize implements Serializable{
     private int lives;
     
     public PointsSerialize(String name){
-        try {
-            this.points = Game.getInstance().getBoard().getPoints();
-        } catch (PyroduckException ex) {
-            Logger.getLogger(PointsSerialize.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.points = Board.getInstance().getPoints();
         this.name = name;
-        try {
-            this.lives = Game.getInstance().getBoard().getLives();
-        } catch (PyroduckException ex) {
-            Logger.getLogger(PointsSerialize.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.lives = Board.getInstance().getLives();
     }
 
     public int getPoints() {

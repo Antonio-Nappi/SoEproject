@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import pyroduck.Board;
 
 public class Frame extends JFrame {
     public GamePanel gamepane;
@@ -37,7 +38,7 @@ public class Frame extends JFrame {
      */
     
     public void newGame() throws IOException {
-        gamepane.getGame().getBoard().newGame();
+        Board.getInstance().newGame();
     }
     
 }

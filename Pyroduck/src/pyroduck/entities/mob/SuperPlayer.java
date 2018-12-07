@@ -7,6 +7,7 @@ package pyroduck.entities.mob;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.Bomb;
 import pyroduck.entities.tile.powerup.Powerup;
@@ -23,7 +24,7 @@ import pyroduck.level.Coordinates;
 public class SuperPlayer extends Player{
     
     public SuperPlayer(Player player) {
-        super((int)player.getX(), (int)player.getY(), player.board);
+        super((int)player.getX(), (int)player.getY());
         this.input = player.input;
         this.lives = player.lives;
         this.done = false;   //It has just correct keyboard
@@ -112,8 +113,8 @@ public class SuperPlayer extends Player{
     
     @Override
     protected void placeBomb(int x, int y) {    //NOW we can shoot missiles
-        //Bomb b = new Bomb(x, y, board);
-        //board.addBomb(b);
+        //Bomb b = new Bomb(x, y);
+        //Board.getInstance().addBomb(b);
         //DEVE SPARARE MISSILI
         System.out.println("Missile Sparato!");
         Game.addBombRate(1);
@@ -141,18 +142,18 @@ public class SuperPlayer extends Player{
             --timeAfter;
         else {
             if(bombs.isEmpty()) {
-                if(board.getLives() == 0){
-                    board.endGame();  
+                if(Board.getInstance().getLives() == 0){
+                    Board.getInstance().endGame();  
                 }else
-                    board.restartLevel();
+                    Board.getInstance().restartLevel();
             }
         }
     }
     @Override
         public void correctKeyboard(){
         
-           board.setInput();
-           input = board.getInput();
+           Board.getInstance().setInput();
+           input = Board.getInstance().getInput();
         
     }
 }
