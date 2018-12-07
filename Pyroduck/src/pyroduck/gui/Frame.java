@@ -39,6 +39,5 @@ public class Frame extends JFrame {
     
     public void newGame() throws IOException {
         Board.getInstance().newGame();
-    }
-    
+    }  
 }

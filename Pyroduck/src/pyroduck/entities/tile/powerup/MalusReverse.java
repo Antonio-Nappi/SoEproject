@@ -13,11 +13,8 @@ public class MalusReverse extends Powerup {
         super(x, y, sprite);
     }
 
-
     @Override
     public void setValues() {
         Game.reverseInput(true);
     }
-     
-    
 }

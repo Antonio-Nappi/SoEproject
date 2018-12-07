@@ -23,5 +23,4 @@ public class ContextDestroyable {
     public void nextState(){
         this.state.nextState(this);
     }
-
 }

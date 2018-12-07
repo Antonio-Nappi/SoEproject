@@ -12,7 +12,6 @@ public class PowerupNotSlip extends Powerup {
         super(x, y, sprite);
     }
 
-    
     @Override
     public void setValues() {}    
 }

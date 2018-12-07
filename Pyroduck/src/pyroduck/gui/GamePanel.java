@@ -36,26 +36,20 @@ public class GamePanel extends JPanel implements Observer {
             game = Game.getInstance();
             add(game);
             game.setVisible(true);
-            
             livesLabel.setText("Lives: " + Board.getInstance().getLives());
             livesLabel.setForeground(Color.WHITE);
-            
             pointsLabel = new JLabel("Points: " + Board.getInstance().getPoints());
             pointsLabel.setForeground(Color.WHITE);
-            
             messageLabel = new JLabel("     Paused     ");
             Font font = new Font(Font.DIALOG, Font.BOLD, 24);
             messageLabel.setFont(font);
             messageLabel.setForeground(Color.black);
-            
             panel.setBackground(Color.black);
             panel.add(livesLabel, 0);
             panel.add(messageLabel, 1);
             panel.add(pointsLabel, 2);
-            
             Board.getInstance().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
-            
         } catch (PyroduckException e) {
             JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
         }
@@ -71,7 +65,6 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + Board.getInstance().getLives());
         pointsLabel.setText("Points: " + Board.getInstance().getPoints());
-
         if(Board.getInstance().getLives() <= 0){
             if(endGame == null){
                 endGame = new EndGame();

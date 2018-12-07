@@ -13,12 +13,9 @@ public class PowerupLife extends Powerup {
         super(x, y, sprite);
     }
 
-    
-
     @Override
     public void setValues() {
       active=true;
       Game.addLives(1);
-    }
-    
+    }   
 }

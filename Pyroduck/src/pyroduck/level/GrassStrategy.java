@@ -113,4 +113,3 @@ public class GrassStrategy extends FileLevel{
         return entities;
     }
 }
-    

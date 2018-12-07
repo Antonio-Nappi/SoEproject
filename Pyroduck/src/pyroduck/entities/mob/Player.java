@@ -417,6 +417,7 @@ public class Player extends Mob{
      */
     @Override
     protected void afterKill() {
+        Board.getInstance().resetPoints();
         if(timeAfter > 0)
             --timeAfter;
         else {

@@ -1,9 +1,6 @@
 package pyroduck;
 
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import pyroduck.exceptions.PyroduckException;
 
 /**
  *

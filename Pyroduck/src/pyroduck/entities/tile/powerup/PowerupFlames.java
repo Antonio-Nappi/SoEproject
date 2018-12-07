@@ -12,8 +12,7 @@ public class PowerupFlames extends Powerup {
     public PowerupFlames(int x, int y, Sprite sprite) {
         super(x, y, sprite);
     }
-
-
+    
     @Override
     public void setValues() {
         active = true;

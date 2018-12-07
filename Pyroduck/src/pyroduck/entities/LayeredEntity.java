@@ -12,7 +12,7 @@ import pyroduck.graphics.Screen;
  */
 public class LayeredEntity extends Entity {
 	
-    protected LinkedList<Entity> entities = new LinkedList<Entity>();
+    protected LinkedList<Entity> entities = new LinkedList<>();
 
     /**
      * Initializes the object making a layered entity that contain all the entities localized in a specific coordinates.

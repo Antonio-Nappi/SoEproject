@@ -26,7 +26,6 @@ import pyroduck.entities.mob.enemy.EnemyPower;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.destroyable.ContextDestroyable;
 import pyroduck.entities.tile.destroyable.DestroyableIceTile;
-import pyroduck.entities.tile.powerup.PowerupVehicles;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
@@ -141,7 +140,7 @@ public class Board extends Observable implements Observer {
         mobs = new ArrayList<>();
         bombs = new ArrayList<>();
         try {
-            int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
+            int combination = new Random(System.currentTimeMillis()).nextInt(2)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
             BufferedReader in;
             String data;
@@ -522,5 +521,9 @@ public class Board extends Observable implements Observer {
         }
         return instance;
     
+    }
+
+    public void resetPoints() {
+        points = 0;
     }
 }

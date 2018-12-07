@@ -1,6 +1,5 @@
 package pyroduck.level;
 
-import pyroduck.Board;
 import pyroduck.entities.Entity;
 
 public class ContextLevel {

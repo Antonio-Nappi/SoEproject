@@ -17,8 +17,6 @@ public abstract class FileLevel{
     public static final int WIDTH = 31, HEIGHT = 13;
     protected int level;
     protected String[] lineTiles;
-    
-
 
     /**
      * Costructs level file.

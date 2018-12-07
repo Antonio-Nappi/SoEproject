@@ -25,6 +25,5 @@ public class WaterState extends DestroyableIceTile{
     @Override
     public DestroyableIceTile nextState(ContextDestroyable context){
         return this;
-    }
-    
+    } 
 }

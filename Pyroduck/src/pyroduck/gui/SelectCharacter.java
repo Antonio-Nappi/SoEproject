@@ -7,7 +7,6 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.embed.swing.JFXPanel;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
@@ -16,7 +15,6 @@ import pyroduck.Game;
 import pyroduck.Pyroduck;
 import pyroduck.audio.AudioPlayer;
 import pyroduck.exceptions.PyroduckException;
-
 
 /**
  *
@@ -27,9 +25,7 @@ public class SelectCharacter extends javax.swing.JFrame {
     private int selected=0;
     String[] args;
     public static final String TITLE = "Choose your player";
-
-     private static AudioPlayer audio;
-
+    private static AudioPlayer audio;
     
     /**
      * Creates new form SelectCharacter
@@ -48,9 +44,7 @@ public class SelectCharacter extends javax.swing.JFrame {
         imgSliding.setText("");
         imgBomb.setText("");
        audio= AudioPlayer.getAudioPlayer("opening.wav");
-       audio.play();
-
-      
+       audio.play(); 
     }
 
     /**
