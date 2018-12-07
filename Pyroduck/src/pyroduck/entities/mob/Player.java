@@ -19,7 +19,6 @@ import pyroduck.entities.tile.powerup.PowerupVehicles;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.IceKeyboard;
 import pyroduck.input.Keyboard;
 import pyroduck.level.Coordinates;
 import pyroduck.level.FileLevel;
@@ -212,7 +211,7 @@ public class Player extends Mob{
                         case 0:
                             sprite = Sprite.player_up;
                             if(moving) {
-                                if(input.getClass() == IceKeyboard.class)
+                                if(input.isIce())
                                     sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_1, animate, 30);
                                 else
                                     sprite = Sprite.movingSprite(Sprite.player_up_1, Sprite.player_up_2, animate, 30);
@@ -221,7 +220,7 @@ public class Player extends Mob{
                         case 1:
                             sprite = Sprite.player_right;
                             if(moving) {
-                                if(input.getClass() == IceKeyboard.class)
+                                if(input.isIce())
                                     sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
                                 else
                                     sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
@@ -230,7 +229,7 @@ public class Player extends Mob{
                         case 2:
                             sprite = Sprite.player_down;
                             if(moving) {
-                                if(input.getClass() == IceKeyboard.class)
+                                if(input.isIce())
                                     sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_1, animate, 30);
                                 else
                                     sprite = Sprite.movingSprite(Sprite.player_down_1, Sprite.player_down_2, animate, 30);
@@ -239,7 +238,7 @@ public class Player extends Mob{
                         case 3:
                             sprite = Sprite.player_left;
                             if(moving) {
-                                if(input.getClass() == IceKeyboard.class)
+                                if(input.isIce())
                                     sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_1, animate, 30);
                                 else
                                     sprite = Sprite.movingSprite(Sprite.player_left_1, Sprite.player_left_2, animate, 30);
@@ -248,7 +247,7 @@ public class Player extends Mob{
                         default:
                             sprite = Sprite.player_right;
                             if(moving) {
-                                if(input.getClass() == IceKeyboard.class)
+                                if(input.isIce())
                                     sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
                                 else
                                     sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
@@ -338,7 +337,6 @@ public class Player extends Mob{
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y, board);
         board.addBomb(b);
-        System.out.println("Bomba piazzata");
     }
 
     /**

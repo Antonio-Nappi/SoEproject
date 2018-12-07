@@ -13,7 +13,6 @@ import pyroduck.entities.tile.powerup.Powerup;
 
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.GrassKeyboard;
 import pyroduck.level.Coordinates;
 
 
