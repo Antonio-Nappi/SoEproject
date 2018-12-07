@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
+import pyroduck.entities.mob.GraphicalExtensionSuperplayer;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.SuperPlayer;
@@ -26,7 +27,6 @@ import pyroduck.entities.mob.enemy.EnemyPower;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.destroyable.ContextDestroyable;
 import pyroduck.entities.tile.destroyable.DestroyableIceTile;
-import pyroduck.entities.tile.powerup.PowerupVehicles;
 import pyroduck.exceptions.LoadLevelException;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
@@ -141,8 +141,9 @@ public class Board extends Observable implements Observer {
         mobs = new ArrayList<>();
         bombs = new ArrayList<>();
         try {
-            int combination = new Random(System.currentTimeMillis()).nextInt(3)+1;
+            int combination = new Random(System.currentTimeMillis()).nextInt(2)+1;
             String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
+            System.out.println(path);
             BufferedReader in = null;
             String data = null;
             try {
@@ -473,6 +474,7 @@ public class Board extends Observable implements Observer {
                 }
                     
             }
+            ((SuperPlayer)p).setGraphicalExtension((SuperPlayer) p);
         }
         else {      //if is called by kill notify this to Game
             setChanged();

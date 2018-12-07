@@ -12,6 +12,7 @@ import pyroduck.bomb.Bomb;
 import pyroduck.entities.tile.powerup.Powerup;
 
 import pyroduck.exceptions.PyroduckException;
+import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
 
@@ -22,12 +23,26 @@ import pyroduck.level.Coordinates;
  */
 public class SuperPlayer extends Player{
     
+    private GraphicalExtensionSuperplayer graphicalExtensionSP = null;
+    
     public SuperPlayer(Player player) {
         super((int)player.getX(), (int)player.getY(), player.board);
         this.input = player.input;
         this.lives = player.lives;
         this.done = false;   //It has just correct keyboard
         
+    }
+    
+    @Override
+    public void render(Screen screen) {
+        super.render(screen);
+        graphicalExtensionSP.render(screen);
+    }
+    
+    @Override
+    protected void calculateMove() {
+        super.calculateMove();
+        graphicalExtensionSP.calculateMove();
     }
     
     @Override
@@ -155,6 +170,10 @@ public class SuperPlayer extends Player{
            input = board.getInput();
         
     }
+        
+        public void setGraphicalExtension(SuperPlayer superPlayer){
+            this.graphicalExtensionSP = new GraphicalExtensionSuperplayer(superPlayer);
+        }
 }
     
 
