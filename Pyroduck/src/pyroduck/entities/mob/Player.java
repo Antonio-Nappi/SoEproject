@@ -44,7 +44,6 @@ public class Player extends Mob{
      * Creates an instance of the player.
      * @param x horizontal coordinate.
      * @param y vertical coordinate.
-     * @param board to take the keyboard related at the player commands.
      */
     public Player(int x, int y) {
         super(x, y);

@@ -150,7 +150,7 @@ public class Game extends Canvas {
 
     public void start() {
         audio=AudioPlayer.getAudioPlayer("gametheme.wav");
-        this.input =Board.getInstance().getInput();
+        this.input = Board.getInstance().getInput();
         addKeyListener(input);
         requestFocus();
         timer.scheduleAtFixedRate(new ScheduleTask(), 1, 15);

@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.entities.mob;
 
-import pyroduck.Board;
 import pyroduck.entities.Entity;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
-
 /**
  *
- * @author Gerry
+ * @author 
  */
 public class ExtensionSP extends Entity{
 
@@ -22,7 +15,6 @@ public class ExtensionSP extends Entity{
         this.y = y;
         this.sprite = sprite;
     }
-    
     
     @Override
     public void update() {
@@ -46,6 +38,5 @@ public class ExtensionSP extends Entity{
     
     public void setSprite(Sprite sprite){
         this.sprite = sprite;
-    }
-      
+    }    
 }

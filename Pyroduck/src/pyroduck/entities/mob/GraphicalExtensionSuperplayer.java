@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.entities.mob;
 
 import java.util.logging.Level;
@@ -16,7 +11,7 @@ import pyroduck.graphics.Sprite;
 
 /**
  *
- * @author Gerry
+ * @author 
  */
 public class GraphicalExtensionSuperplayer extends AnimatedEntity{
     
@@ -31,7 +26,6 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
         this.up2Extension = new ExtensionSP(superPlayer.getX(), superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up);
         this.up3Extension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up);
     }
-    
 
     @Override
     public void update() {
@@ -41,7 +35,6 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
 
     @Override
     public void render(Screen screen) {
-        
         if(superPlayer.alive)
             chooseSprite();
         else
@@ -69,118 +62,100 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
 
     public void calculateMove() {
         double x_sp = superPlayer.getX();
-        double y_sp = superPlayer.getY();
-        
+        double y_sp = superPlayer.getY();        
         //calculate move left extension
         double x_toMove = (x_sp - Game.TILES_SIZE) - leftExtension.getX();
         double y_toMove = (y_sp) - leftExtension.getY();
-        leftExtension.move(x_toMove, y_toMove);
-        System.out.println("leftMove: " + x_toMove + y_toMove);
-        
+        leftExtension.move(x_toMove, y_toMove);        
         //calculate move right extension
         x_toMove = (x_sp + Game.TILES_SIZE) - rightExtension.getX();
         y_toMove = (y_sp) - rightExtension.getY();
         rightExtension.move(x_toMove, y_toMove);
-        System.out.println("rightMove: " + x_toMove + y_toMove);
-        
         //calculate move up1 extension
         x_toMove = (x_sp - Game.TILES_SIZE) - up1Extension.getX();
         y_toMove = (y_sp - Game.TILES_SIZE) - up1Extension.getY();
         up1Extension.move(x_toMove, y_toMove);
-        System.out.println("up1Move: " + x_toMove + y_toMove);
-        
         //calculate move up2 extension
         x_toMove = (x_sp) - up2Extension.getX();
         y_toMove = (y_sp - Game.TILES_SIZE) - up2Extension.getY();
         up2Extension.move(x_toMove, y_toMove);
-        System.out.println("up2Move: " + x_toMove + y_toMove);
-        
         //calculate move up3 extension
         x_toMove = (x_sp + Game.TILES_SIZE) - up3Extension.getX();
         y_toMove = (y_sp - Game.TILES_SIZE) - up3Extension.getY();
-        up3Extension.move(x_toMove, y_toMove);
-        System.out.println("up3Move: " + x_toMove + y_toMove);
-        
+        up3Extension.move(x_toMove, y_toMove); 
     }
 
     private void chooseSprite() {
         try {
             if( Game.getInstance().getSelected() == 0){
-                    switch(superPlayer.direction) {
-                        case 0:
-                            sprite = Sprite.articuno_up;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
-                            }
-                            break;
-                        case 1:
-                            sprite = Sprite.articuno_up;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
-                            }
-                            break;
-                        case 2:
-                            sprite = Sprite.articuno_up;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
-                            }
-                            break;
-                        case 3:
-                            sprite = Sprite.articuno_up;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
-                            }
-                            break;
-                        default:
-                            sprite = Sprite.articuno_up;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
-                            }
-                            break;
-                    }
-                
-                
+                switch(superPlayer.direction) {
+                    case 0:
+                        sprite = Sprite.articuno_up;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                        }
+                        break;
+                    case 1:
+                        sprite = Sprite.articuno_up;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                        }
+                        break;
+                    case 2:
+                        sprite = Sprite.articuno_up;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                        }
+                        break;
+                    case 3:
+                        sprite = Sprite.articuno_up;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                        }
+                        break;
+                    default:
+                        sprite = Sprite.articuno_up;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                        }
+                        break;
+                }  
             }else{
-                    switch(superPlayer.direction) {
-                        case 0:
-                            sprite = Sprite.player_upi;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_2i, animate, 30);
-                            }
-                            break;
-                        case 1:
-                            sprite = Sprite.player_righti;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
-                            }
-                            break;
-                        case 2:
-                            sprite = Sprite.player_downi;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_2i, animate, 30);
-                            }
-                            break;
-                        case 3:
-                            sprite = Sprite.player_lefti;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_2i, animate, 30);
-                            }
-                            break;
-                        default:
-                            sprite = Sprite.player_righti;
-                            if(superPlayer.moving) {
-                                sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
-                            }
-                            break;
-                    }
+                switch(superPlayer.direction) {
+                    case 0:
+                        sprite = Sprite.player_upi;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_2i, animate, 30);
+                        }
+                        break;
+                    case 1:
+                        sprite = Sprite.player_righti;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
+                        }
+                        break;
+                    case 2:
+                        sprite = Sprite.player_downi;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_2i, animate, 30);
+                        }
+                        break;
+                    case 3:
+                        sprite = Sprite.player_lefti;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_2i, animate, 30);
+                        }
+                        break;
+                    default:
+                        sprite = Sprite.player_righti;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
+                        }
+                        break;
                 }
-                
+            }  
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-
-    
-    
+    }   
 }

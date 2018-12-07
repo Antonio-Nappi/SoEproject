@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 import pyroduck.bomb.Bomb;
 import pyroduck.bomb.Explosion;
 import pyroduck.entities.Entity;
-import pyroduck.entities.mob.GraphicalExtensionSuperplayer;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.SuperPlayer;
@@ -152,15 +151,10 @@ public class Board extends Observable implements Observer {
             tokens.nextToken();
             world = tokens.nextToken();
             input = getRightKeyboard();
-            if(world.equals("G")){
-                clevel = new ContextLevel(new GrassStrategy(path));
-                entities = clevel.executeStrategy();
-            }
-            else{
-                clevel = new ContextLevel(new IceStrategy(path));
-                entities = clevel.executeStrategy();
+            clevel = new ContextLevel(new FileLevel(path));
+            entities = clevel.executeStrategy();
+            if(Keyboard.getInstance().isIce())
                 destroyableIceTiles = createDestroyableIceTile();
-            }
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
@@ -522,7 +516,6 @@ public class Board extends Observable implements Observer {
             instance = new Board();
         }
         return instance;
-
     }
 
     public void resetPoints() {
