@@ -34,11 +34,7 @@ public class Sprite {
      */
     public static Sprite player_up = new Sprite(0, 2, SpriteSheet.tiles);
     public static Sprite player_down = new Sprite(0, 1, SpriteSheet.tiles);
-<<<<<<< HEAD
-
-=======
-    //public static Sprite player_down = new Sprite(15, 2, SpriteSheet.tiles); ARTICUNO 
->>>>>>> parent of d675007... moving sprite position
+    
     public static Sprite player_left = new Sprite(0, 3, SpriteSheet.tiles);
     public static Sprite player_right = new Sprite(0, 4, SpriteSheet.tiles);
 
@@ -57,13 +53,7 @@ public class Sprite {
     public static Sprite player_dead1 = new Sprite(3, 2, SpriteSheet.tiles);
     public static Sprite player_dead2 = new Sprite(3, 3, SpriteSheet.tiles);
     public static Sprite player_dead3 = new Sprite(3, 4, SpriteSheet.tiles);
-<<<<<<< HEAD
 
-
-=======
-    
-    
->>>>>>> parent of d675007... moving sprite position
     public static Sprite player_upi = new Sprite(0, 6, SpriteSheet.tiles);
     public static Sprite player_downi = new Sprite(0, 5, SpriteSheet.tiles);
     public static Sprite player_lefti = new Sprite(0, 7, SpriteSheet.tiles);
@@ -77,7 +67,6 @@ public class Sprite {
 
     public static Sprite player_left_1i = new Sprite(1, 7, SpriteSheet.tiles);
     public static Sprite player_left_2i = new Sprite(2, 7, SpriteSheet.tiles);
-<<<<<<< HEAD
 
     public static Sprite player_right_1i = new Sprite(1, 8, SpriteSheet.tiles);
     public static Sprite player_right_2i = new Sprite(2, 8, SpriteSheet.tiles);
@@ -88,6 +77,27 @@ public class Sprite {
 
 
     //ARTICUNO & PSYDUCK
+    public static Sprite articuno_down = new Sprite(16, 5, SpriteSheet.tiles);
+    public static Sprite articuno_down_left = new Sprite(15, 5, SpriteSheet.tiles);
+    public static Sprite articuno_down_right = new Sprite(17, 5, SpriteSheet.tiles);
+    public static Sprite articuno_down_up1 = new Sprite(15, 4, SpriteSheet.tiles);
+    public static Sprite articuno_down_up2 = new Sprite(16, 4, SpriteSheet.tiles);
+    public static Sprite articuno_down_up3 = new Sprite(17, 4, SpriteSheet.tiles);
+
+    public static Sprite articuno_down1 = new Sprite(19, 5, SpriteSheet.tiles);
+    public static Sprite articuno_down1_left = new Sprite(18, 5, SpriteSheet.tiles);
+    public static Sprite articuno_down1_right = new Sprite(20, 5, SpriteSheet.tiles);
+    public static Sprite articuno_down1_up1 = new Sprite(18, 4, SpriteSheet.tiles);
+    public static Sprite articuno_down1_up2 = new Sprite(19, 4, SpriteSheet.tiles);
+    public static Sprite articuno_down1_up3 = new Sprite(20, 4, SpriteSheet.tiles);
+
+    public static Sprite articuno_down2 = new Sprite(22, 5, SpriteSheet.tiles);
+    public static Sprite articuno_down2_left = new Sprite(21, 5, SpriteSheet.tiles);
+    public static Sprite articuno_down2_right = new Sprite(23, 5, SpriteSheet.tiles);
+    public static Sprite articuno_down2_up1 = new Sprite(21, 4, SpriteSheet.tiles);
+    public static Sprite articuno_down2_up2 = new Sprite(22, 4, SpriteSheet.tiles);
+    public static Sprite articuno_down2_up3 = new Sprite(23, 4, SpriteSheet.tiles);
+    
     public static Sprite articuno_up = new Sprite(16, 5, SpriteSheet.tiles);
     public static Sprite articuno_up_left = new Sprite(15, 5, SpriteSheet.tiles);
     public static Sprite articuno_up_right = new Sprite(17, 5, SpriteSheet.tiles);
@@ -108,50 +118,7 @@ public class Sprite {
     public static Sprite articuno_up2_up1 = new Sprite(21, 4, SpriteSheet.tiles);
     public static Sprite articuno_up2_up2 = new Sprite(22, 4, SpriteSheet.tiles);
     public static Sprite articuno_up2_up3 = new Sprite(23, 4, SpriteSheet.tiles);
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Mobs
-    |--------------------------------------------------------------------------
-     */
-    public static Sprite golbat_up1 = new Sprite(6, 4, SpriteSheet.tiles);
-    public static Sprite golbat_up2 = new Sprite(7, 4, SpriteSheet.tiles);
-    public static Sprite golbat_up3 = new Sprite(8, 4, SpriteSheet.tiles);
-
-    public static Sprite golbat_down1 = new Sprite(6, 7, SpriteSheet.tiles);
-    public static Sprite golbat_down2 = new Sprite(7, 7, SpriteSheet.tiles);
-    public static Sprite golbat_down3 = new Sprite(8, 7, SpriteSheet.tiles);
-
-    public static Sprite golbat_left1 = new Sprite(6, 6, SpriteSheet.tiles);
-    public static Sprite golbat_left2 = new Sprite(7, 6, SpriteSheet.tiles);
-    public static Sprite golbat_left3 = new Sprite(8, 6, SpriteSheet.tiles);
-
-    public static Sprite golbat_right1 = new Sprite(6, 5, SpriteSheet.tiles);
-    public static Sprite golbat_right2 = new Sprite(7, 5, SpriteSheet.tiles);
-    public static Sprite golbat_right3 = new Sprite(8, 5, SpriteSheet.tiles);
-
-    public static Sprite golbat_dead = new Sprite(13, 2, SpriteSheet.tiles);
-
-    public static Sprite machamp_up1 = new Sprite(9, 5, SpriteSheet.tiles);
-    public static Sprite machamp_up2 = new Sprite(10, 5, SpriteSheet.tiles);
-    public static Sprite machamp_up3 = new Sprite(11, 5, SpriteSheet.tiles);
-
-=======
-
-    public static Sprite player_right_1i = new Sprite(1, 8, SpriteSheet.tiles);
-    public static Sprite player_right_2i = new Sprite(2, 8, SpriteSheet.tiles);
-
-    public static Sprite player_dead1i = new Sprite(3, 6, SpriteSheet.tiles);
-    public static Sprite player_dead2i = new Sprite(3, 7, SpriteSheet.tiles);
-    public static Sprite player_dead3i = new Sprite(3, 8, SpriteSheet.tiles);
-    
-    
-    //ARTICUNO & PSYDUCK
-    public static Sprite articuno_up = new Sprite(15, 2, SpriteSheet.tiles);
-
-
+   
     /*
     |--------------------------------------------------------------------------
     | Mobs
@@ -178,6 +145,7 @@ public class Sprite {
     public static Sprite machamp_up1 = new Sprite(9, 5, SpriteSheet.tiles);
     public static Sprite machamp_up2 = new Sprite(10, 5, SpriteSheet.tiles);
     public static Sprite machamp_up3 = new Sprite(11, 5, SpriteSheet.tiles);
+   
     
     public static Sprite machamp_down1 = new Sprite(9, 4, SpriteSheet.tiles);
     public static Sprite machamp_down2 = new Sprite(10, 4, SpriteSheet.tiles);
@@ -341,7 +309,7 @@ public class Sprite {
     public static Sprite powerup_not_slip = new Sprite(5,5,SpriteSheet.tiles);
     public static Sprite powerup_articuno = new Sprite(3, 5, SpriteSheet.tiles);
     public static Sprite portal = new Sprite(16, 0, SpriteSheet.tiles);
->>>>>>> parent of d675007... moving sprite position
+
     /**
      * Creates an instance of Sheet, sets its parameters and calls the method to load the related image.
      * @param x column number of the sprite sheet.

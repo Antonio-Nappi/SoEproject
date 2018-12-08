@@ -14,52 +14,18 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
 
     private SuperPlayer superPlayer;
     private ExtensionSP leftExtension, rightExtension, up1Extension, up2Extension, up3Extension;
-<<<<<<< HEAD
-    public static Sprite articuno_up = new Sprite(15, 2);
-      protected Sprite player_dead1 = new Sprite(3, 2);
-    protected Sprite player_dead2 = new Sprite(3, 3);
-    protected Sprite player_dead3 = new Sprite(3, 4);
 
-
-    protected Sprite player_upi = new Sprite(0, 6);
-    protected Sprite player_downi = new Sprite(0, 5);
-    protected Sprite player_lefti = new Sprite(0, 7);
-    protected Sprite player_righti = new Sprite(0, 8);
-
-    protected Sprite player_up_1i = new Sprite(1, 6);
-    protected Sprite player_up_2i = new Sprite(2, 6);
-
-    protected Sprite player_down_1i = new Sprite(1, 5);
-    protected Sprite player_down_2i = new Sprite(2, 5);
-
-    protected Sprite player_left_1i = new Sprite(1, 7);
-    protected Sprite player_left_2i = new Sprite(2, 7);
-
-    protected Sprite player_right_1i = new Sprite(1, 8);
-    protected Sprite player_right_2i = new Sprite(2, 8);
-
-    protected Sprite player_dead1i = new Sprite(3, 6);
-    protected Sprite player_dead2i = new Sprite(3, 7);
-    protected Sprite player_dead3i = new Sprite(3, 8);
 
     public GraphicalExtensionSuperplayer(SuperPlayer superPlayer){
         this.superPlayer = superPlayer;
-        this.leftExtension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY(), Sprite.articuno_up_left);
-        this.rightExtension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY(), Sprite.articuno_up_right);
-        this.up1Extension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up_up1);
-        this.up2Extension = new ExtensionSP(superPlayer.getX(), superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up_up2);
-        this.up3Extension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up_up3);
-=======
-    
-    public GraphicalExtensionSuperplayer(SuperPlayer superPlayer){
-        this.superPlayer = superPlayer;
-        this.leftExtension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY(), Sprite.articuno_up);
-        this.rightExtension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY(), Sprite.articuno_up);
-        this.up1Extension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up);
-        this.up2Extension = new ExtensionSP(superPlayer.getX(), superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up);
-        this.up3Extension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up);
->>>>>>> parent of d675007... moving sprite position
+        this.leftExtension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY(), Sprite.articuno_down_left);
+        this.rightExtension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY(), Sprite.articuno_down_right);
+        this.up1Extension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_down_up1);
+        this.up2Extension = new ExtensionSP(superPlayer.getX(), superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_down_up2);
+        this.up3Extension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_down_up3);
     }
+
+
 
     @Override
     public void update() {
@@ -121,12 +87,13 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
 
     private void chooseSprite() {
         try {
+            System.out.println("ChoseSprite");
             if( Game.getInstance().getSelected() == 0){
                 switch(superPlayer.direction) {
                     case 0:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_down;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_down1, Sprite.articuno_down2, animate, 30);
                         }
                         break;
                     case 1:

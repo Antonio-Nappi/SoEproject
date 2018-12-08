@@ -41,7 +41,7 @@ public class SuperPlayer extends Player{
             if(Game.getInstance().getSelected() == 0){
                 switch(direction) {
                     case 0:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_down;
                         if(moving) {
                             sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                         }
