@@ -14,6 +14,7 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
 
     private SuperPlayer superPlayer;
     private ExtensionSP leftExtension, rightExtension, up1Extension, up2Extension, up3Extension;
+<<<<<<< HEAD
     public static Sprite articuno_up = new Sprite(15, 2);
       protected Sprite player_dead1 = new Sprite(3, 2);
     protected Sprite player_dead2 = new Sprite(3, 3);
@@ -48,6 +49,16 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
         this.up1Extension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up_up1);
         this.up2Extension = new ExtensionSP(superPlayer.getX(), superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up_up2);
         this.up3Extension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up_up3);
+=======
+    
+    public GraphicalExtensionSuperplayer(SuperPlayer superPlayer){
+        this.superPlayer = superPlayer;
+        this.leftExtension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY(), Sprite.articuno_up);
+        this.rightExtension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY(), Sprite.articuno_up);
+        this.up1Extension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up);
+        this.up2Extension = new ExtensionSP(superPlayer.getX(), superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up);
+        this.up3Extension = new ExtensionSP(superPlayer.getX()+Game.TILES_SIZE, superPlayer.getY()-Game.TILES_SIZE, Sprite.articuno_up);
+>>>>>>> parent of d675007... moving sprite position
     }
 
     @Override
@@ -63,10 +74,10 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
         else
             try {
                 if(Game.getInstance().getSelected() == 0){
-                    sprite = player_dead1;
+                    sprite = Sprite.player_dead1;
                 }
                 else{
-                    sprite = player_dead1i;
+                    sprite = Sprite.player_dead1i;
                 }
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,66 +124,66 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
             if( Game.getInstance().getSelected() == 0){
                 switch(superPlayer.direction) {
                     case 0:
-                        sprite = articuno_up;
+                        sprite = Sprite.articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                         }
                         break;
                     case 1:
-                        sprite = articuno_up;
+                        sprite = Sprite.articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                         }
                         break;
                     case 2:
-                        sprite = articuno_up;
+                        sprite = Sprite.articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                         }
                         break;
                     case 3:
-                        sprite = articuno_up;
+                        sprite = Sprite.articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                         }
                         break;
                     default:
-                        sprite = articuno_up;
+                        sprite = Sprite.articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
                         }
                         break;
                 }
             }else{
                 switch(superPlayer.direction) {
                     case 0:
-                        sprite = player_upi;
+                        sprite = Sprite.player_upi;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(player_up_1i, player_up_2i, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_2i, animate, 30);
                         }
                         break;
                     case 1:
-                        sprite = player_righti;
+                        sprite = Sprite.player_righti;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(player_right_1i, player_right_2i, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
                         }
                         break;
                     case 2:
-                        sprite = player_downi;
+                        sprite = Sprite.player_downi;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(player_down_1i, player_down_2i, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_2i, animate, 30);
                         }
                         break;
                     case 3:
-                        sprite = player_lefti;
+                        sprite = Sprite.player_lefti;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(player_left_1i, player_left_2i, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_2i, animate, 30);
                         }
                         break;
                     default:
-                        sprite = player_righti;
+                        sprite = Sprite.player_righti;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(player_right_1i, player_right_2i, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
                         }
                         break;
                 }

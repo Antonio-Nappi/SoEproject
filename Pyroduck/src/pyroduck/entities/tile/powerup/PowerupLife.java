@@ -8,10 +8,9 @@ import pyroduck.graphics.Sprite;
  * @author La Femina, Petruzzello
  */
 public class PowerupLife extends Powerup {
-    public static Sprite powerup_life = new Sprite(5, 4);
     
-    public PowerupLife(int x, int y) {
-        super(x, y, powerup_life);
+    public PowerupLife(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
     }
 
     @Override

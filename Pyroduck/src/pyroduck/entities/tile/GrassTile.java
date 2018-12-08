@@ -9,7 +9,6 @@ import pyroduck.graphics.Sprite;
  * @version 1.0
  */
 public class GrassTile extends Tile {
-    public static Sprite grass = new Sprite(1, 0);
 
     /**
      * Constructor that create an object of this class.
@@ -17,8 +16,8 @@ public class GrassTile extends Tile {
      * @param y vertical coordinate.
      * @param sprite related to the tile.
      */
-    public GrassTile(int x, int y) {
-        super(x, y, grass);
+    public GrassTile(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
     }
 
     /**

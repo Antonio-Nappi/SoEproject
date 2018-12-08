@@ -18,10 +18,6 @@ public class Bomb extends AnimatedEntity {
     protected boolean allowedToPassThru = false;
     protected DirectionalExplosion[] explosions = null;
     protected boolean exploded = false;
-    public static Sprite bomb = new Sprite(3, 1);
-    public static Sprite bomb_1 = new Sprite(4, 1);
-    public static Sprite bomb_2 = new Sprite(5, 1);
-    public static Sprite bomb_exploded2 = new Sprite(12, 3);
 
     /**
      * Creates an instance of the Bomb.
@@ -31,7 +27,7 @@ public class Bomb extends AnimatedEntity {
     public Bomb(int x, int y) {
         this.x = x;
         this.y = y;
-        sprite = bomb;
+        sprite = Sprite.bomb;
     }
 
     /**
@@ -63,10 +59,10 @@ public class Bomb extends AnimatedEntity {
     @Override
     public void render(Screen screen) {
         if(exploded) {
-            sprite =  bomb_exploded2;
+            sprite =  Sprite.bomb_exploded2;
             renderExplosions(screen);
         } else
-            sprite = Sprite.movingSprite(bomb, bomb_1, bomb_2, animate, 30);
+            sprite = Sprite.movingSprite(Sprite.bomb, Sprite.bomb_1, Sprite.bomb_2, animate, 30);
         int xt = (int)x << 5;
         int yt = (int)y << 5;
         screen.renderEntity(xt, yt , this);

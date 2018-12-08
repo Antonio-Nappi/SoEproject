@@ -8,10 +8,9 @@ import pyroduck.graphics.Sprite;
  * @author La Femina, Petruzzello
  */
 public class PowerupSpeed extends Powerup {
-    public static Sprite powerup_speed = new Sprite(5, 2);
 
-    public PowerupSpeed(int x, int y) {
-        super(x, y,powerup_speed);
+    public PowerupSpeed(int x, int y, Sprite sprite) {
+        super(x, y, sprite);
     }
 
     @Override

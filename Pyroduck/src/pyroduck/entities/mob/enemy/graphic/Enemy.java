@@ -24,14 +24,12 @@ public abstract class Enemy extends Mob {
     protected double steps;
     protected int finalAnimation = 30;
     protected Sprite deadSprite;
-        public static Sprite mob_dead1 = new Sprite(13, 1);
-    public static Sprite mob_dead2 = new Sprite(13, 2);
-    public static Sprite mob_dead3 = new Sprite(13, 3);
 
     /**
      * Creates an instance of Enemy
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordiante in pixels.
+     * @param board
      * @param dead sprite to show when the enemy will die.
      * @param speed speed of the enemy.
      * @param points point to receve when the enemy will die.
@@ -80,7 +78,7 @@ public abstract class Enemy extends Mob {
                 sprite = deadSprite;
                 animate = 0;
             } else {
-                sprite = Sprite.movingSprite(mob_dead1, mob_dead2, mob_dead3, animate, 30);
+                sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 30);
             }
         }
         screen.renderEntity((int)x, (int)y - sprite.SIZE, this);
