@@ -239,7 +239,7 @@ public class Player extends Mob{
                                 if(input.isIce())
                                     sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
                                 else
-                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_1, animate, 30);
+                                    sprite = Sprite.movingSprite(Sprite.player_right_1, Sprite.player_right_2, animate, 30);
                             }
                             break;
                     }

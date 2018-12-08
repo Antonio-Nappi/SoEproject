@@ -1,6 +1,10 @@
 package pyroduck.entities.mob;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import pyroduck.Game;
 import pyroduck.entities.Entity;
+import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.*;
 
 /**
@@ -34,6 +38,8 @@ public class ExtensionSP extends Entity{
             this.y += ya;
             this.x += xa;
     }
+    
+    
     
     public void setSprite(Sprite sprite){
         this.sprite = sprite;

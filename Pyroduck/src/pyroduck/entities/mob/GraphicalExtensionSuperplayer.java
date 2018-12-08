@@ -90,37 +90,73 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
             if( Game.getInstance().getSelected() == 0){
                 switch(superPlayer.direction) {
                     case 0:
-                        sprite = Sprite.articuno_down;
+                        sprite = Sprite.articuno_up;
+                        leftExtension.setSprite(Sprite.articuno_up_left);
+                        rightExtension.setSprite(Sprite.articuno_up_right);
+                        up1Extension.setSprite(Sprite.articuno_up_up1);
+                        up2Extension.setSprite(Sprite.articuno_up_up2);
+                        up3Extension.setSprite(Sprite.articuno_up_up3);
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_down1, Sprite.articuno_down2, animate, 30);
+                            leftExtension.setSprite(Sprite.movingSprite(Sprite.articuno_up1_left, Sprite.articuno_up2_left, superPlayer.getAnimate(), 30));
+                            rightExtension.setSprite(Sprite.movingSprite(Sprite.articuno_up1_right, Sprite.articuno_up2_right, superPlayer.getAnimate(), 30));
+                            up1Extension.setSprite(Sprite.movingSprite(Sprite.articuno_up1_up1, Sprite.articuno_up2_up1, superPlayer.getAnimate(), 30));
+                            up2Extension.setSprite(Sprite.movingSprite(Sprite.articuno_up1_up2, Sprite.articuno_up2_up2, superPlayer.getAnimate(), 30));
+                            up3Extension.setSprite(Sprite.movingSprite(Sprite.articuno_up1_up3, Sprite.articuno_up2_up3, superPlayer.getAnimate(), 30));
                         }
                         break;
                     case 1:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_right;
+                        leftExtension.setSprite(Sprite.articuno_right_left);
+                        rightExtension.setSprite(Sprite.articuno_right_right);
+                        up1Extension.setSprite(Sprite.articuno_right_up1);
+                        up2Extension.setSprite(Sprite.articuno_right_up2);
+                        up3Extension.setSprite(Sprite.articuno_right_up3);
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            leftExtension.setSprite(Sprite.movingSprite(Sprite.articuno_right1_left, Sprite.articuno_right2_left, superPlayer.getAnimate(), 30));
+                            rightExtension.setSprite(Sprite.movingSprite(Sprite.articuno_right1_right, Sprite.articuno_right2_right, superPlayer.getAnimate(), 30));
+                            up1Extension.setSprite(Sprite.movingSprite(Sprite.articuno_right1_up1, Sprite.articuno_right2_up1, superPlayer.getAnimate(), 30));
+                            up2Extension.setSprite(Sprite.movingSprite(Sprite.articuno_right1_up2, Sprite.articuno_right2_up2, superPlayer.getAnimate(), 30));
+                            up3Extension.setSprite(Sprite.movingSprite(Sprite.articuno_right1_up3, Sprite.articuno_right2_up3, superPlayer.getAnimate(), 30));
                         }
                         break;
                     case 2:
                         sprite = Sprite.articuno_down;
+                        leftExtension.setSprite(Sprite.articuno_down_left);
+                        rightExtension.setSprite(Sprite.articuno_down_right);
+                        up1Extension.setSprite(Sprite.articuno_down_up1);
+                        up2Extension.setSprite(Sprite.articuno_down_up2);
+                        up3Extension.setSprite(Sprite.articuno_down_up3);
                         if(superPlayer.moving) {
-                            leftExtension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_left, Sprite.articuno_down2_left, animate, 30));
-                            rightExtension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_right, Sprite.articuno_down2_right, animate, 30));
-                            up1Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up1, Sprite.articuno_down2_up1, animate, 30));
-                            up2Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up2, Sprite.articuno_down2_up2, animate, 30));
-                            up3Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up3, Sprite.articuno_down2_up3, animate, 30));
+                            leftExtension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_left, Sprite.articuno_down2_left, superPlayer.getAnimate(), 30));
+                            rightExtension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_right, Sprite.articuno_down2_right, superPlayer.getAnimate(), 30));
+                            up1Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up1, Sprite.articuno_down2_up1, superPlayer.getAnimate(), 30));
+                            up2Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up2, Sprite.articuno_down2_up2, superPlayer.getAnimate(), 30));
+                            up3Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up3, Sprite.articuno_down2_up3, superPlayer.getAnimate(), 30));
                         }
                         break;
                     case 3:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_left;
+                        leftExtension.setSprite(Sprite.articuno_left_left);
+                        rightExtension.setSprite(Sprite.articuno_left_right);
+                        up1Extension.setSprite(Sprite.articuno_left_up1);
+                        up2Extension.setSprite(Sprite.articuno_left_up2);
+                        up3Extension.setSprite(Sprite.articuno_left_up3);
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            leftExtension.setSprite(Sprite.movingSprite(Sprite.articuno_left1_left, Sprite.articuno_left2_left, superPlayer.getAnimate(), 30));
+                            rightExtension.setSprite(Sprite.movingSprite(Sprite.articuno_left1_right, Sprite.articuno_left2_right, superPlayer.getAnimate(), 30));
+                            up1Extension.setSprite(Sprite.movingSprite(Sprite.articuno_left1_up1, Sprite.articuno_left2_up1, superPlayer.getAnimate(), 30));
+                            up2Extension.setSprite(Sprite.movingSprite(Sprite.articuno_left1_up2, Sprite.articuno_left2_up2, superPlayer.getAnimate(), 30));
+                            up3Extension.setSprite(Sprite.movingSprite(Sprite.articuno_left1_up3, Sprite.articuno_left2_up3, superPlayer.getAnimate(), 30));
                         }
                         break;
                     default:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_down;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            leftExtension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_left, Sprite.articuno_down2_left, superPlayer.getAnimate(), 30));
+                            rightExtension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_right, Sprite.articuno_down2_right, superPlayer.getAnimate(), 30));
+                            up1Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up1, Sprite.articuno_down2_up1, superPlayer.getAnimate(), 30));
+                            up2Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up2, Sprite.articuno_down2_up2, superPlayer.getAnimate(), 30));
+                            up3Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up3, Sprite.articuno_down2_up3, superPlayer.getAnimate(), 30));
                         }
                         break;
                 }

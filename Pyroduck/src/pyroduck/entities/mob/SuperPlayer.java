@@ -47,9 +47,9 @@ public class SuperPlayer extends Player{
                         }
                         break;
                     case 1:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_right;
                         if(moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_right1, Sprite.articuno_right2, animate, 30);
                         }
                         break;
                     case 2:
@@ -59,15 +59,15 @@ public class SuperPlayer extends Player{
                         }
                         break;
                     case 3:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_left;
                         if(moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_left1, Sprite.articuno_left2, animate, 30);
                         }
                         break;
                     default:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_down;
                         if(moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_down1, Sprite.articuno_down2, animate, 30);
                         }
                         break;
                 }   
@@ -153,5 +153,9 @@ public class SuperPlayer extends Player{
         
     public void setGraphicalExtension(SuperPlayer superPlayer){
         this.graphicalExtensionSP = new GraphicalExtensionSuperplayer(superPlayer);
+    }
+    
+    public int getAnimate(){
+        return this.animate;
     }
 }

@@ -98,26 +98,70 @@ public class Sprite {
     public static Sprite articuno_down2_up2 = new Sprite(22, 4, SpriteSheet.tiles);
     public static Sprite articuno_down2_up3 = new Sprite(23, 4, SpriteSheet.tiles);
     
-    public static Sprite articuno_up = new Sprite(16, 5, SpriteSheet.tiles);
-    public static Sprite articuno_up_left = new Sprite(15, 5, SpriteSheet.tiles);
-    public static Sprite articuno_up_right = new Sprite(17, 5, SpriteSheet.tiles);
-    public static Sprite articuno_up_up1 = new Sprite(15, 4, SpriteSheet.tiles);
-    public static Sprite articuno_up_up2 = new Sprite(16, 4, SpriteSheet.tiles);
-    public static Sprite articuno_up_up3 = new Sprite(17, 4, SpriteSheet.tiles);
+    public static Sprite articuno_up = new Sprite(16, 7, SpriteSheet.tiles);
+    public static Sprite articuno_up_left = new Sprite(15, 7, SpriteSheet.tiles);
+    public static Sprite articuno_up_right = new Sprite(17, 7, SpriteSheet.tiles);
+    public static Sprite articuno_up_up1 = new Sprite(15, 6, SpriteSheet.tiles);
+    public static Sprite articuno_up_up2 = new Sprite(16, 6, SpriteSheet.tiles);
+    public static Sprite articuno_up_up3 = new Sprite(17, 6, SpriteSheet.tiles);
 
-    public static Sprite articuno_up1 = new Sprite(19, 5, SpriteSheet.tiles);
-    public static Sprite articuno_up1_left = new Sprite(18, 5, SpriteSheet.tiles);
-    public static Sprite articuno_up1_right = new Sprite(20, 5, SpriteSheet.tiles);
-    public static Sprite articuno_up1_up1 = new Sprite(18, 4, SpriteSheet.tiles);
-    public static Sprite articuno_up1_up2 = new Sprite(19, 4, SpriteSheet.tiles);
-    public static Sprite articuno_up1_up3 = new Sprite(20, 4, SpriteSheet.tiles);
+    public static Sprite articuno_up1 = new Sprite(19, 7, SpriteSheet.tiles);
+    public static Sprite articuno_up1_left = new Sprite(18, 7, SpriteSheet.tiles);
+    public static Sprite articuno_up1_right = new Sprite(20, 7, SpriteSheet.tiles);
+    public static Sprite articuno_up1_up1 = new Sprite(18, 6, SpriteSheet.tiles);
+    public static Sprite articuno_up1_up2 = new Sprite(19, 6, SpriteSheet.tiles);
+    public static Sprite articuno_up1_up3 = new Sprite(20, 6, SpriteSheet.tiles);
 
-    public static Sprite articuno_up2 = new Sprite(22, 5, SpriteSheet.tiles);
-    public static Sprite articuno_up2_left = new Sprite(21, 5, SpriteSheet.tiles);
-    public static Sprite articuno_up2_right = new Sprite(23, 5, SpriteSheet.tiles);
-    public static Sprite articuno_up2_up1 = new Sprite(21, 4, SpriteSheet.tiles);
-    public static Sprite articuno_up2_up2 = new Sprite(22, 4, SpriteSheet.tiles);
-    public static Sprite articuno_up2_up3 = new Sprite(23, 4, SpriteSheet.tiles);
+    public static Sprite articuno_up2 = new Sprite(22, 7, SpriteSheet.tiles);
+    public static Sprite articuno_up2_left = new Sprite(21, 7, SpriteSheet.tiles);
+    public static Sprite articuno_up2_right = new Sprite(23, 7, SpriteSheet.tiles);
+    public static Sprite articuno_up2_up1 = new Sprite(21, 6, SpriteSheet.tiles);
+    public static Sprite articuno_up2_up2 = new Sprite(22, 6, SpriteSheet.tiles);
+    public static Sprite articuno_up2_up3 = new Sprite(23, 6, SpriteSheet.tiles);
+    
+    public static Sprite articuno_right = new Sprite(16, 11, SpriteSheet.tiles);
+    public static Sprite articuno_right_left = new Sprite(15, 11, SpriteSheet.tiles);
+    public static Sprite articuno_right_right = new Sprite(17, 11, SpriteSheet.tiles);
+    public static Sprite articuno_right_up1 = new Sprite(15, 10, SpriteSheet.tiles);
+    public static Sprite articuno_right_up2 = new Sprite(16, 10, SpriteSheet.tiles);
+    public static Sprite articuno_right_up3 = new Sprite(17, 10, SpriteSheet.tiles);
+
+    public static Sprite articuno_right1 = new Sprite(19, 11, SpriteSheet.tiles);
+    public static Sprite articuno_right1_left = new Sprite(18, 11, SpriteSheet.tiles);
+    public static Sprite articuno_right1_right = new Sprite(20, 11, SpriteSheet.tiles);
+    public static Sprite articuno_right1_up1 = new Sprite(18, 10, SpriteSheet.tiles);
+    public static Sprite articuno_right1_up2 = new Sprite(19, 10, SpriteSheet.tiles);
+    public static Sprite articuno_right1_up3 = new Sprite(20, 10, SpriteSheet.tiles);
+
+    public static Sprite articuno_right2 = new Sprite(22, 11, SpriteSheet.tiles);
+    public static Sprite articuno_right2_left = new Sprite(21, 11, SpriteSheet.tiles);
+    public static Sprite articuno_right2_right = new Sprite(23, 11, SpriteSheet.tiles);
+    public static Sprite articuno_right2_up1 = new Sprite(21, 10, SpriteSheet.tiles);
+    public static Sprite articuno_right2_up2 = new Sprite(22, 10, SpriteSheet.tiles);
+    public static Sprite articuno_right2_up3 = new Sprite(23, 10, SpriteSheet.tiles);
+    
+    public static Sprite articuno_left = new Sprite(16, 9, SpriteSheet.tiles);
+    public static Sprite articuno_left_left = new Sprite(15, 9, SpriteSheet.tiles);
+    public static Sprite articuno_left_right = new Sprite(17, 9, SpriteSheet.tiles);
+    public static Sprite articuno_left_up1 = new Sprite(15, 8, SpriteSheet.tiles);
+    public static Sprite articuno_left_up2 = new Sprite(16, 8, SpriteSheet.tiles);
+    public static Sprite articuno_left_up3 = new Sprite(17, 8, SpriteSheet.tiles);
+
+    public static Sprite articuno_left1 = new Sprite(19, 9, SpriteSheet.tiles);
+    public static Sprite articuno_left1_left = new Sprite(18, 9, SpriteSheet.tiles);
+    public static Sprite articuno_left1_right = new Sprite(20, 9, SpriteSheet.tiles);
+    public static Sprite articuno_left1_up1 = new Sprite(18, 8, SpriteSheet.tiles);
+    public static Sprite articuno_left1_up2 = new Sprite(19, 8, SpriteSheet.tiles);
+    public static Sprite articuno_left1_up3 = new Sprite(20, 8, SpriteSheet.tiles);
+
+    public static Sprite articuno_left2 = new Sprite(22, 9, SpriteSheet.tiles);
+    public static Sprite articuno_left2_left = new Sprite(21, 9, SpriteSheet.tiles);
+    public static Sprite articuno_left2_right = new Sprite(23, 5, SpriteSheet.tiles);
+    public static Sprite articuno_left2_up1 = new Sprite(21, 8, SpriteSheet.tiles);
+    public static Sprite articuno_left2_up2 = new Sprite(22, 8, SpriteSheet.tiles);
+    public static Sprite articuno_left2_up3 = new Sprite(23, 8, SpriteSheet.tiles);
+    
+    
    
     /*
     |--------------------------------------------------------------------------
