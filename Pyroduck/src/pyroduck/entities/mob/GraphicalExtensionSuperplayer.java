@@ -8,13 +8,39 @@ import pyroduck.graphics.*;
 
 /**
  *
- * @author 
+ * @author
  */
 public class GraphicalExtensionSuperplayer extends AnimatedEntity{
-    
+
     private SuperPlayer superPlayer;
     private ExtensionSP leftExtension, rightExtension, up1Extension, up2Extension, up3Extension;
-    
+    public static Sprite articuno_up = new Sprite(15, 2);
+      protected Sprite player_dead1 = new Sprite(3, 2);
+    protected Sprite player_dead2 = new Sprite(3, 3);
+    protected Sprite player_dead3 = new Sprite(3, 4);
+
+
+    protected Sprite player_upi = new Sprite(0, 6);
+    protected Sprite player_downi = new Sprite(0, 5);
+    protected Sprite player_lefti = new Sprite(0, 7);
+    protected Sprite player_righti = new Sprite(0, 8);
+
+    protected Sprite player_up_1i = new Sprite(1, 6);
+    protected Sprite player_up_2i = new Sprite(2, 6);
+
+    protected Sprite player_down_1i = new Sprite(1, 5);
+    protected Sprite player_down_2i = new Sprite(2, 5);
+
+    protected Sprite player_left_1i = new Sprite(1, 7);
+    protected Sprite player_left_2i = new Sprite(2, 7);
+
+    protected Sprite player_right_1i = new Sprite(1, 8);
+    protected Sprite player_right_2i = new Sprite(2, 8);
+
+    protected Sprite player_dead1i = new Sprite(3, 6);
+    protected Sprite player_dead2i = new Sprite(3, 7);
+    protected Sprite player_dead3i = new Sprite(3, 8);
+
     public GraphicalExtensionSuperplayer(SuperPlayer superPlayer){
         this.superPlayer = superPlayer;
         this.leftExtension = new ExtensionSP(superPlayer.getX()-Game.TILES_SIZE, superPlayer.getY(), Sprite.articuno_up_left);
@@ -37,10 +63,10 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
         else
             try {
                 if(Game.getInstance().getSelected() == 0){
-                    sprite = Sprite.player_dead1;
+                    sprite = player_dead1;
                 }
                 else{
-                    sprite = Sprite.player_dead1i;
+                    sprite = player_dead1i;
                 }
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,11 +85,11 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
 
     public void calculateMove() {
         double x_sp = superPlayer.getX();
-        double y_sp = superPlayer.getY();        
+        double y_sp = superPlayer.getY();
         //calculate move left extension
         double x_toMove = (x_sp - Game.TILES_SIZE) - leftExtension.getX();
         double y_toMove = (y_sp) - leftExtension.getY();
-        leftExtension.move(x_toMove, y_toMove);        
+        leftExtension.move(x_toMove, y_toMove);
         //calculate move right extension
         x_toMove = (x_sp + Game.TILES_SIZE) - rightExtension.getX();
         y_toMove = (y_sp) - rightExtension.getY();
@@ -79,7 +105,7 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
         //calculate move up3 extension
         x_toMove = (x_sp + Game.TILES_SIZE) - up3Extension.getX();
         y_toMove = (y_sp - Game.TILES_SIZE) - up3Extension.getY();
-        up3Extension.move(x_toMove, y_toMove); 
+        up3Extension.move(x_toMove, y_toMove);
     }
 
     private void chooseSprite() {
@@ -87,72 +113,72 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
             if( Game.getInstance().getSelected() == 0){
                 switch(superPlayer.direction) {
                     case 0:
-                        sprite = Sprite.articuno_up;
+                        sprite = articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                         }
                         break;
                     case 1:
-                        sprite = Sprite.articuno_up;
+                        sprite = articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                         }
                         break;
                     case 2:
-                        sprite = Sprite.articuno_up;
+                        sprite = articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                         }
                         break;
                     case 3:
-                        sprite = Sprite.articuno_up;
+                        sprite = articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                         }
                         break;
                     default:
-                        sprite = Sprite.articuno_up;
+                        sprite = articuno_up;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
-                        }
-                        break;
-                }  
-            }else{
-                switch(superPlayer.direction) {
-                    case 0:
-                        sprite = Sprite.player_upi;
-                        if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_2i, animate, 30);
-                        }
-                        break;
-                    case 1:
-                        sprite = Sprite.player_righti;
-                        if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
-                        }
-                        break;
-                    case 2:
-                        sprite = Sprite.player_downi;
-                        if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_2i, animate, 30);
-                        }
-                        break;
-                    case 3:
-                        sprite = Sprite.player_lefti;
-                        if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_2i, animate, 30);
-                        }
-                        break;
-                    default:
-                        sprite = Sprite.player_righti;
-                        if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
+                            sprite = Sprite.movingSprite(articuno_up, articuno_up, animate, 30);
                         }
                         break;
                 }
-            }  
+            }else{
+                switch(superPlayer.direction) {
+                    case 0:
+                        sprite = player_upi;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(player_up_1i, player_up_2i, animate, 30);
+                        }
+                        break;
+                    case 1:
+                        sprite = player_righti;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(player_right_1i, player_right_2i, animate, 30);
+                        }
+                        break;
+                    case 2:
+                        sprite = player_downi;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(player_down_1i, player_down_2i, animate, 30);
+                        }
+                        break;
+                    case 3:
+                        sprite = player_lefti;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(player_left_1i, player_left_2i, animate, 30);
+                        }
+                        break;
+                    default:
+                        sprite = player_righti;
+                        if(superPlayer.moving) {
+                            sprite = Sprite.movingSprite(player_right_1i, player_right_2i, animate, 30);
+                        }
+                        break;
+                }
+            }
         } catch (PyroduckException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }   
+    }
 }

@@ -1,37 +1,16 @@
 package pyroduck.level;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.StringTokenizer;
-import java.io.FileReader;
-import pyroduck.Board;
-import pyroduck.Game;
-import pyroduck.entities.Entity;
-import pyroduck.entities.LayeredEntity;
+import pyroduck.*;
+import pyroduck.entities.*;
 import pyroduck.entities.mob.Player;
-import pyroduck.entities.mob.enemy.graphic.Arbok;
-import pyroduck.entities.mob.enemy.graphic.Darkrai;
-import pyroduck.entities.mob.enemy.graphic.Glalie;
-import pyroduck.entities.mob.enemy.graphic.Golbat;
-import pyroduck.entities.mob.enemy.graphic.Machamp;
-import pyroduck.entities.mob.enemy.graphic.Snorunt;
-import pyroduck.entities.tile.GrassTile;
-import pyroduck.entities.tile.PortalTile;
-import pyroduck.entities.tile.WallTile;
-import pyroduck.entities.tile.destroyable.BrickTile;
-import pyroduck.entities.tile.destroyable.ContextDestroyable;
-import pyroduck.entities.tile.destroyable.IntactState;
-import pyroduck.entities.tile.powerup.MalusReverse;
-import pyroduck.entities.tile.powerup.MalusSlow;
-import pyroduck.entities.tile.powerup.PowerupBombs;
-import pyroduck.entities.tile.powerup.PowerupFlames;
-import pyroduck.entities.tile.powerup.PowerupLife;
-import pyroduck.entities.tile.powerup.PowerupNotSlip;
-import pyroduck.entities.tile.powerup.PowerupSpeed;
-import pyroduck.entities.tile.powerup.PowerupVehicles;
+import pyroduck.entities.mob.enemy.graphic.*;
+import pyroduck.entities.tile.*;
+import pyroduck.entities.tile.destroyable.*;
+import pyroduck.entities.tile.powerup.*;
 import pyroduck.exceptions.LoadLevelException;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
+import pyroduck.graphics.*;
 import pyroduck.input.Keyboard;
 
 /**
@@ -85,185 +64,185 @@ public class FileLevel{
                 if(!Keyboard.getInstance().isIce()){
                     switch(c) {
                         case '#': 
-                           entities[pos] = new WallTile(x, y, Sprite.wall);  
+                           entities[pos] = new WallTile(x, y);  
                             break;
                         case '*': 
                            entities[pos] = new LayeredEntity(x, y, 
-                                            new GrassTile(x ,y, Sprite.grass), 
-                                                new BrickTile(x ,y, Sprite.brick));
+                                            new GrassTile(x ,y ), 
+                                                new BrickTile(x ,y));
                             break;
                         case ' ': 
-                            entities[pos] = new GrassTile(x, y, Sprite.grass);
+                            entities[pos] = new GrassTile(x, y);
                             break;
                         case 'p': 
                             Board.getInstance().addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));   //24 are real width and height of player
                             Screen.setOffset(0, 0);
-                            entities[pos] = new GrassTile(x, y, Sprite.grass);
+                            entities[pos] = new GrassTile(x, y);
                             break;
                         case 'f':
                             LayeredEntity layer = new LayeredEntity(x, y, 
-                                                    new GrassTile(x ,y, Sprite.grass), 
-                                                        new BrickTile(x ,y, Sprite.brick));
-                            layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));				
+                                                    new GrassTile(x ,y), 
+                                                        new BrickTile(x ,y));
+                            layer.addBeforeTop(new PowerupFlames(x, y));				
                            entities[pos] = layer;
                             break;  
                         case 's':
                             LayeredEntity layer2 = new LayeredEntity(x, y, 
-                                                    new GrassTile(x ,y, Sprite.grass), 
-                                                        new BrickTile(x ,y, Sprite.brick));
-                            layer2.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));				
+                                                    new GrassTile(x ,y), 
+                                                        new BrickTile(x ,y));
+                            layer2.addBeforeTop(new PowerupSpeed(x, y));				
                             entities[pos] = layer2;
                             break;
                         case 'o':
                             entities[pos] = new LayeredEntity(x, y, 
-                                                new GrassTile(x ,y, Sprite.grass),
-                                                    new MalusSlow(x, y, Sprite.powerup_slow));
+                                                new GrassTile(x ,y),
+                                                    new MalusSlow(x, y));
 
                             break; 
                         case 'b':
                             LayeredEntity layer3 = new LayeredEntity(x, y, 
-                                                    new GrassTile(x ,y, Sprite.grass), 
-                                                        new BrickTile(x ,y, Sprite.brick));
-                            layer3.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));				
+                                                    new GrassTile(x ,y), 
+                                                        new BrickTile(x ,y));
+                            layer3.addBeforeTop(new PowerupBombs(x, y));				
                             entities[pos] = layer3;
                             break;
                         case 'm':
                             LayeredEntity layer4 = new LayeredEntity(x, y, 
-                                                    new GrassTile(x ,y, Sprite.grass), 
-                                                        new BrickTile(x ,y, Sprite.brick));
-                            layer4.addBeforeTop(new MalusReverse(x, y, Sprite.powerup_malus));				
+                                                    new GrassTile(x ,y), 
+                                                        new BrickTile(x ,y));
+                            layer4.addBeforeTop(new MalusReverse(x, y));				
                             entities[pos] = layer4;
                             break;
                         case 'l':
                             LayeredEntity layer6 = new LayeredEntity(x, y, 
-                                                    new GrassTile(x ,y, Sprite.grass), 
-                                                        new BrickTile(x ,y, Sprite.brick));
-                            layer6.addBeforeTop(new PowerupLife(x, y, Sprite.powerup_life));				
+                                                    new GrassTile(x ,y), 
+                                                        new BrickTile(x ,y));
+                            layer6.addBeforeTop(new PowerupLife(x, y));				
                             entities[pos] = layer6;
                             break;
                         case 'w': 
                             LayeredEntity layer5= new LayeredEntity(x, y,
-                                                   new GrassTile (x,y, Sprite.grass),
-                                                       new BrickTile(x,y, Sprite.brick));
-                            layer5.addBeforeTop(new PortalTile(x,y, Sprite.portal));
+                                                   new GrassTile (x,y),
+                                                       new BrickTile(x,y));
+                            layer5.addBeforeTop(new PortalTile(x,y));
                             entities[pos] = layer5;
                             break;
                         case '1':
                             Board.getInstance().addMob(new Golbat(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));
-                            entities[pos] = new GrassTile(x, y, Sprite.grass);
+                            entities[pos] = new GrassTile(x, y);
                             break;
                         case '2':
                             Board.getInstance().addMob(new Machamp(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE)); 
-                            entities[pos] = new GrassTile(x, y, Sprite.grass);
+                            entities[pos] = new GrassTile(x, y);
                             break;
                         case '3':
                             Board.getInstance().addMob(new Arbok(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE)); 
-                            entities[pos] = new GrassTile(x, y, Sprite.grass);
+                            entities[pos] = new GrassTile(x, y);
                             break;
                         default: 
-                            entities[pos] = new GrassTile(x, y, Sprite.grass);
+                            entities[pos] = new GrassTile(x, y);
                             break;
                     }        
                 }else{
                     switch(c) {
                         case '#':
-                           entities[pos] = new WallTile(x, y, Sprite.wallice);
+                           entities[pos] = new WallIceTile(x, y);
                             break;
                         case '*':
                             entities[pos] = new LayeredEntity(x, y,
-                                            new GrassTile(x ,y, Sprite.ice),
-                                                new BrickTile(x ,y, Sprite.brickice));
+                                            new IceTile(x ,y),
+                                                new BrickIceTile(x ,y));
                             break;
                         case ' ':
-                            entities[pos] = new GrassTile(x, y, Sprite.ice);
+                            entities[pos] = new IceTile(x, y);
                             break;
                         case 'p':
                             Board.getInstance().addMob(new Player(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));
                             Screen.setOffset(0, 0);
-                            entities[pos] = new GrassTile(x, y, Sprite.ice);
+                            entities[pos] = new IceTile(x, y);
                             break;
                         case 'f':
                             LayeredEntity layer = new LayeredEntity(x, y,
-                                                    new GrassTile(x ,y, Sprite.ice),
-                                                        new BrickTile(x ,y, Sprite.brickice));
-                            layer.addBeforeTop(new PowerupFlames(x, y, Sprite.powerup_flames));
+                                                    new IceTile(x ,y),
+                                                        new BrickIceTile(x ,y));
+                            layer.addBeforeTop(new PowerupFlames(x, y));
                            entities[pos] = layer;
                             break;
                         case 's':
                             LayeredEntity layer2 = new LayeredEntity(x, y,
-                                                    new GrassTile(x ,y, Sprite.ice),
-                                                        new BrickTile(x ,y, Sprite.brickice));
-                            layer2.addBeforeTop(new PowerupSpeed(x, y, Sprite.powerup_speed));
+                                                    new IceTile(x ,y),
+                                                        new BrickIceTile(x ,y));
+                            layer2.addBeforeTop(new PowerupSpeed(x, y));
                             entities[pos] = layer2;
                             break;
                         case 'o':
                             entities[pos] = new LayeredEntity(x, y,
-                                                new GrassTile(x ,y, Sprite.ice),
-                                                    new MalusSlow(x, y, Sprite.powerup_slow_ice));
+                                                new IceTile(x ,y),
+                                                    new MalusSlow(x, y));
 
                             break;
                           case 'b':
                             LayeredEntity layer3 = new LayeredEntity(x, y,
-                                                    new GrassTile(x ,y, Sprite.ice),
-                                                        new BrickTile(x ,y, Sprite.brickice));
-                            layer3.addBeforeTop(new PowerupBombs(x, y, Sprite.powerup_bombs));
+                                                    new IceTile(x ,y),
+                                                        new BrickIceTile(x ,y));
+                            layer3.addBeforeTop(new PowerupBombs(x, y));
                             entities[pos] = layer3;
                             break;
                         case 'm':
                             LayeredEntity layer4 = new LayeredEntity(x, y,
-                                                    new GrassTile(x ,y, Sprite.ice),
-                                                        new BrickTile(x ,y, Sprite.brickice));
-                            layer4.addBeforeTop(new MalusReverse(x, y, Sprite.powerup_malus));
+                                                    new IceTile(x ,y),
+                                                        new BrickIceTile(x ,y));
+                            layer4.addBeforeTop(new MalusReverse(x, y));
                             entities[pos] = layer4;
                             break;
                         case 'l':
                             LayeredEntity layer6 = new LayeredEntity(x, y,
-                                                    new GrassTile(x ,y, Sprite.ice),
-                                                        new BrickTile(x ,y, Sprite.brickice));
-                            layer6.addBeforeTop(new PowerupLife(x, y, Sprite.powerup_life));
+                                                    new IceTile(x ,y),
+                                                        new BrickIceTile(x ,y));
+                            layer6.addBeforeTop(new PowerupLife(x, y));
                             entities[pos] = layer6;
                             break;
                         case 'u':
                             LayeredEntity layer7 = new LayeredEntity(x, y,
-                                                    new GrassTile(x ,y, Sprite.ice),
-                                                        new BrickTile(x ,y, Sprite.brickice));
-                            layer7.addBeforeTop(new PowerupNotSlip(x, y, Sprite.powerup_not_slip));
+                                                    new IceTile(x ,y),
+                                                        new BrickIceTile(x ,y));
+                            layer7.addBeforeTop(new PowerupNotSlip(x, y));
                             entities[pos] = layer7;
                             break;
                         case 'w':
                             LayeredEntity layer5= new LayeredEntity(x, y,
-                                                   new GrassTile (x,y, Sprite.ice),
-                                                       new BrickTile(x,y, Sprite.brickice));
-                            layer5.addBeforeTop(new PortalTile(x,y, Sprite.portal));
+                                                   new IceTile (x,y),
+                                                       new BrickIceTile(x,y));
+                            layer5.addBeforeTop(new PortalTile(x,y));
                             entities[pos] = layer5;
                             break;
                         case 'z':
                             ContextDestroyable con = Board.getInstance().getContextState();
-                            IntactState intact = new IntactState(x, y, Sprite.ice);
+                            IntactState intact = new IntactState(x, y);
                             con.setState(intact);
                             entities[pos] = intact;
                             break;
                         case '1':
                             Board.getInstance().addMob(new Snorunt(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));
-                            entities[pos] = new GrassTile(x, y, Sprite.ice);
+                            entities[pos] = new IceTile(x, y);
                             break;
                         case '2':
                             Board.getInstance().addMob(new Glalie(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));
-                            entities[pos] = new GrassTile(x, y, Sprite.ice);
+                            entities[pos] = new IceTile(x, y);
                             break;
                         case '3':
                             Board.getInstance().addMob(new Darkrai(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE)); 
-                            entities[pos] = new GrassTile(x, y, Sprite.ice);
+                            entities[pos] = new IceTile(x, y);
                             break;
                         case 'a':
                             LayeredEntity layer8= new LayeredEntity(x, y,
-                                                   new GrassTile (x,y, Sprite.ice),
-                                                       new BrickTile(x,y, Sprite.brickice));
-                            layer8.addBeforeTop(new PowerupVehicles(x,y,Sprite.powerup_articuno));
+                                                   new IceTile (x,y),
+                                                       new BrickIceTile(x,y));
+                            layer8.addBeforeTop(new PowerupVehicles(x,y));
                             entities[pos] = layer8;
                             break;
                         default:
-                            entities[pos] = new GrassTile(x, y, Sprite.ice);
+                            entities[pos] = new IceTile(x, y);
                             break;
                     }
                 }

@@ -13,6 +13,33 @@ public class Explosion extends Entity {
 
     protected boolean last = false;
     protected Sprite sprite1, sprite2;
+     public static Sprite bomb_exploded = new Sprite(12, 1);
+    public static Sprite bomb_exploded1 = new Sprite(12, 2);
+    
+
+    public static Sprite explosion_vertical = new Sprite(6, 2);
+    public static Sprite explosion_vertical1 = new Sprite(7, 2);
+    public static Sprite explosion_vertical2 = new Sprite(8, 2);
+
+    public static Sprite explosion_horizontal = new Sprite(10, 1);
+    public static Sprite explosion_horizontal1 = new Sprite(10, 2);
+    public static Sprite explosion_horizontal2 = new Sprite(10, 3);
+
+    public static Sprite explosion_horizontal_left_last = new Sprite(9, 1);
+    public static Sprite explosion_horizontal_left_last1 = new Sprite(9, 2);
+    public static Sprite explosion_horizontal_left_last2 = new Sprite(9, 3);
+
+    public static Sprite explosion_horizontal_right_last = new Sprite(11, 1);
+    public static Sprite explosion_horizontal_right_last1 = new Sprite(11, 2);
+    public static Sprite explosion_horizontal_right_last2 = new Sprite(11, 3);
+
+    public static Sprite explosion_vertical_top_last = new Sprite(6, 1);
+    public static Sprite explosion_vertical_top_last1 = new Sprite(7, 1);
+    public static Sprite explosion_vertical_top_last2 = new Sprite(8, 1);
+
+    public static Sprite explosion_vertical_down_last = new Sprite(6, 3);
+    public static Sprite explosion_vertical_down_last1 = new Sprite(7, 3);
+    public static Sprite explosion_vertical_down_last2 = new Sprite(8, 3);
 
     /**
      * 
@@ -29,30 +56,30 @@ public class Explosion extends Entity {
         switch (direction) {
             case 0:
                 if(last == false) {
-                    sprite = Sprite.explosion_vertical2;
+                    sprite = explosion_vertical2;
                 } else {
-                    sprite = Sprite.explosion_vertical_top_last2;
+                    sprite = explosion_vertical_top_last2;
                 }
             break;
             case 1:
                 if(last == false) {
-                    sprite = Sprite.explosion_horizontal2;
+                    sprite = explosion_horizontal2;
                 } else {
-                    sprite = Sprite.explosion_horizontal_right_last2;
+                    sprite = explosion_horizontal_right_last2;
                 }
                 break;
             case 2:
                 if(last == false) {
-                    sprite = Sprite.explosion_vertical2;
+                    sprite = explosion_vertical2;
                 } else {
-                    sprite = Sprite.explosion_vertical_down_last2;
+                    sprite = explosion_vertical_down_last2;
                 }
                 break;
             case 3: 
                 if(last == false) {
-                    sprite = Sprite.explosion_horizontal2;
+                    sprite = explosion_horizontal2;
                 } else {
-                    sprite = Sprite.explosion_horizontal_left_last2;
+                    sprite = explosion_horizontal_left_last2;
                 }
                 break;
         }
