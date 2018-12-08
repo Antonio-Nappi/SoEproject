@@ -1,9 +1,9 @@
-1 I
+1 G
 ###############################
-#p  *    *        1  o    m  o#
+#p  *    *        1  o    m   #
 # # # # # # # # # # # # # # # #
-# a  *   *   f   *    *   *2  #
-# # # # # # # # # # # # # #*# #
+# *  *   *   f   *    *   *2  #
+# # # # # # # # # # # # # #o# #
 # *    *   *    *     *  *   *#
 #*# # # # # # # # # # # # # # #
 # *  *   2     *     *  *  *  #
@@ -44,7 +44,7 @@ Level 1   due f- due m- tre o, tre 1 , due 2
 Level 2   s-b-m-o
 
 Iceland
-Level 3
+Level 3   
 Level 4
 
 per la prova facciamo
