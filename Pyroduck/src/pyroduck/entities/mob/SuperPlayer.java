@@ -41,9 +41,9 @@ public class SuperPlayer extends Player{
             if(Game.getInstance().getSelected() == 0){
                 switch(direction) {
                     case 0:
-                        sprite = Sprite.articuno_down;
+                        sprite = Sprite.articuno_up;
                         if(moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_up1, Sprite.articuno_up2, animate, 30);
                         }
                         break;
                     case 1:
@@ -53,9 +53,9 @@ public class SuperPlayer extends Player{
                         }
                         break;
                     case 2:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_down;
                         if(moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            sprite = Sprite.movingSprite(Sprite.articuno_down1, Sprite.articuno_down2, animate, 30);
                         }
                         break;
                     case 3:

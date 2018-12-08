@@ -87,7 +87,6 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
 
     private void chooseSprite() {
         try {
-            System.out.println("ChoseSprite");
             if( Game.getInstance().getSelected() == 0){
                 switch(superPlayer.direction) {
                     case 0:
@@ -103,9 +102,13 @@ public class GraphicalExtensionSuperplayer extends AnimatedEntity{
                         }
                         break;
                     case 2:
-                        sprite = Sprite.articuno_up;
+                        sprite = Sprite.articuno_down;
                         if(superPlayer.moving) {
-                            sprite = Sprite.movingSprite(Sprite.articuno_up, Sprite.articuno_up, animate, 30);
+                            leftExtension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_left, Sprite.articuno_down2_left, animate, 30));
+                            rightExtension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_right, Sprite.articuno_down2_right, animate, 30));
+                            up1Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up1, Sprite.articuno_down2_up1, animate, 30));
+                            up2Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up2, Sprite.articuno_down2_up2, animate, 30));
+                            up3Extension.setSprite(Sprite.movingSprite(Sprite.articuno_down1_up3, Sprite.articuno_down2_up3, animate, 30));
                         }
                         break;
                     case 3:
