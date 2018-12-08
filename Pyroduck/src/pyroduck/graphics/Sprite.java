@@ -34,7 +34,7 @@ public class Sprite {
      */
     public static Sprite player_up = new Sprite(0, 2, SpriteSheet.tiles);
     public static Sprite player_down = new Sprite(0, 1, SpriteSheet.tiles);
-    //public static Sprite player_down = new Sprite(15, 2, SpriteSheet.tiles); ARTICUNO 
+    
     public static Sprite player_left = new Sprite(0, 3, SpriteSheet.tiles);
     public static Sprite player_right = new Sprite(0, 4, SpriteSheet.tiles);
 
@@ -78,7 +78,27 @@ public class Sprite {
     
     
     //ARTICUNO & PSYDUCK
-    public static Sprite articuno_up = new Sprite(15, 2, SpriteSheet.tiles);
+    public static Sprite articuno_up = new Sprite(16, 5, SpriteSheet.tiles);
+    public static Sprite articuno_up_left = new Sprite(15, 5, SpriteSheet.tiles);
+    public static Sprite articuno_up_right = new Sprite(17, 5, SpriteSheet.tiles);
+    public static Sprite articuno_up_up1 = new Sprite(15, 4, SpriteSheet.tiles);
+    public static Sprite articuno_up_up2 = new Sprite(16, 4, SpriteSheet.tiles);
+    public static Sprite articuno_up_up3 = new Sprite(17, 4, SpriteSheet.tiles);
+    
+    public static Sprite articuno_up1 = new Sprite(19, 5, SpriteSheet.tiles);
+    public static Sprite articuno_up1_left = new Sprite(18, 5, SpriteSheet.tiles);
+    public static Sprite articuno_up1_right = new Sprite(20, 5, SpriteSheet.tiles);
+    public static Sprite articuno_up1_up1 = new Sprite(18, 4, SpriteSheet.tiles);
+    public static Sprite articuno_up1_up2 = new Sprite(19, 4, SpriteSheet.tiles);
+    public static Sprite articuno_up1_up3 = new Sprite(20, 4, SpriteSheet.tiles);
+    
+    public static Sprite articuno_up2 = new Sprite(22, 5, SpriteSheet.tiles);
+    public static Sprite articuno_up2_left = new Sprite(21, 5, SpriteSheet.tiles);
+    public static Sprite articuno_up2_right = new Sprite(23, 5, SpriteSheet.tiles);
+    public static Sprite articuno_up2_up1 = new Sprite(21, 4, SpriteSheet.tiles);
+    public static Sprite articuno_up2_up2 = new Sprite(22, 4, SpriteSheet.tiles);
+    public static Sprite articuno_up2_up3 = new Sprite(23, 4, SpriteSheet.tiles);
+    
 
 
     /*
