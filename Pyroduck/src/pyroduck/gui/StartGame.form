@@ -78,9 +78,6 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="exitLabel">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Vincenzo\Documents\GitHub\SoEproject\Pyroduck\resources\textures\SelectCharacter\exit_32.png"/>
-            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                 <EtchetBorder>
@@ -303,9 +300,6 @@
         <Component class="javax.swing.JLabel" name="settingsLabel">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Vincenzo\Documents\GitHub\SoEproject\Pyroduck\resources\textures\SelectCharacter\settings_32.png"/>
-            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settingsLabelMouseClicked"/>

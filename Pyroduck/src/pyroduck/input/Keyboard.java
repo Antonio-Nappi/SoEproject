@@ -50,10 +50,7 @@ public class Keyboard implements KeyListener{
     public void keyPressed(KeyEvent e) {
         try{
             keys[e.getKeyCode()] = true;
-            if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
-                last = e;
-        }catch(ArrayIndexOutOfBoundsException ex){}
-        
+        }catch(ArrayIndexOutOfBoundsException ex){} 
         if(e.getKeyCode() == KeyEvent.VK_P && isPaused==false){
             try {
                 Game.getInstance().pause();           
@@ -89,16 +86,18 @@ public class Keyboard implements KeyListener{
         }catch(ArrayIndexOutOfBoundsException ex){}     
     }
     
+    public void releaseAll(){
+        for(int i=0; i<keys.length; i++){
+            keys[i]= false;
+        }
+    }
+    
     public void setIce(boolean ice){
         this.ice = ice;
     }
     
     public boolean isIce(){
         return ice;
-    }
-    
-    public KeyEvent getLast(){
-        return last;
     }
     
     public static Keyboard getInstance(){

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -71,8 +72,7 @@ public class GamePanel extends JPanel implements Observer {
                 endGame.setVisible(true);
                 frame.setVisible(false);
                 game.pause();
-                if(Keyboard.getInstance().getLast() != null)
-                    Keyboard.getInstance().keyReleased(Keyboard.getInstance().getLast());
+                Keyboard.getInstance().releaseAll();
                 game.restartGame();
             }
         }

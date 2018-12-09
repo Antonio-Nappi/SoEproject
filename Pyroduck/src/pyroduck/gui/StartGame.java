@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.gui;
 
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +15,7 @@ import pyroduck.exceptions.PyroduckException;
 
 /**
  *
- * @author Vincenzo
+ * @author 
  */
 public class StartGame extends javax.swing.JFrame {
 
@@ -89,7 +83,6 @@ public class StartGame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 102, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        exitLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Vincenzo\\Documents\\GitHub\\SoEproject\\Pyroduck\\resources\\textures\\SelectCharacter\\exit_32.png")); // NOI18N
         exitLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
         exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -184,7 +177,6 @@ public class StartGame extends javax.swing.JFrame {
         jLabel4.setText("Bomb rate");
 
         settingsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        settingsLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Vincenzo\\Documents\\GitHub\\SoEproject\\Pyroduck\\resources\\textures\\SelectCharacter\\settings_32.png")); // NOI18N
         settingsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 settingsLabelMouseClicked(evt);
