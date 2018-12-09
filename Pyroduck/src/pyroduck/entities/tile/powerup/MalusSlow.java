@@ -12,9 +12,10 @@ import pyroduck.graphics.Sprite;
  * @author La Femina, Petruzzello
  */
 public class MalusSlow extends Powerup {
+    public static Sprite powerup_slow = new Sprite(3, 0);
 
-    public MalusSlow(int x, int y, Sprite sprite) {
-        super(x, y, sprite);
+    public MalusSlow(int x, int y) {
+        super(x, y, powerup_slow);
     }
 
     @Override

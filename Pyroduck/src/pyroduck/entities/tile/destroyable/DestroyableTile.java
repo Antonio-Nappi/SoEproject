@@ -17,7 +17,11 @@ public abstract class DestroyableTile extends Tile {
     protected int animate = 0;
     protected boolean destroyed = false;
     protected int timeToDisapear = 20;
-    protected Sprite belowSprite = Sprite.grass; //default
+    protected Sprite belowSprite = new Sprite(1, 0); //default
+    protected Sprite belowSpriteIce = new Sprite(9, 0); //default
+    protected Sprite brick_exploded = new Sprite(4, 0);
+    protected Sprite brick_exploded1 = new Sprite(5, 0);
+    protected Sprite brick_exploded2 = new Sprite(6, 0);
 
     /**
      * Creates an object of DestroyableTile.
