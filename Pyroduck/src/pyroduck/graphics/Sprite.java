@@ -156,7 +156,7 @@ public class Sprite {
 
     public static Sprite articuno_left2 = new Sprite(22, 9, SpriteSheet.tiles);
     public static Sprite articuno_left2_left = new Sprite(21, 9, SpriteSheet.tiles);
-    public static Sprite articuno_left2_right = new Sprite(23, 5, SpriteSheet.tiles);
+    public static Sprite articuno_left2_right = new Sprite(23, 9, SpriteSheet.tiles);
     public static Sprite articuno_left2_up1 = new Sprite(21, 8, SpriteSheet.tiles);
     public static Sprite articuno_left2_up2 = new Sprite(22, 8, SpriteSheet.tiles);
     public static Sprite articuno_left2_up3 = new Sprite(23, 8, SpriteSheet.tiles);
