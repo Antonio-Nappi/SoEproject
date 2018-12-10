@@ -1,6 +1,7 @@
 package pyroduck.entities;
 
 import java.awt.Rectangle;
+import static java.lang.Math.abs;
 import java.util.Observable;
 import pyroduck.Game;
 import pyroduck.graphics.*;
@@ -68,12 +69,29 @@ public abstract class Entity extends Observable{
         int y0_EntityRect = (int)e.getY() + y0_EntityRectOffset;
         Rectangle entityCollideRectangle = new Rectangle(x0_EntityRect, y0_EntityRect, e.realWidth, e.realHeight);
         Rectangle intersection = thisEntityRectangle.intersection(entityCollideRectangle);
+        //System.out.println("Width intesection: "+intersection.getWidth());
+        //System.out.println("Width intesection: "+intersection.getHeight());
+        //System.out.println((intersection.getWidth() * intersection.getHeight() ) / (realWidth * realHeight));
        
         if( (intersection.getWidth() * intersection.getHeight() ) / (realWidth * realHeight) >= tune)
             return true;
         else 
             return false;
     }
+    
+//    public boolean checkDistanceCollision(Entity e, double tune){
+//        tune = Game.TILES_SIZE * (tune);
+//        System.out.println("tune: "+tune);
+//        System.out.println("this x: "+this.getX()*Game.TILES_SIZE);
+//        System.out.println("this y: "+this.getY()*Game.TILES_SIZE);
+//        System.out.println("e x: "+e.getX());
+//        System.out.println("e y: "+e.getY());
+//        System.out.println("diff X: "+abs(this.x*Game.TILES_SIZE - e.getX()));
+//        System.out.println("diff Y: "+abs(this.y*Game.TILES_SIZE - e.getY()));
+//        if(abs(this.x*Game.TILES_SIZE - e.getX()) < tune && abs(this.y*Game.TILES_SIZE - e.getY())< tune)
+//            return true;
+//        return false;       
+//    }
 
     /**
      * Returns the sprite of the entity.

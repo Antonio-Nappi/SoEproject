@@ -26,7 +26,8 @@ public class SuperPlayer extends Player{
     @Override
     public void render(Screen screen) {
         super.render(screen);
-        graphicalExtensionSP.render(screen);
+        if(isAlive())
+            graphicalExtensionSP.render(screen);
     }
     
     @Override

@@ -1,7 +1,9 @@
 package pyroduck.entities.tile.destroyable;
 
 import pyroduck.entities.Entity;
-import pyroduck.entities.mob.Player;
+import pyroduck.entities.mob.Mob;
+import pyroduck.entities.mob.SuperPlayer;
+
 import pyroduck.graphics.Sprite;
 
 /**
@@ -16,8 +18,8 @@ public class WaterState extends DestroyableIceTile{
 
     @Override
     public boolean collide(Entity e){
-        if(e instanceof Player){
-               ((Player) e).kill();
+        if(e instanceof Mob && !(e instanceof SuperPlayer)){
+               ((Mob)e).kill();
         }
         return false;
     }

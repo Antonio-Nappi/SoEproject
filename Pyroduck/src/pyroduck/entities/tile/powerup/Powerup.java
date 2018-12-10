@@ -13,6 +13,7 @@ import pyroduck.graphics.Sprite;
 public abstract class Powerup extends DestroyableTile {
 
     protected boolean active = false;
+    
 
     public Powerup(int x, int y, Sprite sprite) {
         super(x, y, sprite);
