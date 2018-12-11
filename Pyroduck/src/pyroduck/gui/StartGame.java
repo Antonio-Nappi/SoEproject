@@ -20,7 +20,7 @@ import pyroduck.exceptions.PyroduckException;
 public class StartGame extends javax.swing.JFrame {
 
     private int selected=0;
-    private static AudioPlayer audio;
+    public static AudioPlayer audio;
     String[] args;
     /**
      * Creates new form StartGame
@@ -83,6 +83,7 @@ public class StartGame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 102, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        exitLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Vincenzo\\Documents\\GitHub\\SoEproject\\Pyroduck\\resources\\textures\\SelectCharacter\\exit_32.png")); // NOI18N
         exitLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
         exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -177,6 +178,7 @@ public class StartGame extends javax.swing.JFrame {
         jLabel4.setText("Bomb rate");
 
         settingsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        settingsLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Vincenzo\\Documents\\GitHub\\SoEproject\\Pyroduck\\resources\\textures\\SelectCharacter\\settings_32.png")); // NOI18N
         settingsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 settingsLabelMouseClicked(evt);

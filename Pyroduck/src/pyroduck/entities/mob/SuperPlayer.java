@@ -7,6 +7,7 @@ import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.*;
 import pyroduck.level.Coordinates;
+import pyroduck.missile.Missile;
 
 /**
  *
@@ -113,10 +114,8 @@ public class SuperPlayer extends Player{
     
     @Override
     protected void placeBomb(int x, int y) {    //NOW we can shoot missiles
-        //Bomb b = new Bomb(x, y);
-        //Board.getInstance().addBomb(b);
-        //DEVE SPARARE MISSILI
-        Game.addBombRate(1);
+        Missile m = new Missile(x, y);
+        Board.getInstance().addBomb(m);
     }
     
     @Override
@@ -125,7 +124,6 @@ public class SuperPlayer extends Player{
             int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
             int yt = Coordinates.pixelToTile( (y + sprite.getSize() / 2) - sprite.getSize() ); //subtract half player height and minus 1 y position
             placeBomb(xt,yt);
-            Game.addBombRate(-1);
             timeBetweenPutBombs = 30;
         }
     }

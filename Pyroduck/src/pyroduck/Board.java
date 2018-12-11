@@ -16,6 +16,7 @@ import pyroduck.exceptions.*;
 import pyroduck.graphics.Screen;
 import pyroduck.input.*;
 import pyroduck.level.*;
+import pyroduck.missile.Missile;
 
 public class Board extends Observable implements Observer {
 
@@ -111,7 +112,7 @@ public class Board extends Observable implements Observer {
         int i = clevel.getFilelevel().getLevel()+1;
 	changeLevel(i);
         try {
-            Game.getInstance().renderScreen();     
+            Game.getInstance().renderScreen();
             Game.getInstance().changeAudioLevel(i);
             Game.getInstance().pause();
             Thread.sleep(2500);
