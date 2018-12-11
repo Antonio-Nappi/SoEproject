@@ -110,7 +110,11 @@ public class Board extends Observable implements Observer {
 
     public void nextLevel() throws IOException {
         int i = clevel.getFilelevel().getLevel()+1;
+        if(i==3)
+            setLives(0);
 	changeLevel(i);
+        
+        
         try {
             Game.getInstance().renderScreen();
             Game.getInstance().changeAudioLevel(i);

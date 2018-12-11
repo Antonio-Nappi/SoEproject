@@ -1,10 +1,8 @@
 package pyroduck.gui;
 
-import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.ListPointsSerialize;
