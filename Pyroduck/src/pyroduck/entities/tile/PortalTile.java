@@ -27,6 +27,7 @@ public class PortalTile extends Tile {
                 if(Board.getInstance().detectNoEnemies())
                     try{
                         Game.getInstance().pause();
+                        Board.getInstance().setPoints(1000);
                         Board.getInstance().nextLevel();
                     } catch (IOException ex){
                         Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);

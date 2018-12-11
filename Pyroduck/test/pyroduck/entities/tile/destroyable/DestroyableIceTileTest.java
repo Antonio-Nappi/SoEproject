@@ -6,10 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.Board;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
-import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -48,7 +46,7 @@ public class DestroyableIceTileTest {
      */
     @Test
     public void testCollide() {
-        Entity e = new Player(1, 1, new Board(new Screen()));
+        Entity e = new Player(1, 1);
         boolean expResult = false;
         boolean result = instance.collide(e);
         assertEquals(expResult, result);

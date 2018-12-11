@@ -11,17 +11,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import pyroduck.bomb.Bomb;
-import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.enemy.graphic.Arbok;
 import pyroduck.entities.tile.WallTile;
-import pyroduck.exceptions.LoadLevelException;
-import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.level.ContextLevel;
-import pyroduck.level.GrassStrategy;
 
 /**
  *
@@ -44,7 +39,7 @@ public class BoardTest {
     
     @Before
     public void setUp() {
-        board = new Board(new Screen());
+        board = Board.getInstance();
     }
     
     @After
@@ -56,7 +51,7 @@ public class BoardTest {
      */
     @Test
     public void testUpdate() {
-        board.addMob(new Player(0, 0, board));
+        board.addMob(new Player(0, 0));
         assertTrue(board.mobs.get(0) instanceof Player);
         board.mobs.get(0).remove();
         board.update();
@@ -71,11 +66,11 @@ public class BoardTest {
         Game.addBombRadius(1);
         Game.addBombRate(1);
         Game.addPlayerSpeed(1);
-        board.addMob(new Player(32, 32, board));
+        board.addMob(new Player(32, 32));
         assertTrue(board.mobs.get(0) instanceof Player);
-        board.addBomb(new Bomb(32, 32, board));
-        board.addBomb(new Bomb(64, 32, board));
-        board.addBomb(new Bomb(32, 64, board));
+        board.addBomb(new Bomb(32, 32));
+        board.addBomb(new Bomb(64, 32));
+        board.addBomb(new Bomb(32, 64));
         assertEquals(board.bombs.size(), 3);
         try {
             board.newGame();
@@ -114,8 +109,8 @@ public class BoardTest {
      * Test of detectNoEnemies method, of class Board.
      */
     public void testDetectNoEnemies(){
-        Player player = new Player(32, 32, board);
-        Arbok enemy = new Arbok(32, 64, board);
+        Player player = new Player(32, 32);
+        Arbok enemy = new Arbok(32, 64);
         board.addMob(player);
         board.addMob(enemy);
         assertFalse(board.detectNoEnemies());
@@ -129,14 +124,14 @@ public class BoardTest {
      */
     @Test
     public void testGetEntity() {
-        Bomb bomb = new Bomb(1, 1, board);
+        Bomb bomb = new Bomb(1, 1);
         board.addBomb(bomb);
         assertTrue(board.getEntity(1, 1, null) instanceof Bomb);
         
-        Player p = new Player(32, 32, board);
+        Player p = new Player(32, 32);
         board.addMob(p);
         assertTrue(board.getMobAt(1, 1) instanceof Player);
-        Arbok enemy = new Arbok(32, 97, board);
+        Arbok enemy = new Arbok(32, 97);
         board.addMob(enemy);
         assertTrue(board.getMobAt(1, 2) instanceof Mob);
         WallTile wt = new WallTile(0, 0, Sprite.brick);
@@ -151,7 +146,7 @@ public class BoardTest {
      */
     @Test
     public void testGetBombAt() {
-        Bomb bomb = new Bomb(0, 0, board);
+        Bomb bomb = new Bomb(0, 0);
         board.addBomb(bomb);
         assertTrue(board.getBombAt(0, 0) instanceof Bomb);
     }
@@ -161,7 +156,7 @@ public class BoardTest {
      */
     @Test
     public void testGetPlayer() {
-        Player player = new Player(1, 1, board);
+        Player player = new Player(1, 1);
         board.addMob(player);
         assertTrue(board.getPlayer() instanceof Player);
     }

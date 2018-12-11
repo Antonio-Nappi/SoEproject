@@ -83,12 +83,4 @@ public abstract class Mob extends AnimatedEntity {
     public abstract void kill();
 	
     protected abstract void afterKill();
-  
-    protected double getXMessage() {
-        return (x) + (sprite.SIZE / 2);
-    }
-	
-    protected double getYMessage() {
-        return (y) - (sprite.SIZE / 2);
-    }
 }

@@ -1,6 +1,6 @@
 package pyroduck.entities.mob.enemy.graphic;
 
-import pyroduck.*;
+import pyroduck.Board;
 import pyroduck.entities.mob.enemy.MediumPower;
 import pyroduck.graphics.Sprite;
 
@@ -17,7 +17,7 @@ public class Arbok extends Enemy{
      * @param y vertical coordinate in pixels.
      */
     public Arbok(int x, int y){
-        super(x, y, Sprite.arbok_dead, Game.getPlayerSpeed() - 0.1, 300);
+        super(x, y, Sprite.arbok_dead, 1.2, 300);
         sprite = Sprite.arbok_left1;	
         ep = new MediumPower(Board.getInstance().getPlayer(), this);
         direction = ep.calculateDirection();

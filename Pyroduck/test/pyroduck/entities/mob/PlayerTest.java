@@ -1,7 +1,5 @@
 package pyroduck.entities.mob;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,18 +11,18 @@ import pyroduck.Game;
 import pyroduck.bomb.Bomb;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.entities.tile.powerup.PowerupBombs;
-import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
-import pyroduck.input.GrassKeyboard;
+import pyroduck.input.Keyboard;
 
 /**
  *
  * @author Montefusco, Nappi
  */
 public class PlayerTest {
+    
     Player player;
-    Board board;
+    
     public PlayerTest() {
     }
     
@@ -38,8 +36,7 @@ public class PlayerTest {
     
     @Before
     public void setUp() {
-        board = new Board(new Screen());
-        player = new Player(1, 1, board);  
+        player = new Player(1, 1);  
     }
     
     @After
@@ -67,7 +64,7 @@ public class PlayerTest {
     @Test
     public void testCalculateXOffset() {
         System.out.println("calculateXOffset");
-       int test = Screen.calculateXOffset(board, player);
+        int test = Screen.calculateXOffset(player);
         assertEquals(test, Screen.xOffset);
     }
 
@@ -158,7 +155,7 @@ public class PlayerTest {
         System.out.println("placeBomb");
         int x = 2;
         int y = 1;
-        Bomb b = new Bomb(x, y, board);
+        Bomb b = new Bomb(x, y);
         player.placeBomb(x, y);
         assertFalse(b==player.bombs.get(0)); 
     }
@@ -179,11 +176,10 @@ public class PlayerTest {
      */
     @Test
     public void testCorrectKeyboard(){
-        board.setPlayer(1);
+        Board.getInstance().setPlayer(1);
         player.correctKeyboard();
-        assertEquals(player.input, GrassKeyboard.getInstance());   
+        assertEquals(player.input, Keyboard.getInstance());   
     }
-    
         
     /**
      * Test of kill method, of class Player.
@@ -192,7 +188,7 @@ public class PlayerTest {
     public void testKill() {
         player.alive = true;
         
-        assertEquals(3.0, board.getLives(),0);
+        assertEquals(3.0, Board.getInstance().getLives(),0);
         player.kill();
         assertFalse(player.alive);
         assertEquals(2.0, Game.getLives(),0);

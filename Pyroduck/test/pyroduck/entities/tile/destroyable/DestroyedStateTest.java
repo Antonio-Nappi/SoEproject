@@ -49,6 +49,5 @@ public class DestroyedStateTest {
         ContextDestroyable context = new ContextDestroyable();
         DestroyableIceTile result = destroyed.nextState(context);
         assertTrue(result instanceof WaterState);
-    }
-    
+    }  
 }
