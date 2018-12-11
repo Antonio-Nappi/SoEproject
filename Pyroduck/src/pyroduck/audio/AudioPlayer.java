@@ -25,6 +25,8 @@ public class  AudioPlayer {
         audioInputStream =  AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());  
         clip = AudioSystem.getClip();
         clip.open(audioInputStream); 
+        //currentFrame = clip.getMicrosecondPosition(); 
+
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
     } 
     
@@ -51,7 +53,7 @@ public class  AudioPlayer {
        
     public void pause()  { 
         if (!status.equals("paused")){
-            this.currentFrame = this.clip.getMicrosecondPosition(); 
+            currentFrame = this.clip.getMicrosecondPosition(); 
             clip.stop(); 
             status = "paused";
         }
