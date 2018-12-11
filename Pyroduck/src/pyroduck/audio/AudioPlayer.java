@@ -22,7 +22,7 @@ public class  AudioPlayer {
    
     private AudioPlayer(String filepath) throws UnsupportedAudioFileException, LineUnavailableException, IOException { 
         this.filepath=filepath;
-        audioInputStream =  AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());  
+        audioInputStream =  AudioSystem.getAudioInputStream(new File("./src/pyroduck/audio/"+filepath).getAbsoluteFile());  
         clip = AudioSystem.getClip();
         clip.open(audioInputStream); 
         //currentFrame = clip.getMicrosecondPosition(); 
