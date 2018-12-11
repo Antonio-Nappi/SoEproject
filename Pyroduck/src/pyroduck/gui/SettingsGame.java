@@ -22,6 +22,7 @@ public class SettingsGame extends javax.swing.JFrame {
      */
     public SettingsGame() {
         initComponents();
+        jLabel1.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         if (music == true)
             musicCheckBox.setSelected(true);
         else
