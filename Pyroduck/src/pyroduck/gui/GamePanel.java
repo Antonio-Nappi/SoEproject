@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Observer {
     private JLabel pointsLabel = new JLabel();
     private JLabel messageLabel = new JLabel();
     private JLabel sound = new JLabel();
-    private JButton onoff=new JButton();
+    private JButton musicLabel =new JButton();
     private JPanel panel = new JPanel();
     private Frame frame;
     private JFrame endGame;
@@ -54,16 +54,15 @@ public class GamePanel extends JPanel implements Observer {
             Font font = new Font(Font.DIALOG, Font.BOLD, 24);
             messageLabel.setFont(font);
             messageLabel.setForeground(Color.black);
-            onoff=new JButton("Cliccami");
-
-           onoff.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
-           onoff.setForeground(Color.white);
+            musicLabel=new JButton(" ");
+            musicLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\sound_32.png"));
+            musicLabel.setForeground(Color.white);
             panel.setBackground(Color.black);
             panel.add(livesLabel, 0);
             panel.add(messageLabel, 1);
             panel.add(pointsLabel, 2);
             panel.add(sound, 3);
-            panel.add(onoff,4);
+            panel.add(musicLabel,4);
             Board.getInstance().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
         } catch (PyroduckException e) {
