@@ -4,11 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +28,8 @@ public class GamePanel extends JPanel implements Observer {
     private JLabel livesLabel = new JLabel();
     private JLabel pointsLabel = new JLabel();
     private JLabel messageLabel = new JLabel();
+    private JLabel sound = new JLabel();
+    private JButton onoff=new JButton();
     private JPanel panel = new JPanel();
     private Frame frame;
     private JFrame endGame;
@@ -41,14 +48,22 @@ public class GamePanel extends JPanel implements Observer {
             livesLabel.setForeground(Color.WHITE);
             pointsLabel = new JLabel("Points: " + Board.getInstance().getPoints());
             pointsLabel.setForeground(Color.WHITE);
+            sound= new JLabel("Sound = "+ Game.getInstance().getMusicOn());
+            sound.setForeground(Color.WHITE);
             messageLabel = new JLabel("     Paused     ");
             Font font = new Font(Font.DIALOG, Font.BOLD, 24);
             messageLabel.setFont(font);
             messageLabel.setForeground(Color.black);
+            onoff=new JButton("Cliccami");
+
+           onoff.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
+           onoff.setForeground(Color.white);
             panel.setBackground(Color.black);
             panel.add(livesLabel, 0);
             panel.add(messageLabel, 1);
             panel.add(pointsLabel, 2);
+            panel.add(sound, 3);
+            panel.add(onoff,4);
             Board.getInstance().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
         } catch (PyroduckException e) {
@@ -66,6 +81,11 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + Board.getInstance().getLives());
         pointsLabel.setText("Points: " + Board.getInstance().getPoints());
+        try {
+            sound.setText("Sound = "+ Game.getInstance().getMusicOn());
+        } catch (PyroduckException ex) {
+            Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if(Board.getInstance().getLives() <= 0){
             if(endGame == null){
                 endGame = new EndGame();

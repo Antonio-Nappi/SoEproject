@@ -10,6 +10,7 @@ import javax.sound.sampled.*;
 import pyroduck.audio.AudioPlayer;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
+import pyroduck.gui.SettingsGame;
 import pyroduck.input.*;
 
 public class Game extends Canvas {
@@ -42,6 +43,7 @@ public class Game extends Canvas {
     private static Game instance = null;
     private Timer timer;
     private static AudioPlayer audio;
+    private static boolean musicon=SettingsGame.isMusic();
     //this will be used to render the game, each render is a calculated image saved here
     private final BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); 
@@ -57,7 +59,7 @@ public class Game extends Canvas {
         board = Board.getInstance();
         board.changeLevel(1);
         board.setScreen(screen);
-        lives = 3;
+        lives = board.getLives();
         points = 0;
     }
     
@@ -70,7 +72,7 @@ public class Game extends Canvas {
     public void restartGame(){
         board.changeLevel(1);
         board.resetProperties();
-        lives = 3;
+        lives = SettingsGame.getLives();
         points = 0;
     }
     
@@ -144,12 +146,21 @@ public class Game extends Canvas {
     }
 
     public void start() {
-       int i = Board.getInstance().clevel.getFilelevel().getLevel();
-        audio=AudioPlayer.getAudioPlayer("Level"+i+".wav");
-        this.input = Board.getInstance().getInput();
-        addKeyListener(input);
-        requestFocus();
-        timer.scheduleAtFixedRate(new ScheduleTask(), 1, 15);
+            
+        try {
+            setMusicOn(musicon);
+            this.input = Board.getInstance().getInput();
+            addKeyListener(input);
+            requestFocus();
+            timer.scheduleAtFixedRate(new ScheduleTask(), 1, 15);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
     
     public void changeAudioLevel(int n){
@@ -246,7 +257,24 @@ public class Game extends Canvas {
     public static void setPlayerSpeed(double playerSpeed) {
         Game.playerSpeed = playerSpeed;
     }
+    
+    public static void setMusicOn(boolean music) throws UnsupportedAudioFileException, IOException, LineUnavailableException{      
+        int i = Board.getInstance().clevel.getFilelevel().getLevel();
+        musicon=music;
+        
+        if(audio==null)
+            audio=AudioPlayer.getAudioPlayer("Level"+i+".wav");
+            audio.pause();
+        if(!music)
+            audio.musicOff();
+        else 
+            audio.musicOn();
+        
+    }
      
+    public boolean getMusicOn(){
+        return musicon;
+    }
     private class ScheduleTask extends TimerTask{
         @Override
         public void run(){

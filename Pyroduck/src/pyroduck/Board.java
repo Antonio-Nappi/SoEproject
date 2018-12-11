@@ -14,6 +14,7 @@ import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.destroyable.*;
 import pyroduck.exceptions.*;
 import pyroduck.graphics.Screen;
+import pyroduck.gui.SettingsGame;
 import pyroduck.input.*;
 import pyroduck.level.*;
 import pyroduck.missile.Missile;
@@ -27,7 +28,7 @@ public class Board extends Observable implements Observer {
     public List<Mob> mobs = new ArrayList<>();
     private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
     protected List<Bomb> bombs = new ArrayList<>();
-    protected int lives = 3;
+    protected int lives=SettingsGame.getLives();
     private int points = 0;
     private String world = "";
     private int player;
@@ -39,7 +40,6 @@ public class Board extends Observable implements Observer {
 
     private Board() {
         con = new ContextDestroyable();
-
     }
 
     /*
@@ -400,7 +400,6 @@ public class Board extends Observable implements Observer {
     public int getLives() {
         return this.lives;
     }
-
 
 
     public void setPoints(int points) {

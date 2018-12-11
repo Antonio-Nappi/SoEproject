@@ -22,6 +22,7 @@ public class StartGame extends javax.swing.JFrame {
     private int selected=0;
     public static AudioPlayer audio;
     String[] args;
+   
     /**
      * Creates new form StartGame
      */
@@ -85,7 +86,6 @@ public class StartGame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 102, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        exitLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Vincenzo\\Documents\\GitHub\\SoEproject\\Pyroduck\\resources\\textures\\SelectCharacter\\exit_32.png")); // NOI18N
         exitLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.gray));
         exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -180,7 +180,6 @@ public class StartGame extends javax.swing.JFrame {
         jLabel4.setText("Bomb rate");
 
         settingsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        settingsLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Vincenzo\\Documents\\GitHub\\SoEproject\\Pyroduck\\resources\\textures\\SelectCharacter\\settings_32.png")); // NOI18N
         settingsLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 settingsLabelMouseClicked(evt);
@@ -287,22 +286,15 @@ public class StartGame extends javax.swing.JFrame {
         try {
             Game.getInstance().setSelected(selected);// TODO add your handling code here:
             audio.stop();
-        } catch (PyroduckException ex) {
-            Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
+        } catch (PyroduckException | UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Board.getInstance().setPlayer(selected);
+        Board.getInstance().setPlayer(selected);  
+
         Pyroduck p = new Pyroduck();
         try {
             p.main(args);
-        } catch (PyroduckException ex) {
-            Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (PyroduckException | IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.setVisible(false);
@@ -316,6 +308,7 @@ public class StartGame extends javax.swing.JFrame {
     set.setLocation(middle);
 // TODO add your handling code here:
     }//GEN-LAST:event_settingsLabelMouseClicked
+
 
     /**
      * @param args the command line arguments
