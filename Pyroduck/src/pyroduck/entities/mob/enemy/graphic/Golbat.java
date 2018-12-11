@@ -1,6 +1,5 @@
 package pyroduck.entities.mob.enemy.graphic;
 
-import pyroduck.Game;
 import pyroduck.entities.mob.enemy.LowPower;
 import pyroduck.graphics.Sprite;
 
@@ -17,7 +16,7 @@ public class Golbat extends Enemy{
      * @param y vertical coordinate in pixels.
      */
     public Golbat(int x, int y){
-        super(x, y, Sprite.golbat_dead, Game.getPlayerSpeed() / 2, 100);
+        super(x, y, Sprite.golbat_dead, 0.8, 100);
         sprite = Sprite.golbat_left1;	
         ep = new LowPower();
         direction = ep.calculateDirection();

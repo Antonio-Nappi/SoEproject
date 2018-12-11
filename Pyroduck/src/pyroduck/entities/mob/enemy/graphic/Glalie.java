@@ -1,7 +1,6 @@
 package pyroduck.entities.mob.enemy.graphic;
 
 import pyroduck.Board;
-import pyroduck.Game;
 import pyroduck.entities.mob.enemy.MediumPower;
 import pyroduck.graphics.Sprite;
 
@@ -18,7 +17,7 @@ public class Glalie extends Enemy{
      * @param y vertical coordinate in pixels. 
      */
     public Glalie(int x, int y){
-        super(x, y, Sprite.glalie_dead, Game.getPlayerSpeed() / 2, 200);
+        super(x, y, Sprite.glalie_dead, 0.8, 200);
         sprite = Sprite.glalie_left1;	
         ep = new MediumPower(Board.getInstance().getPlayer(), this);
         direction = ep.calculateDirection();
