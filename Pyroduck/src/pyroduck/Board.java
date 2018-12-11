@@ -407,6 +407,8 @@ public class Board extends Observable implements Observer {
         setChanged();
         notifyObservers();
     }
+    
+  
 
     /**
      *

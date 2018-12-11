@@ -1,14 +1,10 @@
 package pyroduck.gui;
 
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JComboBox;
-import pyroduck.Game;
-import pyroduck.exceptions.PyroduckException;
 
 /**
  *
@@ -44,12 +40,10 @@ public class SettingsGame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         musicCheckBox = new javax.swing.JCheckBox();
         jSpinner1 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        viewScore = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -62,12 +56,6 @@ public class SettingsGame extends javax.swing.JFrame {
 
         jLabel4.setText("Music:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 300, 100));
 
         musicCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,20 +73,15 @@ public class SettingsGame extends javax.swing.JFrame {
         });
         jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 40, 30));
 
-        jButton1.setText("Done");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, -1));
-
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, 30));
+
+        viewScore.setText("Scores");
+        jPanel1.add(viewScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -108,10 +91,6 @@ public class SettingsGame extends javax.swing.JFrame {
     private void jSpinner1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner1MouseClicked
     // TODO add your handling code here:
     }//GEN-LAST:event_jSpinner1MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void musicCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicCheckBoxActionPerformed
         // TODO add your handling code here:
@@ -130,15 +109,13 @@ public class SettingsGame extends javax.swing.JFrame {
     else{
         music = false;
         StartGame.audio.pause();
-    }
-    
-    System.out.println("Numero vite:"+ var+ "Musica:"+ music);      
+    }  
     setVisible(false);
     dispose();// TODO add your handling code here:
-    lives=GetLives();
+    lives=getLive();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    public  int GetLives(){
+    public  int getLive(){
         return (int) jSpinner1.getValue();
     }
     
@@ -186,14 +163,12 @@ public class SettingsGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JCheckBox musicCheckBox;
+    private javax.swing.JButton viewScore;
     // End of variables declaration//GEN-END:variables
 }
