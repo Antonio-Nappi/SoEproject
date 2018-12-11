@@ -144,11 +144,26 @@ public class Game extends Canvas {
     }
 
     public void start() {
-        audio=AudioPlayer.getAudioPlayer("gametheme.wav");
+       int i = Board.getInstance().clevel.getFilelevel().getLevel();
+        audio=AudioPlayer.getAudioPlayer("Level"+i+".wav");
         this.input = Board.getInstance().getInput();
         addKeyListener(input);
         requestFocus();
         timer.scheduleAtFixedRate(new ScheduleTask(), 1, 15);
+    }
+    
+    public void changeAudioLevel(int n){
+        try {
+            audio.stop();      
+            audio=AudioPlayer.getAudioPlayer("Level"+n+".wav");
+
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static void addBombRate(int i) {

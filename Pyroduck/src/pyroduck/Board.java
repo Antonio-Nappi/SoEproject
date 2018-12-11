@@ -109,9 +109,12 @@ public class Board extends Observable implements Observer {
     }
 
     public void nextLevel() throws IOException {
-	changeLevel(clevel.getFilelevel().getLevel() + 1);
+        int i = clevel.getFilelevel().getLevel()+1;
+	changeLevel(i);
         try {
             Game.getInstance().renderScreen();
+            Game.getInstance().changeAudioLevel(i);
+            Game.getInstance().pause();
             Thread.sleep(2500);
             Game.getInstance().resume();//wait 2,5 sec and often shows the next level
         } catch (PyroduckException ex) {
@@ -507,5 +510,4 @@ public class Board extends Observable implements Observer {
     public void resetPoints() {
         points = 0;
     }
-
 }
