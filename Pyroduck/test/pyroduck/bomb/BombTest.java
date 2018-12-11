@@ -34,7 +34,7 @@ public class BombTest {
     
     @Before
     public void setUp() {
-        bomb = new  Bomb(1, 1, new Board(new Screen()));
+        bomb = new  Bomb(1, 1);
     }
     
     @After
@@ -108,10 +108,10 @@ public class BombTest {
     @Test
     public void testCollide() {
         System.out.println("collide");
-        Entity e = new Player(2, 1, new Board(new Screen()));
+        Entity e = new Player(2, 1);
         boolean test = bomb.collide(e);
         assertEquals(test, true);
-        Entity e1 = new DirectionalExplosion(2, 1, 1,1,new Board(new Screen()));
+        Entity e1 = new DirectionalExplosion(2, 1, 1,1);
         boolean test1 = bomb.collide(e1);
         assertEquals(test1, false);
         Entity e2 = new BrickTile(2, 2, Sprite.brick);

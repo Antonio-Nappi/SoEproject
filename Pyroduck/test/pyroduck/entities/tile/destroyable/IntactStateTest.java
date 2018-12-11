@@ -50,5 +50,4 @@ public class IntactStateTest {
         DestroyableIceTile result = intact.nextState(context);
         assertTrue(result instanceof BreakingState);
     }
-    
 }

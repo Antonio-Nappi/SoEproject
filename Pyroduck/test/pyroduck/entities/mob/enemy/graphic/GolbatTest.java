@@ -6,12 +6,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.Board;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.BrickTile;
-import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -20,7 +18,6 @@ import pyroduck.graphics.Sprite;
  */
 public class GolbatTest {
         
-    Board b;
     Arbok instance;
     
     public GolbatTest() {
@@ -36,8 +33,7 @@ public class GolbatTest {
     
     @Before
     public void setUp() {
-        b = new Board(new Screen());
-        instance = new Arbok(1, 1, b);
+        instance = new Arbok(1, 1);
     }
     
     @After
@@ -75,8 +71,8 @@ public class GolbatTest {
     @Test
     public void testCollide() {
         System.out.println("collide");
-        Entity e1 = new DirectionalExplosion(1, 2, 0, 1, b);
-        Entity e2 = new Player(1, 1, b);
+        Entity e1 = new DirectionalExplosion(1, 2, 0, 1);
+        Entity e2 = new Player(1, 1);
         Entity e3 = new BrickTile(1, 1, Sprite.brick);
         boolean des = instance.collide(e1);
         assertTrue(des);

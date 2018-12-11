@@ -47,7 +47,7 @@ public class BrickTileTest {
      */
     @Test
     public void testUpdate() {
-        brick.collide(new DirectionalExplosion(x, y+1, 2, 1, new Board(new Screen())));
+        brick.collide(new DirectionalExplosion(x, y+1, 2, 1));
         for(int i=0; i<21; i++){
             assertFalse(brick.isRemoved());
             brick.update();
@@ -60,7 +60,7 @@ public class BrickTileTest {
      */
     @Test
     public void testMovingSprite() {
-        brick.collide(new DirectionalExplosion(x, y+1, 2, 1, new Board(new Screen())));
+        brick.collide(new DirectionalExplosion(x, y+1, 2, 1));
         for(int i=0; i<10; i++){
             assertEquals(Sprite.brick_exploded, brick.movingSprite(Sprite.brick_exploded, Sprite.brick_exploded1, Sprite.brick_exploded2));
             brick.update();
@@ -78,7 +78,7 @@ public class BrickTileTest {
     @Test
     public void testCollide() {
         assertFalse(brick.isDestroyed());
-        brick.collide(new DirectionalExplosion(x, y, 2, 1, new Board(new Screen())));
+        brick.collide(new DirectionalExplosion(x, y, 2, 1));
         assertTrue(brick.isDestroyed());
     }
 }

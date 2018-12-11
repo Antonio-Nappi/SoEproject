@@ -6,18 +6,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.Board;
 import pyroduck.entities.Entity;
 import pyroduck.exceptions.LoadLevelException;
-import pyroduck.graphics.Screen;
 
 /**
  *
  * @author 
  */
-public class IceStrategyTest {
+public class FileLevelTest {
     
-    public IceStrategyTest() {
+    public FileLevelTest() {
     }
     
     @BeforeClass
@@ -43,21 +41,20 @@ public class IceStrategyTest {
     public void testLoadLevel() throws LoadLevelException{
         System.out.println("loadLevel");
         String path = "./resoucers/levels/Level1.txt";
-        FileLevel instance = new IceStrategy(path, new Board(new Screen()));
+        FileLevel instance = new FileLevel(path);
         instance.loadLevel(path);
     }
     
     /**
-     * Test of createEntities method, of class IceStrategy.
+     * Test of createEntities method, of class FileLevel.
      */
     @Test
     public void testCreateEntities() throws LoadLevelException {
         System.out.println("createEntities");
-        Board board = new Board(new Screen());
-        FileLevel instance = new IceStrategy("./resources/level/test.txt", board);
-        FileLevel instance1 = new IceStrategy("./resources/level/Level1.txt", board);
-        Entity[] result = instance.createEntities(board);
-        Entity [] expResult = instance1.createEntities(board);
+        FileLevel instance = new FileLevel("./resources/level/test.txt");
+        FileLevel instance1 = new FileLevel("./resources/level/Level1.txt");
+        Entity[] result = instance.createEntities();
+        Entity [] expResult = instance1.createEntities();
         assertArrayEquals(expResult, result);
     }
     
@@ -67,9 +64,9 @@ public class IceStrategyTest {
     @Test
     public void testGetLevel() throws LoadLevelException {
         System.out.println("getLevel");
-        FileLevel instance = new IceStrategy("./resources/levels/Level1.txt", new Board(new Screen()));
+        FileLevel instance = new FileLevel("./resources/levels/Level1.txt");
         int expResult = 1;
         int result = instance.getLevel();
         assertEquals(expResult, result);
-    }
+    } 
 }
