@@ -1,10 +1,11 @@
 package pyroduck.gui;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pyroduck.Board;
 import pyroduck.Game;
+import pyroduck.ListPointsSerialize;
 import pyroduck.PointsSerialize;
 import pyroduck.exceptions.PyroduckException;
 
@@ -15,13 +16,18 @@ import pyroduck.exceptions.PyroduckException;
 public class EndGame extends javax.swing.JFrame {
 
     private Game game;
-    private List<PointsSerialize> scores;
+    private ListPointsSerialize scores = new ListPointsSerialize();
     
     /**
      * Creates new form EndGame
      */
     public EndGame() {
         initComponents();
+        scores.charge();
+        String s = JOptionPane.showInputDialog(rootPane, "Insert your name", "Save your score", JOptionPane.INFORMATION_MESSAGE);
+        scores.addScore(new PointsSerialize(s));
+        jTextArea1.setText(scores.printScores());
+        jTextArea1.setEditable(false);
     }
 
     /**
