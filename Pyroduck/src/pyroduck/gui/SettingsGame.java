@@ -17,6 +17,9 @@ import pyroduck.exceptions.PyroduckException;
 public class SettingsGame extends javax.swing.JFrame {
 
     private static boolean music = true;
+
+    
+    private static int lives=3;
     /**
      * Creates new form SettingsGame
      */
@@ -73,6 +76,8 @@ public class SettingsGame extends javax.swing.JFrame {
         });
         jPanel1.add(musicCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
+        jSpinner1.setRequestFocusEnabled(false);
         jSpinner1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSpinner1MouseClicked(evt);
@@ -88,7 +93,6 @@ public class SettingsGame extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Vincenzo\\Documents\\GitHub\\SoEproject\\Pyroduck\\resources\\textures\\SelectCharacter\\exit_32.png")); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -119,32 +123,32 @@ public class SettingsGame extends javax.swing.JFrame {
         music = true;
         try {
             StartGame.audio.resumeAudio();
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(SettingsGame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SettingsGame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(SettingsGame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     else{
         music = false;
-        try {
-            StartGame.audio.stop();
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(SettingsGame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SettingsGame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(SettingsGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        StartGame.audio.pause();
     }
     
     System.out.println("Numero vite:"+ var+ "Musica:"+ music);      
     setVisible(false);
     dispose();// TODO add your handling code here:
+    lives=GetLives();
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    public  int GetLives(){
+        return (int) jSpinner1.getValue();
+    }
+    
+    public static int getLives(){
+        return lives;
+    }
+    
+    public static boolean isMusic() {
+        return music;
+    }
     /**
      * @param args the command line arguments
      */

@@ -11,6 +11,7 @@ public class  AudioPlayer {
     
     static {
         JFXPanel fxPanel = new JFXPanel();
+        
     }
      
     private Long currentFrame; 
@@ -19,21 +20,28 @@ public class  AudioPlayer {
     private AudioInputStream audioInputStream; 
     private static String filepath;
     private static AudioPlayer audio=null;
+    private static boolean musicon=true;//false=musicoff
    
     private AudioPlayer(String filepath) throws UnsupportedAudioFileException, LineUnavailableException, IOException { 
         this.filepath=filepath;
         audioInputStream =  AudioSystem.getAudioInputStream(new File("./src/pyroduck/audio/"+filepath).getAbsoluteFile());  
         clip = AudioSystem.getClip();
         clip.open(audioInputStream); 
-        //currentFrame = clip.getMicrosecondPosition(); 
 
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
     } 
     
     public static AudioPlayer getAudioPlayer(String filepath){
+     
         if (audio==null || status==null || status.equals("stop")){
             try {
                 audio= new AudioPlayer(filepath);
+
+                if(!musicon){
+                    audio.pause();
+                    return audio;
+                }
+                
         } catch (UnsupportedAudioFileException ex) {
             Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LineUnavailableException ex) {
@@ -60,7 +68,9 @@ public class  AudioPlayer {
     } 
       
     public void resumeAudio() throws UnsupportedAudioFileException, IOException, LineUnavailableException{ 
-        if (!status.equals("play"))  { 
+         if(!musicon)
+            return;
+         else if (!status.equals("play"))  { 
             clip.close(); 
             resetAudioStream(); 
             clip.setMicrosecondPosition(currentFrame); 
@@ -69,6 +79,7 @@ public class  AudioPlayer {
     } 
       
     public void restart() throws IOException, LineUnavailableException, UnsupportedAudioFileException{ 
+
         clip.stop(); 
         clip.close(); 
         resetAudioStream(); 
@@ -104,6 +115,18 @@ public class  AudioPlayer {
         clip.open(audioInputStream); 
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
     } 
+    
+    public void musicOff() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+         musicon=false;
+         this.pause();
+       
+    }
+    
+    public void musicOn() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+        musicon=true;
+        this.resumeAudio();
+        
+    }
 
     public Long getCurrentFrame() {
         return currentFrame;
