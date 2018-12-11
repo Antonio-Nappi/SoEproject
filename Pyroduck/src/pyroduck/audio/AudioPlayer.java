@@ -100,7 +100,7 @@ public class  AudioPlayer {
     // Method to reset audio stream 
     public void resetAudioStream() throws UnsupportedAudioFileException, IOException, LineUnavailableException{ 
         audioInputStream = AudioSystem.getAudioInputStream( 
-        new File(filepath).getAbsoluteFile()); 
+        new File("./src/pyroduck/audio/"+filepath).getAbsoluteFile()); 
         clip.open(audioInputStream); 
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
     } 
