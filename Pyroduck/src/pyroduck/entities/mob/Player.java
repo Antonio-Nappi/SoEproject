@@ -40,8 +40,9 @@ public class Player extends Mob{
         bombs = Board.getInstance().getBombs();
         input = Board.getInstance().getInput();
         addObserver(Board.getInstance());
-        
     }
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -335,7 +336,7 @@ public class Player extends Mob{
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
         while(bs.hasNext()) {
-            b = bs.next();
+            b = (Bomb) bs.next();
             if(b.isRemoved())  {
                 bs.remove();
                 Game.addBombRate(1);

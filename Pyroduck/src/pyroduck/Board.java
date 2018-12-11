@@ -425,6 +425,8 @@ public class Board extends Observable implements Observer {
         }
         return null;
     }
+    
+    
 
     private Keyboard getRightKeyboard() {
         if(player == 1){

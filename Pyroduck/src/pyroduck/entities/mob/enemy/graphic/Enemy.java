@@ -9,6 +9,7 @@ import pyroduck.entities.mob.enemy.EnemyPower;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
+import pyroduck.missile.Missile;
 
 /**
  * The abstract class describes the behavior of each type of enemies.
@@ -171,7 +172,7 @@ public abstract class Enemy extends Mob {
      */
     @Override
     public boolean collide(Entity e) {
-        if(e instanceof DirectionalExplosion) {
+        if(e instanceof DirectionalExplosion || e instanceof Missile) {
             kill();
             return true;
         }

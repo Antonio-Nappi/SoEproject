@@ -111,12 +111,14 @@ public class Bomb extends AnimatedEntity {
     public Explosion explosionAt(int x, int y) {
         if(!exploded) 
             return null;
-        for (int i = 0; i < explosions.length; i++) {
-            if(explosions[i] == null) 
-                return null;
-            Explosion e = explosions[i].explosionAt(x, y);
-            if(e != null) 
-                return e;
+        if(explosions != null){
+            for (int i = 0; i < explosions.length; i++) {
+                if(explosions[i] == null) 
+                    return null;
+                Explosion e = explosions[i].explosionAt(x, y);
+                if(e != null) 
+                    return e;
+            }
         }
         return null;
     }

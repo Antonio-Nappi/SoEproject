@@ -3,7 +3,6 @@ package pyroduck.entities.mob;
 import java.util.logging.*;
 import pyroduck.*;
 import pyroduck.entities.tile.powerup.Powerup;
-
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.*;
 import pyroduck.level.Coordinates;
@@ -114,7 +113,7 @@ public class SuperPlayer extends Player{
     
     @Override
     protected void placeBomb(int x, int y) {    //NOW we can shoot missiles
-        Missile m = new Missile(x, y);
+        Missile m = new Missile(x, y, direction);
         Board.getInstance().addBomb(m);
     }
     

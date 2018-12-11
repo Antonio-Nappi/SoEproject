@@ -12,7 +12,7 @@ import pyroduck.graphics.Screen;
 public abstract class Mob extends AnimatedEntity {
 	
     protected int direction = -1;
-    protected boolean alive = true;
+    protected boolean alive;
     protected boolean moving = false;
     public int timeAfter = 80;
 
@@ -24,6 +24,7 @@ public abstract class Mob extends AnimatedEntity {
     public Mob(int x, int y) {
         this.x = x;
         this.y = y;   
+        alive = true;
     }
 
     /**
