@@ -16,6 +16,7 @@ import pyroduck.exceptions.*;
 import pyroduck.graphics.Screen;
 import pyroduck.input.*;
 import pyroduck.level.*;
+import pyroduck.missile.Missile;
 
 public class Board extends Observable implements Observer {
 
@@ -506,4 +507,5 @@ public class Board extends Observable implements Observer {
     public void resetPoints() {
         points = 0;
     }
+
 }
