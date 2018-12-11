@@ -11,13 +11,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import pyroduck.exceptions.PyroduckException;
-import pyroduck.input.GrassKeyboard;
+import pyroduck.input.Keyboard;
 
 /**
  *
  * @author all
  */
 public class GameTest {
+    Board board;
     Game game;
     
     public GameTest() {
@@ -33,6 +34,7 @@ public class GameTest {
     
     @Before
     public void setUp() throws PyroduckException {
+        board = Board.getInstance();
         game = Game.getInstance();
     }
     
@@ -57,7 +59,7 @@ public class GameTest {
     public void testAddBombRate() {
         System.out.println("addBombRate");
         try {
-            game.getBoard().newGame();
+            board.newGame();
         } catch (IOException ex) {
             Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,7 +76,7 @@ public class GameTest {
     public void testAddBombRadius() {
         System.out.println("addBombRadius");
         try {
-            game.getBoard().newGame();
+            board.newGame();
         } catch (IOException ex) {
             Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -91,7 +93,7 @@ public class GameTest {
     public void testAddPlayerSpeed() {
         System.out.println("addPlayerSpeed");
         try {
-            game.getBoard().newGame();
+            board.newGame();
         } catch (IOException ex) {
             Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -108,7 +110,7 @@ public class GameTest {
     public void testDecreasePlayerSpeed() {
         System.out.println("decreasePlayerSpeed");
         try {
-            game.getBoard().newGame();
+            board.newGame();
         } catch (IOException ex) {
             Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -200,7 +202,7 @@ public class GameTest {
     @Test
     public void testStart() {
         game.start();
-        assertSame(game.getInput(), GrassKeyboard.getInstance());
+        assertSame(game.getInput(), Keyboard.getInstance());
     }
           /**
      * Test of resume method, of class Game.

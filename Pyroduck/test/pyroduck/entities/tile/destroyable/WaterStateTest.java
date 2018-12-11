@@ -6,10 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.Board;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
-import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -50,7 +48,7 @@ public class WaterStateTest {
      */
     @Test
     public void testCollide() {
-        Entity e = new Player(x, y, new Board(new Screen()));
+        Entity e = new Player(x, y);
         boolean result = e.collide(water);
         boolean expResult = false;
         assertEquals(expResult, result);
@@ -64,6 +62,5 @@ public class WaterStateTest {
         ContextDestroyable context = new ContextDestroyable();
         DestroyableIceTile result = water.nextState(context);
         assertTrue(result instanceof WaterState);
-    }
-    
+    }   
 }

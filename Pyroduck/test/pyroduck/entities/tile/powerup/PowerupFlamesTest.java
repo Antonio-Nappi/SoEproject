@@ -6,13 +6,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.BrickTile;
-import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -46,9 +44,8 @@ public class PowerupFlamesTest {
     @Test
     public void testCollide() {
         System.out.println("collide");
-        Board b = new Board(new Screen());
-        Entity e1 = new DirectionalExplosion(1, 2, 0, 1, b);
-        Entity e2 = new Player(1, 1, b);
+        Entity e1 = new DirectionalExplosion(1, 2, 0, 1);
+        Entity e2 = new Player(1, 1);
         Entity e3 = new BrickTile(1, 1, Sprite.brick);
         PowerupFlames instance = new PowerupFlames(1, 1, Sprite.brick);
         boolean des = instance.collide(e1);
@@ -71,6 +68,5 @@ public class PowerupFlamesTest {
         assertEquals(2, Game.getBombRadius(), 0);
         instance.setValues();
         assertEquals(3, Game.getBombRadius(), 0);
-    }
-    
+    }   
 }
