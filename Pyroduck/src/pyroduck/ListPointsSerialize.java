@@ -12,7 +12,7 @@ public class ListPointsSerialize {
     protected List<PointsSerialize> list;
 
     public ListPointsSerialize() {
-        list = new ArrayList<>();
+        list = new LinkedList<>();
     }
     
     public void charge() {
@@ -43,10 +43,10 @@ public class ListPointsSerialize {
         for(int i = 0; i < list.size(); i++) {
             boolean s = false;
             for(int j = 0; j < list.size()-1; j++) {
-                if((list.get(j).getPoints()<list.get(j+1).getPoints()) ||((list.get(j).getPoints() == list.get(j+1).getPoints()) && list.get(j).getLives()>list.get(j+1).getLives()) ) {
+                if((list.get(j).getPoints() < list.get(j+1).getPoints()) || ((list.get(j).getPoints() == list.get(j+1).getPoints()) && list.get(j).getLives() < list.get(j+1).getLives()) ) {
                     PointsSerialize k = list.get(j);
-                    list.add(j, list.get(j+1));
-                    list.add(j+1, k);
+                    list.set(j, list.get(j+1));
+                    list.set(j+1, k);
                     s = true;
                 }
             }
@@ -61,10 +61,14 @@ public class ListPointsSerialize {
     
     public String printScores(){
         charge();
-        String s = "Name\tScores\tLives\n";
+        String s = "Name\t|Scores\t|Lives\n________________________|_____\n";
         for(PointsSerialize p : list){
-            s += p.getName()+"\t" + p.getLives() + "\t" + p.getPoints() + "\n";
+            s += p.getName()+"\t|" + p.getPoints() + "\t|" + p.getLives() + "\n";
         }
         return s;
+    }
+    
+    public int size(){
+        return list.size();
     }
 }

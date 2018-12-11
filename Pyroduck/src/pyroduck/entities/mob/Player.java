@@ -76,7 +76,6 @@ public class Player extends Mob{
         detectPlaceBomb();
 
         updateTimerBreaker();
-
     }
 
     /**
@@ -421,7 +420,7 @@ public class Player extends Mob{
         
     }
 
-    private void updateTimerBreaker(){
+    protected void updateTimerBreaker(){
         for(DestroyableIceTile d : Board.getInstance().getDestroyableIceTile())
             if(d.getTimerBreak()>0)
                 d.setTimerBreak(d.getTimerBreak()-1);

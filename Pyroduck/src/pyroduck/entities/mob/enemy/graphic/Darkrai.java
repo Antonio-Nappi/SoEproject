@@ -1,7 +1,6 @@
 package pyroduck.entities.mob.enemy.graphic;
 
 import pyroduck.Board;
-import pyroduck.Game;
 import pyroduck.entities.mob.enemy.MediumPower;
 import pyroduck.graphics.Sprite;
 
@@ -18,7 +17,7 @@ public class Darkrai extends Enemy{
      * @param y vertical coordinate in pixels. 
      */
     public Darkrai(int x, int y){
-        super(x, y, Sprite.darkrai_dead, Game.getPlayerSpeed() - 0.1, 300);
+        super(x, y, Sprite.darkrai_dead, 1.2, 300);
         sprite = Sprite.darkrai_left1;	
         ep = new MediumPower(Board.getInstance().getPlayer(), this);
         direction = ep.calculateDirection();
