@@ -1,14 +1,10 @@
 package pyroduck.gui;
 
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JComboBox;
-import pyroduck.Game;
-import pyroduck.exceptions.PyroduckException;
 
 /**
  *
