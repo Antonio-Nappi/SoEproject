@@ -1,10 +1,8 @@
 package pyroduck.gui;
 
-import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.ListPointsSerialize;
@@ -29,7 +27,6 @@ public class EndGame extends javax.swing.JFrame {
         String s = JOptionPane.showInputDialog(rootPane, "Insert your name", "Save your score", JOptionPane.PLAIN_MESSAGE);
         if(s != null)    
             scores.addScore(new PointsSerialize(s));
-        jTextArea2.setAutoscrolls(true);
         jTextArea2.setText(scores.printScores());
     }
 
@@ -95,7 +92,7 @@ public class EndGame extends javax.swing.JFrame {
         jTextArea2.setBackground(new java.awt.Color(255, 153, 0));
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Monospaced", 2, 18)); // NOI18N
-        jTextArea2.setRows(5);
+        jTextArea2.setRows(10);
         jTextArea2.setTabSize(12);
         jScrollPane2.setViewportView(jTextArea2);
 
