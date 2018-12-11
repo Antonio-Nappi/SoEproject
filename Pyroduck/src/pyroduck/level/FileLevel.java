@@ -8,6 +8,7 @@ import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.LayeredEntity;
+import pyroduck.entities.mob.AutomatePlayer;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.enemy.graphic.Arbok;
 import pyroduck.entities.mob.enemy.graphic.Darkrai;
@@ -261,6 +262,11 @@ public class FileLevel{
                                                        new BrickTile(x,y, Sprite.brickice));
                             layer8.addBeforeTop(new PowerupVehicles(x,y,Sprite.powerup_articuno));
                             entities[pos] = layer8;
+                            break;
+                        case 'd':
+                            Board.getInstance().addMob(new AutomatePlayer(Coordinates.tileToPixel(x), Coordinates.tileToPixel(y) + Game.TILES_SIZE));   //24 are real width and height of player
+                            Screen.setOffset(0, 0);
+                            entities[pos] = new GrassTile(x, y, Sprite.grass);
                             break;
                         default:
                             entities[pos] = new GrassTile(x, y, Sprite.ice);
