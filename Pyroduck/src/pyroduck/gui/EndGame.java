@@ -24,8 +24,9 @@ public class EndGame extends javax.swing.JFrame {
     public EndGame() {
         initComponents();
         scores.charge();
-        String s = JOptionPane.showInputDialog(rootPane, "Insert your name", "Save your score", JOptionPane.INFORMATION_MESSAGE);
-        scores.addScore(new PointsSerialize(s));
+        String s = JOptionPane.showInputDialog(rootPane, "Insert your name", "Save your score", JOptionPane.PLAIN_MESSAGE);
+        if(s != null)    
+            scores.addScore(new PointsSerialize(s));
         jTextArea1.setText(scores.printScores());
         jTextArea1.setEditable(false);
     }
