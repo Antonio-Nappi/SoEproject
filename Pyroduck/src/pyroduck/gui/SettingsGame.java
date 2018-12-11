@@ -16,17 +16,17 @@ import pyroduck.exceptions.PyroduckException;
  */
 public class SettingsGame extends javax.swing.JFrame {
 
-    private boolean music = true;
+    private static boolean music = true;
     /**
      * Creates new form SettingsGame
      */
     public SettingsGame() {
         initComponents();
         jLabel1.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
-        if (music == true)
-            musicCheckBox.setSelected(true);
-        else
-            musicCheckBox.setSelected(false);
+         if (music == true)
+                       musicCheckBox.setSelected(true);
+                   else
+                       musicCheckBox.setSelected(false);
     }
 
     /**
@@ -176,6 +176,7 @@ public class SettingsGame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SettingsGame().setVisible(true);
+                  
             }
         });
     }
