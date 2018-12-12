@@ -5,7 +5,7 @@ import java.util.logging.*;
 import pyroduck.*;
 import pyroduck.bomb.*;
 import pyroduck.entities.Entity;
-import pyroduck.entities.mob.enemy.graphic.Enemy;
+import pyroduck.entities.tile.Tile;
 import pyroduck.entities.tile.destroyable.*;
 import pyroduck.entities.tile.powerup.*;
 import pyroduck.exceptions.PyroduckException;
@@ -147,7 +147,7 @@ public class Player extends Mob{
             Entity a = Board.getInstance().getEntity(xt, yt, this);
             DestroyableIceTile newState;
             ContextDestroyable con = Board.getInstance().getContextState();
-            if(a instanceof DestroyableIceTile){ //new features here!!!- - - - - - - - - - - -
+            if(a.isTile() && (((Tile)a).isDestroyableIceTile())){ //new features here!!!- - - - - - - - - - - -
                 con.setState((DestroyableIceTile)a);
                 if(((DestroyableIceTile) a).getTimerBreak()<=0) { // differences to see if the player has moved out of the bomb, tested values
                     ((DestroyableIceTile) a).setTimerBreak(80);
@@ -292,11 +292,11 @@ public class Player extends Mob{
      */
     @Override
     public boolean collide(Entity e) {
-        if(e instanceof DirectionalExplosion) {
+        if(e.isExplosion()) {
             kill();
             return true;
         }
-        if(e instanceof Enemy) {
+        if(e.isMob() && !(((Mob)e).isPlayer())) {
             if(checkRealCollision(e, 0.2)){
                 kill();
                 return true;
@@ -363,16 +363,10 @@ public class Player extends Mob{
      * @param p
      */
     public void addPowerup(Powerup p) {
-        if(p instanceof PowerupNotSlip){
-            Board.getInstance().setInput();
-            input = Board.getInstance().getInput();
-        }
-      
         if(p instanceof PowerupVehicles){
             setChanged();
             notifyObservers();
-        }
-        
+        }      
         if(!p.isRemoved()) {
             powerups.add(p);
             p.setValues();
@@ -425,5 +419,18 @@ public class Player extends Mob{
         for(DestroyableIceTile d : Board.getInstance().getDestroyableIceTile())
             if(d.getTimerBreak()>0)
                 d.setTimerBreak(d.getTimerBreak()-1);
+    }
+    
+    @Override
+    public boolean isPlayer() {
+        return true;
+    }
+    
+    public void setInput(Keyboard k){
+        input = k;
+    }
+    
+    public boolean isSuperPlayer() {
+        return false;
     }
 }

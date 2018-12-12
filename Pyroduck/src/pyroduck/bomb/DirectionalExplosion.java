@@ -2,7 +2,6 @@ package pyroduck.bomb;
 
 import pyroduck.Board;
 import pyroduck.entities.Entity;
-import pyroduck.entities.mob.Mob;
 import pyroduck.graphics.Screen;
 
 /**
@@ -68,7 +67,7 @@ public class DirectionalExplosion extends Entity {
             if(direction == 2) y++;
             if(direction == 3) x--;
             Entity a = Board.getInstance().getEntity(x, y, null);
-            if(a instanceof Mob)
+            if(a.isMob())
                 ++rad; //explosion has to be below the mob
             if(a.collide(this))//cannot pass thru
                 break;
@@ -118,5 +117,10 @@ public class DirectionalExplosion extends Entity {
     @Override
     public boolean collide(Entity e) {
         return false;
+    }
+    
+    @Override
+    public boolean isExplosion(){
+        return true;
     }
 }

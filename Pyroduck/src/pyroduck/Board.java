@@ -17,7 +17,6 @@ import pyroduck.graphics.Screen;
 import pyroduck.gui.SettingsGame;
 import pyroduck.input.*;
 import pyroduck.level.*;
-import pyroduck.missile.Missile;
 
 public class Board extends Observable implements Observer {
 
@@ -146,8 +145,6 @@ public class Board extends Observable implements Observer {
             input = getRightKeyboard();
             clevel = new ContextLevel(new FileLevel(path));
             entities = clevel.executeStrategy();
-            if(Keyboard.getInstance().isIce())
-                destroyableIceTiles = createDestroyableIceTile();
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
@@ -171,15 +168,19 @@ public class Board extends Observable implements Observer {
      * Return a boolean that say if there is enemies alive in the map or not.
      * @return true if there is not enemies alive in the map, false otherwise.
      */
+    /*
     public boolean detectNoEnemies() {
         int total = 0;
         for (int i = 0; i < mobs.size(); i++) {
-            if(mobs.get(i) instanceof Player == false)
+            if(!mobs.get(i).isPlayer())
                 ++total;
         }
         return total == 0;
     }
-
+*/
+    public boolean detectNoEnemies() {
+        return mobs.size() == 1;
+    }
     /*
     |--------------------------------------------------------------------------
     | Getters And Setters
@@ -216,14 +217,7 @@ public class Board extends Observable implements Observer {
     }
 
     public Player getPlayer() {
-        Iterator<Mob> itr = mobs.iterator();
-        Mob cur;
-        while(itr.hasNext()) {
-            cur = itr.next();
-            if(cur instanceof Player)
-                return (Player) cur;
-        }
-        return null;
+        return (Player) mobs.get(0);
     }
 
     public Mob getMobAtExcluding(int x, int y, Mob a) {
@@ -391,14 +385,6 @@ public class Board extends Observable implements Observer {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().render(screen);
-    }
-
-    public List<DestroyableIceTile> createDestroyableIceTile(){
-        for(Entity e : entities){
-            if (e instanceof DestroyableIceTile)
-                destroyableIceTiles.add((DestroyableIceTile) e);
-        }
-        return destroyableIceTiles;
     }
 
     public int getLives() {

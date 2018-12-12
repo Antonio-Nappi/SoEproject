@@ -1,7 +1,9 @@
 package pyroduck.entities.tile.powerup;
 
+import pyroduck.bomb.Bomb;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
+import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.DestroyableTile;
 import pyroduck.graphics.Sprite;
@@ -32,10 +34,9 @@ public abstract class Powerup extends DestroyableTile {
     
     @Override
     public boolean collide(Entity e) {
-
-        if(e instanceof DirectionalExplosion || e instanceof Missile)
+        if(e.isExplosion() || (e.isBomb() && (((Bomb)e).isMissile())))
             destroyed = true;
-        if(e instanceof Player) {
+        if(e.isMob() && (((Mob)e).isPlayer())) {
             ((Player) e).addPowerup(this);
             remove();
             return true;
