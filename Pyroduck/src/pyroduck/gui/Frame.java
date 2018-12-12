@@ -30,14 +30,4 @@ public class Frame extends JFrame {
         
         gamepane.getGame().start();
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Game Related
-    |--------------------------------------------------------------------------
-     */
-    
-    public void newGame() throws IOException {
-        Board.getInstance().newGame();
-    }  
 }

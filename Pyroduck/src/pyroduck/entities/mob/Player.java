@@ -70,12 +70,9 @@ public class Player extends Mob{
             timeBetweenPutBombs = 0;
         else
             --timeBetweenPutBombs;
-
         animate();
-
         calculateMove();
         detectPlaceBomb();
-
         updateTimerBreaker();
     }
 

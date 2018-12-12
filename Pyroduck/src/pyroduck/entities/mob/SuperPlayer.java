@@ -20,7 +20,7 @@ public class SuperPlayer extends Player{
         super((int)player.getX(), (int)player.getY());
         this.input = player.input;
         this.lives = player.lives;
-        this.done = false;   //It has just correct keyboard   
+        this.done = false;   //It has just correct keyboard
     }
     
     @Override
@@ -123,7 +123,7 @@ public class SuperPlayer extends Player{
             int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
             int yt = Coordinates.pixelToTile( (y + sprite.getSize() / 2) - sprite.getSize() ); //subtract half player height and minus 1 y position
             placeBomb(xt,yt);
-            timeBetweenPutBombs = 30;
+            timeBetweenPutBombs = 100;
         }
     }
     

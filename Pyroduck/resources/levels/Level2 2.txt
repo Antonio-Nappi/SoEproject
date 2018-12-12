@@ -23,6 +23,7 @@ Info Tiles:
 
 Mobs:
 p - Player
+a - Articuno
 1 - Golbat
 2 - Machamp
 3 - Arbok

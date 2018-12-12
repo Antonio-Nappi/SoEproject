@@ -77,10 +77,6 @@ public class Board extends Observable implements Observer {
     | ChangeLevel
     |--------------------------------------------------------------------------
     */
-    public void newGame() throws IOException {
-        resetProperties();
-        changeLevel(1);
-    }
 
     @SuppressWarnings("static-access")
     public void resetProperties() {

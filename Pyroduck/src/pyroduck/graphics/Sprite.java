@@ -295,6 +295,13 @@ public class Sprite {
     public static Sprite bomb = new Sprite(3, 1, SpriteSheet.tiles);
     public static Sprite bomb_1 = new Sprite(4, 1, SpriteSheet.tiles);
     public static Sprite bomb_2 = new Sprite(5, 1, SpriteSheet.tiles);
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Missle Sprites
+    |--------------------------------------------------------------------------
+     */
+    public static Sprite missle = new Sprite(14, 1, SpriteSheet.tiles);
 
     /*
     |--------------------------------------------------------------------------
