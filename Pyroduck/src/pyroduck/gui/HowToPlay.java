@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.gui;
 
 import java.awt.Point;
 
 /**
  *
- * @author Acer 5744 i5
+ * @author 
  */
 public class HowToPlay extends javax.swing.JFrame {
 
@@ -21,8 +16,7 @@ public class HowToPlay extends javax.swing.JFrame {
         Point middle = new Point(600,200);
         setLocation(middle);
         exitLabel.setIcon (new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
-        setVisible(true);
-        
+        setVisible(true);  
     }
 
     /**
@@ -43,7 +37,6 @@ public class HowToPlay extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(480, 300));
         setMinimumSize(new java.awt.Dimension(480, 300));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(480, 380));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
@@ -59,15 +52,15 @@ public class HowToPlay extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Comic Sans MS", 0, 15)); // NOI18N
         jTextArea1.setRows(5);
+        jTextArea1.setText("The goal of the game is to destroy the enemies, \npicking up powerup, and go through two different\nworlds.\nEach world is composed by two levels and different\nenemies.\nThe first world is \"The GrassArena\" and the second\none is \"The IceArena\".\nThe IceArena has some trouble, so... be careful\nwhen you chose the character!\nTo go through levels it is necessary defeat all the\nenemies to unlock the portal.\nThe portal will allow you to pass the level till the \nend.\n");
         jTextArea1.setMargin(new java.awt.Insets(4, 4, 4, 4));
-        jTextArea1.setMaximumSize(new java.awt.Dimension(364, 325));
-        jTextArea1.setMinimumSize(new java.awt.Dimension(364, 325));
-        jTextArea1.setPreferredSize(new java.awt.Dimension(364, 325));
+        jTextArea1.setMaximumSize(new java.awt.Dimension(370, 325));
+        jTextArea1.setMinimumSize(new java.awt.Dimension(370, 325));
+        jTextArea1.setPreferredSize(new java.awt.Dimension(370, 325));
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 33, 364, 325));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 33, 370, 325));
 
-        exitLabel.setText("jLabel1");
         exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitLabelMouseClicked(evt);
@@ -81,43 +74,8 @@ public class HowToPlay extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
-    dispose();
+        dispose();
     }//GEN-LAST:event_exitLabelMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HowToPlay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HowToPlay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HowToPlay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HowToPlay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HowToPlay().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel exitLabel;

@@ -7,7 +7,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JTextArea;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.Pyroduck;
@@ -20,7 +19,7 @@ import pyroduck.exceptions.PyroduckException;
  */
 public class StartGame extends javax.swing.JFrame {
 
-    private int selected=0;
+    private int selected = 0;
     public static AudioPlayer audio;
     String[] args;
    
@@ -31,7 +30,7 @@ public class StartGame extends javax.swing.JFrame {
         initComponents();
         imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
         exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
-        
+       
         audio= AudioPlayer.getAudioPlayer("opening.wav");
         audio.play();
         pSpeed.setValue(50);
@@ -361,7 +360,7 @@ public class StartGame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
-        System.exit(0);        // TODO add your handling code here:
+        System.exit(0); 
     }//GEN-LAST:event_exitLabelMouseClicked
 
     private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
@@ -413,17 +412,15 @@ public class StartGame extends javax.swing.JFrame {
         } catch (PyroduckException | IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
-        
+        this.setVisible(false);    
     }//GEN-LAST:event_selectButtonActionPerformed
 
     private void powerupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerupButtonActionPerformed
         PowerupWindow pwindow = new PowerupWindow();
-        pwindow.setVisible(true);
     }//GEN-LAST:event_powerupButtonActionPerformed
 
     private void howtoplayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howtoplayButtonActionPerformed
-      HowToPlay howtoplay = new HowToPlay();
+        HowToPlay howtoplay = new HowToPlay();
     }//GEN-LAST:event_howtoplayButtonActionPerformed
 
     private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
@@ -488,7 +485,6 @@ public class StartGame extends javax.swing.JFrame {
                 StartGame s = new StartGame();
                 Point middle = new Point(200, 50);
                 s.setBounds(new Rectangle(1000,600));   
-                //new Rectangle(Toolkit.getDefaultToolkit().getScreenSize().width,Toolkit.getDefaultToolkit().getScreenSize().height-40));
                 s.setLocation(middle);
                 s.setVisible(true);              
             }
