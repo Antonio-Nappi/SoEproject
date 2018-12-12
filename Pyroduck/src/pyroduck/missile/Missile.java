@@ -28,7 +28,6 @@ public class Missile extends Bomb{
         this.direction = direction;
         sprite = Sprite.missle;
         range = 30;
-
     }
 
     @Override

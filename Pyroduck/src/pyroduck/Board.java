@@ -231,6 +231,22 @@ public class Board extends Observable implements Observer {
         }
         return null;
     }
+    
+    public ArrayList<Mob> getMobsAtExcluding(int x, int y, Mob a) {
+        Iterator<Mob> itr = mobs.iterator();
+        Mob cur;
+        ArrayList<Mob> mobs1 = new ArrayList();
+        while(itr.hasNext()) {
+            cur = itr.next();
+            if(cur == a) {
+                continue;
+            }
+            if(cur.getXTile() == x && cur.getYTile() == y) {
+                mobs1.add(cur);
+            }
+        }
+        return mobs1;
+    }
 
     public Explosion getExplosionAt(int x, int y) {
         Iterator<Bomb> bs = bombs.iterator();
