@@ -30,5 +30,4 @@ public class Frame extends JFrame {
         
         gamepane.getGame().start();
     }
-
 }

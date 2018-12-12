@@ -15,7 +15,7 @@ public class ListPointsSerialize {
         list = new LinkedList<>();
     }
     
-    public void charge() {
+    public List<PointsSerialize> charge() {
         File f = new File("punteggi.dat");
         ObjectInputStream in;
         try {
@@ -25,6 +25,7 @@ public class ListPointsSerialize {
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
+        return list;
     }
     
     private void save() {
@@ -59,15 +60,7 @@ public class ListPointsSerialize {
         save();
     }
     
-    public String printScores(){
-        charge();
-        String s = "Name\t|Scores\t|Lives\n________________________|_____\n";
-        for(PointsSerialize p : list){
-            s += p.getName()+"\t|" + p.getPoints() + "\t|" + p.getLives() + "\n";
-        }
-        return s;
-    }
-    
+   
     public int size(){
         return list.size();
     }

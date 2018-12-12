@@ -1,13 +1,15 @@
 package pyroduck.missile;
 
 import static java.lang.Math.abs;
-import java.util.*;
+import java.util.List;
+import java.util.ListIterator;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.*;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
+
 import pyroduck.graphics.*;
 import pyroduck.level.FileLevel;
 
@@ -19,18 +21,24 @@ public class Missile extends Bomb{
 
     private final double MISSILE_SPEED = 0.2;
     private final int direction;
+    private int range;
 
     public Missile(int x, int y,int direction) {
         super(x, y);
         this.direction = direction;
-        sprite = Sprite.bomb;
+        sprite = Sprite.missle;
+        range = 30;
+
     }
     
 
     @Override
     public void update() {
         if(!exploded){
-            move(); 
+            range--;
+            move();
+            if(range <= 0)
+                exploded = true;
         }
         else
             remove();

@@ -1,8 +1,11 @@
 package pyroduck.gui;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS;
+import javax.swing.table.DefaultTableModel;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.ListPointsSerialize;
@@ -17,6 +20,7 @@ public class EndGame extends javax.swing.JFrame {
 
     private Game game;
     private ListPointsSerialize scores = new ListPointsSerialize();
+    private List<PointsSerialize> list;
     
     /**
      * Creates new form EndGame
@@ -27,7 +31,22 @@ public class EndGame extends javax.swing.JFrame {
         String s = JOptionPane.showInputDialog(rootPane, "Insert your name", "Save your score", JOptionPane.PLAIN_MESSAGE);
         if(s != null)    
             scores.addScore(new PointsSerialize(s));
-        jTextArea2.setText(scores.printScores());
+       
+        DefaultTableModel model= new DefaultTableModel();
+        jTable1.setModel(model);
+        Object[] row = new Object[3];
+        Object[] column={"Names","Points","Lives"};
+        model.setColumnIdentifiers(column);
+        
+        list=scores.charge();
+        for(PointsSerialize p : list){
+            row[0] = p.getName();
+            row[1]= p.getPoints();
+            row[2]= p.getLives();
+            
+            model.addRow(row);
+        }
+       
     }
 
     /**
@@ -43,8 +62,8 @@ public class EndGame extends javax.swing.JFrame {
         resumeButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game Over");
@@ -88,13 +107,18 @@ public class EndGame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Algerian", 3, 48)); // NOI18N
         jLabel1.setText("Game over!");
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(255, 153, 0));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Monospaced", 2, 18)); // NOI18N
-        jTextArea2.setRows(10);
-        jTextArea2.setTabSize(12);
-        jScrollPane2.setViewportView(jTextArea2);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,21 +134,21 @@ public class EndGame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(117, 117, 117)
                         .addComponent(jLabel1)
-                        .addGap(0, 110, Short.MAX_VALUE)))
+                        .addGap(0, 108, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jScrollPane2)
-                .addGap(97, 97, 97))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resumeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,8 +227,8 @@ public class EndGame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton resumeButton;
     // End of variables declaration//GEN-END:variables
 }
