@@ -6,12 +6,8 @@
 package pyroduck.entities.mob;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import pyroduck.Board;
-import pyroduck.Game;
+import pyroduck.*;
 import pyroduck.bomb.Bomb;
-import pyroduck.entities.tile.destroyable.DestroyableIceTile;
 import pyroduck.level.Coordinates;
 
 /**
@@ -23,6 +19,7 @@ public class AutomatePlayer extends Player{
     private final int SIZE_REGISTER = 20;
     private LinkedList<Double> registerX = new LinkedList<>();
     private LinkedList<Double> registerY = new LinkedList<>();
+    double i = 0;
     
     public AutomatePlayer(int x, int y) {
         super(x, y);
@@ -30,33 +27,47 @@ public class AutomatePlayer extends Player{
         fillRegisterY();
     }
     
-    
     private void fillRegisterX(){
-        
+        for(int j = 0;j<113;j++) 
+            registerX.add(1.0);
+        for(int j = 0;j<49;j++) 
+            registerX.add(-1.0);
+
     }
     
     private void fillRegisterY(){
-        
+        for(int j = 0;j<113;j++) 
+            registerY.add(0.0);
+        for(int j = 0;j<49;j++) 
+            registerY.add(0.0);
+
     }
     @Override
     protected void calculateMove(){
-        Double xa = registerX.pop();
-        Double ya = registerY.pop();
-       if(xa != 0 || ya != 0)  {
-            move(xa * Game.getPlayerSpeed(), ya *Game.getPlayerSpeed());
-            moving = true;
-        } else {
-            moving = false;
+        if((registerX.size()>0&&registerY.size()>0)){
+            Double xa = registerX.pop();
+            Double ya = registerY.pop();
+           if(xa != 0 || ya != 0)  {
+                move(xa * Game.getPlayerSpeed(), ya *Game.getPlayerSpeed());
+                moving = true;
+            } else {
+                moving = false;
+            }
         }
+        else
+            moving = false;
     }
     
     @Override
     protected void detectPlaceBomb() {
-            int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
-            int yt = Coordinates.pixelToTile( (y + sprite.getSize() / 2) - sprite.getSize() ); //subtract half player height and minus 1 y position
+        if(registerX.size()==48)
+        {
+            int xt = Coordinates.pixelToTile(x);
+            int yt = Coordinates.pixelToTile( y -16); //subtract half player height and minus 1 y position
             placeBomb(xt,yt);
             Game.addBombRate(-1);
         }
+    }
     
     @Override
     protected void placeBomb(int x, int y) {

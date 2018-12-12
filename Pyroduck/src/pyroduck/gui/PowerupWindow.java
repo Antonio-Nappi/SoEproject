@@ -86,6 +86,7 @@ public class PowerupWindow extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel1.setMaximumSize(new java.awt.Dimension(650, 500));
         jPanel1.setMinimumSize(new java.awt.Dimension(650, 500));
         jPanel1.setPreferredSize(new java.awt.Dimension(650, 500));
