@@ -53,7 +53,7 @@ public class StartGame extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        howtoplayButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         settingButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -126,11 +126,11 @@ public class StartGame extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
-        jButton3.setText("How to play");
-        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        howtoplayButton.setBackground(new java.awt.Color(255, 255, 255));
+        howtoplayButton.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
+        howtoplayButton.setText("How to play");
+        howtoplayButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        howtoplayButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 howtoplayButtonActionPerformed(evt);
             }
@@ -164,7 +164,7 @@ public class StartGame extends javax.swing.JFrame {
             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(settingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+            .addComponent(howtoplayButton, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +174,7 @@ public class StartGame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(howtoplayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(settingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -423,18 +423,7 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_powerupButtonActionPerformed
 
     private void howtoplayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howtoplayButtonActionPerformed
-        Point middle = new Point(200, 50);
-        jFrame1.setLocation(middle);
-        jFrame1.setSize(200, 200);
-        jFrame1.setDefaultCloseOperation(HIDE_ON_CLOSE);
-        JTextArea info = new JTextArea();
-        info.setSize(200, 200);
-        info.setEditable(false);
-        jFrame1.add(info);
-        String text = "Something to write";
-        info.setText(text);
-        jFrame1.setVisible(true);
-        
+      HowToPlay howtoplay = new HowToPlay();
     }//GEN-LAST:event_howtoplayButtonActionPerformed
 
     private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
@@ -508,10 +497,10 @@ public class StartGame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel exitLabel;
+    private javax.swing.JButton howtoplayButton;
     private javax.swing.JLabel imgLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
