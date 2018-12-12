@@ -83,7 +83,7 @@ public class Missile extends Bomb{
         ListIterator li = mobs1.listIterator(1);
         while(li.hasNext()){
             Enemy m = (Enemy) li.next();  
-            if(abs(m.getX()-x*32) < 31 && abs(m.getY()-y*32) < 31){
+            if(abs(m.getX()-x*32) < 32 && abs(m.getY()-y*32) < 32){
                 if(m.isAlive())
                     m.kill();
             }      
