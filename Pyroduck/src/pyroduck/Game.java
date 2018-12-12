@@ -57,7 +57,7 @@ public class Game extends Canvas {
         timer = new Timer();
         screen = new Screen();
         board = Board.getInstance();
-        board.changeLevel(2);
+        board.changeLevel(1);
         board.setScreen(screen);
         lives = board.getLives();
         points = 0;
