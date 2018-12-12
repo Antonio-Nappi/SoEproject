@@ -19,8 +19,10 @@ public class MalusSlow extends Powerup {
 
     @Override
     public boolean collide(Entity e) {
-        if(e.isExplosion())
+        if(e.isExplosion()){
             destroyed = true;
+            return true;
+        }
         if(e.isMob() && (((Mob)e).isPlayer())) {
             ((Player) e).addPowerup(this);
             remove();
@@ -29,8 +31,10 @@ public class MalusSlow extends Powerup {
         if(e.isMob() && !(((Mob)e).isPlayer())){
             return true;
         }
-        if(e.isBomb() && ((Bomb) e).isMissile())
+        if(e.isBomb() && ((Bomb) e).isMissile()){
+            destroyed = true;
             return true;
+        }
         return false;
     }
 
