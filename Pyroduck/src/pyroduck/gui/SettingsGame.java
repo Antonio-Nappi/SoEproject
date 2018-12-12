@@ -1,10 +1,15 @@
 package pyroduck.gui;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import pyroduck.ListPointsSerialize;
+import pyroduck.PointsSerialize;
 
 /**
  *
@@ -13,14 +18,30 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class SettingsGame extends javax.swing.JFrame {
 
     private static boolean music = true;
-
-    
     private static int lives=3;
+    private ListPointsSerialize scores = new ListPointsSerialize();
+    private List<PointsSerialize> list;
+
     /**
      * Creates new form SettingsGame
      */
     public SettingsGame() {
-        initComponents();
+        initComponents(); 
+        DefaultTableModel model= new DefaultTableModel();
+        jTable1.setModel(model);
+        Object[] row = new Object[3];
+        Object[] column={"Names","Points","Lives"};
+        model.setColumnIdentifiers(column);
+        
+        list=scores.charge();
+        for(PointsSerialize p : list){
+            row[0] = p.getName();
+            row[1]= p.getPoints();
+            row[2]= p.getLives();
+            
+            model.addRow(row);
+        }
+ 
         jLabel1.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
          if (music == true)
                        musicCheckBox.setSelected(true);
@@ -43,7 +64,8 @@ public class SettingsGame extends javax.swing.JFrame {
         musicCheckBox = new javax.swing.JCheckBox();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
-        viewScore = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -83,8 +105,30 @@ public class SettingsGame extends javax.swing.JFrame {
         });
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, 30));
 
-        viewScore.setText("Scores");
-        jPanel1.add(viewScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 80, 40));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Names", "Points", "Lives"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 270, 150));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -170,8 +214,9 @@ public class SettingsGame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JCheckBox musicCheckBox;
-    private javax.swing.JButton viewScore;
     // End of variables declaration//GEN-END:variables
 }
