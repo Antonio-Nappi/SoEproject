@@ -1,11 +1,10 @@
 package pyroduck.entities.tile.powerup;
 
 import pyroduck.Game;
-import pyroduck.bomb.DirectionalExplosion;
+import pyroduck.bomb.Bomb;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
-import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -30,6 +29,8 @@ public class MalusSlow extends Powerup {
         if(e.isMob() && !(((Mob)e).isPlayer())){
             return true;
         }
+        if(e.isBomb() && ((Bomb) e).isMissile())
+            return true;
         return false;
     }
 

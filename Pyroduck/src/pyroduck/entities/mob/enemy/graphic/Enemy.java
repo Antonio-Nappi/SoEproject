@@ -1,5 +1,6 @@
 package pyroduck.entities.mob.enemy.graphic;
 
+import java.util.ArrayList;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.Bomb;
@@ -172,6 +173,9 @@ public abstract class Enemy extends Mob {
     public boolean collide(Entity e) {
         if(e.isExplosion() || (e.isBomb() && (((Bomb)e).isMissile()))) {
             kill();
+            ArrayList<Mob> m = Board.getInstance().getMobsAtExcluding(this.getXTile(), this.getYTile(), this);
+            for(int i=0; i<m.size(); i++)
+                m.get(i).kill();
             return true;
         }
         return false;
