@@ -1,5 +1,6 @@
 package pyroduck.entities.tile.destroyable;
 
+import pyroduck.bomb.Bomb;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.tile.Tile;
@@ -83,8 +84,13 @@ public abstract class DestroyableTile extends Tile {
     
     @Override
     public boolean collide(Entity e){
-        if(e instanceof DirectionalExplosion || e instanceof Missile)
+        if(e.isExplosion() || (e.isBomb() && (((Bomb)e).isMissile())))
             destroyed = true;
+        return true;
+    }
+    
+    @Override
+    public boolean isDestroyable() {
         return true;
     }
 }

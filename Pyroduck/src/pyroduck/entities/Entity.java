@@ -140,4 +140,20 @@ public abstract class Entity extends Observable{
     public int getRealHeight(){
         return realHeight;
     }
+    
+    public boolean isMob(){
+        return false;
+    }
+    
+    public boolean isTile(){
+        return false;
+    }
+    
+    public boolean isBomb(){
+        return false;
+    }
+    
+    public boolean isExplosion(){
+        return false;
+    }
 }

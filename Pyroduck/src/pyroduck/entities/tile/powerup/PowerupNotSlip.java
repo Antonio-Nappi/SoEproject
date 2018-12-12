@@ -1,5 +1,6 @@
 package pyroduck.entities.tile.powerup;
 
+import pyroduck.Board;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -13,5 +14,8 @@ public class PowerupNotSlip extends Powerup {
     }
 
     @Override
-    public void setValues() {}    
+    public void setValues() {
+        Board.getInstance().setInput();
+        Board.getInstance().getPlayer().setInput(Board.getInstance().getInput());
+    }    
 }

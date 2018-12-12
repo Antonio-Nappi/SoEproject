@@ -138,7 +138,7 @@ public class Bomb extends AnimatedEntity {
      */
     @Override
     public boolean collide(Entity e) {
-        if(e instanceof Player) {
+        if(e.isMob() && (((Mob)e).isPlayer())) {
             double diffX = e.getX() - Coordinates.tileToPixel(getX());
             double diffY = e.getY() - Coordinates.tileToPixel(getY());
             if(!(diffX >= -26 && diffX < 30 && diffY >= 1 && diffY <= 47)) { // differences to see if the player has moved out of the bomb, tested values
@@ -146,10 +146,19 @@ public class Bomb extends AnimatedEntity {
             }
             return allowedToPassThru;
         }
-        if(e instanceof DirectionalExplosion) {
+        if(e.isExplosion()) {
             timeToExplode = 0;
             return false;
         }
         return true;
+    }
+    
+    @Override
+    public boolean isBomb(){
+        return true;
+    }
+    
+    public boolean isMissile(){
+        return false;
     }
 }

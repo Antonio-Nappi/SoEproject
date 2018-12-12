@@ -2,14 +2,13 @@ package pyroduck.entities.mob.enemy.graphic;
 
 import pyroduck.Board;
 import pyroduck.Game;
+import pyroduck.bomb.Bomb;
 import pyroduck.entities.Entity;
-import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.enemy.EnemyPower;
 import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 import pyroduck.level.Coordinates;
-import pyroduck.missile.Missile;
 
 /**
  * The abstract class describes the behavior of each type of enemies.
@@ -30,7 +29,6 @@ public abstract class Enemy extends Mob {
      * Creates an instance of Enemy
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordiante in pixels.
-     * @param board
      * @param dead sprite to show when the enemy will die.
      * @param speed speed of the enemy.
      * @param points point to receve when the enemy will die.
@@ -172,7 +170,7 @@ public abstract class Enemy extends Mob {
      */
     @Override
     public boolean collide(Entity e) {
-        if(e instanceof DirectionalExplosion || e instanceof Missile) {
+        if(e.isExplosion() || (e.isBomb() && (((Bomb)e).isMissile()))) {
             kill();
             return true;
         }

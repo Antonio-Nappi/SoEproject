@@ -3,6 +3,7 @@ package pyroduck.entities.tile.powerup;
 import pyroduck.Game;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
+import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.graphics.Sprite;
@@ -19,14 +20,14 @@ public class MalusSlow extends Powerup {
 
     @Override
     public boolean collide(Entity e) {
-        if(e instanceof DirectionalExplosion)
+        if(e.isExplosion())
             destroyed = true;
-        if(e instanceof Player) {
+        if(e.isMob() && (((Mob)e).isPlayer())) {
             ((Player) e).addPowerup(this);
             remove();
             return true;
         }
-        if(e instanceof Enemy){
+        if(e.isMob() && !(((Mob)e).isPlayer())){
             return true;
         }
         return false;

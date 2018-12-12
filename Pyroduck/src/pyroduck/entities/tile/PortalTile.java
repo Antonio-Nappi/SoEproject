@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.Entity;
+import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Sprite;
@@ -20,7 +21,7 @@ public class PortalTile extends Tile {
 
     @Override
     public boolean collide(Entity e) {
-        if(e instanceof Player ) {
+        if(e.isMob() && (((Mob)e).isPlayer())) {
             if(!Board.getInstance().detectNoEnemies())
                     return false;
             if(e.getXTile() == getX() && e.getYTile() == getY()) {

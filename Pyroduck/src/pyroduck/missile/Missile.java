@@ -23,7 +23,7 @@ public class Missile extends Bomb{
     public Missile(int x, int y,int direction) {
         super(x, y);
         this.direction = direction;
-        sprite = Sprite.bomb;   //mettere missile
+        sprite = Sprite.bomb;
     }
     
 
@@ -81,5 +81,10 @@ public class Missile extends Bomb{
             if(abs(m.getX()-x*32) < 32 && abs(m.getY()-y*32) < 32)
                 m.kill();
         }
+    }
+    
+    @Override
+    public boolean isMissile(){
+        return true;
     }
 }
