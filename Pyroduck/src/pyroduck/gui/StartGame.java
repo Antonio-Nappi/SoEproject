@@ -426,7 +426,7 @@ public class StartGame extends javax.swing.JFrame {
         InfoWindow info = new InfoWindow();
     }//GEN-LAST:event_infoButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         try {
             Game.getInstance().setSelected(0);// TODO add your handling code here:
         } catch (PyroduckException ex) {
