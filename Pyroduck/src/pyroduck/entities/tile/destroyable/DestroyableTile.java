@@ -5,7 +5,7 @@ import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.tile.Tile;
 import pyroduck.graphics.Sprite;
-import pyroduck.missile.Missile;
+import pyroduck.bomb.Missile;
 
 /**
  * Represents the destroyble tile during the game.

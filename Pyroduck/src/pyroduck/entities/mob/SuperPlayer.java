@@ -6,7 +6,7 @@ import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.*;
 import pyroduck.level.Coordinates;
-import pyroduck.missile.Missile;
+import pyroduck.bomb.Missile;
 
 /**
  *

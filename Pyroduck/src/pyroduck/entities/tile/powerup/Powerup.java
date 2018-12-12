@@ -7,7 +7,7 @@ import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.DestroyableTile;
 import pyroduck.graphics.Sprite;
-import pyroduck.missile.Missile;
+import pyroduck.bomb.Missile;
 
 /**
  *
