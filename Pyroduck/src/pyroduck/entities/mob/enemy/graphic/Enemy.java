@@ -173,9 +173,10 @@ public abstract class Enemy extends Mob {
     public boolean collide(Entity e) {
         if(e.isExplosion() || (e.isBomb() && (((Bomb)e).isMissile()))) {
             kill();
-            Mob m = Board.getInstance().getMobAtExcluding(this.getXTile(), this.getYTile(), this);
-            if(m != null)
-                m.kill();
+            ArrayList<Mob> m = Board.getInstance().getMobsAtExcluding(this.getXTile(), this.getYTile(), this);
+            for(Mob mob1 : m)
+                if(mob1.isAlive())
+                    mob1.kill();
             return true;
         }
         return false;
