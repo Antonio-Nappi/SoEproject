@@ -15,6 +15,7 @@ public class PowerupNotSlip extends Powerup {
 
     @Override
     public void setValues() {
+        Board.getInstance().setInput();
         Board.getInstance().getPlayer().setInput(Board.getInstance().getInput());
     }    
 }
