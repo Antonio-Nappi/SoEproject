@@ -30,7 +30,6 @@ public class Missile extends Bomb{
         range = 30;
 
     }
-    
 
     @Override
     public void update() {
