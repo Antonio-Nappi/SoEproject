@@ -15,7 +15,7 @@ public class PointsSerialize implements Serializable{
     public PointsSerialize(String name){
         this.points = Board.getInstance().getPoints();
         this.name = name;
-        this.lives = Board.getInstance().getLives();
+        this.lives = Board.getInstance().getFinalLives();
     }
 
     public int getPoints() {

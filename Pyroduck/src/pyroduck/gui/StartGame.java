@@ -122,6 +122,11 @@ public class StartGame extends javax.swing.JFrame {
         jButton2.setMaximumSize(new java.awt.Dimension(60, 150));
         jButton2.setMinimumSize(new java.awt.Dimension(60, 150));
         jButton2.setPreferredSize(new java.awt.Dimension(60, 150));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
@@ -406,7 +411,6 @@ public class StartGame extends javax.swing.JFrame {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         Board.getInstance().setPlayer(selected);  
-
         Pyroduck p = new Pyroduck();
         try {
             p.main(args);
@@ -447,6 +451,16 @@ public class StartGame extends javax.swing.JFrame {
     private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_infoButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            Pyroduck.main(args);
+        } catch (PyroduckException ex) {
+            Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     /**

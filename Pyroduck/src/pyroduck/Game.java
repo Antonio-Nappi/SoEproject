@@ -57,7 +57,7 @@ public class Game extends Canvas {
         timer = new Timer();
         screen = new Screen();
         board = Board.getInstance();
-        board.changeLevel(2);
+        board.changeLevel(1);
         board.setScreen(screen);
         lives = board.getLives();
         points = 0;
@@ -261,7 +261,7 @@ public class Game extends Canvas {
     public static void setMusicOn(boolean music) throws UnsupportedAudioFileException, IOException, LineUnavailableException{      
         int i = Board.getInstance().level.getLevel();
         musicon=music;
-        
+        System.out.println(i);
         if(audio==null)
             audio=AudioPlayer.getAudioPlayer("Level"+i+".wav");
         audio.pause();
