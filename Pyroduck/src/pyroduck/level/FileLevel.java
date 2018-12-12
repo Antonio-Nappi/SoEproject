@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.io.FileReader;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.Entity;
