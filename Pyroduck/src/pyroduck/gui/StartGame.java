@@ -405,7 +405,6 @@ public class StartGame extends javax.swing.JFrame {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         Board.getInstance().setPlayer(selected);  
-
         Pyroduck p = new Pyroduck();
         try {
             p.main(args);
@@ -430,6 +429,9 @@ public class StartGame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             Game.getInstance().setSelected(0);// TODO add your handling code here:
+        } catch (PyroduckException ex) {
+            Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
             Board.getInstance().setPlayer(selected);
             
             Pyroduck p = new Pyroduck();
@@ -437,15 +439,12 @@ public class StartGame extends javax.swing.JFrame {
                 Pyroduck.main(args);
             } catch (IOException ex) {
                 Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            this.setVisible(false);
-        } catch (PyroduckException ex) {
+            } catch (PyroduckException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
+            this.setVisible(false);
         
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }                                        
 
     private void settingButtonhowtoplayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingButtonhowtoplayButtonActionPerformed
     SettingsGame setting = new SettingsGame();

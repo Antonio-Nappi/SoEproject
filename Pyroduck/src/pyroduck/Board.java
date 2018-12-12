@@ -3,7 +3,6 @@ package pyroduck;
 import java.awt.Graphics;
 import java.io.*;
 import java.util.*;
-import java.util.StringTokenizer;
 import java.util.logging.*;
 import javax.swing.JOptionPane;
 import pyroduck.bomb.*;
@@ -36,7 +35,8 @@ public class Board extends Observable implements Observer {
     private List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
     protected boolean pause=false;
     private static Board instance = null;
-
+    private int FinalLives = lives;
+    
     private Board() {
         con = new ContextDestroyable();
     }
@@ -105,8 +105,10 @@ public class Board extends Observable implements Observer {
 
     public void nextLevel() throws IOException {
         int i = level.getLevel()+1;
-        if(i==3)
-            setLives(0);
+        if(i==3){
+            FinalLives = getLives();
+            setLives(0); 
+        }
 	changeLevel(i);
         try {
             Game.getInstance().renderScreen();
@@ -114,9 +116,7 @@ public class Board extends Observable implements Observer {
             Game.getInstance().pause();
             Thread.sleep(2500);
             Game.getInstance().resume();//wait 2,5 sec and often shows the next level
-        } catch (PyroduckException ex) {
-            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
+        } catch (PyroduckException | InterruptedException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -125,35 +125,36 @@ public class Board extends Observable implements Observer {
         screenToShow = 2;
         mobs = new ArrayList<>();
         bombs = new ArrayList<>();
-        try {
-            int combination = new Random(System.currentTimeMillis()).nextInt(2)+1;
-            String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
-            BufferedReader in;
-            String data;
-            in = new BufferedReader(new FileReader(path));
-            data = in.readLine();
-            StringTokenizer tokens = new StringTokenizer(data);
-            int l = Integer.parseInt(tokens.nextToken());
-            world = tokens.nextToken();
-            input = getRightKeyboard();
-            if(world.equals("G"))
-                level = new GrassFileLevel(path,in,l);
-            else
-                level = new IceFileLevel(path, in,l);
-            in.close();
-            entities = level.createEntities();
-        } catch (LoadLevelException e) {
-            System.out.println("LOAD LEVEL EXCEPTION !!!");
-        } catch (NullPointerException e){
-            System.out.println("LEVEL'S FILE .txt NOT FOUND!");
-        }catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex){
-            JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
-        }
+        if(numlevel<3){
+            try {
+                int combination = new Random(System.currentTimeMillis()).nextInt(2)+1;
+                String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
+                //path = "./resources/levels/Demo.txt";
+                BufferedReader in;
+                String data;
+                in = new BufferedReader(new FileReader(path));
+                data = in.readLine();
+                StringTokenizer tokens = new StringTokenizer(data);
+                int l = Integer.parseInt(tokens.nextToken());
+                world = tokens.nextToken();
+                input = getRightKeyboard();
+                if(world.equals("G"))
+                    level = new GrassFileLevel(path,in,l);
+                else
+                    level = new IceFileLevel(path, in,l);
+                in.close();
+                entities = level.createEntities();
+            } catch (LoadLevelException e) {
+                System.out.println("LOAD LEVEL EXCEPTION !!!");
+            } catch (NullPointerException e){
+                System.out.println("LEVEL'S FILE .txt NOT FOUND!");
+            }catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException ex){
+                JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
+            }
+        }   
     }
-
-
 
     /*
     |--------------------------------------------------------------------------
@@ -494,5 +495,9 @@ public class Board extends Observable implements Observer {
 
     public void resetPoints() {
         points = 0;
+    }
+    
+    public int getFinalLives(){
+        return FinalLives;
     }
 }
