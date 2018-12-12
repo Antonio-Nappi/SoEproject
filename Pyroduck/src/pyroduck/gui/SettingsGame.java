@@ -127,7 +127,7 @@ public class SettingsGame extends javax.swing.JFrame {
                 saveButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, 140, 50));
+        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 140, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
 

@@ -94,7 +94,7 @@ public class StartGame extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1125, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 0));
         jPanel1.setForeground(new java.awt.Color(255, 153, 0));
         jPanel1.setToolTipText("");
         jPanel1.setLayout(null);
@@ -186,7 +186,7 @@ public class StartGame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 800));
 
-        jPanel2.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(102, 0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -218,7 +218,7 @@ public class StartGame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 470, 390));
 
-        jPanel4.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel4.setBackground(new java.awt.Color(102, 0, 0));
 
         selectButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         selectButton.setText("Play");
@@ -341,7 +341,7 @@ public class StartGame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 830, 40));
 
-        jPanel7.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel7.setBackground(new java.awt.Color(102, 0, 0));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -424,7 +424,7 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_howtoplayButtonActionPerformed
 
     private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
-        // TODO add your handling code here:
+        InfoWindow info = new InfoWindow();
     }//GEN-LAST:event_infoButtonActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -483,9 +483,8 @@ public class StartGame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 StartGame s = new StartGame();
-                Point middle = new Point(200, 50);
                 s.setBounds(new Rectangle(1000,600));   
-                s.setLocation(middle);
+                s.setLocation(new Point(200, 50));
                 s.setVisible(true);              
             }
         });
