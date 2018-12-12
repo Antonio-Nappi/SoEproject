@@ -16,7 +16,7 @@ import pyroduck.level.FileLevel;
  */
 public class Missile extends Bomb{
 
-    private final double MISSILE_SPEED = 0.2;
+    private final double MISSILE_SPEED = 0.15;
     private final int direction;
     private int range;
 
@@ -75,13 +75,11 @@ public class Missile extends Bomb{
             x = x0;
             y = y0;
         }else{
-            
             exploded = true;
         }
         List<Mob> mobs1 = Board.getInstance().getMobs();
         for(Mob m : mobs1)
-            
-            if(abs(m.getX()-x*32) < 32 && abs(m.getY()-y*32) < 32 && m.isMob() && !m.isPlayer())
+            if(abs(m.getX()-x*32) < 35 && abs(m.getY()-y*32) < 35 && m.isMob() && !m.isPlayer())
                 m.kill();
     }
     
