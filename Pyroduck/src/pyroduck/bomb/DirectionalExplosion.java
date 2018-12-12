@@ -67,9 +67,9 @@ public class DirectionalExplosion extends Entity {
             if(direction == 2) y++;
             if(direction == 3) x--;
             Entity a = Board.getInstance().getEntity(x, y, null);
-            if(a.isMob())
-                ++rad; //explosion has to be below the mob
-            if(a.collide(this))//cannot pass thru
+//            if(a.isMob())
+//                ++rad; //explosion has to be below the mob
+            if(a.collide(this) && !a.isMob())//cannot pass thru
                 break;
             ++rad;
         }

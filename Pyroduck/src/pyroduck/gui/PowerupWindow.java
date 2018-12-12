@@ -23,8 +23,12 @@ public class PowerupWindow extends javax.swing.JFrame {
         inversionLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\inversion.png"));
         speedLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\speed.png"));
         lifeLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\live.png"));
-        Point middle = new Point(200, 50);
-        this.setLocation(middle);
+        articunoLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\articuno.png"));
+        brickLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\brick.png"));
+        exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
+        Point middle = new Point(500, 100);
+        setLocation(middle);
+        setVisible(true);
     }
 
     /**
@@ -40,10 +44,8 @@ public class PowerupWindow extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextArea7 = new javax.swing.JTextArea();
-        jPanel9 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea5 = new javax.swing.JTextArea();
-        jPanel6 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTextArea8 = new javax.swing.JTextArea();
         lifeLabel = new javax.swing.JLabel();
@@ -59,6 +61,9 @@ public class PowerupWindow extends javax.swing.JFrame {
         speedLabel = new javax.swing.JLabel();
         bombLabel = new javax.swing.JLabel();
         flameLabel = new javax.swing.JLabel();
+        exitLabel = new javax.swing.JLabel();
+        articunoLabel = new javax.swing.JLabel();
+        brickLabel = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -71,297 +76,199 @@ public class PowerupWindow extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Powerup");
         setBackground(new java.awt.Color(0, 204, 204));
-        setMaximumSize(new java.awt.Dimension(630, 480));
-        setMinimumSize(new java.awt.Dimension(630, 480));
-        setPreferredSize(new java.awt.Dimension(630, 480));
+        setMaximumSize(new java.awt.Dimension(650, 500));
+        setMinimumSize(new java.awt.Dimension(650, 500));
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(630, 480));
-        jPanel1.setMinimumSize(new java.awt.Dimension(630, 480));
-        jPanel1.setPreferredSize(new java.awt.Dimension(630, 480));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setMaximumSize(new java.awt.Dimension(650, 500));
+        jPanel1.setMinimumSize(new java.awt.Dimension(650, 500));
+        jPanel1.setPreferredSize(new java.awt.Dimension(650, 500));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane8.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane8.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTextArea7.setEditable(false);
-        jTextArea7.setBackground(new java.awt.Color(153, 204, 255));
+        jTextArea7.setBackground(new java.awt.Color(0, 153, 153));
         jTextArea7.setColumns(20);
         jTextArea7.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
         jTextArea7.setRows(5);
-        jTextArea7.setText("brick");
+        jTextArea7.setText("It decreases the\nplayer speed.\nBut, it is hidden \nin the game.");
         jTextArea7.setBorder(null);
+        jTextArea7.setFocusable(false);
         jScrollPane8.setViewportView(jTextArea7);
 
-        jPanel9.setBackground(new java.awt.Color(255, 153, 0));
-        jPanel9.setMaximumSize(new java.awt.Dimension(90, 90));
-        jPanel9.setMinimumSize(new java.awt.Dimension(90, 90));
-        jPanel9.setPreferredSize(new java.awt.Dimension(90, 90));
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
-        );
+        jPanel1.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 137, 90));
 
         jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTextArea5.setEditable(false);
-        jTextArea5.setBackground(new java.awt.Color(153, 204, 255));
+        jTextArea5.setBackground(new java.awt.Color(0, 153, 153));
         jTextArea5.setColumns(20);
         jTextArea5.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
         jTextArea5.setRows(5);
-        jTextArea5.setText("articuno");
+        jTextArea5.setText("It allows the \nplayer to become \na SuperPlayer.");
         jTextArea5.setBorder(null);
+        jTextArea5.setFocusable(false);
         jScrollPane6.setViewportView(jTextArea5);
 
-        jPanel6.setBackground(new java.awt.Color(204, 0, 204));
-        jPanel6.setMaximumSize(new java.awt.Dimension(90, 90));
-        jPanel6.setMinimumSize(new java.awt.Dimension(90, 90));
-        jPanel6.setPreferredSize(new java.awt.Dimension(90, 90));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 137, 90));
 
         jScrollPane9.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane9.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTextArea8.setEditable(false);
-        jTextArea8.setBackground(new java.awt.Color(153, 204, 255));
+        jTextArea8.setBackground(new java.awt.Color(0, 153, 153));
         jTextArea8.setColumns(20);
         jTextArea8.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
         jTextArea8.setRows(5);
         jTextArea8.setText("It increases the\nthe player life.");
         jTextArea8.setBorder(null);
+        jTextArea8.setFocusable(false);
         jScrollPane9.setViewportView(jTextArea8);
+
+        jPanel1.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 137, 90));
 
         lifeLabel.setBackground(new java.awt.Color(255, 0, 153));
         lifeLabel.setText("life");
         lifeLabel.setMaximumSize(new java.awt.Dimension(90, 90));
         lifeLabel.setMinimumSize(new java.awt.Dimension(90, 90));
         lifeLabel.setPreferredSize(new java.awt.Dimension(90, 90));
+        jPanel1.add(lifeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, -1, -1));
 
         jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTextArea4.setEditable(false);
-        jTextArea4.setBackground(new java.awt.Color(153, 204, 255));
+        jTextArea4.setBackground(new java.awt.Color(0, 153, 153));
         jTextArea4.setColumns(20);
         jTextArea4.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
         jTextArea4.setRows(5);
         jTextArea4.setText("It inverts the \ncommands on the\nkeyboard.");
         jTextArea4.setBorder(null);
+        jTextArea4.setFocusable(false);
         jScrollPane5.setViewportView(jTextArea4);
+
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 137, 90));
 
         jScrollPane7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane7.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTextArea6.setEditable(false);
-        jTextArea6.setBackground(new java.awt.Color(153, 204, 255));
+        jTextArea6.setBackground(new java.awt.Color(0, 153, 153));
         jTextArea6.setColumns(20);
         jTextArea6.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
         jTextArea6.setRows(5);
         jTextArea6.setText("It increases the\nplayer speed.");
         jTextArea6.setBorder(null);
+        jTextArea6.setFocusable(false);
         jScrollPane7.setViewportView(jTextArea6);
+
+        jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 137, 91));
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(153, 204, 255));
+        jTextArea1.setBackground(new java.awt.Color(0, 153, 153));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setText("It increases by \n1 the bombs you\ncan place.");
         jTextArea1.setBorder(null);
+        jTextArea1.setFocusable(false);
         jScrollPane2.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 137, 90));
 
         jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jTextArea3.setEditable(false);
-        jTextArea3.setBackground(new java.awt.Color(153, 204, 255));
+        jTextArea3.setBackground(new java.awt.Color(0, 153, 153));
         jTextArea3.setColumns(20);
         jTextArea3.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
         jTextArea3.setRows(5);
         jTextArea3.setText("It increases the\nradius of the \nbomb.");
         jTextArea3.setBorder(null);
+        jTextArea3.setFocusable(false);
         jTextArea3.setMaximumSize(new java.awt.Dimension(90, 2147483647));
         jTextArea3.setMinimumSize(new java.awt.Dimension(90, 70));
         jScrollPane4.setViewportView(jTextArea3);
+
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 137, 88));
 
         inversionLabel.setBackground(new java.awt.Color(153, 0, 0));
         inversionLabel.setText("inversion");
         inversionLabel.setMaximumSize(new java.awt.Dimension(90, 90));
         inversionLabel.setMinimumSize(new java.awt.Dimension(90, 90));
         inversionLabel.setPreferredSize(new java.awt.Dimension(90, 90));
+        jPanel1.add(inversionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
         speedLabel.setText("speed");
         speedLabel.setMaximumSize(new java.awt.Dimension(90, 90));
         speedLabel.setMinimumSize(new java.awt.Dimension(90, 90));
         speedLabel.setPreferredSize(new java.awt.Dimension(90, 90));
+        jPanel1.add(speedLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         bombLabel.setText("bomb");
         bombLabel.setMaximumSize(new java.awt.Dimension(90, 90));
         bombLabel.setMinimumSize(new java.awt.Dimension(90, 90));
         bombLabel.setPreferredSize(new java.awt.Dimension(90, 90));
+        jPanel1.add(bombLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         flameLabel.setBackground(new java.awt.Color(255, 153, 102));
         flameLabel.setText("flame");
         flameLabel.setMaximumSize(new java.awt.Dimension(90, 90));
         flameLabel.setMinimumSize(new java.awt.Dimension(90, 90));
         flameLabel.setPreferredSize(new java.awt.Dimension(90, 90));
+        jPanel1.add(flameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 88));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(inversionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(speedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(bombLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(flameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(56, 56, 56)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lifeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(27, 27, 27))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(flameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lifeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bombLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(speedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inversionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(261, 261, 261))))
-        );
+        exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitLabelMouseClicked(evt);
+            }
+        });
+        jPanel1.add(exitLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 0, 40, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        articunoLabel.setText("articuno");
+        articunoLabel.setMaximumSize(new java.awt.Dimension(90, 90));
+        articunoLabel.setMinimumSize(new java.awt.Dimension(90, 90));
+        articunoLabel.setPreferredSize(new java.awt.Dimension(90, 90));
+        jPanel1.add(articunoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 90, 90));
+
+        brickLabel.setText("brick");
+        brickLabel.setMaximumSize(new java.awt.Dimension(90, 90));
+        brickLabel.setMinimumSize(new java.awt.Dimension(90, 90));
+        brickLabel.setPreferredSize(new java.awt.Dimension(90, 90));
+        jPanel1.add(brickLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 90, 90));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PowerupWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PowerupWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PowerupWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PowerupWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
+        dispose();
+    }//GEN-LAST:event_exitLabelMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PowerupWindow().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel articunoLabel;
     private javax.swing.JLabel bombLabel;
+    private javax.swing.JLabel brickLabel;
+    private javax.swing.JLabel exitLabel;
     private javax.swing.JLabel flameLabel;
     private javax.swing.JLabel inversionLabel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;

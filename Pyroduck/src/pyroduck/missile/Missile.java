@@ -28,7 +28,6 @@ public class Missile extends Bomb{
         this.direction = direction;
         sprite = Sprite.missle;
         range = 30;
-
     }
 
     @Override
@@ -84,7 +83,7 @@ public class Missile extends Bomb{
         ListIterator li = mobs1.listIterator(1);
         while(li.hasNext()){
             Enemy m = (Enemy) li.next();  
-            if(abs(m.getX()-x*32) < 35 && abs(m.getY()-y*32) < 35)
+            if(abs(m.getX()-x*32) < 32 && abs(m.getY()-y*32) < 32)
                 m.kill();
         }
     }
