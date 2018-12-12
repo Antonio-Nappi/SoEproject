@@ -2,11 +2,14 @@ package pyroduck.missile;
 
 import static java.lang.Math.abs;
 import java.util.List;
+import java.util.ListIterator;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.*;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
+import pyroduck.entities.mob.enemy.graphic.Enemy;
+
 import pyroduck.graphics.*;
 import pyroduck.level.FileLevel;
 
@@ -25,6 +28,7 @@ public class Missile extends Bomb{
         this.direction = direction;
         sprite = Sprite.missle;
         range = 30;
+
     }
     
 
@@ -78,9 +82,12 @@ public class Missile extends Bomb{
             exploded = true;
         }
         List<Mob> mobs1 = Board.getInstance().getMobs();
-        for(Mob m : mobs1)
-            if(abs(m.getX()-x*32) < 35 && abs(m.getY()-y*32) < 35 && m.isMob() && !m.isPlayer())
+        ListIterator li = mobs1.listIterator(1);
+        while(li.hasNext()){
+            Enemy m = (Enemy) li.next();  
+            if(abs(m.getX()-x*32) < 35 && abs(m.getY()-y*32) < 35)
                 m.kill();
+        }
     }
     
     @Override

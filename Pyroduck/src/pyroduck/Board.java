@@ -20,7 +20,7 @@ import pyroduck.level.*;
 
 public class Board extends Observable implements Observer {
 
-    protected ContextLevel clevel;
+    protected FileLevel level;
     private Keyboard input;
     private Screen screen;
     public Entity[] entities;
@@ -100,16 +100,14 @@ public class Board extends Observable implements Observer {
     }
 
     public void restartLevel() {
-        changeLevel(clevel.getFilelevel().getLevel() );
+        changeLevel(level.getLevel() );
     }
 
     public void nextLevel() throws IOException {
-        int i = clevel.getFilelevel().getLevel()+1;
+        int i = level.getLevel()+1;
         if(i==3)
             setLives(0);
 	changeLevel(i);
-        
-        
         try {
             Game.getInstance().renderScreen();
             Game.getInstance().changeAudioLevel(i);
@@ -134,13 +132,16 @@ public class Board extends Observable implements Observer {
             String data;
             in = new BufferedReader(new FileReader(path));
             data = in.readLine();
-            in.close();
             StringTokenizer tokens = new StringTokenizer(data);
-            tokens.nextToken();
+            int l = Integer.parseInt(tokens.nextToken());
             world = tokens.nextToken();
             input = getRightKeyboard();
-            clevel = new ContextLevel(new FileLevel(path));
-            entities = clevel.executeStrategy();
+            if(world.equals("G"))
+                level = new GrassFileLevel(path,in,l);
+            else
+                level = new IceFileLevel(path, in,l);
+            in.close();
+            entities = level.createEntities();
         } catch (LoadLevelException e) {
             System.out.println("LOAD LEVEL EXCEPTION !!!");
         } catch (NullPointerException e){
@@ -251,12 +252,7 @@ public class Board extends Observable implements Observer {
     | Adds and Removes
     |--------------------------------------------------------------------------
      */
-    /**
-     * Add the entity and the related position in the entity array.
-     */
-    public void addEntities() {
-        entities = clevel.executeStrategy();
-    }
+
 
     public void addEntitie(int pos, Entity e) {
 		entities[pos] = e;
@@ -327,7 +323,7 @@ public class Board extends Observable implements Observer {
                 //screen.drawEndGame(g, points, level.getActualCode());
                 break;
             case 2:
-                screen.drawChangeLevel(g, clevel.getFilelevel().getLevel());
+                screen.drawChangeLevel(g, level.getLevel());
                 break;
             case 3:
                 //screen.drawPaused(g);
@@ -353,7 +349,7 @@ public class Board extends Observable implements Observer {
      * @return
      */
     public int getLevel() {
-        return clevel.getFilelevel().getLevel();
+        return level.getLevel();
     }
 
     /**
