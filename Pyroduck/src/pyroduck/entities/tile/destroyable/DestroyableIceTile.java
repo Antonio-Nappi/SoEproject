@@ -37,4 +37,9 @@ public abstract class DestroyableIceTile extends Tile{
     public void setTimerBreak(int timerBreak){
         this.timerBreak = timerBreak;
     }
+    
+    @Override
+    public boolean isDestroyableIceTile(){
+        return true;
+    }
 }

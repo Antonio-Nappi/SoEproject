@@ -156,4 +156,9 @@ public class SuperPlayer extends Player{
     public int getAnimate(){
         return this.animate;
     }
+    
+    @Override
+    public boolean isSuperPlayer() {
+        return true;
+    }
 }

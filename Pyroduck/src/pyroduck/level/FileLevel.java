@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 import java.io.FileReader;
+import java.util.List;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.entities.Entity;
@@ -79,6 +80,7 @@ public class FileLevel{
   
     public Entity[] createEntities(){
         Entity[] entities = new Entity[WIDTH*HEIGHT];//entity = player, mobs, powerups,..., also tile!!!
+        List destroyableIce = Board.getInstance().getDestroyableIceTile();
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
                 char c = lineTiles[y].charAt(x);  //for each character read in this file we call addLevelEntity
@@ -241,6 +243,7 @@ public class FileLevel{
                         case 'z':
                             ContextDestroyable con = Board.getInstance().getContextState();
                             IntactState intact = new IntactState(x, y, Sprite.ice);
+                            Board.getInstance().getDestroyableIceTile().add(intact);
                             con.setState(intact);
                             entities[pos] = intact;
                             break;

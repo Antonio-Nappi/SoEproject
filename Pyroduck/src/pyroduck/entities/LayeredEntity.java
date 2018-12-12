@@ -1,6 +1,7 @@
 package pyroduck.entities;
 
 import java.util.LinkedList;
+import pyroduck.entities.tile.Tile;
 import pyroduck.entities.tile.destroyable.DestroyableTile;
 import pyroduck.graphics.Screen;
 
@@ -26,7 +27,7 @@ public class LayeredEntity extends Entity {
         for (int i = 0; i < entities.length; i++) {
             this.entities.add(entities[i]); 
             if(i > 1) { //Add to destroyable tiles the bellow sprite for rendering in explosion
-                if(entities[i] instanceof DestroyableTile)
+                if(entities[i].isTile() && ((Tile)entities[i]).isDestroyable())
                    ((DestroyableTile)entities[i]).addBelowSprite(entities[i-1].getSprite());
             }
         }

@@ -50,4 +50,17 @@ public abstract class Tile extends Entity {
     public boolean collide(Entity e) {
         return true;
     }
+    
+    public boolean isDestroyable() {
+        return false;
+    }
+    
+    @Override
+    public boolean isTile(){
+        return true;
+    }
+    
+    public boolean isDestroyableIceTile(){
+        return false;
+    }
 }

@@ -1,15 +1,12 @@
 package pyroduck.missile;
 
 import static java.lang.Math.abs;
-import java.util.ArrayList;
 import java.util.List;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.bomb.*;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
-import pyroduck.entities.mob.enemy.graphic.Enemy;
-import pyroduck.entities.mob.enemy.graphic.Glalie;
 import pyroduck.graphics.*;
 import pyroduck.level.FileLevel;
 
@@ -25,7 +22,7 @@ public class Missile extends Bomb{
     public Missile(int x, int y,int direction) {
         super(x, y);
         this.direction = direction;
-        sprite = Sprite.bomb;   //mettere missile
+        sprite = Sprite.bomb;
     }
     
 
@@ -79,7 +76,12 @@ public class Missile extends Bomb{
         List<Mob> mobs1 = Board.getInstance().getMobs();
         for(Mob m : mobs1)
             
-            if(abs(m.getX()-x*32) < 32 && abs(m.getY()-y*32) < 32 && m instanceof Enemy)
+            if(abs(m.getX()-x*32) < 32 && abs(m.getY()-y*32) < 32 && m.isMob() && !m.isPlayer())
                 m.kill();
+    }
+    
+    @Override
+    public boolean isMissile(){
+        return true;
     }
 }

@@ -83,4 +83,12 @@ public abstract class Mob extends AnimatedEntity {
     public abstract void kill();
 	
     protected abstract void afterKill();
+    
+    public boolean isPlayer() {
+        return false;
+    }
+    
+    public boolean isMob() {
+        return true;
+    }
 }
