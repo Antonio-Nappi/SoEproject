@@ -83,12 +83,12 @@
               <Border info="org.netbeans.modules.form.compat2.border.CompoundBorderInfo">
                 <CompoundBorder>
                   <Border PropertyName="outside" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder roundedCorners="true" thickness="3">
+                    <LineBorder thickness="3">
                       <Color PropertyName="color" blue="0" green="0" red="ff" type="rgb"/>
                     </LineBorder>
                   </Border>
                   <Border PropertyName="inside" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder roundedCorners="true" thickness="2">
+                    <LineBorder thickness="2">
                       <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
                     </LineBorder>
                   </Border>

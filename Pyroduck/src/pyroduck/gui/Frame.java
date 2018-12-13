@@ -27,7 +27,6 @@ public class Frame extends JFrame {
         setIconImage(img);
         setLocationRelativeTo(null);
         setVisible(true);	
-        
         gamepane.getGame().start();
     }
 }

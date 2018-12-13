@@ -100,7 +100,7 @@ public class StartGame extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jPanel8.setBackground(new java.awt.Color(255, 204, 0));
-        jPanel8.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 3, true), new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 2, true)));
+        jPanel8.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2)));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
