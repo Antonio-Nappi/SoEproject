@@ -15,27 +15,27 @@ import pyroduck.level.Coordinates;
  * @author Umberto
  */
 public class AutomatePlayer extends Player{
-    
+
     private boolean putBomb = false;
     private int counter_idle = 0;
     private static boolean first = true;
     private LinkedList<Double> registerX = new LinkedList<>();
     private LinkedList<Double> registerY = new LinkedList<>();
-    
+
     public AutomatePlayer(int x, int y) {
         super(x, y);
         fillRegisters();
     }
     /*
-    
+
     Promemoria :
     per x: +1 va a destra e -1 va a sinistra
     per y: +1 va giu e -1 va su
     Inizia con x=16, y=32?
     Ogni casella è 32?
-    
+
     */
-    
+
     private void fillRegisters(){
         if(first){
             first = false;
@@ -91,12 +91,12 @@ public class AutomatePlayer extends Player{
            wait(3);
            moveDown(2);
         }
-          
+
     }
-    
+
     @Override
     protected void calculateMove(){
-     
+
         if(counter_idle< 500){  //player initial idle -> 500*15 ms
             counter_idle++;
             return;
@@ -118,9 +118,9 @@ public class AutomatePlayer extends Player{
         else
             moving = false;
     }
-    
+
     @Override
-    protected void detectPlaceBomb() {   
+    protected void detectPlaceBomb() {
         if(putBomb){
             int xt = Coordinates.pixelToTile(x+16);
             int yt = Coordinates.pixelToTile( y -16); //subtract half player height and minus 1 y position
@@ -129,55 +129,54 @@ public class AutomatePlayer extends Player{
             putBomb = false;
         }
     }
-    
+
     @Override
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y);
         Board.getInstance().addBomb(b);
     }
-    
+
     private void moveLeft(int n){
         for(int i=0; i<n*Game.TILES_SIZE; i++){
             registerX.add(-1.0);
             registerY.add(0.0);
         }
     }
-    
+
     private void moveRight(int n){
         for(int i=0; i<n*Game.TILES_SIZE; i++){
             registerX.add(1.0);
             registerY.add(0.0);
         }
     }
-    
+
     private void moveUp(int n){
         for(int i=0; i<n*Game.TILES_SIZE; i++){
             registerX.add(0.0);
             registerY.add(-1.0);
         }
     }
-    
+
     private void moveDown(int n){
         for(int i=0; i<n*Game.TILES_SIZE; i++){
             registerX.add(0.0);
             registerY.add(1.0);
         }
     }
-    
+
     private void wait(int n){
        for(int i=0; i<n*Game.TILES_SIZE; i++){
             registerX.add(0.0);
             registerY.add(0.0);
         }
     }
-    
+
     private void putBomb(){
         registerX.add(3.0);
         registerY.add(0.0);
     }
-    
+
     @Override
     protected void updateTimerBreaker(){}
-    
-}
 
+}

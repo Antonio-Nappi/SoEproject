@@ -36,7 +36,7 @@ public class Board extends Observable implements Observer {
     protected boolean pause=false;
     private static Board instance = null;
     private int FinalLives = lives;
-    
+
     private Board() {
         con = new ContextDestroyable();
     }
@@ -105,9 +105,9 @@ public class Board extends Observable implements Observer {
 
     public void nextLevel() throws IOException {
         int i = level.getLevel()+1;
-        if(i==3){
+        if(i>=5){
             FinalLives = getLives();
-            setLives(0); 
+            setLives(0);
         }
 	changeLevel(i);
         try {
@@ -125,11 +125,14 @@ public class Board extends Observable implements Observer {
         screenToShow = 2;
         mobs = new ArrayList<>();
         bombs = new ArrayList<>();
-        if(numlevel<3){
+        if(numlevel<5){
             try {
                 int combination = new Random(System.currentTimeMillis()).nextInt(2)+1;
-                //String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
-                String path = "./resources/levels/Demo.txt";
+                String path ;
+                if(numlevel==0)
+                    path="./resources/levels/Demo.txt";
+                else
+                    path= "./resources/levels/nextlevel/Level" + numlevel + " " + combination + ".txt";
                 BufferedReader in;
                 String data;
                 in = new BufferedReader(new FileReader(path));
@@ -153,7 +156,8 @@ public class Board extends Observable implements Observer {
             } catch (IOException ex){
                 JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
             }
-        }   
+        }
+
     }
 
     /*
@@ -232,7 +236,7 @@ public class Board extends Observable implements Observer {
         }
         return null;
     }
-    
+
     public ArrayList<Mob> getMobsAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         ArrayList<Mob> mobs1 = new ArrayList();
@@ -406,8 +410,8 @@ public class Board extends Observable implements Observer {
         setChanged();
         notifyObservers();
     }
-    
-  
+
+
 
     /**
      *
@@ -425,8 +429,8 @@ public class Board extends Observable implements Observer {
         }
         return null;
     }
-    
-    
+
+
 
     private Keyboard getRightKeyboard() {
         if(player == 1){
@@ -512,7 +516,7 @@ public class Board extends Observable implements Observer {
     public void resetPoints() {
         points = 0;
     }
-    
+
     public int getFinalLives(){
         return FinalLives;
     }

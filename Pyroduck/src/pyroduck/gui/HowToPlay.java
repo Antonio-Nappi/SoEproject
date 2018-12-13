@@ -34,15 +34,16 @@ public class HowToPlay extends javax.swing.JFrame {
         exitLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(480, 300));
-        setMinimumSize(new java.awt.Dimension(480, 300));
+        setMaximumSize(new java.awt.Dimension(480, 370));
+        setMinimumSize(new java.awt.Dimension(480, 370));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jPanel1.setMaximumSize(new java.awt.Dimension(480, 380));
-        jPanel1.setMinimumSize(new java.awt.Dimension(480, 380));
+        jPanel1.setMaximumSize(new java.awt.Dimension(510, 385));
+        jPanel1.setMinimumSize(new java.awt.Dimension(510, 385));
+        jPanel1.setPreferredSize(new java.awt.Dimension(510, 385));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -55,21 +56,21 @@ public class HowToPlay extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jTextArea1.setText("The goal of the game is to destroy the enemies, \npicking up powerup, and go through two different\nworlds.\nEach world is composed by two levels and different\nenemies.\nThe first world is \"The GrassArena\" and the second\none is \"The IceArena\".\nThe IceArena has some trouble, so... be careful\nwhen you chose the character!\nTo go through levels it is necessary defeat all the\nenemies to unlock the portal.\nThe portal will allow you to pass the level till the \nend.\n");
         jTextArea1.setMargin(new java.awt.Insets(4, 4, 4, 4));
-        jTextArea1.setMaximumSize(new java.awt.Dimension(370, 325));
-        jTextArea1.setMinimumSize(new java.awt.Dimension(370, 325));
-        jTextArea1.setPreferredSize(new java.awt.Dimension(370, 325));
+        jTextArea1.setMaximumSize(new java.awt.Dimension(380, 325));
+        jTextArea1.setMinimumSize(new java.awt.Dimension(380, 325));
+        jTextArea1.setPreferredSize(new java.awt.Dimension(380, 325));
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 33, 370, 325));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 390, 325));
 
         exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitLabelMouseClicked(evt);
             }
         });
-        jPanel1.add(exitLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 40, 30));
+        jPanel1.add(exitLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 30, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 380));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 370));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
