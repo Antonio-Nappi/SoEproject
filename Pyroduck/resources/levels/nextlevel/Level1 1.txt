@@ -1,0 +1,52 @@
+1 G
+###############################
+#p z  *  *   *b      *      1 #
+# # # # # #*# #*# # # # # # # #
+#a  f  *22222222222 o   *  l  #
+# # # # # # #*# # # # # # #*# #
+#*   *   o3    *  b     *     #
+# # # #*# # # # # # # # # # # #
+#* m  *  *   f 1 *   *   *    #
+# # # #*# # # # # # # # # #*# #
+# *  *  s  * o   w   m   * 2  #
+#*# # # # #*# # # # # # # # # #
+#1 *  *  l    *   *  *   o    #
+###############################
+
+Meta data:
+(Number or Level) (Rows) (Columns)
+
+Info Tiles:
+# - Wall
+* - Brick
+
+Mobs:
+p - Player
+1 - Golbat
+2 - Machamp
+3 - Arbok
+
+1 - Snorunt
+2 - Glalie
+3 - Darkrai
+
+Powerups:
+b - Powerup Bombs
+f - Powerup Flames
+s - Powerup Speed
+o - Malus Decrease Speed
+m - Malus Reverse Keyboard
+l - Powerup Live
+z - Tile rompibile (iceland)
+
+Grassland
+Level 1   due f- due m- tre o, tre 1 , due 2
+Level 2   s-b-m-o
+
+Iceland
+Level 3   
+Level 4
+
+per la prova facciamo
+1 grassland
+2 iceland

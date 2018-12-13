@@ -84,8 +84,8 @@ public class AutomatePlayer extends Player{
     @Override
     protected void calculateMove(){
         if((registerX.size()>0&&registerY.size()>0)){
-            Double xa = registerX.poll();
-            Double ya = registerY.poll();
+            Double xa = registerX.pop();
+            Double ya = registerY.pop();
            if(xa != 0 || ya != 0)  {
                 move(xa * Game.getPlayerSpeed(), ya *Game.getPlayerSpeed());
                 moving = true;
