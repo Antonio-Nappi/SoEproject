@@ -128,8 +128,8 @@ public class Board extends Observable implements Observer {
         if(numlevel<3){
             try {
                 int combination = new Random(System.currentTimeMillis()).nextInt(2)+1;
-                String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
-               // String path = "./resources/levels/Demo.txt";
+                //String path = "./resources/levels/Level" + numlevel + " " + combination + ".txt";
+                String path = "./resources/levels/Demo.txt";
                 BufferedReader in;
                 String data;
                 in = new BufferedReader(new FileReader(path));

@@ -36,6 +36,7 @@ public class StartGame extends javax.swing.JFrame {
         pSpeed.setValue(50);
         pSliding.setValue(50);
         pBr.setValue(50);
+        Point middle = new Point(600, 200);
     }
 
     /**

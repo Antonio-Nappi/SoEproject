@@ -16,15 +16,15 @@ import pyroduck.level.Coordinates;
  */
 public class AutomatePlayer extends Player{
     
-    private final int SIZE_REGISTER = 20;
+    private boolean putBomb = false;
+    private int counter_idle = 0;
+    private static boolean first = true;
     private LinkedList<Double> registerX = new LinkedList<>();
     private LinkedList<Double> registerY = new LinkedList<>();
-    double i = 0;
     
     public AutomatePlayer(int x, int y) {
         super(x, y);
-        fillRegisterX();
-        fillRegisterY();
+        fillRegisters();
     }
     /*
     
@@ -36,59 +36,81 @@ public class AutomatePlayer extends Player{
     
     */
     
-    private void fillRegisterX(){
-        for(int j = 0;j<113;j++) //vai a destra di 5 caselle
-            registerX.add(1.0);
-        for(int j = 0;j<49;j++) //vai a sinistra di 3 caselle
-            registerX.add(-1.0);
-        for(int j = 0;j<101;j++) //vai a sinistra di 3 caselle
-            registerX.add(0.0);//resta fermo
-         for(int j = 0;j<97;j++) //vai a destra di 3 caselle
-            registerX.add(1.0);
-           for(int j = 0;j<97;j++) //vai a sinistra di 5 caselle
-            registerX.add(-1.0);
-           for(int j = 0;j<31;j++) //aspetta
-               registerX.add(0.0);
-           for(int j = 0;j<49;j++) //vai a destra di 3 caselle
-            registerX.add(+1.0);
-            for(int j = 0;j<49;j++) //vai a sinistra di 3 caselle
-            registerX.add(-1.0);
-             for(int j = 0;j<31;j++) //aspetta
-               registerX.add(0.0);
-              for(int j = 0;j<33;j++) // vai giu di una casella
-               registerX.add(+0.0);
+    private void fillRegisters(){
+        if(first){
+            first = false;
+            moveRight(2);  //muoviti a destra di 2 caselle
+            moveDown(2);
+            wait(6);
+            moveRight(3);
+            putBomb();
+            moveLeft(2);
+            wait(9);
+            moveRight(3);
+            wait(1);
+            putBomb();
+            moveLeft(2);
+            moveDown(1);
+            wait(2);
+            moveUp(1);
+            moveLeft(2);
+            putBomb();
+            moveLeft(2);
+            moveDown(2);
+            wait(7);
+            moveRight(2);
+            moveDown(1); //----
+            putBomb();
+            moveUp(1);
+            moveLeft(1);
+            wait(4);
+            moveRight(1);
+            moveDown(2);
+            wait(8);
+            moveUp(4);
+            moveRight(2);
+            wait(1);
+            putBomb();
+            moveLeft(1);
+            putBomb();
+            moveLeft(1);
+            moveDown(2);
+            putBomb();
+            moveLeft(2);
+            moveDown(1);
+            wait(3);
+            moveUp(1);
+            moveRight(2);
+            moveDown(2);
+        }
+        else{
+           moveRight(4);
+           moveDown(3);
+           putBomb();
+           moveUp(3);
+           wait(3);
+           moveDown(2);
+        }
+          
     }
     
-    private void fillRegisterY(){
-        for(int j = 0;j<113;j++) 
-            registerY.add(0.0);
-        for(int j = 0;j<49;j++) 
-            registerY.add(0.0);
-         for(int j = 0;j<101;j++) 
-            registerY.add(0.0);
-          for(int j = 0;j<97;j++) 
-            registerY.add(0.0);
-           for(int j = 0;j<97;j++)
-            registerY.add(0.0);
-           for(int j = 0;j<31;j++) //aspetta
-               registerY.add(0.0);
-           for(int j = 0;j<49;j++) 
-            registerY.add(0.0);
-            for(int j = 0;j<49;j++) 
-            registerY.add(0.0);
-            for(int j = 0;j<31;j++) //aspetta
-               registerY.add(0.0);
-             for(int j = 0;j<33;j++) // vai giu di una casella
-               registerY.add(+1.0);
-    }
     @Override
     protected void calculateMove(){
-        if((registerX.size()>0&&registerY.size()>0)){
-            Double xa = registerX.poll();
-            Double ya = registerY.poll();
+     
+        if(counter_idle< 500){  //player initial idle -> 500*15 ms
+            counter_idle++;
+            return;
+        }
+        if(registerX.size()>0&&registerY.size()>0){
+            Double xa = registerX.pop();
+            Double ya = registerY.pop();
            if(xa != 0 || ya != 0)  {
-                move(xa * Game.getPlayerSpeed(), ya *Game.getPlayerSpeed());
-                moving = true;
+                if(xa == 3)
+                    putBomb = true;
+                else{
+                    move(xa, ya);
+                    moving = true;
+                }
             } else {
                 moving = false;
             }
@@ -98,16 +120,13 @@ public class AutomatePlayer extends Player{
     }
     
     @Override
-    protected void detectPlaceBomb() {
-               // System.out.println(registerX.size());
-
-        if(registerX.size()==533|| registerX.size()==288 || registerX.size()==113)
-        {
-            //System.out.println("BOMB");
-            int xt = Coordinates.pixelToTile(x);
+    protected void detectPlaceBomb() {   
+        if(putBomb){
+            int xt = Coordinates.pixelToTile(x+16);
             int yt = Coordinates.pixelToTile( y -16); //subtract half player height and minus 1 y position
             placeBomb(xt,yt);
             Game.addBombRate(-1);
+            putBomb = false;
         }
     }
     
@@ -115,6 +134,46 @@ public class AutomatePlayer extends Player{
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y);
         Board.getInstance().addBomb(b);
+    }
+    
+    private void moveLeft(int n){
+        for(int i=0; i<n*Game.TILES_SIZE; i++){
+            registerX.add(-1.0);
+            registerY.add(0.0);
+        }
+    }
+    
+    private void moveRight(int n){
+        for(int i=0; i<n*Game.TILES_SIZE; i++){
+            registerX.add(1.0);
+            registerY.add(0.0);
+        }
+    }
+    
+    private void moveUp(int n){
+        for(int i=0; i<n*Game.TILES_SIZE; i++){
+            registerX.add(0.0);
+            registerY.add(-1.0);
+        }
+    }
+    
+    private void moveDown(int n){
+        for(int i=0; i<n*Game.TILES_SIZE; i++){
+            registerX.add(0.0);
+            registerY.add(1.0);
+        }
+    }
+    
+    private void wait(int n){
+       for(int i=0; i<n*Game.TILES_SIZE; i++){
+            registerX.add(0.0);
+            registerY.add(0.0);
+        }
+    }
+    
+    private void putBomb(){
+        registerX.add(3.0);
+        registerY.add(0.0);
     }
     
     @Override
