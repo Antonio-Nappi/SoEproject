@@ -29,6 +29,7 @@ public class SettingsGame extends javax.swing.JFrame {
         initComponents(); 
         Point middle = new Point(600,200);
         setLocation(middle);
+   
         DefaultTableModel model= new DefaultTableModel();
         jTable1.setModel(model);
         Object[] row = new Object[3];
@@ -82,16 +83,16 @@ public class SettingsGame extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
         jLabel2.setText("Lives number:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 100, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 13)); // NOI18N
         jLabel4.setText("Music:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 100, 30));
-        jPanel1.add(musicCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 30, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 100, 30));
+        jPanel1.add(musicCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 30, 30));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
         jSpinner1.setRequestFocusEnabled(false);
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 40, 30));
+        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 40, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,7 +117,7 @@ public class SettingsGame extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 270, 150));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 270, 150));
 
         saveButton.setBackground(new java.awt.Color(0, 102, 102));
         saveButton.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
@@ -127,9 +128,9 @@ public class SettingsGame extends javax.swing.JFrame {
                 saveButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 140, 50));
+        jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 140, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 400));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
