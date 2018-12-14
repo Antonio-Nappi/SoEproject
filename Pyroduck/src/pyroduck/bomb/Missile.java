@@ -43,7 +43,7 @@ public class Missile extends Bomb{
     @Override
     public void render(Screen screen) {
         if(!exploded)
-            screen.renderEntity((int)x, (int)y-32 , this);
+            screen.renderEntity((int)x-16, (int)y-32 , this);
     }
 
     @Override

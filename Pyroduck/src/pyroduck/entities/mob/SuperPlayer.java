@@ -120,22 +120,7 @@ public class SuperPlayer extends Player{
     @Override
     protected void detectPlaceBomb() {
         if(input.space && timeBetweenPutBombs < 0) {
-            switch(direction){
-                case 0:
-                    placeBomb((int)x,(int)y-28);
-                    break;
-                case 1:
-                    placeBomb((int)x+48,(int)y);
-                    break;
-                case 2:
-                    placeBomb((int)x,(int)y+20);
-                    break;
-                case 3:
-                    placeBomb((int)x-40,(int)y);
-                    break;
-                default:
-                    placeBomb((int)x,(int)y);
-            }
+            placeBomb((int)x+16,(int)y);
             timeBetweenPutBombs = 100;
         }
     }
