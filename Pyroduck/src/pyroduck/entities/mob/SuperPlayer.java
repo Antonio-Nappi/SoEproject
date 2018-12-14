@@ -113,7 +113,7 @@ public class SuperPlayer extends Player{
     
     @Override
     protected void placeBomb(int x, int y) {    //NOW we can shoot missiles
-        Missile m = new Missile(x, y, direction);
+        Missile m = new Missile(x, y-1, direction);
         Board.getInstance().addBomb(m);
     }
     
