@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.netbeans.lib.awtextra.AbsoluteLayout;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.exceptions.PyroduckException;
@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Observer {
     private JLabel pointsLabel = new JLabel();
     private JLabel messageLabel = new JLabel();
     private JLabel spaceLabel = new JLabel();
-    private JButton musicButton =new JButton();
+    private JButton musicButton = new JButton();
     private JButton skipDemo = new JButton();
     private JPanel panel = new JPanel();
     private Frame frame;
@@ -44,20 +44,20 @@ public class GamePanel extends JPanel implements Observer {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width-420, Toolkit.getDefaultToolkit().getScreenSize().height-100));
         try {
+            Font font = new Font(Font.DIALOG, Font.BOLD, 24);
             game = Game.getInstance();
-            boolean music=game.getMusicOn();
             add(game);
+            boolean music = game.getMusicOn();
             game.setVisible(true);
-            livesLabel.setText("Lives: " + Board.getInstance().getLives());
-            livesLabel.setForeground(Color.WHITE);
-            pointsLabel = new JLabel("Points: " + Board.getInstance().getPoints());
-            pointsLabel.setForeground(Color.WHITE);
             messageLabel = new JLabel("     Paused     ");
             spaceLabel = new JLabel("                         ");
-            Font font = new Font(Font.DIALOG, Font.BOLD, 24);
-            messageLabel.setFont(font);
-            messageLabel.setForeground(Color.black);
             musicButton=new JButton("");
+            livesLabel.setText("Lives: " + Board.getInstance().getLives());
+            pointsLabel = new JLabel("Points: " + Board.getInstance().getPoints());
+            messageLabel.setFont(font);
+            pointsLabel.setForeground(Color.WHITE);
+            livesLabel.setForeground(Color.WHITE);
+            messageLabel.setForeground(Color.black);
             if(music)
                 musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\sound_32.png"));
             else
@@ -97,6 +97,7 @@ public class GamePanel extends JPanel implements Observer {
                 music = Game.getInstance().getMusicOn();
                 try {
                     Game.getInstance().setMusicOn(!music);
+                    game.requestFocus();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
                     Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -119,7 +120,8 @@ public class GamePanel extends JPanel implements Observer {
             pointsLabel.setText("0");
             Board.getInstance().resetProperties();
             Board.getInstance().changeLevel(1);
-            skipDemo.setVisible(false);    
+            skipDemo.setVisible(false); 
+            game.requestFocus();
         }
     }
 

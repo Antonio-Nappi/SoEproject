@@ -222,7 +222,6 @@ public class Game extends Canvas {
     public void setMusicOn(boolean music) throws UnsupportedAudioFileException, IOException, LineUnavailableException{      
         int i = Board.getInstance().level.getLevel();
         musicon=music;
-        System.out.println(i);
         if(audio==null)
             if(Board.getInstance().getLevel() <= 0)
                audio=AudioPlayer.getAudioPlayer("Level"+1+".wav"); 

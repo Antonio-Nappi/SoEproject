@@ -9,7 +9,7 @@ import pyroduck.graphics.Sprite;
  */
 public class Golbat extends Enemy{
 
-    public int realWidth = 26, realHeight = 26;
+    public int realWidth = 24, realHeight = 24;
     /**
      * Creates an instance of <b>Golbat</b> enemy.
      * @param x horizontal coordinate in pixels.

@@ -33,8 +33,8 @@ public class StartGame extends javax.swing.JFrame {
        
         audio= AudioPlayer.getAudioPlayer("opening.wav");
         audio.play();
-        pSpeed.setValue(50);
-        pSliding.setValue(50);
+        pSpeed.setValue(100);
+        pSliding.setValue(100);
         pBr.setValue(50);
         Point middle = new Point(600, 200);
     }
@@ -367,15 +367,15 @@ public class StartGame extends javax.swing.JFrame {
     private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
     if (selected == 0){
         imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Golduck.png"));
-        pSpeed.setValue(100);
+        pSpeed.setValue(50);
         pSliding.setValue(0);
         pBr.setValue(50);
         selected=1;
         }
     else{
         imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
-        pSpeed.setValue(50);
-        pSliding.setValue(50);
+        pSpeed.setValue(100);
+        pSliding.setValue(100);
         pBr.setValue(50);
         selected=0;
         }              
@@ -384,15 +384,15 @@ public class StartGame extends javax.swing.JFrame {
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
     if (selected == 0){
         imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Golduck.png"));
-        pSpeed.setValue(100);
+        pSpeed.setValue(50);
         pSliding.setValue(0);
         pBr.setValue(50);
         selected=1;
     }
     else{
         imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
-        pSpeed.setValue(50);
-        pSliding.setValue(50);
+        pSpeed.setValue(100);
+        pSliding.setValue(100);
         pBr.setValue(50); 
         selected=0;
         }
