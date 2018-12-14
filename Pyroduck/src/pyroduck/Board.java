@@ -476,4 +476,8 @@ public class Board extends Observable implements Observer {
     public int getRightLives(){
         return rightLives;
     }
+    
+    public boolean getDemo(){
+        return demo;
+    }
 }
