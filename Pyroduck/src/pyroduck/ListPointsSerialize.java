@@ -2,12 +2,13 @@ package pyroduck;
 
 import java.io.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Bini, Petruzzello
  */
-@SuppressWarnings("unchecked")
+
 public class ListPointsSerialize {
     protected List<PointsSerialize> list;
 
@@ -22,8 +23,8 @@ public class ListPointsSerialize {
             in = new ObjectInputStream(new FileInputStream(f));
             this.list = (List<PointsSerialize>) in.readObject();
             in.close();
-        } catch (Exception e){
-            System.out.println(e.getMessage());
+        } catch (IOException | ClassNotFoundException e){
+            JOptionPane.showMessageDialog(null, "IO Error", "alert", JOptionPane.ERROR_MESSAGE);
         }
         return list;
     }
@@ -35,16 +36,17 @@ public class ListPointsSerialize {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(f));
             out.writeObject(list);
             out.close();
-        } catch (Exception e){
-            System.out.println(e.getMessage());
+        } catch (IOException e){
+            JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
         }
     }
     
     private void order(List<PointsSerialize> list){
-        for(int i = 0; i < list.size(); i++) {
+        for (PointsSerialize list1 : list) {
             boolean s = false;
             for(int j = 0; j < list.size()-1; j++) {
-                if((list.get(j).getPoints() < list.get(j+1).getPoints()) || ((list.get(j).getPoints() == list.get(j+1).getPoints()) && list.get(j).getLives() < list.get(j+1).getLives()) ) {
+                if((list.get(j).getPoints() < list.get(j+1).getPoints()) || 
+                        ((list.get(j).getPoints() == list.get(j+1).getPoints()) && list.get(j).getLives() < list.get(j+1).getLives()) ) {
                     PointsSerialize k = list.get(j);
                     list.set(j, list.get(j+1));
                     list.set(j+1, k);
@@ -60,7 +62,6 @@ public class ListPointsSerialize {
         save();
     }
     
-   
     public int size(){
         return list.size();
     }

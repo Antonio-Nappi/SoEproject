@@ -120,11 +120,15 @@ public class AutomatePlayer extends Player{
     @Override
     protected void detectPlaceBomb() {
         if(putBomb){
-            int xt = Coordinates.pixelToTile(x+16);
-            int yt = Coordinates.pixelToTile( y -16); //subtract half player height and minus 1 y position
-            placeBomb(xt,yt);
-            Game.addBombRate(-1);
-            putBomb = false;
+            try {
+                int xt = Coordinates.pixelToTile(x+16);
+                int yt = Coordinates.pixelToTile( y -16); //subtract half player height and minus 1 y position
+                placeBomb(xt,yt);
+                Game.getInstance().addBombRate(-1);
+                putBomb = false;
+            } catch (PyroduckException ex) {
+                Logger.getLogger(AutomatePlayer.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

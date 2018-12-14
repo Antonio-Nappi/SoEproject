@@ -123,7 +123,11 @@ public class Player extends Mob{
         if(input.left) xa--;
         if(input.right) xa++;
         if(xa != 0 || ya != 0)  {
-            move(xa * Game.getPlayerSpeed(), ya *Game.getPlayerSpeed());
+            try {
+                move(xa * Game.getInstance().getPlayerSpeed(), ya *Game.getInstance().getPlayerSpeed());
+            } catch (PyroduckException ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+            }
             moving = true;
         } else {
             moving = false;
@@ -306,12 +310,16 @@ public class Player extends Mob{
      *
      */
     protected void detectPlaceBomb() {
-        if(input.space && Game.getBombRate() > 0 && timeBetweenPutBombs < 0) {
-            int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
-            int yt = Coordinates.pixelToTile( (y + sprite.getSize() / 2) - sprite.getSize() ); //subtract half player height and minus 1 y position
-            placeBomb(xt,yt);
-            Game.addBombRate(-1);
-            timeBetweenPutBombs = 30;
+        try {
+            if(input.space && Game.getInstance().getBombRate() > 0 && timeBetweenPutBombs < 0) {
+                int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
+                int yt = Coordinates.pixelToTile( (y + sprite.getSize() / 2) - sprite.getSize() ); //subtract half player height and minus 1 y position
+                placeBomb(xt,yt);
+                Game.getInstance().addBombRate(-1);
+                timeBetweenPutBombs = 30;
+            }
+        } catch (PyroduckException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -334,8 +342,12 @@ public class Player extends Mob{
         while(bs.hasNext()) {
             b = (Bomb) bs.next();
             if(b.isRemoved())  {
-                bs.remove();
-                Game.addBombRate(1);
+                try {
+                    bs.remove();
+                    Game.getInstance().addBombRate(1);
+                } catch (PyroduckException ex) {
+                    Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
@@ -383,11 +395,7 @@ public class Player extends Mob{
         if(!alive)
             return;
         alive = false;
-        try {
-            Game.getInstance().addLives(-1);
-        } catch (PyroduckException ex) {
-            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Board.getInstance().changeLives(-1);
         setChanged();
         notifyObservers();
     }

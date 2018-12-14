@@ -1,6 +1,9 @@
 package pyroduck.entities.tile.powerup;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.Game;
+import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -15,8 +18,12 @@ public class PowerupFlames extends Powerup {
     
     @Override
     public void setValues() {
-        active = true;
-        if(Game.getBombRadius()<= 2)
-            Game.addBombRadius(1);
+        try {
+            active = true;
+            if(Game.getInstance().getBombRadius()<= 2)
+                Game.getInstance().addBombRadius(1);
+        } catch (PyroduckException ex) {
+            Logger.getLogger(PowerupFlames.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

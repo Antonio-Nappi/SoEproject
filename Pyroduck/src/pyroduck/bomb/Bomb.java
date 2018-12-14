@@ -1,8 +1,11 @@
 package pyroduck.bomb;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.*;
 import pyroduck.entities.*;
 import pyroduck.entities.mob.*;
+import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.*;
 import pyroduck.level.Coordinates;
 
@@ -98,7 +101,11 @@ public class Bomb extends AnimatedEntity {
             a.kill();
         explosions = new DirectionalExplosion[4];
         for (int i = 0; i < explosions.length; i++) {
-            explosions[i] = new DirectionalExplosion((int)x, (int)y, i, Game.getBombRadius());
+            try {
+                explosions[i] = new DirectionalExplosion((int)x, (int)y, i, Game.getInstance().getBombRadius());
+            } catch (PyroduckException ex) {
+                Logger.getLogger(Bomb.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

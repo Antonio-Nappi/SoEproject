@@ -24,13 +24,13 @@ public class Board extends Observable implements Observer {
     public Entity[] entities;
     public List<Mob> mobs = new ArrayList<>();
     protected List<Bomb> bombs = new ArrayList<>();
-    protected int lives=SettingsGame.getLives();
+    protected int lives = SettingsGame.getLives();
     private int points = 0;
     private String world = "";
     private int player;
     private final ContextDestroyable con;
     private final List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
-    protected boolean pause=false;
+    protected boolean pause = false;
     private static Board instance = null;
     private boolean demo = false;
     private int rightLives = 0;
@@ -43,15 +43,16 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
     | Render & Update
     |--------------------------------------------------------------------------
-    */
+     */
     public void update() {
         updateEntities();
         updateMobs();
         updateBombs();
         for (int i = 0; i < mobs.size(); i++) {
             Mob a = mobs.get(i);
-            if(((Entity)a).isRemoved())
+            if (((Entity) a).isRemoved()) {
                 mobs.remove(i);
+            }
         }
     }
 
@@ -73,20 +74,22 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
     | ChangeLevel
     |--------------------------------------------------------------------------
-    */
-
+     */
     public void resetProperties() {
-        if(this.getPlayerRight() == 0){
-            Game.playerSpeed = 1.3;
-            Game.bombRadius = 1;
-            Game.bombRate = 1;
+        try {
+            if (this.getPlayerRight() == 0) {
+                Game.getInstance().playerSpeed = 1.3;
+                Game.getInstance().bombRadius = 1;
+                Game.getInstance().bombRate = 1;
+            } else if (this.getPlayerRight() == 1) {
+                Game.getInstance().playerSpeed = 1;
+                Game.getInstance().bombRadius = 1;
+                Game.getInstance().bombRate = 1;
+            }
+            Game.getInstance().reverse = false;
+        } catch (PyroduckException ex) {
+            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else if(this.getPlayerRight() == 1){
-            Game.playerSpeed = 1;
-            Game.bombRadius = 1;
-            Game.bombRate = 1;
-        }
-        Game.reverse = false;
     }
 
     public void setLives(int lives) {
@@ -96,21 +99,16 @@ public class Board extends Observable implements Observer {
     }
 
     public void restartLevel() {
-        changeLevel(level.getLevel() );
+        changeLevel(level.getLevel());
     }
 
     public void nextLevel() throws IOException {
-        int i = level.getLevel()+1;
-        if(i>=5){
-            try {
-                lives = Game.getInstance().getLives();
-            } catch (PyroduckException ex) {
-                Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        int i = level.getLevel() + 1;
+        if (i >= 5) {
             rightLives = getLives();
             setLives(0);
         }
-	changeLevel(i);
+        changeLevel(i);
         try {
             Game.getInstance().renderScreen();
             Game.getInstance().changeAudioLevel(i);
@@ -125,18 +123,18 @@ public class Board extends Observable implements Observer {
     public void changeLevel(int numlevel) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
         mobs = new ArrayList<>();
         bombs = new ArrayList<>();
-        if(numlevel<5){
+        if (numlevel < 5) {
             try {
-                int combination = new Random(System.currentTimeMillis()).nextInt(2)+1;
-                String path ;
-                if(numlevel == -1){
+                int combination = new Random(System.currentTimeMillis()).nextInt(2) + 1;
+                String path;
+                if (numlevel == -1) {
                     demo = true;
-                    path="./resources/levels/Demo1.txt";
+                    path = "./resources/levels/Demo1.txt";
+                } else if (numlevel == 0) {
+                    path = "./resources/levels/Demo.txt";
+                } else {
+                    path = "./resources/levels/nextlevel/Level" + numlevel + " " + combination + ".txt";
                 }
-                else if(numlevel == 0)
-                    path="./resources/levels/Demo.txt";      
-                else
-                    path= "./resources/levels/nextlevel/Level" + numlevel + " " + combination + ".txt";
                 BufferedReader in;
                 String data;
                 in = new BufferedReader(new FileReader(path));
@@ -145,33 +143,34 @@ public class Board extends Observable implements Observer {
                 int l = Integer.parseInt(tokens.nextToken());
                 world = tokens.nextToken();
                 input = getRightKeyboard();
-                if(world.equals("G"))
-                    level = new GrassFileLevel(path,in,l);
-                else
-                    level = new IceFileLevel(path, in,l);
+                if (world.equals("G")) {
+                    level = new GrassFileLevel(path, in, l);
+                } else {
+                    level = new IceFileLevel(path, in, l);
+                }
                 in.close();
                 entities = level.createEntities();
             } catch (LoadLevelException e) {
-                System.out.println("LOAD LEVEL EXCEPTION !!!");
-            } catch (NullPointerException e){
-                System.out.println("LEVEL'S FILE .txt NOT FOUND!");
-            }catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Load level exception", "alert", JOptionPane.ERROR_MESSAGE);
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null, "Level's file .txt not found", "alert", JOptionPane.ERROR_MESSAGE);
+            } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Loading file not successfully done", "alert", JOptionPane.ERROR_MESSAGE);
-            } catch (IOException ex){
+            } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "File syntax not correct", "alert", JOptionPane.ERROR_MESSAGE);
             }
         }
-
     }
 
     /**
      * Return a boolean that say if there is enemies alive in the map or not.
+     *
      * @return true if there is not enemies alive in the map, false otherwise.
      */
-
     public boolean detectNoEnemies() {
         return mobs.size() == 1;
     }
+
     /*
     |--------------------------------------------------------------------------
     | Getters And Setters
@@ -179,30 +178,34 @@ public class Board extends Observable implements Observer {
      */
     public Entity getEntity(double x, double y, Mob m) {
         Entity res = null;
-        res = getExplosionAt((int)x, (int)y);
-        if( res != null)
+        res = getExplosionAt((int) x, (int) y);
+        if (res != null) {
             return res;
+        }
         res = getBombAt(x, y);
-        if( res != null)
+        if (res != null) {
             return res;
-        res = getMobAtExcluding((int)x, (int)y, m);
-        if( res != null)
+        }
+        res = getMobAtExcluding((int) x, (int) y, m);
+        if (res != null) {
             return res;
-        res = getEntityAt((int)x, (int)y);
+        }
+        res = getEntityAt((int) x, (int) y);
         return res;
     }
 
     public List<Bomb> getBombs() {
-            return bombs;
+        return bombs;
     }
 
     private Bomb getBombAt(double x, double y) {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
-        while(bs.hasNext()) {
+        while (bs.hasNext()) {
             b = bs.next();
-            if(b.getX() == (int)x && b.getY() == (int)y)
+            if (b.getX() == (int) x && b.getY() == (int) y) {
                 return b;
+            }
         }
         return null;
     }
@@ -214,12 +217,12 @@ public class Board extends Observable implements Observer {
     private Mob getMobAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         Mob cur;
-        while(itr.hasNext()) {
+        while (itr.hasNext()) {
             cur = itr.next();
-            if(cur == a) {
+            if (cur == a) {
                 continue;
             }
-            if(cur.getXTile() == x && cur.getYTile() == y) {
+            if (cur.getXTile() == x && cur.getYTile() == y) {
                 return cur;
             }
         }
@@ -230,12 +233,12 @@ public class Board extends Observable implements Observer {
         Iterator<Mob> itr = mobs.iterator();
         ArrayList<Mob> mobs1 = new ArrayList();
         Mob cur;
-        while(itr.hasNext()) {
+        while (itr.hasNext()) {
             cur = itr.next();
-            if(cur == a) {
+            if (cur == a) {
                 continue;
             }
-            if(cur.getXTile() == x && cur.getYTile() == y) {
+            if (cur.getXTile() == x && cur.getYTile() == y) {
                 mobs1.add(cur);
             }
         }
@@ -245,17 +248,18 @@ public class Board extends Observable implements Observer {
     private Explosion getExplosionAt(int x, int y) {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
-        while(bs.hasNext()) {
+        while (bs.hasNext()) {
             b = bs.next();
             Explosion e = b.explosionAt(x, y);
-            if(e != null)
+            if (e != null) {
                 return e;
+            }
         }
         return null;
     }
-    
+
     private Entity getEntityAt(double x, double y) {
-        return entities[(int)x + (int)y * FileLevel.WIDTH];
+        return entities[(int) x + (int) y * FileLevel.WIDTH];
     }
 
     /*
@@ -263,7 +267,6 @@ public class Board extends Observable implements Observer {
     | Adds and Removes
     |--------------------------------------------------------------------------
      */
-
     /**
      *
      * @return
@@ -271,6 +274,7 @@ public class Board extends Observable implements Observer {
     public List<Mob> getMobs() {
         return mobs;
     }
+
     /**
      *
      * @param e
@@ -278,40 +282,43 @@ public class Board extends Observable implements Observer {
     public void addMob(Mob e) {
         mobs.add(e);
     }
+
     /*
     |--------------------------------------------------------------------------
     | Renders
     |--------------------------------------------------------------------------
-    */
+     */
 
     protected void renderMobs() {
         Iterator<Mob> itr = mobs.iterator();
-        while(itr.hasNext())
+        while (itr.hasNext()) {
             itr.next().render(screen);
+        }
     }
 
     /*
     |--------------------------------------------------------------------------
     | Updates
     |--------------------------------------------------------------------------
-    */
+     */
     private void updateMobs() {
         ListIterator<Mob> itr = mobs.listIterator(mobs.size());
-        while(itr.hasPrevious()){
+        while (itr.hasPrevious()) {
             itr.previous().update();
         }
     }
 
     private void updateEntities() {
-        for (int i = 0; i < entities.length; i++)
+        for (int i = 0; i < entities.length; i++) {
             entities[i].update();
+        }
     }
 
     /*
     |--------------------------------------------------------------------------
     | Getters & Setters
     |--------------------------------------------------------------------------
-    */
+     */
     /**
      *
      * @return
@@ -333,8 +340,9 @@ public class Board extends Observable implements Observer {
      */
     private void updateBombs() {
         Iterator<Bomb> itr = bombs.iterator();
-        while(itr.hasNext())
+        while (itr.hasNext()) {
             itr.next().update();
+        }
     }
 
     /**
@@ -350,8 +358,9 @@ public class Board extends Observable implements Observer {
      */
     private void renderBombs() {
         Iterator<Bomb> itr = bombs.iterator();
-        while(itr.hasNext())
+        while (itr.hasNext()) {
             itr.next().render(screen);
+        }
     }
 
     public int getLives() {
@@ -373,16 +382,17 @@ public class Board extends Observable implements Observer {
     public Mob getMobAt(double x, double y) {
         Iterator<Mob> itr = mobs.iterator();
         Mob cur;
-        while(itr.hasNext()) {
+        while (itr.hasNext()) {
             cur = itr.next();
-            if(cur.getXTile() == x && cur.getYTile() == y)
+            if (cur.getXTile() == x && cur.getYTile() == y) {
                 return cur;
+            }
         }
         return null;
     }
 
     private Keyboard getRightKeyboard() {
-        if(player == 1 || world.equals("G")){
+        if (player == 1 || world.equals("G")) {
             Keyboard.getInstance().setIce(false);
             return Keyboard.getInstance();
         }
@@ -392,34 +402,35 @@ public class Board extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        Player pl = (Player)o;
-        if(pl.isAlive()){
+        Player pl = (Player) o;
+        if (pl.isAlive()) {
             Player p = getPlayer();
             p = new SuperPlayer(p);
             mobs.set(0, p);   //player is the first element of the list mobs
-            for(int i=1; i<mobs.size(); i++){
-                EnemyPower enemyPower = ((Enemy)mobs.get(i)).getEp();
-                if(enemyPower.isPlayerReferenceUpdatable()){
+            for (int i = 1; i < mobs.size(); i++) {
+                EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
+                if (enemyPower.isPlayerReferenceUpdatable()) {
                     enemyPower.updateReferencePlayer(p);
                 }
             }
-            ((SuperPlayer)p).setGraphicalExtension((SuperPlayer) p);
-        }
-        else try {
-            if(getLevel() == 0 && demo && Game.getInstance().getLives() == 2){
-                demo = false;
-                resetPoints();
-                points = 0;
-                Game.getInstance().restartGame();
-                setChanged();
-                notifyObservers();
+            ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
+        } else {
+            try {
+                if (getLevel() == 0 && demo && getLives() == 2) {
+                    demo = false;
+                    resetPoints();
+                    points = 0;
+                    lives = SettingsGame.getLives();
+                    Game.getInstance().restartGame();
+                    setChanged();
+                    notifyObservers();
+                } else {
+                    setChanged();
+                    notifyObservers();
+                }
+            } catch (PyroduckException ex) {
+                Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else {
-                setChanged();
-                notifyObservers();
-            }
-        } catch (PyroduckException ex) {
-            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -428,11 +439,11 @@ public class Board extends Observable implements Observer {
         input = Keyboard.getInstance();
     }
 
-    public void setPlayer(int p){
+    public void setPlayer(int p) {
         player = p;
     }
 
-    public int getPlayerRight(){
+    public int getPlayerRight() {
         return player;
     }
 
@@ -440,11 +451,11 @@ public class Board extends Observable implements Observer {
         return points;
     }
 
-    public ContextDestroyable getContextState(){
+    public ContextDestroyable getContextState() {
         return con;
     }
 
-    public List<DestroyableIceTile> getDestroyableIceTile(){
+    public List<DestroyableIceTile> getDestroyableIceTile() {
         return destroyableIceTiles;
     }
 
@@ -461,9 +472,9 @@ public class Board extends Observable implements Observer {
     public void setScreen(Screen screen) {
         this.screen = screen;
     }
-    
-    public static Board getInstance(){
-        if(instance == null){
+
+    public static Board getInstance() {
+        if (instance == null) {
             instance = new Board();
         }
         return instance;
@@ -472,12 +483,16 @@ public class Board extends Observable implements Observer {
     public void resetPoints() {
         points = 0;
     }
-    
-    public int getRightLives(){
+
+    public int getRightLives() {
         return rightLives;
     }
-    
-    public boolean getDemo(){
+
+    public boolean getDemo() {
         return demo;
+    }
+
+    public void changeLives(int lives) {
+        this.lives += lives;
     }
 }

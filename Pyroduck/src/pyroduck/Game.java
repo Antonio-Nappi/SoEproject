@@ -23,18 +23,12 @@ public class Game extends Canvas {
                             WIDTH = TILES_SIZE * (int)(31 / 2), //minus one to ajust the window,
                             HEIGHT = 13 * TILES_SIZE;
 
-    //initial configs
-    private static final int BOMBRATE = 1;
-    private static final int BOMBRADIUS = 1;
-    private static final double PLAYERSPEED = 1.3;
-
     //can be modified with bonus
-    protected static int bombRate = BOMBRATE;
-    protected static int bombRadius = BOMBRADIUS;
-    protected static double playerSpeed = PLAYERSPEED;
-    protected static boolean reverse=false;
+    protected int bombRate = 1;
+    protected int bombRadius = 1;
+    protected double playerSpeed = 1.3;
+    protected boolean reverse=false;
     protected static int rev = 0;
-    protected static int lives;
     protected static boolean pause=false;
     private Keyboard input;
     private final Board board;
@@ -58,7 +52,6 @@ public class Game extends Canvas {
         board = Board.getInstance();
         board.changeLevel(1);
         board.setScreen(screen);
-        lives = board.getLives();
     }
     
     public static Game getInstance() throws PyroduckException{
@@ -70,7 +63,6 @@ public class Game extends Canvas {
     public void restartGame(){
         board.changeLevel(1);
         board.resetProperties();
-        lives = SettingsGame.getLives();
     }
     
     private void renderGame() { //render will run the maximum times it can per second
@@ -101,10 +93,6 @@ public class Game extends Canvas {
         bs.show();
     }
 
-    public Timer getTimer() {
-        return timer;
-    }
-
     public void resume(){
         try {
             audio.resumeAudio();
@@ -132,16 +120,13 @@ public class Game extends Canvas {
             this.input = Board.getInstance().getInput();
             addKeyListener(input);
         }
-        if(lives != board.getLives())
-            board.setLives(lives);
         if (!reverse)
             input.update();
         else 
             input.updateReverse();
     }
 
-    public void start() {
-            
+    public void start() {   
         try {
             setMusicOn(musicon);
             this.input = Board.getInstance().getInput();
@@ -154,15 +139,13 @@ public class Game extends Canvas {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LineUnavailableException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
+        }       
     }
     
     public void changeAudioLevel(int n){
         try {
             audio.stop();      
             audio=AudioPlayer.getAudioPlayer("Level"+n+".wav");
-
         } catch (UnsupportedAudioFileException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -172,28 +155,24 @@ public class Game extends Canvas {
         }
     }
     
-    public static void addBombRate(int i) {
+    public void addBombRate(int i) {
         bombRate += i;
     }
         	
-    public static void addBombRadius(int i) {
+    public void addBombRadius(int i) {
         bombRadius += i;
     }
     
-    public static void addPlayerSpeed(double i) {
-		playerSpeed += i;
+    public void addPlayerSpeed(double i) {
+        playerSpeed += i;
     }
 	
-    public static void decreasePlayerSpeed(double i) {        
-        playerSpeed = playerSpeed -i;
+    public void decreasePlayerSpeed(double i) {        
+        playerSpeed -= i;
     }
     
-    public static void reverseInput(boolean b){
+    public void reverseInput(boolean b){
         reverse = b;
-    }
-    
-    public static void addLives(int i){
-        lives += i;
     }
     
     /*
@@ -201,15 +180,15 @@ public class Game extends Canvas {
     | Getters & Setters
     |--------------------------------------------------------------------------
      */
-    public static double getPlayerSpeed() {
+    public double getPlayerSpeed() {
         return playerSpeed;
     }
 
-    public static int getBombRate() {
+    public int getBombRate() {
         return bombRate;
     }
 
-    public static int getBombRadius() {
+    public int getBombRadius() {
         return bombRadius;
     }
 
@@ -223,25 +202,24 @@ public class Game extends Canvas {
 
     public void setSelected(int selected) {
         this.selected = selected;
-        if(selected==1){
-            playerSpeed=1;
-            
+        if(selected == 1){
+            playerSpeed = 1;   
         }
     }
     
-    public static void setBombRate(int bombRate) {
-        Game.bombRate = bombRate;
+    public void setBombRate(int bombRate) {
+       this.bombRate = bombRate;
     }
 
-    public static void setBombRadius(int bombRadius) {
-        Game.bombRadius = bombRadius;
+    public void setBombRadius(int bombRadius) {
+        this.bombRadius = bombRadius;
     }
 
-    public static void setPlayerSpeed(double playerSpeed) {
-        Game.playerSpeed = playerSpeed;
+    public void setPlayerSpeed(double playerSpeed) {
+        this.playerSpeed = playerSpeed;
     }
     
-    public static void setMusicOn(boolean music) throws UnsupportedAudioFileException, IOException, LineUnavailableException{      
+    public void setMusicOn(boolean music) throws UnsupportedAudioFileException, IOException, LineUnavailableException{      
         int i = Board.getInstance().level.getLevel();
         musicon=music;
         System.out.println(i);
@@ -254,20 +232,11 @@ public class Game extends Canvas {
         if(!music)
             audio.musicOff();
         else 
-            audio.musicOn();
-        
+            audio.musicOn();       
     }
      
     public boolean getMusicOn(){
         return musicon;
-    }
-    
-    public void setLives(int live){
-        lives = live; 
-    }
-    
-    public int getLives(){
-        return lives; 
     }
     
     private class ScheduleTask extends TimerTask{

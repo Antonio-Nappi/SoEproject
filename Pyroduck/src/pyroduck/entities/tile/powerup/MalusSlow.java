@@ -1,10 +1,13 @@
 package pyroduck.entities.tile.powerup;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.Game;
 import pyroduck.bomb.Bomb;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
+import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -40,8 +43,12 @@ public class MalusSlow extends Powerup {
 
     @Override
     public void setValues() {
-        active = true;
-        if(Game.getPlayerSpeed() >= 1.3)
-            Game.decreasePlayerSpeed(0.3);
+        try {
+            active = true;
+            if(Game.getInstance().getPlayerSpeed() >= 1.3)
+                Game.getInstance().decreasePlayerSpeed(0.3);
+        } catch (PyroduckException ex) {
+            Logger.getLogger(MalusSlow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

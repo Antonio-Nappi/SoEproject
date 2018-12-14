@@ -1,6 +1,6 @@
 package pyroduck.entities.tile.powerup;
 
-import pyroduck.Game;
+import pyroduck.Board;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -15,7 +15,7 @@ public class PowerupLife extends Powerup {
 
     @Override
     public void setValues() {
-      active=true;
-      Game.addLives(1);
+      active = true;
+      Board.getInstance().changeLives(1);
     }   
 }

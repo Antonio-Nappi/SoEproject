@@ -68,8 +68,6 @@ public class GamePanel extends JPanel implements Observer {
             if(Board.getInstance().getLevel()<=0)
                 skipDemo.setVisible(true);
             skipDemo.addActionListener(new skip());
-
-            
             panel.setBackground(Color.black);
             panel.add(livesLabel, 0);
             panel.add(messageLabel, 1);
@@ -107,19 +105,18 @@ public class GamePanel extends JPanel implements Observer {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-}
+    }
    private class skip implements ActionListener {
+       
         @Override
         public void actionPerformed(ActionEvent e) {
-                Board.getInstance().resetPoints();
-                pointsLabel.setText("0");
-                Board.getInstance().changeLevel(1);
-           
-            skipDemo.setVisible(false);
-            
-          
+            Board.getInstance().resetPoints();
+            pointsLabel.setText("0");
+            Board.getInstance().resetProperties();
+            Board.getInstance().changeLevel(1);
+            skipDemo.setVisible(false);    
         }
-}
+    }
 
     public Game getGame() {
         return game;

@@ -1,6 +1,9 @@
 package pyroduck.entities.tile.powerup;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.Game;
+import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -15,8 +18,12 @@ public class PowerupVehicles extends Powerup{
 
     @Override
     public void setValues() {
-        Game.setPlayerSpeed(1.3);
-        Game.setBombRadius(1);
-        Game.setBombRate(1);
+        try {
+            Game.getInstance().setPlayerSpeed(1.3);
+            Game.getInstance().setBombRadius(1);
+            Game.getInstance().setBombRate(1);
+        } catch (PyroduckException ex) {
+            Logger.getLogger(PowerupVehicles.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }   
 }
