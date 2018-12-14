@@ -370,7 +370,7 @@ public class Board extends Observable implements Observer {
      * @param y
      * @return
      */
-    private Mob getMobAt(double x, double y) {
+    public Mob getMobAt(double x, double y) {
         Iterator<Mob> itr = mobs.iterator();
         Mob cur;
         while(itr.hasNext()) {
