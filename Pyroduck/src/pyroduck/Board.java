@@ -468,10 +468,8 @@ public class Board extends Observable implements Observer {
             ((SuperPlayer)p).setGraphicalExtension((SuperPlayer) p);
         }
         else try {
-            System.out.println("pyroduck.Board.update()" +getLevel() + demo + Game.getInstance().getLives());
             if(getLevel() == 0 && demo && Game.getInstance().getLives() == 2){
                 demo = false;
-                System.out.println("pyroduck.Board.update() compa posello dentro" + demo);
                 resetPoints();
                 points = 0;
                 Game.getInstance().restartGame();
