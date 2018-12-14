@@ -10,7 +10,7 @@ import pyroduck.level.Coordinates;
 
 /**
  *
- * @author Umberto
+ * @author
  */
 public class AutomatePlayer extends Player{
 
