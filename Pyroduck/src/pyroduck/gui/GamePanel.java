@@ -111,6 +111,8 @@ public class GamePanel extends JPanel implements Observer {
    private class skip implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+                Board.getInstance().resetPoints();
+                pointsLabel.setText("0");
                 Board.getInstance().changeLevel(1);
            
             skipDemo.setVisible(false);
