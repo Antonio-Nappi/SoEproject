@@ -96,11 +96,7 @@ public class Game extends Canvas {
     public void resume(){
         try {
             audio.resumeAudio();
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
         timer = new Timer();
@@ -133,11 +129,7 @@ public class Game extends Canvas {
             addKeyListener(input);
             requestFocus();
             timer.scheduleAtFixedRate(new ScheduleTask(), 1, 15);
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }       
     }
@@ -145,12 +137,8 @@ public class Game extends Canvas {
     public void changeAudioLevel(int n){
         try {
             audio.stop();      
-            audio=AudioPlayer.getAudioPlayer("Level"+n+".wav");
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
+            audio = AudioPlayer.getAudioPlayer("Level" + n + ".wav");
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -221,12 +209,12 @@ public class Game extends Canvas {
     
     public void setMusicOn(boolean music) throws UnsupportedAudioFileException, IOException, LineUnavailableException{      
         int i = Board.getInstance().level.getLevel();
-        musicon=music;
-        if(audio==null)
+        musicon = music;
+        if(audio == null)
             if(Board.getInstance().getLevel() <= 0)
-               audio=AudioPlayer.getAudioPlayer("Level"+1+".wav"); 
+               audio = AudioPlayer.getAudioPlayer("Level"+1+".wav"); 
             else 
-                audio=AudioPlayer.getAudioPlayer("Level"+i+".wav");
+                audio = AudioPlayer.getAudioPlayer("Level"+i+".wav");
         audio.pause();
         if(!music)
             audio.musicOff();

@@ -10,8 +10,7 @@ import javafx.embed.swing.JFXPanel;
 public class  AudioPlayer {
     
     static {
-        JFXPanel fxPanel = new JFXPanel();
-        
+        JFXPanel fxPanel = new JFXPanel();       
     }
      
     private Long currentFrame; 
@@ -19,11 +18,11 @@ public class  AudioPlayer {
     private static String status ; 
     private AudioInputStream audioInputStream; 
     private static String filepath;
-    private static AudioPlayer audio=null;
-    private static boolean musicon=true;//false=musicoff
+    private static AudioPlayer audio = null;
+    private static boolean musicon = true;//false=musicoff
    
     private AudioPlayer(String filepath) throws UnsupportedAudioFileException, LineUnavailableException, IOException { 
-        this.filepath=filepath;
+        this.filepath = filepath;
         audioInputStream =  AudioSystem.getAudioInputStream(new File("./resources/audio/"+filepath).getAbsoluteFile());  
         clip = AudioSystem.getClip();
         clip.open(audioInputStream); 
@@ -31,22 +30,15 @@ public class  AudioPlayer {
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
     } 
     
-    public static AudioPlayer getAudioPlayer(String filepath){
-     
-        if (audio==null || status==null || status.equals("stop")){
+    public static AudioPlayer getAudioPlayer(String filepath){ 
+        if (audio == null || status == null || status.equals("stop")){
             try {
-                audio= new AudioPlayer(filepath);
-
+                audio = new AudioPlayer(filepath);
                 if(!musicon){
                     audio.pause();
                     return audio;
-                }
-                
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+                } 
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
             Logger.getLogger(AudioPlayer.class.getName()).log(Level.SEVERE, null, ex);
         }
             return audio;
@@ -79,7 +71,6 @@ public class  AudioPlayer {
     } 
       
     public void restart() throws IOException, LineUnavailableException, UnsupportedAudioFileException{ 
-
         clip.stop(); 
         clip.close(); 
         resetAudioStream(); 
@@ -89,7 +80,7 @@ public class  AudioPlayer {
     } 
       
     public void stop() throws UnsupportedAudioFileException, IOException, LineUnavailableException{ 
-        status="stop";
+        status = "stop";
         currentFrame = 0L; 
         clip.stop(); 
         clip.close(); 
@@ -117,13 +108,13 @@ public class  AudioPlayer {
     } 
     
     public void musicOff() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
-         musicon=false;
+         musicon = false;
          this.pause();
        
     }
     
     public void musicOn() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
-        musicon=true;
+        musicon = true;
         this.resumeAudio();
         
     }

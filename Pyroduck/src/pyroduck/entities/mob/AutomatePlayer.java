@@ -3,6 +3,7 @@ package pyroduck.entities.mob;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pyroduck.*;
 import pyroduck.bomb.Bomb;
 import pyroduck.exceptions.PyroduckException;
@@ -20,21 +21,20 @@ public class AutomatePlayer extends Player{
     private LinkedList<Double> registerX = new LinkedList<>();
     private LinkedList<Double> registerY = new LinkedList<>();
 
-    public AutomatePlayer(int x, int y) {
+    public AutomatePlayer(int x, int y) throws InterruptedException {
         super(x, y);
         fillRegisters();
     }
+    
     /*
-
     Promemoria :
     per x: +1 va a destra e -1 va a sinistra
     per y: +1 va giu e -1 va su
     Inizia con x=16, y=32?
     Ogni casella è 32?
-
     */
 
-    private void fillRegisters(){
+    private void fillRegisters() throws InterruptedException{
         if(first){
             first = false;
             moveRight(2);  //muoviti a destra di 2 caselle
@@ -89,17 +89,16 @@ public class AutomatePlayer extends Player{
            wait(3);
            moveDown(2);
         }
-
     }
 
     @Override
     protected void calculateMove(){
 
-        if(counter_idle< 500){  //player initial idle -> 500*15 ms
+        if(counter_idle < 500){  //player initial idle -> 500*15 ms
             counter_idle++;
             return;
         }
-        if(registerX.size()>0&&registerY.size()>0){
+        if(registerX.size() > 0 && registerY.size() > 0){
             Double xa = registerX.pop();
             Double ya = registerY.pop();
            if(xa != 0 || ya != 0)  {
@@ -121,8 +120,8 @@ public class AutomatePlayer extends Player{
     protected void detectPlaceBomb() {
         if(putBomb){
             try {
-                int xt = Coordinates.pixelToTile(x+16);
-                int yt = Coordinates.pixelToTile( y -16); //subtract half player height and minus 1 y position
+                int xt = Coordinates.pixelToTile(x + 16);
+                int yt = Coordinates.pixelToTile(y - 16); //subtract half player height and minus 1 y position
                 placeBomb(xt,yt);
                 Game.getInstance().addBombRate(-1);
                 putBomb = false;

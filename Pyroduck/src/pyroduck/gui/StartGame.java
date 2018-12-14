@@ -31,12 +31,11 @@ public class StartGame extends javax.swing.JFrame {
         imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
         exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
        
-        audio= AudioPlayer.getAudioPlayer("opening.wav");
+        audio = AudioPlayer.getAudioPlayer("opening.wav");
         audio.play();
         pSpeed.setValue(100);
         pSliding.setValue(100);
         pBr.setValue(50);
-        Point middle = new Point(600, 200);
     }
 
     /**
@@ -51,17 +50,17 @@ public class StartGame extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        powerupButton = new javax.swing.JButton();
+        demomodeButton = new javax.swing.JButton();
         howtoplayButton = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        infoButton = new javax.swing.JButton();
         settingButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         exitLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         imgLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        selectButton = new javax.swing.JButton();
+        playButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -103,26 +102,26 @@ public class StartGame extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 204, 0));
         jPanel8.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51), 2)));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
-        jButton1.setText("Powerup");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        powerupButton.setBackground(new java.awt.Color(255, 255, 255));
+        powerupButton.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
+        powerupButton.setText("Powerup");
+        powerupButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        powerupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 powerupButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
-        jButton2.setText("Demo Mode");
-        jButton2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton2.setMaximumSize(new java.awt.Dimension(60, 150));
-        jButton2.setMinimumSize(new java.awt.Dimension(60, 150));
-        jButton2.setPreferredSize(new java.awt.Dimension(60, 150));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        demomodeButton.setBackground(new java.awt.Color(255, 255, 255));
+        demomodeButton.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
+        demomodeButton.setText("Demo Mode");
+        demomodeButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        demomodeButton.setMaximumSize(new java.awt.Dimension(60, 150));
+        demomodeButton.setMinimumSize(new java.awt.Dimension(60, 150));
+        demomodeButton.setPreferredSize(new java.awt.Dimension(60, 150));
+        demomodeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                demomodeButtonActionPerformed(evt);
             }
         });
 
@@ -136,11 +135,11 @@ public class StartGame extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
-        jButton4.setText("?");
-        jButton4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        infoButton.setBackground(new java.awt.Color(255, 255, 255));
+        infoButton.setFont(new java.awt.Font("Comic Sans MS", 1, 13)); // NOI18N
+        infoButton.setText("?");
+        infoButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        infoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 infoButtonActionPerformed(evt);
             }
@@ -160,9 +159,9 @@ public class StartGame extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(powerupButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(demomodeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(infoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(settingButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(howtoplayButton, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
@@ -170,15 +169,15 @@ public class StartGame extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(demomodeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(powerupButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(howtoplayButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(settingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(infoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -221,15 +220,15 @@ public class StartGame extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(102, 0, 0));
 
-        selectButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        selectButton.setText("Play");
-        selectButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 255), 1, true));
-        selectButton.setMaximumSize(new java.awt.Dimension(40, 90));
-        selectButton.setMinimumSize(new java.awt.Dimension(40, 90));
-        selectButton.setPreferredSize(new java.awt.Dimension(40, 90));
-        selectButton.addActionListener(new java.awt.event.ActionListener() {
+        playButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        playButton.setText("Play");
+        playButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 255), 1, true));
+        playButton.setMaximumSize(new java.awt.Dimension(40, 90));
+        playButton.setMinimumSize(new java.awt.Dimension(40, 90));
+        playButton.setPreferredSize(new java.awt.Dimension(40, 90));
+        playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectButtonActionPerformed(evt);
+                playButtonActionPerformed(evt);
             }
         });
 
@@ -239,14 +238,14 @@ public class StartGame extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(413, Short.MAX_VALUE)
-                .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(407, 407, 407))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(selectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -365,55 +364,54 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLabelMouseClicked
 
     private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
-    if (selected == 0){
-        imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Golduck.png"));
-        pSpeed.setValue(50);
-        pSliding.setValue(0);
-        pBr.setValue(50);
-        selected=1;
+        if (selected == 0){
+            imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Golduck.png"));
+            pSpeed.setValue(50);
+            pSliding.setValue(0);
+            pBr.setValue(50);
+            selected = 1;
         }
-    else{
-        imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
-        pSpeed.setValue(100);
-        pSliding.setValue(100);
-        pBr.setValue(50);
-        selected=0;
+        else{
+            imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
+            pSpeed.setValue(100);
+            pSliding.setValue(100);
+            pBr.setValue(50);
+            selected = 0;
         }              
     }//GEN-LAST:event_previousButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-    if (selected == 0){
-        imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Golduck.png"));
-        pSpeed.setValue(50);
-        pSliding.setValue(0);
-        pBr.setValue(50);
-        selected=1;
-    }
-    else{
-        imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
-        pSpeed.setValue(100);
-        pSliding.setValue(100);
-        pBr.setValue(50); 
-        selected=0;
+        if (selected == 0){
+            imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Golduck.png"));
+            pSpeed.setValue(50);
+            pSliding.setValue(0);
+            pBr.setValue(50);
+            selected = 1;
+        }
+        else{
+            imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
+            pSpeed.setValue(100);
+            pSliding.setValue(100);
+            pBr.setValue(50); 
+            selected = 0;
         }
     }//GEN-LAST:event_nextButtonActionPerformed
 
-    private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         try {
-            Game.getInstance().setSelected(selected);// TODO add your handling code here:
+            Game.getInstance().setSelected(selected);
             audio.stop();
         } catch (PyroduckException | UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         Board.getInstance().setPlayer(selected);  
-        Pyroduck p = new Pyroduck();
         try {
-            p.main(args);
+            Pyroduck.main(args);
         } catch (PyroduckException | IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);    
-    }//GEN-LAST:event_selectButtonActionPerformed
+        setVisible(false);    
+    }//GEN-LAST:event_playButtonActionPerformed
 
     private void powerupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerupButtonActionPerformed
         PowerupWindow pwindow = new PowerupWindow();
@@ -426,32 +424,26 @@ public class StartGame extends javax.swing.JFrame {
     private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
         InfoWindow info = new InfoWindow();
     }//GEN-LAST:event_infoButtonActionPerformed
+                              
+    private void settingButtonhowtoplayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingButtonhowtoplayButtonActionPerformed
+        SettingsGame setting = new SettingsGame();
+    }//GEN-LAST:event_settingButtonhowtoplayButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void demomodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demomodeButtonActionPerformed
         try {
-            Game.getInstance().setSelected(0);// TODO add your handling code here:
+            Game.getInstance().setSelected(0);
         } catch (PyroduckException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-            Board.getInstance().setPlayer(selected);
-            Board.getInstance().changeLevel(-1);
-            
-            Pyroduck p = new Pyroduck();
-            try {
-                Pyroduck.main(args);
-            } catch (IOException ex) {
-                Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (PyroduckException ex) {
+        Board.getInstance().setPlayer(selected);
+        Board.getInstance().changeLevel(-1);
+        try {
+            Pyroduck.main(args);
+        } catch (IOException | PyroduckException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-            this.setVisible(false);
-        
-    }                                        
-
-    private void settingButtonhowtoplayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingButtonhowtoplayButtonActionPerformed
-    SettingsGame setting = new SettingsGame();
-    }//GEN-LAST:event_settingButtonhowtoplayButtonActionPerformed
-
+        this.setVisible(false);  
+    }//GEN-LAST:event_demomodeButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,12 +484,11 @@ public class StartGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton demomodeButton;
     private javax.swing.JLabel exitLabel;
     private javax.swing.JButton howtoplayButton;
     private javax.swing.JLabel imgLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton infoButton;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -515,8 +506,9 @@ public class StartGame extends javax.swing.JFrame {
     private javax.swing.JProgressBar pBr;
     private javax.swing.JProgressBar pSliding;
     private javax.swing.JProgressBar pSpeed;
+    private javax.swing.JButton playButton;
+    private javax.swing.JButton powerupButton;
     private javax.swing.JButton previousButton;
-    private javax.swing.JButton selectButton;
     private javax.swing.JButton settingButton;
     // End of variables declaration//GEN-END:variables
 }

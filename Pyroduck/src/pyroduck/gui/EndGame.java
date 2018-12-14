@@ -18,7 +18,6 @@ import pyroduck.exceptions.PyroduckException;
  */
 public class EndGame extends javax.swing.JFrame {
 
-    private Game game;
     private ListPointsSerialize scores = new ListPointsSerialize();
     private List<PointsSerialize> list;
     
@@ -60,7 +59,7 @@ public class EndGame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        resumeButton = new javax.swing.JButton();
+        restartButton = new javax.swing.JButton();
         quitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -78,17 +77,17 @@ public class EndGame extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(550, 550));
         jPanel1.setPreferredSize(new java.awt.Dimension(550, 550));
 
-        resumeButton.setBackground(new java.awt.Color(255, 153, 0));
-        resumeButton.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
-        resumeButton.setText("Restart game");
-        resumeButton.setBorder(null);
-        resumeButton.setBorderPainted(false);
-        resumeButton.setMaximumSize(new java.awt.Dimension(170, 70));
-        resumeButton.setMinimumSize(new java.awt.Dimension(170, 70));
-        resumeButton.setPreferredSize(new java.awt.Dimension(170, 70));
-        resumeButton.addActionListener(new java.awt.event.ActionListener() {
+        restartButton.setBackground(new java.awt.Color(255, 153, 0));
+        restartButton.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
+        restartButton.setText("Restart game");
+        restartButton.setBorder(null);
+        restartButton.setBorderPainted(false);
+        restartButton.setMaximumSize(new java.awt.Dimension(170, 70));
+        restartButton.setMinimumSize(new java.awt.Dimension(170, 70));
+        restartButton.setPreferredSize(new java.awt.Dimension(170, 70));
+        restartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resumeButtonActionPerformed(evt);
+                restartButtonActionPerformed(evt);
             }
         });
 
@@ -135,7 +134,7 @@ public class EndGame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(resumeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(restartButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -161,7 +160,7 @@ public class EndGame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(resumeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(restartButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
         );
@@ -182,17 +181,18 @@ public class EndGame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void resumeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeButtonActionPerformed
+    private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
         setVisible(false);
         try {
             Board.getInstance().resetPoints();
             Game.getInstance().resume();
+            Game.getInstance().changeAudioLevel(1);
         } catch (PyroduckException ex) {
             Logger.getLogger(EndGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();
         Board.getInstance().setLives(SettingsGame.getLives());
-    }//GEN-LAST:event_resumeButtonActionPerformed
+    }//GEN-LAST:event_restartButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         System.exit(0);
@@ -209,6 +209,6 @@ public class EndGame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton quitButton;
-    private javax.swing.JButton resumeButton;
+    private javax.swing.JButton restartButton;
     // End of variables declaration//GEN-END:variables
 }

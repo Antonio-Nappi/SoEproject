@@ -112,7 +112,8 @@ public class GamePanel extends JPanel implements Observer {
             }
         }
     }
-   private class skip implements ActionListener {
+    
+    private class skip implements ActionListener {
        
         @Override
         public void actionPerformed(ActionEvent e) {
