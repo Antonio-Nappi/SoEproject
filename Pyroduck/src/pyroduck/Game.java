@@ -35,7 +35,6 @@ public class Game extends Canvas {
     protected static boolean reverse=false;
     protected static int rev = 0;
     protected static int lives;
-    protected static int points;
     protected static boolean pause=false;
     private Keyboard input;
     private final Board board;
@@ -60,7 +59,6 @@ public class Game extends Canvas {
         board.changeLevel(1);
         board.setScreen(screen);
         lives = board.getLives();
-        points = 0;
     }
     
     public static Game getInstance() throws PyroduckException{
@@ -73,7 +71,6 @@ public class Game extends Canvas {
         board.changeLevel(1);
         board.resetProperties();
         lives = SettingsGame.getLives();
-        points = 0;
     }
     
     private void renderGame() { //render will run the maximum times it can per second
@@ -137,8 +134,6 @@ public class Game extends Canvas {
         }
         if(lives != board.getLives())
             board.setLives(lives);
-        if(points != board.getPoints())
-            board.setPoints(points);
         if (!reverse)
             input.update();
         else 
@@ -201,10 +196,6 @@ public class Game extends Canvas {
         lives += i;
     }
     
-    public static void addPoints(int i){
-        points += i;
-    }
-    
     /*
     |--------------------------------------------------------------------------
     | Getters & Setters
@@ -228,10 +219,6 @@ public class Game extends Canvas {
 
     public int getSelected() {
         return selected;
-    }
-    
-    public static int getPoints() {
-        return points;
     }
 
     public void setSelected(int selected) {
@@ -259,7 +246,10 @@ public class Game extends Canvas {
         musicon=music;
         System.out.println(i);
         if(audio==null)
-            audio=AudioPlayer.getAudioPlayer("Level"+i+".wav");
+            if(Board.getInstance().getLevel() <= 0)
+               audio=AudioPlayer.getAudioPlayer("Level"+1+".wav"); 
+            else 
+                audio=AudioPlayer.getAudioPlayer("Level"+i+".wav");
         audio.pause();
         if(!music)
             audio.musicOff();
