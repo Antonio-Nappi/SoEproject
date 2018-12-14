@@ -191,6 +191,7 @@ public class EndGame extends javax.swing.JFrame {
             Logger.getLogger(EndGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         dispose();
+        Board.getInstance().setLives(SettingsGame.getLives());
     }//GEN-LAST:event_resumeButtonActionPerformed
 
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
