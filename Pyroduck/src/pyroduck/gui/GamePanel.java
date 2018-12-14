@@ -30,6 +30,7 @@ public class GamePanel extends JPanel implements Observer {
     private JLabel pointsLabel = new JLabel();
     private JLabel messageLabel = new JLabel();
     private JButton musicButton =new JButton();
+    private JButton skipDemo=new JButton();
     private JPanel panel = new JPanel();
     private Frame frame;
     private JFrame endGame;
@@ -61,11 +62,20 @@ public class GamePanel extends JPanel implements Observer {
             
             musicButton.setForeground(Color.white);
             musicButton.addActionListener(new setMusic());
+            skipDemo=new JButton("Skip Demo");
+            skipDemo.setForeground(Color.BLACK);
+            skipDemo.setVisible(false);
+            if(Board.getInstance().getLevel()<=0)
+                skipDemo.setVisible(true);
+            skipDemo.addActionListener(new skip());
+
+            
             panel.setBackground(Color.black);
             panel.add(livesLabel, 0);
             panel.add(messageLabel, 1);
             panel.add(pointsLabel, 2);
             panel.add(musicButton,3);
+            panel.add(skipDemo,4);
             Board.getInstance().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
         } catch (PyroduckException e) {
@@ -75,7 +85,7 @@ public class GamePanel extends JPanel implements Observer {
         setFocusable(true);
     }
     
-    class setMusic implements ActionListener {
+    private class setMusic implements ActionListener {
         boolean  music;
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -96,6 +106,16 @@ public class GamePanel extends JPanel implements Observer {
             } catch (PyroduckException ex) {
                 Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+}
+   private class skip implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+                Board.getInstance().changeLevel(1);
+           
+            skipDemo.setVisible(false);
+            
+          
         }
 }
 
