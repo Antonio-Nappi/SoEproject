@@ -25,6 +25,7 @@ public class PowerupWindow extends javax.swing.JFrame {
         lifeLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\live.png"));
         articunoLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\articuno.png"));
         brickLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\brick.png"));
+        slideLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\slide.png"));
         exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         Point middle = new Point(500, 100);
         setLocation(middle);
@@ -64,6 +65,9 @@ public class PowerupWindow extends javax.swing.JFrame {
         exitLabel = new javax.swing.JLabel();
         articunoLabel = new javax.swing.JLabel();
         brickLabel = new javax.swing.JLabel();
+        slideLabel = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTextArea9 = new javax.swing.JTextArea();
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -105,7 +109,7 @@ public class PowerupWindow extends javax.swing.JFrame {
         jTextArea7.setFocusable(false);
         jScrollPane8.setViewportView(jTextArea7);
 
-        jPanel1.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 137, 90));
+        jPanel1.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 370, 137, 90));
 
         jScrollPane6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -251,6 +255,27 @@ public class PowerupWindow extends javax.swing.JFrame {
         brickLabel.setPreferredSize(new java.awt.Dimension(90, 90));
         jPanel1.add(brickLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 90, 90));
 
+        slideLabel.setText("slide");
+        slideLabel.setMaximumSize(new java.awt.Dimension(90, 90));
+        slideLabel.setMinimumSize(new java.awt.Dimension(90, 90));
+        slideLabel.setPreferredSize(new java.awt.Dimension(90, 90));
+        jPanel1.add(slideLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 100, 90));
+
+        jScrollPane10.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane10.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        jTextArea9.setEditable(false);
+        jTextArea9.setBackground(new java.awt.Color(0, 153, 153));
+        jTextArea9.setColumns(20);
+        jTextArea9.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
+        jTextArea9.setRows(5);
+        jTextArea9.setText("It decreases the\nplayer speed.\nBut, it is hidden \nin the game.");
+        jTextArea9.setBorder(null);
+        jTextArea9.setFocusable(false);
+        jScrollPane10.setViewportView(jTextArea9);
+
+        jPanel1.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 137, 90));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 500));
 
         pack();
@@ -270,6 +295,7 @@ public class PowerupWindow extends javax.swing.JFrame {
     private javax.swing.JLabel inversionLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -284,7 +310,9 @@ public class PowerupWindow extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextArea jTextArea7;
     private javax.swing.JTextArea jTextArea8;
+    private javax.swing.JTextArea jTextArea9;
     private javax.swing.JLabel lifeLabel;
+    private javax.swing.JLabel slideLabel;
     private javax.swing.JLabel speedLabel;
     // End of variables declaration//GEN-END:variables
 }

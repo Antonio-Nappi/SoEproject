@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,8 +30,9 @@ public class GamePanel extends JPanel implements Observer {
     private JLabel livesLabel = new JLabel();
     private JLabel pointsLabel = new JLabel();
     private JLabel messageLabel = new JLabel();
+    private JLabel spaceLabel = new JLabel();
     private JButton musicButton =new JButton();
-    private JButton skipDemo=new JButton();
+    private JButton skipDemo = new JButton();
     private JPanel panel = new JPanel();
     private Frame frame;
     private JFrame endGame;
@@ -51,18 +53,20 @@ public class GamePanel extends JPanel implements Observer {
             pointsLabel = new JLabel("Points: " + Board.getInstance().getPoints());
             pointsLabel.setForeground(Color.WHITE);
             messageLabel = new JLabel("     Paused     ");
+            spaceLabel = new JLabel("                         ");
             Font font = new Font(Font.DIALOG, Font.BOLD, 24);
             messageLabel.setFont(font);
             messageLabel.setForeground(Color.black);
-            musicButton=new JButton(" ");
+            musicButton=new JButton("");
             if(music)
-            musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\sound_32.png"));
+                musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\sound_32.png"));
             else
                 musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\notsound_32.png"));
             
             musicButton.setForeground(Color.white);
-            musicButton.addActionListener(new setMusic());
-            skipDemo=new JButton("Skip Demo");
+            musicButton.addActionListener(new setMusic());            
+            skipDemo=new JButton("  Skip Demo  ");
+            skipDemo.setFont(font);
             skipDemo.setForeground(Color.BLACK);
             skipDemo.setVisible(false);
             if(Board.getInstance().getLevel()<=0)
@@ -74,8 +78,9 @@ public class GamePanel extends JPanel implements Observer {
             panel.add(livesLabel, 0);
             panel.add(messageLabel, 1);
             panel.add(pointsLabel, 2);
-            panel.add(musicButton,3);
-            panel.add(skipDemo,4);
+            panel.add(spaceLabel, 3);
+            panel.add(musicButton,4);
+            panel.add(skipDemo,5);
             Board.getInstance().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
         } catch (PyroduckException e) {
