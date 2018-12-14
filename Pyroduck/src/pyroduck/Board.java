@@ -196,7 +196,7 @@ public class Board extends Observable implements Observer {
             return bombs;
     }
 
-    public Bomb getBombAt(double x, double y) {
+    private Bomb getBombAt(double x, double y) {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
         while(bs.hasNext()) {
@@ -211,7 +211,7 @@ public class Board extends Observable implements Observer {
         return (Player) mobs.get(0);
     }
 
-    public Mob getMobAtExcluding(int x, int y, Mob a) {
+    private Mob getMobAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         Mob cur;
         while(itr.hasNext()) {
@@ -242,7 +242,7 @@ public class Board extends Observable implements Observer {
         return mobs1;
     }
 
-    public Explosion getExplosionAt(int x, int y) {
+    private Explosion getExplosionAt(int x, int y) {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
         while(bs.hasNext()) {
@@ -254,7 +254,7 @@ public class Board extends Observable implements Observer {
         return null;
     }
     
-    public Entity getEntityAt(double x, double y) {
+    private Entity getEntityAt(double x, double y) {
         return entities[(int)x + (int)y * FileLevel.WIDTH];
     }
 
@@ -295,14 +295,14 @@ public class Board extends Observable implements Observer {
     | Updates
     |--------------------------------------------------------------------------
     */
-    protected void updateMobs() {
+    private void updateMobs() {
         ListIterator<Mob> itr = mobs.listIterator(mobs.size());
         while(itr.hasPrevious()){
             itr.previous().update();
         }
     }
 
-    protected void updateEntities() {
+    private void updateEntities() {
         for (int i = 0; i < entities.length; i++)
             entities[i].update();
     }
@@ -331,7 +331,7 @@ public class Board extends Observable implements Observer {
     /**
      *
      */
-    protected void updateBombs() {
+    private void updateBombs() {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().update();
@@ -348,7 +348,7 @@ public class Board extends Observable implements Observer {
     /**
      *
      */
-    protected void renderBombs() {
+    private void renderBombs() {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().render(screen);
@@ -357,7 +357,6 @@ public class Board extends Observable implements Observer {
     public int getLives() {
         return this.lives;
     }
-
 
     public void setPoints(int points) {
         this.points += points;
@@ -371,7 +370,7 @@ public class Board extends Observable implements Observer {
      * @param y
      * @return
      */
-    public Mob getMobAt(double x, double y) {
+    private Mob getMobAt(double x, double y) {
         Iterator<Mob> itr = mobs.iterator();
         Mob cur;
         while(itr.hasNext()) {
@@ -383,11 +382,7 @@ public class Board extends Observable implements Observer {
     }
 
     private Keyboard getRightKeyboard() {
-        if(player == 1){
-            Keyboard.getInstance().setIce(false);
-            return Keyboard.getInstance();
-        }
-        if(world.equals("G")){
+        if(player == 1 || world.equals("G")){
             Keyboard.getInstance().setIce(false);
             return Keyboard.getInstance();
         }
@@ -419,7 +414,7 @@ public class Board extends Observable implements Observer {
                 setChanged();
                 notifyObservers();
             }
-            else {      //if is called by kill notify this to Game
+            else {
                 setChanged();
                 notifyObservers();
             }
@@ -466,8 +461,9 @@ public class Board extends Observable implements Observer {
     public void setScreen(Screen screen) {
         this.screen = screen;
     }
+    
     public static Board getInstance(){
-        if(instance==null){
+        if(instance == null){
             instance = new Board();
         }
         return instance;
