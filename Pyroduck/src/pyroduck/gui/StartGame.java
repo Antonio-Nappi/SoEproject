@@ -434,7 +434,7 @@ public class StartGame extends javax.swing.JFrame {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
             Board.getInstance().setPlayer(selected);
-            Board.getInstance().changeLevel(0);
+            Board.getInstance().changeLevel(-1);
             
             Pyroduck p = new Pyroduck();
             try {

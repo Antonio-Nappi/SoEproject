@@ -6,7 +6,6 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import pyroduck.Board;
 
 public class Frame extends JFrame {
     public GamePanel gamepane;

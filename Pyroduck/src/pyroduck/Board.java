@@ -36,6 +36,7 @@ public class Board extends Observable implements Observer {
     protected boolean pause=false;
     private static Board instance = null;
     private int FinalLives = lives;
+    private boolean demo = false;
 
     private Board() {
         con = new ContextDestroyable();
@@ -129,8 +130,12 @@ public class Board extends Observable implements Observer {
             try {
                 int combination = new Random(System.currentTimeMillis()).nextInt(2)+1;
                 String path ;
-                if(numlevel==0)
-                    path="./resources/levels/Demo.txt";
+                if(numlevel == -1){
+                    demo = true;
+                    path="./resources/levels/Demo1.txt";
+                }
+                else if(numlevel == 0)
+                    path="./resources/levels/Demo.txt";      
                 else
                     path= "./resources/levels/nextlevel/Level" + numlevel + " " + combination + ".txt";
                 BufferedReader in;
@@ -462,9 +467,23 @@ public class Board extends Observable implements Observer {
             }
             ((SuperPlayer)p).setGraphicalExtension((SuperPlayer) p);
         }
-        else {      //if is called by kill notify this to Game
-            setChanged();
-            notifyObservers();
+        else try {
+            System.out.println("pyroduck.Board.update()" +getLevel() + demo + Game.getInstance().getLives());
+            if(getLevel() == 0 && demo && Game.getInstance().getLives() == 2){
+                demo = false;
+                System.out.println("pyroduck.Board.update() compa posello dentro" + demo);
+                resetPoints();
+                points = 0;
+                Game.getInstance().restartGame();
+                setChanged();
+                notifyObservers();
+            }
+            else {      //if is called by kill notify this to Game
+                setChanged();
+                notifyObservers();
+            }
+        } catch (PyroduckException ex) {
+            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

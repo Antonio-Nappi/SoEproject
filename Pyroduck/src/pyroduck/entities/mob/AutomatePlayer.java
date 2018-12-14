@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.entities.mob;
 
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pyroduck.*;
 import pyroduck.bomb.Bomb;
+import pyroduck.exceptions.PyroduckException;
 import pyroduck.level.Coordinates;
 
 /**
@@ -59,7 +57,7 @@ public class AutomatePlayer extends Player{
             moveDown(2);
             wait(7);
             moveRight(2);
-            moveDown(1); //----
+            moveDown(1); 
             putBomb();
             moveUp(1);
             moveLeft(1);

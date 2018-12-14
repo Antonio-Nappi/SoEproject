@@ -230,10 +230,6 @@ public class Game extends Canvas {
         return selected;
     }
     
-    public static int getLives() {
-        return lives;
-    }
-    
     public static int getPoints() {
         return points;
     }
@@ -275,6 +271,15 @@ public class Game extends Canvas {
     public boolean getMusicOn(){
         return musicon;
     }
+    
+    public void setLives(int live){
+        lives = live; 
+    }
+    
+    public int getLives(){
+        return lives; 
+    }
+    
     private class ScheduleTask extends TimerTask{
         @Override
         public void run(){

@@ -1,0 +1,43 @@
+-1 G
+###############################
+#d       *   *       *        #
+# # # # # #*# #*#*# # # # # # #
+#      f*2*             *     #
+# # # #*# # #*# # # # # # #*# #
+#  b *2        *        *     #
+# # # #*# # # # # # # # # # # #
+#* w  *  *       *   *   *    #
+# # # #*# # # # # # # # # #*# #
+# *  *     *             *    #
+#*# # # # #*# # # # # # # # # #
+#  *  *       *   *  *        #
+###############################
+
+Meta data:
+(Number or Level) (Rows) (Columns)
+
+Info Tiles:
+# - Wall
+* - Brick
+
+Mobs:
+p - Player
+1 - Golbat
+2 - Machamp
+3 - Arbok
+
+1 - Snorunt
+2 - Glalie
+3 - Darkrai
+
+Powerups:
+b - Powerup Bombs
+f - Powerup Flames
+s - Powerup Speed
+o - Malus Decrease Speed
+m - Malus Reverse Keyboard
+l - Powerup Live
+z - Tile rompibile (iceland)
+
+
+
