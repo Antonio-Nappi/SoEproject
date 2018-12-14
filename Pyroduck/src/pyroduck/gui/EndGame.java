@@ -1,5 +1,6 @@
 package pyroduck.gui;
 
+import java.awt.Point;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,21 +27,23 @@ public class EndGame extends javax.swing.JFrame {
      */
     public EndGame() {
         initComponents();
+        setLocation(new Point(400, 100));
+        exitLabel.setIcon (new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         scores.charge();
         String s = JOptionPane.showInputDialog(rootPane, "Insert your name", "Save your score", JOptionPane.PLAIN_MESSAGE);
         if(s != null)    
             scores.addScore(new PointsSerialize(s));
-        DefaultTableModel model= new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel();
         jTable1.setModel(model);
         Object[] row = new Object[3];
-        Object[] column={"Names","Points","Lives"};
+        Object[] column = {"Names","Points","Lives"};
         model.setColumnIdentifiers(column);
         
-        list=scores.charge();
+        list = scores.charge();
         for(PointsSerialize p : list){
             row[0] = p.getName();
-            row[1]= p.getPoints();
-            row[2]= p.getLives();
+            row[1] = p.getPoints();
+            row[2] = p.getLives();
             
             model.addRow(row);
         }
@@ -58,14 +61,16 @@ public class EndGame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         resumeButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        exitLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Game Over");
         setMinimumSize(new java.awt.Dimension(550, 550));
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
@@ -74,30 +79,30 @@ public class EndGame extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(550, 550));
 
         resumeButton.setBackground(new java.awt.Color(255, 153, 0));
-        resumeButton.setFont(new java.awt.Font("Bradley Hand ITC", 3, 24)); // NOI18N
+        resumeButton.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
         resumeButton.setText("Restart game");
         resumeButton.setBorder(null);
         resumeButton.setBorderPainted(false);
-        resumeButton.setMaximumSize(new java.awt.Dimension(180, 90));
-        resumeButton.setMinimumSize(new java.awt.Dimension(180, 90));
-        resumeButton.setPreferredSize(new java.awt.Dimension(180, 90));
+        resumeButton.setMaximumSize(new java.awt.Dimension(170, 70));
+        resumeButton.setMinimumSize(new java.awt.Dimension(170, 70));
+        resumeButton.setPreferredSize(new java.awt.Dimension(170, 70));
         resumeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resumeButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 0));
-        jButton2.setFont(new java.awt.Font("Bradley Hand ITC", 3, 24)); // NOI18N
-        jButton2.setText("Quit");
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setMaximumSize(new java.awt.Dimension(180, 90));
-        jButton2.setMinimumSize(new java.awt.Dimension(180, 90));
-        jButton2.setPreferredSize(new java.awt.Dimension(180, 90));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        quitButton.setBackground(new java.awt.Color(255, 153, 0));
+        quitButton.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
+        quitButton.setText("Quit");
+        quitButton.setBorder(null);
+        quitButton.setBorderPainted(false);
+        quitButton.setMaximumSize(new java.awt.Dimension(170, 70));
+        quitButton.setMinimumSize(new java.awt.Dimension(170, 70));
+        quitButton.setPreferredSize(new java.awt.Dimension(170, 70));
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                quitButtonActionPerformed(evt);
             }
         });
 
@@ -118,39 +123,47 @@ public class EndGame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(resumeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jLabel1)
-                        .addGap(0, 108, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(resumeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1))
+                    .addComponent(exitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resumeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(quitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,35 +176,38 @@ public class EndGame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void resumeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resumeButtonActionPerformed
-        this.setVisible(false);
+        setVisible(false);
         try {
             Board.getInstance().resetPoints();
             Game.getInstance().resume();
         } catch (PyroduckException ex) {
             Logger.getLogger(EndGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_resumeButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_quitButtonActionPerformed
+
+    private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitLabelMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel exitLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton quitButton;
     private javax.swing.JButton resumeButton;
     // End of variables declaration//GEN-END:variables
 }

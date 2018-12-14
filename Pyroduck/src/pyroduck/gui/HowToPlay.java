@@ -4,7 +4,7 @@ import java.awt.Point;
 
 /**
  *
- * @author 
+ * @author Montefusco
  */
 public class HowToPlay extends javax.swing.JFrame {
 
@@ -13,8 +13,7 @@ public class HowToPlay extends javax.swing.JFrame {
      */
     public HowToPlay() {
         initComponents();
-        Point middle = new Point(600,200);
-        setLocation(middle);
+        setLocation(new Point(600,200));
         exitLabel.setIcon (new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         setVisible(true);  
     }

@@ -4,7 +4,7 @@ import java.awt.Point;
 
 /**
  *
- * @author Alex
+ * @author Montefusco
  */
 public class InfoWindow extends javax.swing.JFrame {
 

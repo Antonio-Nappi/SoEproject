@@ -18,7 +18,7 @@ import pyroduck.PointsSerialize;
 public class SettingsGame extends javax.swing.JFrame {
 
     private static boolean music = true;
-    private static int lives=3;
+    private static int lives = 3;
     private ListPointsSerialize scores = new ListPointsSerialize();
     private List<PointsSerialize> list;
 
@@ -27,16 +27,15 @@ public class SettingsGame extends javax.swing.JFrame {
      */
     public SettingsGame() {
         initComponents(); 
-        Point middle = new Point(600,200);
-        setLocation(middle);
+        setLocation(new Point(600,200));
    
         DefaultTableModel model= new DefaultTableModel();
         jTable1.setModel(model);
         Object[] row = new Object[3];
-        Object[] column={"Names","Points","Lives"};
+        Object[] column = {"Names","Points","Lives"};
         model.setColumnIdentifiers(column);
         
-        list=scores.charge();
+        list = scores.charge();
         for(PointsSerialize p : list){
             row[0] = p.getName();
             row[1]= p.getPoints();
@@ -46,10 +45,10 @@ public class SettingsGame extends javax.swing.JFrame {
         }
  
         if (music == true)
-                       musicCheckBox.setSelected(true);
-                   else
-                       musicCheckBox.setSelected(false);
-         this.setVisible(true);
+            musicCheckBox.setSelected(true);
+        else
+            musicCheckBox.setSelected(false);
+        setVisible(true);
     }
 
     /**
@@ -148,15 +147,11 @@ public class SettingsGame extends javax.swing.JFrame {
             music = false;
             StartGame.audio.pause();
         }
-        lives = getLive();
+        lives = (int) jSpinner1.getValue();
         setVisible(false);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
-    public  int getLive(){
-        return (int) jSpinner1.getValue();
-    }
-    
     public static int getLives(){
         return lives;
     }

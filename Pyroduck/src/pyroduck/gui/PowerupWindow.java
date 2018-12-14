@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.gui;
 
 import java.awt.Point;
 
 /**
  *
- * @author Alex
+ * @author Montefusco
  */
 public class PowerupWindow extends javax.swing.JFrame {
 

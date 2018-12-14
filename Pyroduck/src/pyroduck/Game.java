@@ -36,7 +36,7 @@ public class Game extends Canvas {
     private static Game instance = null;
     private Timer timer;
     private static AudioPlayer audio;
-    private static boolean musicon=SettingsGame.isMusic();
+    private static boolean musicon = SettingsGame.isMusic();
     //this will be used to render the game, each render is a calculated image saved here
     private final BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); 
