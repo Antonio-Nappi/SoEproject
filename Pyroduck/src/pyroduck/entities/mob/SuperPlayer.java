@@ -134,12 +134,11 @@ public class SuperPlayer extends Player{
             --timeAfter;
         else {
             if(bombs.isEmpty()) {
-                if(Board.getInstance().getLives() == 0){
-                    Board.getInstance().endGame();  
-                }else
+                if(Board.getInstance().getLives() != 0){
                     Board.getInstance().restartLevel();
             }
         }
+    }
     }
     @Override
     public void correctKeyboard(){

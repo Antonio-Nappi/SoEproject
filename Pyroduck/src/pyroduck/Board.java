@@ -1,6 +1,5 @@
 package pyroduck;
 
-import java.awt.Graphics;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
@@ -24,15 +23,13 @@ public class Board extends Observable implements Observer {
     private Screen screen;
     public Entity[] entities;
     public List<Mob> mobs = new ArrayList<>();
-    private int screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
     protected List<Bomb> bombs = new ArrayList<>();
     protected int lives=SettingsGame.getLives();
     private int points = 0;
     private String world = "";
     private int player;
-    private Player oldPlayer;
     private final ContextDestroyable con;
-    private List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
+    private final List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
     protected boolean pause=false;
     private static Board instance = null;
     private boolean demo = false;
@@ -58,8 +55,7 @@ public class Board extends Observable implements Observer {
         }
     }
 
-    public void render(Screen screen) {
-        //only render the visible part of screen
+    public void render() {
         int x0 = Screen.xOffset >> 5; //tile precision, -> left X
         int x1 = (Screen.xOffset + screen.getWidth() + Game.TILES_SIZE) / Game.TILES_SIZE; // -> right X
         int y0 = Screen.yOffset >> 5;
@@ -69,8 +65,8 @@ public class Board extends Observable implements Observer {
                 entities[x + y * FileLevel.WIDTH].render(screen);
             }
         }
-        renderBombs(screen);
-        renderMobs(screen);
+        renderBombs();
+        renderMobs();
     }
 
     /*
@@ -79,7 +75,6 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
     */
 
-    @SuppressWarnings("static-access")
     public void resetProperties() {
         if(this.getPlayerRight() == 0){
             Game.playerSpeed = 1.3;
@@ -91,7 +86,7 @@ public class Board extends Observable implements Observer {
             Game.bombRadius = 1;
             Game.bombRate = 1;
         }
-        Game.reverse=false;
+        Game.reverse = false;
     }
 
     public void setLives(int lives) {
@@ -128,7 +123,6 @@ public class Board extends Observable implements Observer {
     }
 
     public void changeLevel(int numlevel) { // Livello 1-2: mondo 1; Livello 3-4: mondo 2
-        screenToShow = 2;
         mobs = new ArrayList<>();
         bombs = new ArrayList<>();
         if(numlevel<5){
@@ -170,26 +164,11 @@ public class Board extends Observable implements Observer {
 
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Detections
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Return a boolean that say if there is enemies alive in the map or not.
      * @return true if there is not enemies alive in the map, false otherwise.
      */
-    /*
-    public boolean detectNoEnemies() {
-        int total = 0;
-        for (int i = 0; i < mobs.size(); i++) {
-            if(!mobs.get(i).isPlayer())
-                ++total;
-        }
-        return total == 0;
-    }
-*/
+
     public boolean detectNoEnemies() {
         return mobs.size() == 1;
     }
@@ -274,6 +253,7 @@ public class Board extends Observable implements Observer {
         }
         return null;
     }
+    
     public Entity getEntityAt(double x, double y) {
         return entities[(int)x + (int)y * FileLevel.WIDTH];
     }
@@ -283,11 +263,6 @@ public class Board extends Observable implements Observer {
     | Adds and Removes
     |--------------------------------------------------------------------------
      */
-
-
-    public void addEntitie(int pos, Entity e) {
-		entities[pos] = e;
-	}
 
     /**
      *
@@ -308,12 +283,8 @@ public class Board extends Observable implements Observer {
     | Renders
     |--------------------------------------------------------------------------
     */
-    protected void renderEntities(Screen screen) {
-        for (int i = 0; i < entities.length; i++)
-            entities[i].render(screen);
-    }
 
-    protected void renderMobs(Screen screen) {
+    protected void renderMobs() {
         Iterator<Mob> itr = mobs.iterator();
         while(itr.hasNext())
             itr.next().render(screen);
@@ -334,32 +305,6 @@ public class Board extends Observable implements Observer {
     protected void updateEntities() {
         for (int i = 0; i < entities.length; i++)
             entities[i].update();
-    }
-
-    /**
-     *
-     */
-    public void endGame() {
-        screenToShow = 1;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Screens
-    |--------------------------------------------------------------------------
-     */
-    public void drawScreen(Graphics g) {
-        switch (screenToShow) {
-            case 1:
-                //screen.drawEndGame(g, points, level.getActualCode());
-                break;
-            case 2:
-                screen.drawChangeLevel(g, level.getLevel());
-                break;
-            case 3:
-                //screen.drawPaused(g);
-                break;
-        }
     }
 
     /*
@@ -402,9 +347,8 @@ public class Board extends Observable implements Observer {
 
     /**
      *
-     * @param screen
      */
-    protected void renderBombs(Screen screen) {
+    protected void renderBombs() {
         Iterator<Bomb> itr = bombs.iterator();
         while(itr.hasNext())
             itr.next().render(screen);
@@ -420,8 +364,6 @@ public class Board extends Observable implements Observer {
         setChanged();
         notifyObservers();
     }
-
-
 
     /**
      *
@@ -440,8 +382,6 @@ public class Board extends Observable implements Observer {
         return null;
     }
 
-
-
     private Keyboard getRightKeyboard() {
         if(player == 1){
             Keyboard.getInstance().setIce(false);
@@ -457,18 +397,16 @@ public class Board extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
         Player pl = (Player)o;
         if(pl.isAlive()){
             Player p = getPlayer();
             p = new SuperPlayer(p);
-            this.oldPlayer = (Player) mobs.set(0, p);   //player is the first element of the list mobs
+            mobs.set(0, p);   //player is the first element of the list mobs
             for(int i=1; i<mobs.size(); i++){
                 EnemyPower enemyPower = ((Enemy)mobs.get(i)).getEp();
                 if(enemyPower.isPlayerReferenceUpdatable()){
                     enemyPower.updateReferencePlayer(p);
                 }
-
             }
             ((SuperPlayer)p).setGraphicalExtension((SuperPlayer) p);
         }

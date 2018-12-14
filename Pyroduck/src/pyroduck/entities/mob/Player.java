@@ -401,15 +401,12 @@ public class Player extends Mob{
             --timeAfter;
         else {
             if(bombs.isEmpty()) {
-                if(Board.getInstance().getLives() == 0){
-                    Board.getInstance().endGame();
-                }else{
+                if(Board.getInstance().getLives() != 0){
                     Board.getInstance().restartLevel();
                 }  
             }
         }
-        Board.getInstance().resetProperties();
-        
+        Board.getInstance().resetProperties();      
     }
 
     protected void updateTimerBreaker(){

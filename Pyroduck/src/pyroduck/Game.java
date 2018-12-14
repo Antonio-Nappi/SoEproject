@@ -83,7 +83,7 @@ public class Game extends Canvas {
             return;
         }
         screen.clear();
-        board.render(screen);
+        board.render();
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length); //create the image to be rendered
         Graphics g = bs.getDrawGraphics();
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
@@ -99,7 +99,7 @@ public class Game extends Canvas {
         }
         screen.clear();
         Graphics g = bs.getDrawGraphics();
-        board.drawScreen(g);
+        screen.drawChangeLevel(g, board.getLevel());
         g.dispose();
         bs.show();
     }
