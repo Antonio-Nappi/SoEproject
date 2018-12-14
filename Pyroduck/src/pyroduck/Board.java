@@ -35,8 +35,8 @@ public class Board extends Observable implements Observer {
     private List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
     protected boolean pause=false;
     private static Board instance = null;
-    private int FinalLives = lives;
     private boolean demo = false;
+    private int rightLives = 0;
 
     private Board() {
         con = new ContextDestroyable();
@@ -107,7 +107,12 @@ public class Board extends Observable implements Observer {
     public void nextLevel() throws IOException {
         int i = level.getLevel()+1;
         if(i>=5){
-            FinalLives = getLives();
+            try {
+                lives = Game.getInstance().getLives();
+            } catch (PyroduckException ex) {
+                Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            rightLives = getLives();
             setLives(0);
         }
 	changeLevel(i);
@@ -535,8 +540,8 @@ public class Board extends Observable implements Observer {
     public void resetPoints() {
         points = 0;
     }
-
-    public int getFinalLives(){
-        return FinalLives;
+    
+    public int getRightLives(){
+        return rightLives;
     }
 }

@@ -30,7 +30,6 @@ public class EndGame extends javax.swing.JFrame {
         String s = JOptionPane.showInputDialog(rootPane, "Insert your name", "Save your score", JOptionPane.PLAIN_MESSAGE);
         if(s != null)    
             scores.addScore(new PointsSerialize(s));
-       
         DefaultTableModel model= new DefaultTableModel();
         jTable1.setModel(model);
         Object[] row = new Object[3];
