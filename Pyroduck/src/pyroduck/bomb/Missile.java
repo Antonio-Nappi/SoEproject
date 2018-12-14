@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.ListIterator;
 import pyroduck.Board;
 import pyroduck.Game;
-import pyroduck.bomb.*;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
-
 import pyroduck.graphics.*;
 import pyroduck.level.FileLevel;
 
@@ -18,16 +16,16 @@ import pyroduck.level.FileLevel;
  * @author 
  */
 public class Missile extends Bomb{
-
-    private final double MISSILE_SPEED = 0.15;
+    
+    private final double MISSILE_SPEED = 2.5;
     private final int direction;
     private int range;
 
     public Missile(int x, int y,int direction) {
-        super(x, y);
+        super(x,y);
         this.direction = direction;
         sprite = Sprite.missle;
-        range = 30;
+        range = 50;
     }
 
     @Override
@@ -44,11 +42,8 @@ public class Missile extends Bomb{
 
     @Override
     public void render(Screen screen) {
-        if(!exploded){
-            int xt = (int)x * Game.TILES_SIZE;
-            int yt = (int)y * Game.TILES_SIZE;
-            screen.renderEntity(xt, yt , this);
-        }
+        if(!exploded)
+            screen.renderEntity((int)x, (int)y-32 , this);
     }
 
     @Override
@@ -72,7 +67,7 @@ public class Missile extends Bomb{
                x0 -= MISSILE_SPEED;
                break;
         }
-        Entity e = Board.getInstance().entities[((int)x0 + (int)y0 * FileLevel.WIDTH)];
+        Entity e = Board.getInstance().entities[((int)x0/32 + (int)y0/32 * FileLevel.WIDTH)];
         if(!e.collide(this)){
             x = x0;
             y = y0;
@@ -83,7 +78,7 @@ public class Missile extends Bomb{
         ListIterator li = mobs1.listIterator(1);
         while(li.hasNext()){
             Enemy m = (Enemy) li.next();  
-            if(abs(m.getX()-x*32) < 32 && abs(m.getY()-y*32) < 33){
+            if(abs(m.getX()-x) < 32 && abs(m.getY()-y) < 32){
                 if(m.isAlive())
                     m.kill();
             }      
