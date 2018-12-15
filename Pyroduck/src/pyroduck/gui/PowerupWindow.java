@@ -114,12 +114,12 @@ public class PowerupWindow extends javax.swing.JFrame {
         jTextArea5.setColumns(20);
         jTextArea5.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
         jTextArea5.setRows(5);
-        jTextArea5.setText("It allows the \nplayer to become \na SuperPlayer.");
+        jTextArea5.setText("It allows the \nplayer to become \na SuperPlayer and \nit lasts 10 \nseconds. ");
         jTextArea5.setBorder(null);
         jTextArea5.setFocusable(false);
         jScrollPane6.setViewportView(jTextArea5);
 
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 137, 90));
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 137, 110));
 
         jScrollPane9.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane9.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);

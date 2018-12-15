@@ -130,7 +130,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="430" y="150" width="137" height="90"/>
+              <AbsoluteConstraints x="430" y="140" width="137" height="110"/>
             </Constraint>
           </Constraints>
 
@@ -147,7 +147,7 @@
                   <Font name="Comic Sans MS" size="15" style="1"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="It allows the &#xa;player to become &#xa;a SuperPlayer."/>
+                <Property name="text" type="java.lang.String" value="It allows the &#xa;player to become &#xa;a SuperPlayer and &#xa;it lasts 10 &#xa;seconds. "/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
