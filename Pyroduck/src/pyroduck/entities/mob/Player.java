@@ -387,13 +387,22 @@ public class Player extends Mob {
      */
     @Override
     public void kill() {
-        if (!alive) {
-            return;
+        if(!this.isSuperPlayer()){
+            if (!alive) {
+                return;
+            }
+            alive = false;
+            Board.getInstance().changeLives(-1);
+            setChanged();
+            notifyObservers();
+        }else{
+            if (!alive) {
+                return;
+            }
+            alive = false;
+            setChanged();
+            notifyObservers();
         }
-        alive = false;
-        Board.getInstance().changeLives(-1);
-        setChanged();
-        notifyObservers();
     }
 
     /**

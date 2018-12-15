@@ -124,19 +124,6 @@ public class SuperPlayer extends Player {
     }
 
     @Override
-    protected void afterKill() {          //AGGIUNGERE PERDITA VEICOLO, QUINDI RESTART LEVEL SENZA POWERUP
-        if (timeAfterDeath > 0) {
-            --timeAfterDeath;
-        } else {
-            if (bombs.isEmpty()) {
-                if (Board.getInstance().getLives() != 0) {
-                    Board.getInstance().restartLevel();
-                }
-            }
-        }
-    }
-
-    @Override
     protected void correctKeyboard() {
         Board.getInstance().setInput();
         input = Board.getInstance().getInput();
