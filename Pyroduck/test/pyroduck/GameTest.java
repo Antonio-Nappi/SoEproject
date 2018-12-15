@@ -1,16 +1,12 @@
 package pyroduck;
 
-import java.io.IOException;
 import java.util.Timer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.exceptions.PyroduckException;
 import pyroduck.input.Keyboard;
 
 /**
@@ -33,7 +29,7 @@ public class GameTest {
     }
     
     @Before
-    public void setUp() throws PyroduckException {
+    public void setUp() {
         board = Board.getInstance();
         game = Game.getInstance();
     }
@@ -46,7 +42,7 @@ public class GameTest {
      * Test of getInstance method, of class Game.
      */
     @Test
-    public void testGetInstance() throws Exception {
+    public void testGetInstance() {
         System.out.println("getInstance");
         Game result = Game.getInstance();
         assertSame(game, result);
@@ -58,10 +54,10 @@ public class GameTest {
     @Test
     public void testAddBombRate() {
         System.out.println("addBombRate");
-        Game.addBombRate(0);
-        assertEquals(Game.bombRate, 1);
-        Game.addBombRate(1);
-        assertEquals(Game.bombRate, 2);
+        Game.getInstance().addBombRate(0);
+        assertEquals(Game.getInstance().bombRate, 1);
+        Game.getInstance().addBombRate(1);
+        assertEquals(Game.getInstance().bombRate, 2);
     }
 
     /**
@@ -70,10 +66,10 @@ public class GameTest {
     @Test
     public void testAddBombRadius() {
         System.out.println("addBombRadius");
-        Game.addBombRadius(0);
-        assertEquals(Game.bombRadius, 1);
-        Game.addBombRadius(1);
-        assertEquals(Game.bombRadius, 2);
+        Game.getInstance().addBombRadius(0);
+        assertEquals(Game.getInstance().bombRadius, 1);
+        Game.getInstance().addBombRadius(1);
+        assertEquals(Game.getInstance().bombRadius, 2);
     }
 
     /**
@@ -82,10 +78,10 @@ public class GameTest {
     @Test
     public void testAddPlayerSpeed() {
         System.out.println("addPlayerSpeed");
-        Game.addPlayerSpeed(0);
-        assertEquals(Game.playerSpeed, 1.3,0);
-        Game.addPlayerSpeed(1.0);
-        assertEquals(Game.playerSpeed, 2.3,0);
+        Game.getInstance().addPlayerSpeed(0);
+        assertEquals(Game.getInstance().playerSpeed, 1.3,0);
+        Game.getInstance().addPlayerSpeed(1.0);
+        assertEquals(Game.getInstance().playerSpeed, 2.3,0);
     }
 
     /**
@@ -94,8 +90,8 @@ public class GameTest {
     @Test
     public void testDecreasePlayerSpeed() {
         System.out.println("decreasePlayerSpeed");
-        Game.decreasePlayerSpeed(0.5);
-        assertEquals(Game.playerSpeed, 0.8,0);
+        Game.getInstance().decreasePlayerSpeed(0.5);
+        assertEquals(Game.getInstance().playerSpeed, 0.8,0);
     }
 
     /**
@@ -105,7 +101,7 @@ public class GameTest {
     public void testGetPlayerSpeed() {
         System.out.println("getPlayerSpeed");
         double expResult = 1;
-        double result = Game.getPlayerSpeed();
+        double result = Game.getInstance().getPlayerSpeed();
         assertEquals(expResult, result, 0.0);
     }
 
@@ -116,7 +112,7 @@ public class GameTest {
     public void testGetBombRate() {
         System.out.println("getBombRate");
         int expResult = 1;
-        int result = Game.getBombRate();
+        int result = Game.getInstance().getBombRate();
         assertEquals(expResult, result);
     }
 
@@ -127,7 +123,7 @@ public class GameTest {
     public void testGetBombRadius() {
         System.out.println("getBombRadius");
         int expResult = 1;
-        int result = Game.getBombRadius();
+        int result = Game.getInstance().getBombRadius();
         assertEquals(expResult, result);
     }
     
@@ -138,15 +134,7 @@ public class GameTest {
     public void testSetSelected() {
         int selected = 1;
         game.setSelected(selected);
-        assertEquals(selected, Game.playerSpeed, 0);
-    }
-    
-    /**
-     * Test of getLives method, of class Game.
-     */
-    @Test
-    public void testGetLives() {
-        assertEquals(Game.getLives(), 3.0, 0); 
+        assertEquals(selected, Game.getInstance().playerSpeed, 0);
     }
     
     /**
@@ -158,21 +146,11 @@ public class GameTest {
     }
     
     /**
-     * Test of addLives method, of class Game.
-     */
-    @Test
-    public void testAddLives() {
-        assertEquals(Game.getLives(), 3.0, 0);
-        Game.addLives(-1);
-        assertEquals(Game.getLives(), 2.0, 0);
-    }
-    
-    /**
      * Test of reverseInput method, of class Game.
      */
     @Test
     public void testReverseInput() {
-        assertFalse(Game.reverse);
+        assertFalse(Game.getInstance().reverse);
         game.reverseInput(true);
         assertTrue(game.reverse);
     }
@@ -183,14 +161,5 @@ public class GameTest {
     public void testStart() {
         game.start();
         assertSame(game.getInput(), Keyboard.getInstance());
-    }
-          /**
-     * Test of resume method, of class Game.
-     */
-    @Test
-    public void testResume() {
-        Timer t1 = game.getTimer();
-        game.resume();
-        assertNotSame(t1, game.getTimer());
     }
 }

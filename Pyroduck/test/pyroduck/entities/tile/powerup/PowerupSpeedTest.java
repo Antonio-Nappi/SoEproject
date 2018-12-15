@@ -65,8 +65,8 @@ public class PowerupSpeedTest {
     public void testSetValues() {
         System.out.println("setValues");
         PowerupSpeed instance = new PowerupSpeed(1, 1, Sprite.brick);
-        assertEquals(2, Game.getPlayerSpeed(), 0);
+        assertEquals(2, Game.getInstance().getPlayerSpeed(), 0);
         instance.setValues();
-        assertEquals(2.7, Game.getPlayerSpeed(), 0);
+        assertEquals(2.7, Game.getInstance().getPlayerSpeed(), 0);
     }   
 }

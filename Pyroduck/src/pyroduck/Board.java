@@ -191,7 +191,7 @@ public class Board extends Observable implements Observer {
         return bombs;
     }
 
-    private Bomb getBombAt(double x, double y) {
+    protected Bomb getBombAt(double x, double y) {
         Iterator<Bomb> bs = bombs.iterator();
         Bomb b;
         while (bs.hasNext()) {
@@ -251,7 +251,7 @@ public class Board extends Observable implements Observer {
         return null;
     }
 
-    private Entity getEntityAt(double x, double y) {
+    protected Entity getEntityAt(double x, double y) {
         return entities[(int) x + (int) y * FileLevel.WIDTH];
     }
 

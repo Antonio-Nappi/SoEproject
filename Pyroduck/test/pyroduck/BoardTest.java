@@ -1,7 +1,6 @@
 package pyroduck;
 
 import java.io.IOException;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -57,31 +56,6 @@ public class BoardTest {
         board.update();
         assertTrue(board.bombs.isEmpty());
     }
-
-    /**
-     * Test of newGame method, of class Board.
-     */
-    @Test
-    public void testNewGame() {
-        Game.addBombRadius(1);
-        Game.addBombRate(1);
-        Game.addPlayerSpeed(1);
-        board.addMob(new Player(32, 32));
-        assertTrue(board.mobs.get(0) instanceof Player);
-        board.addBomb(new Bomb(32, 32));
-        board.addBomb(new Bomb(64, 32));
-        board.addBomb(new Bomb(32, 64));
-        assertEquals(board.bombs.size(), 3);
-        try {
-            board.newGame();
-        } catch (IOException ex) {
-            Logger.getLogger(BoardTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        assertEquals(1, Game.bombRadius);
-        assertEquals(1, Game.bombRate);
-        assertEquals(1.3, Game.playerSpeed, 0);
-        assertTrue(board.bombs.isEmpty());
-    }
     
     @Test
     /**
@@ -134,8 +108,6 @@ public class BoardTest {
         Arbok enemy = new Arbok(32, 97);
         board.addMob(enemy);
         assertTrue(board.getMobAt(1, 2) instanceof Mob);
-        WallTile wt = new WallTile(0, 0, Sprite.brick);
-        board.addEntitie(0, wt);
         assertFalse(board.entities[0] instanceof Mob);
         assertFalse(board.entities[0] instanceof Bomb);
         assertTrue(board.entities[0] instanceof Entity);

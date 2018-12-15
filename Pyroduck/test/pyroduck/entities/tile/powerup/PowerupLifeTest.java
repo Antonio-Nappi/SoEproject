@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.Game;
+import pyroduck.Board;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
@@ -65,8 +65,8 @@ public class PowerupLifeTest {
     public void testSetValues() {
         System.out.println("setValues");
         PowerupLife instance = new PowerupLife(1, 1, Sprite.brick);
-        assertEquals(2, Game.getLives(), 0);
+        assertEquals(2, Board.getInstance().getLives(), 0);
         instance.setValues();
-        assertEquals(3, Game.getLives(), 0);
+        assertEquals(3, Board.getInstance().getLives(), 0);
     } 
 }

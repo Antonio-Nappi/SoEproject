@@ -25,7 +25,7 @@ public class GrassFileLevel extends FileLevel{
 
     @Override
     public BrickTile createBrick(int x, int y) {
-       return new BrickTile(x ,y, Sprite.brick);//To change body of generated methods, choose Tools | Templates.
+       return new BrickTile(x ,y, Sprite.brick);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class GrassFileLevel extends FileLevel{
 
     @Override
     public Mob createSecondEnemy(int x, int y,int choose) {
-        if(choose==2)
+        if(choose == 2)
             return new Machamp(x, y);
         return new Arbok(x, y);
     }

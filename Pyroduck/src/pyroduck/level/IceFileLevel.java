@@ -40,7 +40,7 @@ public class IceFileLevel extends FileLevel{
 
     @Override
     public Mob createSecondEnemy(int x, int y, int choose) {
-    if(choose==2)
+    if(choose == 2)
         return new Glalie(x, y);
     return new Darkrai(x, y);
     }

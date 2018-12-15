@@ -168,7 +168,7 @@ public class PlayerTest {
         System.out.println("addPowerup");
         Powerup p = new PowerupBombs(1, 1, Sprite.powerup_bombs);
         player.addPowerup(p);
-        assertEquals(Game.getBombRate(), 2);
+        assertEquals(Game.getInstance().getBombRate(), 2);
     }   
     
     /**
@@ -191,7 +191,7 @@ public class PlayerTest {
         assertEquals(3.0, Board.getInstance().getLives(),0);
         player.kill();
         assertFalse(player.alive);
-        assertEquals(2.0, Game.getLives(),0);
+        assertEquals(2.0, Board.getInstance().getLives(),0);
     }
             
     /**

@@ -65,8 +65,8 @@ public class PowerupFlamesTest {
     public void testSetValues() {
         System.out.println("setValues");
         PowerupFlames instance = new PowerupFlames(1, 1, Sprite.brick);
-        assertEquals(2, Game.getBombRadius(), 0);
+        assertEquals(2, Game.getInstance().getBombRadius(), 0);
         instance.setValues();
-        assertEquals(3, Game.getBombRadius(), 0);
+        assertEquals(3, Game.getInstance().getBombRadius(), 0);
     }   
 }

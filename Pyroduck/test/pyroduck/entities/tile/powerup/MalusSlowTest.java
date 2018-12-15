@@ -65,8 +65,8 @@ public class MalusSlowTest {
     public void testSetValues() {
         System.out.println("setValues");
         MalusSlow instance = new MalusSlow(1, 1, Sprite.brick);
-        assertEquals(0.9, Game.getPlayerSpeed(), 0);
+        assertEquals(0.9, Game.getInstance().getPlayerSpeed(), 0);
         instance.setValues();
-        assertEquals(0.9, Game.getPlayerSpeed(), 0);
+        assertEquals(0.9, Game.getInstance().getPlayerSpeed(), 0);
     }
 }
