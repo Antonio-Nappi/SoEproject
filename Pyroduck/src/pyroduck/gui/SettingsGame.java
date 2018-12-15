@@ -44,6 +44,8 @@ public class SettingsGame extends javax.swing.JFrame {
             musicCheckBox.setSelected(true);
         else
             musicCheckBox.setSelected(false);
+        jSpinner1.setValue(getLives());
+        exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         setVisible(true);
     }
 
@@ -64,6 +66,7 @@ public class SettingsGame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         saveButton = new javax.swing.JButton();
+        exitLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 400));
@@ -125,6 +128,13 @@ public class SettingsGame extends javax.swing.JFrame {
         });
         jPanel1.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 140, 50));
 
+        exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitLabelMouseClicked(evt);
+            }
+        });
+        jPanel1.add(exitLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 40, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 410));
 
         pack();
@@ -148,6 +158,10 @@ public class SettingsGame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
+        dispose();
+    }//GEN-LAST:event_exitLabelMouseClicked
+
     public static int getLives(){
         return lives;
     }
@@ -157,6 +171,7 @@ public class SettingsGame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel exitLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
