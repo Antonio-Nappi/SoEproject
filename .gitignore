@@ -2,3 +2,5 @@
 /Pyroduck/build/
 /Pyroduck/dist/
 /Pyroduck/punteggi.dat
+*.dat
+Pyroduck/punteggi.dat
