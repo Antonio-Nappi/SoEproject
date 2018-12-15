@@ -1,7 +1,6 @@
 package pyroduck.entities.mob;
 
 import java.util.*;
-import java.util.logging.*;
 import pyroduck.*;
 import pyroduck.bomb.*;
 import pyroduck.entities.Entity;
@@ -60,19 +59,19 @@ public class Player extends Mob {
             correctKeyboard();
             done = true;
         }
-        if (alive == false) {
-            afterKill();
-            return;
-        }
-        if (timeBetweenPutBombs < -7500) {
-            timeBetweenPutBombs = 0;
+        if (alive) {
+            if (timeBetweenPutBombs < -7500) {
+                timeBetweenPutBombs = 0;
+            } else {
+                --timeBetweenPutBombs;
+            }
+            animate();
+            calculateMove();
+            detectPlaceBomb();
+            updateTimerBreaker();
         } else {
-            --timeBetweenPutBombs;
+            afterKill();
         }
-        animate();
-        calculateMove();
-        detectPlaceBomb();
-        updateTimerBreaker();
     }
 
     /**
@@ -147,7 +146,7 @@ public class Player extends Mob {
             Entity a = Board.getInstance().getEntity(xt, yt, this);
             DestroyableIceTile newState;
             ContextDestroyable con = Board.getInstance().getContextState();
-            if (a.isTile() && (((Tile) a).isDestroyableIceTile())) { //new features here!!!- - - - - - - - - - - -
+            if (a.isTile() && (((Tile) a).isDestroyableIceTile())) { 
                 con.setState((DestroyableIceTile) a);
                 if (((DestroyableIceTile) a).getTimerBreak() <= 0) { // differences to see if the player has moved out of the bomb, tested values
                     ((DestroyableIceTile) a).setTimerBreak(80);
@@ -169,7 +168,7 @@ public class Player extends Mob {
      * @param ya
      */
     @Override
-    public void move(double xa, double ya) {
+    protected void move(double xa, double ya) {
         if (xa > 0) {
             direction = 1;
         }
@@ -330,7 +329,7 @@ public class Player extends Mob {
      */
     protected void placeBomb(int x, int y) {
         Bomb b = new Bomb(x, y);
-        Board.getInstance().addBomb(b);
+        bombs.add(b);
     }
 
     /**
@@ -342,10 +341,8 @@ public class Player extends Mob {
         while (bs.hasNext()) {
             b = (Bomb) bs.next();
             if (b.isRemoved()) {
-
                 bs.remove();
                 Game.getInstance().addBombRate(1);
-
             }
         }
     }
@@ -353,7 +350,7 @@ public class Player extends Mob {
     /**
      *
      */
-    public void correctKeyboard() {
+    protected void correctKeyboard() {
         if (Board.getInstance().getPlayerRight() == 1) {
             Board.getInstance().setInput();
             input = Board.getInstance().getInput();
@@ -404,8 +401,8 @@ public class Player extends Mob {
      */
     @Override
     protected void afterKill() {
-        if (timeAfter > 0) {
-            --timeAfter;
+        if (timeAfterDeath > 0) {
+            --timeAfterDeath;
         } else {
             if (bombs.isEmpty()) {
                 if (Board.getInstance().getLives() != 0) {

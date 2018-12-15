@@ -88,10 +88,10 @@ public class DarkraiTest {
     @Test
     public void testAfterKill() {
         System.out.println("afterKill");
-        assertEquals(20, instance.timeAfter, 0);
+        assertEquals(20, instance.timeAfterDeath, 0);
         for(int i = 0; i<20; i++)
             instance.afterKill();
-        assertEquals(0, instance.timeAfter, 0);
+        assertEquals(0, instance.timeAfterDeath, 0);
         assertEquals(30, instance.finalAnimation, 0);
         for(int i = 0; i<30; i++)
             instance.afterKill();

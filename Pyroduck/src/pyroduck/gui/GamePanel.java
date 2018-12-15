@@ -17,15 +17,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import org.netbeans.lib.awtextra.AbsoluteLayout;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.input.*;
 
 public class GamePanel extends JPanel implements Observer {
-    private Game game;
+    private final Game game;
     private JLabel livesLabel = new JLabel();
     private JLabel pointsLabel = new JLabel();
     private JLabel messageLabel = new JLabel();

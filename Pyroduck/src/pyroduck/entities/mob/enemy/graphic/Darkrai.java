@@ -5,54 +5,62 @@ import pyroduck.entities.mob.enemy.MediumPower;
 import pyroduck.graphics.Sprite;
 
 /**
- * Implements the behavior, select the image and manage the animation of this enemy.
+ * Implements the behavior, select the image and manage the animation of this
+ * enemy.
+ *
  * @author Bini, Petruzzello
  */
-public class Darkrai extends Enemy{
-    
-    public int realWidth = 28, realHeight = 28;
+public class Darkrai extends Enemy {
+
     /**
      * Creates an instance of <b>Darkrai</b> enemy.
+     *
      * @param x horizontal coordinate in pixels.
-     * @param y vertical coordinate in pixels. 
+     * @param y vertical coordinate in pixels.
      */
-    public Darkrai(int x, int y){
+    public Darkrai(int x, int y) {
         super(x, y, Sprite.darkrai_dead, 1.2, 300);
-        sprite = Sprite.darkrai_left1;	
+        sprite = Sprite.darkrai_left1;
         ep = new MediumPower(Board.getInstance().getPlayer(), this);
+        realWidth = 28;
+        realHeight = 28;
         direction = ep.calculateDirection();
     }
-    
+
     /**
      * Chooses the sprite to show on the screen.
      */
     @Override
     protected void chooseSprite() {
-        switch(direction) {
+        switch (direction) {
             case 0:
-                if(moving)
+                if (moving) {
                     sprite = Sprite.movingSprite(Sprite.darkrai_up1, Sprite.darkrai_up2, Sprite.darkrai_up3, animate, 60);
-                else 
+                } else {
                     sprite = Sprite.darkrai_down1;
+                }
                 break;
             case 1:
-                if(moving)
+                if (moving) {
                     sprite = Sprite.movingSprite(Sprite.darkrai_right1, Sprite.darkrai_right2, Sprite.darkrai_right3, animate, 60);
-                else 
+                } else {
                     sprite = Sprite.darkrai_down1;
+                }
                 break;
             case 2:
-                if(moving)
+                if (moving) {
                     sprite = Sprite.movingSprite(Sprite.darkrai_down1, Sprite.darkrai_down2, Sprite.darkrai_down3, animate, 60);
-                else 
+                } else {
                     sprite = Sprite.darkrai_down1;
+                }
                 break;
             case 3:
-                if(moving)
+                if (moving) {
                     sprite = Sprite.movingSprite(Sprite.darkrai_left1, Sprite.darkrai_left2, Sprite.darkrai_left3, animate, 60);
-                else 
+                } else {
                     sprite = Sprite.darkrai_down1;
+                }
                 break;
-        }    
-    }  
+        }
+    }
 }

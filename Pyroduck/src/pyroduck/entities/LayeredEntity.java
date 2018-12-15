@@ -73,7 +73,6 @@ public class LayeredEntity extends Entity {
 	entities.add(entities.size() - 1, e);
     }
     
-
     /**
      * Checks if the top entity collides with the one passed as a parameter.
      * @param e is the entity with which is checked the collision.

@@ -2,14 +2,9 @@ package pyroduck.gui;
 
 import java.awt.Point;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import pyroduck.Board;
-import pyroduck.Game;
-import pyroduck.ListPointsSerialize;
-import pyroduck.PointsSerialize;
+import pyroduck.*;
 
 /**
  *
@@ -17,8 +12,8 @@ import pyroduck.PointsSerialize;
  */
 public class EndGame extends javax.swing.JFrame {
 
-    private ListPointsSerialize scores = new ListPointsSerialize();
-    private List<PointsSerialize> list;
+    private final ListPointsSerialize scores = new ListPointsSerialize();
+    private final List<PointsSerialize> list;
 
     /**
      * Creates new form EndGame

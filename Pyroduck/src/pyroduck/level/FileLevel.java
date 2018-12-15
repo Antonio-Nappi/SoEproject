@@ -27,7 +27,8 @@ public abstract class FileLevel {
      * Costructs level file.
      *
      * @param path related to the ".txt" file.
-     * @throws LoadLevelException error in the charge of level.
+     * @param in
+     * @param level
      */
     public FileLevel(String path, BufferedReader in,int level) {
         this.level = level;
@@ -39,9 +40,9 @@ public abstract class FileLevel {
      * information.
      *
      * @param path related to the ".txt" file.
-     * @throws LoadLevelException error in the charge of level.
+     * @param in
      */
-    public void loadLevel(String path, BufferedReader in) {
+    public final void loadLevel(String path, BufferedReader in) {
         try {
             lineTiles = new String[HEIGHT];
             for (int i = 0; i < HEIGHT; ++i) {

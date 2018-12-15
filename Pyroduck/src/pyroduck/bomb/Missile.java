@@ -4,7 +4,6 @@ import static java.lang.Math.abs;
 import java.util.List;
 import java.util.ListIterator;
 import pyroduck.Board;
-import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
@@ -13,7 +12,7 @@ import pyroduck.level.FileLevel;
 
 /**
  *
- * @author 
+ * @author Bini
  */
 public class Missile extends Bomb{
     

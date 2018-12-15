@@ -1,4 +1,3 @@
-
 package pyroduck.level;
 
 import java.io.BufferedReader;

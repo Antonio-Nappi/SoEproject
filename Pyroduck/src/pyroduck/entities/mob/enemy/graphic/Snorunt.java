@@ -8,8 +8,7 @@ import pyroduck.graphics.Sprite;
  * @author Bini, Petruzzello
  */
 public class Snorunt extends Enemy{
-    
-    public int realWidth = 28, realHeight = 28;
+
     /**
      * Creates an instance of <b>Snorunt</b> enemy.
      * @param x horizontal coordinate in pixels.
@@ -17,6 +16,8 @@ public class Snorunt extends Enemy{
      */
     public Snorunt(int x, int y){
         super(x, y, Sprite.snorunt_dead, 0.8, 100);
+        realHeight = 28;
+        realWidth = 28;
         sprite = Sprite.snorunt_left1;	
         ep = new LowPower();
         direction = ep.calculateDirection();

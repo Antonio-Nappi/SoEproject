@@ -13,6 +13,7 @@ import pyroduck.level.Coordinates;
 
 /**
  * The abstract class describes the behavior of each type of enemies.
+ *
  * @author Bini, Petruzzello
  */
 public abstract class Enemy extends Mob {
@@ -28,6 +29,7 @@ public abstract class Enemy extends Mob {
 
     /**
      * Creates an instance of Enemy
+     *
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordiante in pixels.
      * @param dead sprite to show when the enemy will die.
@@ -41,7 +43,7 @@ public abstract class Enemy extends Mob {
         MAX_STEPS = Game.TILES_SIZE / speed;
         rest = (MAX_STEPS - (int) MAX_STEPS) / MAX_STEPS;
         this.steps = MAX_STEPS;
-        timeAfter = 20;
+        timeAfterDeath = 20;
         deadSprite = dead;
     }
 
@@ -52,36 +54,40 @@ public abstract class Enemy extends Mob {
      */
     /**
      * Allows to update the state of the enemy checking if something is changed.
-     * Checks if the enemy is dead and if it is not calls the function that calcolates the movement.
+     * Checks if the enemy is dead and if it is not calls the function that
+     * calcolates the movement.
      */
     @Override
     public void update() {
         animate();
-        if(alive == false) {
+        if (alive == false) {
             afterKill();
             return;
         }
-        if(alive)
+        if (alive) {
             calculateMove();
+        }
     }
 
     /**
-     * Manage the print on screen of the right enemy sprite. Invoke the screen method.
-     * @param screen screen on which the print is called. 
+     * Manage the print on screen of the right enemy sprite. Invoke the screen
+     * method.
+     *
+     * @param screen screen on which the print is called.
      */
     @Override
     public void render(Screen screen) {
-        if(alive)
+        if (alive) {
             chooseSprite();
-        else {
-            if(timeAfter > 0) {
+        } else {
+            if (timeAfterDeath > 0) {
                 sprite = deadSprite;
                 animate = 0;
             } else {
                 sprite = Sprite.movingSprite(Sprite.mob_dead1, Sprite.mob_dead2, Sprite.mob_dead3, animate, 30);
             }
         }
-        screen.renderEntity((int)x, (int)y - sprite.SIZE, this);
+        screen.renderEntity((int) x, (int) y - sprite.SIZE, this);
     }
 
     /*
@@ -95,19 +101,27 @@ public abstract class Enemy extends Mob {
     @Override
     public void calculateMove() {
         int xa = 0, ya = 0;
-        if(steps <= 0){
+        if (steps <= 0) {
             direction = ep.calculateDirection();
             steps = MAX_STEPS;
         }
-        if(direction == 0) ya--; 
-        if(direction == 2) ya++;
-        if(direction == 3) xa--;
-        if(direction == 1) xa++;
-        if(canMove(xa, ya)) {
+        if (direction == 0) {
+            ya--;
+        }
+        if (direction == 2) {
+            ya++;
+        }
+        if (direction == 3) {
+            xa--;
+        }
+        if (direction == 1) {
+            xa++;
+        }
+        if (canMove(xa, ya)) {
             steps -= 1 + rest;
             move(xa * speed, ya * speed);
             moving = true;
-        } else {          
+        } else {
             steps = 0;
             moving = false;
         }
@@ -115,46 +129,50 @@ public abstract class Enemy extends Mob {
 
     /**
      * Changes the enemy position if it is alive.
+     *
      * @param xa horizontal coordinate in pixels.
      * @param ya vertical coordinate in pixels.
      */
     @Override
     public void move(double xa, double ya) {
-        if(!alive) 
-            return;
-        y += ya;
-        x += xa;
+        if (alive) {
+            y += ya;
+            x += xa;
+        }
     }
 
     /**
-     * Return a boolean that say whether the enemy can move in a specific coordinate or not.
+     * Return a boolean that say whether the enemy can move in a specific
+     * coordinate or not.
+     *
      * @param x horizontal coordinate in pixels.
      * @param y vertical coordinate in pixels.
-     * @return true if the enemy can move in <b>(x, y)</b> coordinate, false otherwise.
+     * @return true if the enemy can move in <b>(x, y)</b> coordinate, false
+     * otherwise.
      */
     @Override
     public boolean canMove(double x, double y) {
         double xr = this.x, yr = this.y - 32; //subtract y to get more accurate results
         //the thing is, subract to 32 (sprite size), so if we add 1 tile we get the next pixel tile with this
         //we avoid the shaking inside tiles with the help of steps
-        if(direction == 0) { 
-            yr += sprite.getSize() -1 ; 
-            xr += sprite.getSize()/2; 
-        } 
-        if(direction == 1) {
-            yr += sprite.getSize()/2; 
+        if (direction == 0) {
+            yr += sprite.getSize() - 1;
+            xr += sprite.getSize() / 2;
+        }
+        if (direction == 1) {
+            yr += sprite.getSize() / 2;
             xr += 1;
         }
-        if(direction == 2) {
-            xr += sprite.getSize()/2; 
+        if (direction == 2) {
+            xr += sprite.getSize() / 2;
             yr += 1;
         }
-        if(direction == 3) {
-            xr += sprite.getSize() -1; 
-            yr += sprite.getSize()/2;
+        if (direction == 3) {
+            xr += sprite.getSize() - 1;
+            yr += sprite.getSize() / 2;
         }
-        int xx = Coordinates.pixelToTile(xr) +(int)x;
-        int yy = Coordinates.pixelToTile(yr) +(int)y;
+        int xx = Coordinates.pixelToTile(xr) + (int) x;
+        int yy = Coordinates.pixelToTile(yr) + (int) y;
         Entity a = Board.getInstance().getEntity(xx, yy, this); //entity of the position we want to go
         return !a.collide(this);
     }
@@ -166,17 +184,21 @@ public abstract class Enemy extends Mob {
      */
     /**
      * Manage the collision between two entities.
+     *
      * @param e instance of the entity which the enemy collide.
-     * @return true if the entities cannot overlap between them, false otherwise.
+     * @return true if the entities cannot overlap between them, false
+     * otherwise.
      */
     @Override
     public boolean collide(Entity e) {
-        if(e.isExplosion() || (e.isBomb() && (((Bomb)e).isMissile()))) {
+        if (e.isExplosion() || (e.isBomb() && (((Bomb) e).isMissile()))) {
             kill();
             ArrayList<Mob> m = Board.getInstance().getMobsAtExcluding(this.getXTile(), this.getYTile(), this);
-            for(Mob mob1 : m)
-                if(mob1.isAlive())
+            for (Mob mob1 : m) {
+                if (mob1.isAlive()) {
                     mob1.kill();
+                }
+            }
             return true;
         }
         return false;
@@ -196,12 +218,14 @@ public abstract class Enemy extends Mob {
      */
     @Override
     protected void afterKill() {
-        if(timeAfter > 0) --timeAfter;
-        else {
-            if(finalAnimation > 0) 
+        if (timeAfterDeath > 0) {
+            --timeAfterDeath;
+        } else {
+            if (finalAnimation > 0) {
                 --finalAnimation;
-            else
+            } else {
                 remove();
+            }
         }
     }
 
@@ -209,7 +233,7 @@ public abstract class Enemy extends Mob {
      * Chooses the sprite to show on the screen.
      */
     protected abstract void chooseSprite();
-    
+
     public EnemyPower getEp() {
         return ep;
     }

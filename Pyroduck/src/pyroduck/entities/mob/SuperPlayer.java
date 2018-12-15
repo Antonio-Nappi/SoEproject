@@ -106,9 +106,9 @@ public class SuperPlayer extends Player {
     }
 
     @Override
-    protected void placeBomb(int x, int y) {    //NOW we can shoot missiles
+    protected void placeBomb(int x, int y) {
         Missile m = new Missile(x, y - 1, direction);
-        Board.getInstance().addBomb(m);
+        bombs.add(m);
     }
 
     @Override
@@ -125,8 +125,8 @@ public class SuperPlayer extends Player {
 
     @Override
     protected void afterKill() {          //AGGIUNGERE PERDITA VEICOLO, QUINDI RESTART LEVEL SENZA POWERUP
-        if (timeAfter > 0) {
-            --timeAfter;
+        if (timeAfterDeath > 0) {
+            --timeAfterDeath;
         } else {
             if (bombs.isEmpty()) {
                 if (Board.getInstance().getLives() != 0) {
@@ -137,7 +137,7 @@ public class SuperPlayer extends Player {
     }
 
     @Override
-    public void correctKeyboard() {
+    protected void correctKeyboard() {
         Board.getInstance().setInput();
         input = Board.getInstance().getInput();
     }

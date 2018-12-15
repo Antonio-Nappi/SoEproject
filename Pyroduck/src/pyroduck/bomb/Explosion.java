@@ -12,8 +12,6 @@ import pyroduck.graphics.*;
 public class Explosion extends Entity {
 
     protected boolean last = false;
-    protected Sprite sprite1, sprite2;
-
     /**
      * 
      * @param x

@@ -199,8 +199,8 @@ public class PlayerTest {
      */
     @Test
     public void testAfterKill() {
-        assertEquals(80, player.timeAfter, 0);
+        assertEquals(80, player.timeAfterDeath, 0);
         player.afterKill();
-         assertEquals(79, player.timeAfter, 0);
+         assertEquals(79, player.timeAfterDeath, 0);
     }
 }
