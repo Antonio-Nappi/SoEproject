@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.JOptionPane;
+import static pyroduck.Game.rev;
 import pyroduck.bomb.*;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.*;
@@ -27,6 +28,7 @@ public class Board extends Observable implements Observer {
     private int points = 0;
     private String world = "";
     private int player;
+    private Player oldPlayer;
     private final ContextDestroyable con;
     private final List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
     protected boolean pause = false;
@@ -398,7 +400,8 @@ public class Board extends Observable implements Observer {
         if (pl.isAlive()) {
             Player p = getPlayer();
             p = new SuperPlayer(p);
-            mobs.set(0, p);   //player is the first element of the list mobs
+            oldPlayer = (Player) mobs.set(0, p);
+            //player is the first element of the list mobs
             for (int i = 1; i < mobs.size(); i++) {
                 EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
                 if (enemyPower.isPlayerReferenceUpdatable()) {
@@ -406,6 +409,7 @@ public class Board extends Observable implements Observer {
                 }
             }
             ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
+            new Timer().schedule(new ScheduleTask(), 20000);
         } else {
             if (getLevel() == 0 && demo && getLives() == 2) {
                 demo = false;
@@ -482,5 +486,26 @@ public class Board extends Observable implements Observer {
 
     public void changeLives(int lives) {
         this.lives += lives;
+        setChanged();
+        notifyObservers();
+    }
+
+    private class ScheduleTask extends TimerTask {
+
+        @Override
+        public void run() {
+            System.out.println("pyroduck.Board.ScheduleTask.run()");
+            double x = mobs.get(0).getX();
+            double y = mobs.get(0).getY();
+            oldPlayer.setX(x);
+            oldPlayer.setY(y);
+            mobs.set(0, oldPlayer); 
+            for (int i = 1; i < mobs.size(); i++) {
+                EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
+                if (enemyPower.isPlayerReferenceUpdatable()) {
+                    enemyPower.updateReferencePlayer(oldPlayer);
+                }
+            }
+        }
     }
 }

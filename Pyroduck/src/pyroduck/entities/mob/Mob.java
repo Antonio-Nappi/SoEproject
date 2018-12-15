@@ -88,6 +88,13 @@ public abstract class Mob extends AnimatedEntity {
         return false;
     }
     
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
     @Override
     public boolean isMob() {
         return true;
