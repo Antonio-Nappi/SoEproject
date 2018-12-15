@@ -28,8 +28,7 @@ public class StartGame extends javax.swing.JFrame {
     public StartGame() {
         initComponents();
         imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
-        exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
-       
+        exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));     
         audio = AudioPlayer.getAudioPlayer("opening.wav");
         audio.play();
         pSpeed.setValue(100);
@@ -429,8 +428,7 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_settingButtonhowtoplayButtonActionPerformed
 
     private void demomodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demomodeButtonActionPerformed
-
-            Game.getInstance().setSelected(0);
+        Game.getInstance().setSelected(0);
         Board.getInstance().setPlayer(selected);
         Board.getInstance().changeLevel(-1);
         try {

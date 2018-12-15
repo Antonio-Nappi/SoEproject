@@ -1,8 +1,10 @@
 package pyroduck.audio;
+
 import javax.sound.sampled.*; 
 import java.io.*;
 import java.util.logging.*;
 import javafx.embed.swing.JFXPanel;
+
 /**
  *
  * @author 
@@ -26,7 +28,6 @@ public class  AudioPlayer {
         audioInputStream =  AudioSystem.getAudioInputStream(new File("./resources/audio/"+filepath).getAbsoluteFile());  
         clip = AudioSystem.getClip();
         clip.open(audioInputStream); 
-
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
     } 
     
@@ -110,13 +111,11 @@ public class  AudioPlayer {
     public void musicOff() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
          musicon = false;
          this.pause();
-       
     }
     
     public void musicOn() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
         musicon = true;
-        this.resumeAudio();
-        
+        this.resumeAudio();        
     }
 
     public Long getCurrentFrame() {

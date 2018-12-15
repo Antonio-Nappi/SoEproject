@@ -39,7 +39,7 @@ public class LayeredEntity extends Entity {
     @Override
     public void update() {
         clearRemoved();
-        getTopEntity().update();    //Because each type of entity has its update method
+        getTopEntity().update();
     }
 
     /**

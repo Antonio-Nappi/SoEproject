@@ -182,6 +182,7 @@ public abstract class Enemy extends Mob {
     | Mob Colide & Kill
     |--------------------------------------------------------------------------
      */
+    
     /**
      * Manage the collision between two entities.
      *

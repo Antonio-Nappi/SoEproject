@@ -16,14 +16,10 @@ public class ExtensionSP extends Entity{
     }
     
     @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void update() {}
 
     @Override
-    public void render(Screen screen) {
-        throw new UnsupportedOperationException("Not supported."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void render(Screen screen) {}
 
     @Override
     public boolean collide(Entity e) {
@@ -33,9 +29,7 @@ public class ExtensionSP extends Entity{
     public void move(double xa, double ya) {
             this.y += ya;
             this.x += xa;
-    }
-    
-    
+    }    
     
     public void setSprite(Sprite sprite){
         this.sprite = sprite;

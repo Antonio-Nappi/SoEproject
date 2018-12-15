@@ -10,8 +10,8 @@ import pyroduck.graphics.*;
  */
 public class GraphicalExtensionSuperplayer extends AnimatedEntity {
 
-    private SuperPlayer superPlayer;
-    private ExtensionSP leftExtension, rightExtension, up1Extension, up2Extension, up3Extension;
+    private final SuperPlayer superPlayer;
+    private final ExtensionSP leftExtension, rightExtension, up1Extension, up2Extension, up3Extension;
 
     public GraphicalExtensionSuperplayer(SuperPlayer superPlayer) {
         this.superPlayer = superPlayer;

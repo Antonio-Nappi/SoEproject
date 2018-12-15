@@ -21,8 +21,6 @@ public class Game extends Canvas {
     public static final int TILES_SIZE = 32,
                             WIDTH = TILES_SIZE * (int)(31 / 2), //minus one to ajust the window,
                             HEIGHT = 13 * TILES_SIZE;
-
-    //can be modified with bonus
     protected int bombRate = 1;
     protected int bombRadius = 1;
     protected double playerSpeed = 1.3;
@@ -36,14 +34,9 @@ public class Game extends Canvas {
     private Timer timer;
     private static AudioPlayer audio;
     private static boolean musicon = SettingsGame.isMusic();
-    //this will be used to render the game, each render is a calculated image saved here
     private final BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-    private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData(); 
-    //Raster è una classe che rappresenta una matrice di pixel. Le immagini contenute nel buffer vengono estratte, e 
-    //tramite un oggetto di tipo Raster viene creata una matrice di interi rappresentatnti i pixels delle immagini. 
+    private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
     protected int selected = 0; 
-
-    
             
     private Game() {
         timer = new Timer();
@@ -167,6 +160,7 @@ public class Game extends Canvas {
     | Getters & Setters
     |--------------------------------------------------------------------------
      */
+    
     public double getPlayerSpeed() {
         return playerSpeed;
     }

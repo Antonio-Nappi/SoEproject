@@ -122,24 +122,22 @@ public class Screen {
     }
     
     public void drawChangeLevel(Graphics g, int level) {
-		g.setColor(Color.black);
-                Dimension d = new Dimension(java.awt.Toolkit.getDefaultToolkit().getScreenSize().width-420, java.awt.Toolkit.getDefaultToolkit().getScreenSize().height-100);
-		g.fillRect(0, 0, d.width, d.height);
-		
-		Font font = new Font("Arial", Font.PLAIN, 48);
-		g.setFont(font);
-		g.setColor(Color.white);
-		drawCenteredString("LEVEL " + level, d.width, d.height, g);
-		
-	}
+        g.setColor(Color.black);
+        Dimension d = new Dimension(java.awt.Toolkit.getDefaultToolkit().getScreenSize().width-420, java.awt.Toolkit.getDefaultToolkit().getScreenSize().height-100);
+        g.fillRect(0, 0, d.width, d.height);		
+        Font font = new Font("Arial", Font.PLAIN, 48);
+        g.setFont(font);
+        g.setColor(Color.white);
+        drawCenteredString("LEVEL " + level, d.width, d.height, g);	
+    }
     
     
     private void drawCenteredString(String s, int w, int h, Graphics g) {
-	    FontMetrics fm = g.getFontMetrics();
-	    int x = (w - fm.stringWidth(s)) / 2;
-	    int y = (fm.getAscent() + (h - (fm.getAscent() + fm.getDescent())) / 2);
-	    g.drawString(s, x, y);
-	 }
+        FontMetrics fm = g.getFontMetrics();
+        int x = (w - fm.stringWidth(s)) / 2;
+        int y = (fm.getAscent() + (h - (fm.getAscent() + fm.getDescent())) / 2);
+        g.drawString(s, x, y);
+    }
 
     /**
      * Return a width of he screen.

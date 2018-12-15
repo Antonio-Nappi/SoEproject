@@ -1,13 +1,11 @@
 package pyroduck.entities.tile.powerup;
 
 import pyroduck.bomb.Bomb;
-import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.DestroyableTile;
 import pyroduck.graphics.Sprite;
-import pyroduck.bomb.Missile;
 
 /**
  *
@@ -20,7 +18,6 @@ public abstract class Powerup extends DestroyableTile {
     }
 
     public abstract void setValues();
-
     
     @Override
     public boolean collide(Entity e) {

@@ -28,22 +28,18 @@ public class SettingsGame extends javax.swing.JFrame {
     public SettingsGame() {
         initComponents(); 
         setLocation(new Point(600,200));
-   
         DefaultTableModel model= new DefaultTableModel();
         jTable1.setModel(model);
         Object[] row = new Object[3];
         Object[] column = {"Names","Points","Lives"};
-        model.setColumnIdentifiers(column);
-        
+        model.setColumnIdentifiers(column);       
         list = scores.charge();
         for(PointsSerialize p : list){
             row[0] = p.getName();
             row[1]= p.getPoints();
-            row[2]= p.getLives();
-            
+            row[2]= p.getLives();           
             model.addRow(row);
         }
- 
         if (music == true)
             musicCheckBox.setSelected(true);
         else

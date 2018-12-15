@@ -78,5 +78,4 @@ public class MediumPower extends EnemyPower {
     public void updateReferencePlayer(Player player){
         this.player = player;
     }
-   
 }

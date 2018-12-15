@@ -191,5 +191,4 @@ public abstract class FileLevel {
     public abstract Mob createSecondEnemy(int x, int y, int choose);
 
     public abstract Powerup createPowerup(int x, int y);
-
 }

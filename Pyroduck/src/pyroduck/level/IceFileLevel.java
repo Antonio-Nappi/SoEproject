@@ -10,7 +10,7 @@ import pyroduck.graphics.Sprite;
 
 /**
  *
- * @author Antonio
+ * @author 
  */
 public class IceFileLevel extends FileLevel{
 
@@ -49,5 +49,4 @@ public class IceFileLevel extends FileLevel{
     public Powerup createPowerup(int x, int y) {
        return new MalusSlow(x, y, Sprite.brickice);
     }
-    
 }

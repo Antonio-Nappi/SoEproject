@@ -1,4 +1,3 @@
-
 package pyroduck.level;
 
 import java.io.BufferedReader;
@@ -11,7 +10,7 @@ import pyroduck.graphics.Sprite;
 
 /**
  *
- * @author Antonio
+ * @author 
  */
 public class GrassFileLevel extends FileLevel{
 
@@ -49,6 +48,5 @@ public class GrassFileLevel extends FileLevel{
     @Override
     public Powerup createPowerup(int x, int y) {
         return new MalusSlow(x, y, Sprite.brick);
-    }
-    
+    }  
 }

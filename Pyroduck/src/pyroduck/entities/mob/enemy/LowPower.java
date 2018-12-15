@@ -23,7 +23,5 @@ public class LowPower extends EnemyPower {
     }
 
     @Override
-    public void updateReferencePlayer(Player player) {
-        throw new UnsupportedOperationException("Not supported");
-    }
+    public void updateReferencePlayer(Player player) {}
 }

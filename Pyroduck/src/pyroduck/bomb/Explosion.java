@@ -23,7 +23,6 @@ public class Explosion extends Entity {
         this.x = x;
         this.y = y;
         this.last = last;
-
         switch (direction) {
             case 0:
                 if(last == false) {

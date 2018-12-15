@@ -75,7 +75,6 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
      */
     public void resetProperties() {
-
         if (this.getPlayerRight() == 0) {
             Game.getInstance().playerSpeed = 1.3;
             Game.getInstance().bombRadius = 1;
@@ -86,7 +85,6 @@ public class Board extends Observable implements Observer {
             Game.getInstance().bombRate = 1;
         }
         Game.getInstance().reverse = false;
-
     }
 
     public void setLives(int lives) {
@@ -409,7 +407,6 @@ public class Board extends Observable implements Observer {
             }
             ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
         } else {
-
             if (getLevel() == 0 && demo && getLives() == 2) {
                 demo = false;
                 resetPoints();

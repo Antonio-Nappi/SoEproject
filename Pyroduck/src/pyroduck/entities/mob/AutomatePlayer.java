@@ -26,14 +26,14 @@ public class AutomatePlayer extends Player{
     Promemoria :
     per x: +1 va a destra e -1 va a sinistra
     per y: +1 va giu e -1 va su
-    Inizia con x=16, y=32?
-    Ogni casella è 32?
+    Inizia con x=16, y=32
+    Ogni casella è 32
     */
 
     private void fillRegisters() {
         if(first){
             first = false;
-            moveRight(2);  //muoviti a destra di 2 caselle
+            moveRight(2);
             moveDown(2);
             wait(6);
             moveRight(3);
@@ -89,7 +89,6 @@ public class AutomatePlayer extends Player{
 
     @Override
     protected void calculateMove(){
-
         if(counter_idle < 500){  //player initial idle -> 500*15 ms
             counter_idle++;
             return;
@@ -171,5 +170,4 @@ public class AutomatePlayer extends Player{
 
     @Override
     protected void updateTimerBreaker(){}
-
 }

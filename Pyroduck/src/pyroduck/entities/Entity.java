@@ -17,9 +17,8 @@ public abstract class Entity extends Observable{
     protected double x, y;
     protected boolean removed = false;
     protected Sprite sprite;
-    protected int realWidth = 32;     //set by each specific entity if it doesn't have a standard dimension (32x32 pixels)
-    protected int realHeight = 32;  
-    
+    protected int realWidth = 32;
+    protected int realHeight = 32;
 
     /**
     * Allows to update the state of the entity and it checks if something is changed

@@ -32,13 +32,11 @@ public class EndGame extends javax.swing.JFrame {
         Object[] row = new Object[3];
         Object[] column = {"Names", "Points", "Lives"};
         model.setColumnIdentifiers(column);
-
         list = scores.charge();
         for (PointsSerialize p : list) {
             row[0] = p.getName();
             row[1] = p.getPoints();
             row[2] = p.getLives();
-
             model.addRow(row);
         }
         setVisible(true);

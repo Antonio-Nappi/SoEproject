@@ -88,6 +88,7 @@ public abstract class Mob extends AnimatedEntity {
         return false;
     }
     
+    @Override
     public boolean isMob() {
         return true;
     }

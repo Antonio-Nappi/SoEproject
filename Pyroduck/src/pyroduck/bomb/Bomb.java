@@ -107,7 +107,6 @@ public class Bomb extends AnimatedEntity {
         explosions = new DirectionalExplosion[4];
         for (int i = 0; i < explosions.length; i++) {
             explosions[i] = new DirectionalExplosion((int) x, (int) y, i, Game.getInstance().getBombRadius());
-
         }
     }
 

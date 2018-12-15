@@ -47,6 +47,7 @@ public class Player extends Mob {
     | Update & Render
     |--------------------------------------------------------------------------
      */
+    
     /**
      * Allows to update the state of player checking if something is changed.
      * Updates the state of the bomb and the related animation at the player, it
@@ -104,6 +105,7 @@ public class Player extends Mob {
     | Mob Movement
     |--------------------------------------------------------------------------
      */
+    
     /**
      *
      */
@@ -123,9 +125,7 @@ public class Player extends Mob {
             xa++;
         }
         if (xa != 0 || ya != 0) {
-
             move(xa * Game.getInstance().getPlayerSpeed(), ya * Game.getInstance().getPlayerSpeed());
-
             moving = true;
         } else {
             moving = false;
@@ -181,7 +181,7 @@ public class Player extends Mob {
         if (ya < 0) {
             direction = 0;
         }
-        if (canMove(0, ya)) { //separate the moves for the player can slide when is colliding
+        if (canMove(0, ya)) {
             this.y += ya;
         }
         if (canMove(xa, 0)) {
@@ -194,6 +194,7 @@ public class Player extends Mob {
     | Mob Sprite
     |--------------------------------------------------------------------------
      */
+    
     /**
      *
      */
@@ -251,7 +252,6 @@ public class Player extends Mob {
                     }
                     break;
             }
-
         } else {
             switch (direction) {
                 case 0:
@@ -286,7 +286,6 @@ public class Player extends Mob {
                     break;
             }
         }
-
     }
 
     /**
@@ -382,6 +381,7 @@ public class Player extends Mob {
     | Mob Colide & Kill
     |--------------------------------------------------------------------------
      */
+    
     /**
      *
      */

@@ -113,8 +113,7 @@ public class DirectionalExplosion extends Entity {
      * Not implemented method.
      */
     @Override
-    public void update() {
-    }
+    public void update() {}
 
     /**
      * Invokes the screen's method that provides to print on the screen the
