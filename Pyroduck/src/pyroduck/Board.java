@@ -499,7 +499,9 @@ public class Board extends Observable implements Observer {
             double y = mobs.get(0).getY();
             oldPlayer.setX(x);
             oldPlayer.setY(y);
-            mobs.set(0, oldPlayer); 
+            resetProperties();
+            mobs.set(0, oldPlayer);
+            System.out.println(Game.getInstance().getBombRate());
             for (int i = 1; i < mobs.size(); i++) {
                 EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
                 if (enemyPower.isPlayerReferenceUpdatable()) {
