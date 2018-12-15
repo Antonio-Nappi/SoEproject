@@ -47,7 +47,6 @@ public class Player extends Mob {
     | Update & Render
     |--------------------------------------------------------------------------
      */
-    
     /**
      * Allows to update the state of player checking if something is changed.
      * Updates the state of the bomb and the related animation at the player, it
@@ -105,7 +104,6 @@ public class Player extends Mob {
     | Mob Movement
     |--------------------------------------------------------------------------
      */
-    
     /**
      *
      */
@@ -146,7 +144,7 @@ public class Player extends Mob {
             Entity a = Board.getInstance().getEntity(xt, yt, this);
             DestroyableIceTile newState;
             ContextDestroyable con = Board.getInstance().getContextState();
-            if (a.isTile() && (((Tile) a).isDestroyableIceTile())) { 
+            if (a.isTile() && (((Tile) a).isDestroyableIceTile())) {
                 con.setState((DestroyableIceTile) a);
                 if (((DestroyableIceTile) a).getTimerBreak() <= 0) { // differences to see if the player has moved out of the bomb, tested values
                     ((DestroyableIceTile) a).setTimerBreak(80);
@@ -194,7 +192,6 @@ public class Player extends Mob {
     | Mob Sprite
     |--------------------------------------------------------------------------
      */
-    
     /**
      *
      */
@@ -381,27 +378,22 @@ public class Player extends Mob {
     | Mob Colide & Kill
     |--------------------------------------------------------------------------
      */
-    
     /**
      *
      */
     @Override
     public void kill() {
-        if(!this.isSuperPlayer()){
-            if (!alive) {
-                return;
-            }
-            alive = false;
-            Board.getInstance().changeLives(-1);
-            setChanged();
-            notifyObservers();
-        }else{
-            if (!alive) {
-                return;
-            }
-            alive = false;
-            setChanged();
-            notifyObservers();
+        if (!this.isSuperPlayer()) {
+            if (alive) {
+                alive = false;
+                Board.getInstance().changeLives(-1);
+                setChanged();
+                notifyObservers();
+            } 
+        }else if (alive) {
+                alive = false;
+                setChanged();
+                notifyObservers();
         }
     }
 
