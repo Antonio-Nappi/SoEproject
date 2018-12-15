@@ -11,7 +11,6 @@ import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.Pyroduck;
 import pyroduck.audio.AudioPlayer;
-import pyroduck.exceptions.PyroduckException;
 
 /**
  *
@@ -401,13 +400,13 @@ public class StartGame extends javax.swing.JFrame {
         try {
             Game.getInstance().setSelected(selected);
             audio.stop();
-        } catch (PyroduckException | UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         Board.getInstance().setPlayer(selected);  
         try {
             Pyroduck.main(args);
-        } catch (PyroduckException | IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         setVisible(false);    
@@ -430,16 +429,13 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_settingButtonhowtoplayButtonActionPerformed
 
     private void demomodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demomodeButtonActionPerformed
-        try {
+
             Game.getInstance().setSelected(0);
-        } catch (PyroduckException ex) {
-            Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
         Board.getInstance().setPlayer(selected);
         Board.getInstance().changeLevel(-1);
         try {
             Pyroduck.main(args);
-        } catch (IOException | PyroduckException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.setVisible(false);  

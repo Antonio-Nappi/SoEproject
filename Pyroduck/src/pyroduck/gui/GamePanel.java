@@ -22,7 +22,6 @@ import javax.swing.JPanel;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
 import pyroduck.Board;
 import pyroduck.Game;
-import pyroduck.exceptions.PyroduckException;
 import pyroduck.input.*;
 
 public class GamePanel extends JPanel implements Observer {
@@ -43,7 +42,6 @@ public class GamePanel extends JPanel implements Observer {
         endGame = null;
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width-420, Toolkit.getDefaultToolkit().getScreenSize().height-100));
-        try {
             Font font = new Font(Font.DIALOG, Font.BOLD, 24);
             game = Game.getInstance();
             add(game);
@@ -81,9 +79,7 @@ public class GamePanel extends JPanel implements Observer {
             panel.add(skipDemo,5);
             Board.getInstance().addObserver(this);
             this.add(panel , BorderLayout.PAGE_START);
-        } catch (PyroduckException e) {
-            JOptionPane.showMessageDialog(null, "alert", "alert", JOptionPane.ERROR_MESSAGE);
-        }
+        
         setVisible(true);
         setFocusable(true);
     }
@@ -92,10 +88,9 @@ public class GamePanel extends JPanel implements Observer {
         boolean  music;
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
                 //Estraiamo il pulsante che ha generato l'evento
                 music = Game.getInstance().getMusicOn();
-                try {
+                try{
                     Game.getInstance().setMusicOn(!music);
                     game.requestFocus();
                 } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -107,9 +102,7 @@ public class GamePanel extends JPanel implements Observer {
                 } else {
                     musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\notsound_32.png"));
                 }
-            } catch (PyroduckException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
         }
     }
     

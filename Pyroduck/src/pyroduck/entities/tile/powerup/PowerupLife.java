@@ -15,7 +15,6 @@ public class PowerupLife extends Powerup {
 
     @Override
     public void setValues() {
-      active = true;
       Board.getInstance().changeLives(1);
     }   
 }

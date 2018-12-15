@@ -10,43 +10,43 @@ import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.ListPointsSerialize;
 import pyroduck.PointsSerialize;
-import pyroduck.exceptions.PyroduckException;
 
 /**
  *
- * @author 
+ * @author
  */
 public class EndGame extends javax.swing.JFrame {
 
     private ListPointsSerialize scores = new ListPointsSerialize();
     private List<PointsSerialize> list;
-    
+
     /**
      * Creates new form EndGame
      */
     public EndGame() {
         initComponents();
         setLocation(new Point(400, 100));
-        exitLabel.setIcon (new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
+        exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         scores.charge();
         String s = JOptionPane.showInputDialog(rootPane, "Insert your name", "Save your score", JOptionPane.PLAIN_MESSAGE);
-        if(s != null)    
+        if (s != null) {
             scores.addScore(new PointsSerialize(s));
+        }
         DefaultTableModel model = new DefaultTableModel();
         jTable1.setModel(model);
         Object[] row = new Object[3];
-        Object[] column = {"Names","Points","Lives"};
+        Object[] column = {"Names", "Points", "Lives"};
         model.setColumnIdentifiers(column);
-        
+
         list = scores.charge();
-        for(PointsSerialize p : list){
+        for (PointsSerialize p : list) {
             row[0] = p.getName();
             row[1] = p.getPoints();
             row[2] = p.getLives();
-            
+
             model.addRow(row);
         }
-       setVisible(true);
+        setVisible(true);
     }
 
     /**
@@ -183,13 +183,9 @@ public class EndGame extends javax.swing.JFrame {
 
     private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
         setVisible(false);
-        try {
-            Board.getInstance().resetPoints();
-            Game.getInstance().resume();
-            Game.getInstance().changeAudioLevel(1);
-        } catch (PyroduckException ex) {
-            Logger.getLogger(EndGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Board.getInstance().resetPoints();
+        Game.getInstance().resume();
+        Game.getInstance().changeAudioLevel(1);
         dispose();
         Board.getInstance().setLives(SettingsGame.getLives());
     }//GEN-LAST:event_restartButtonActionPerformed

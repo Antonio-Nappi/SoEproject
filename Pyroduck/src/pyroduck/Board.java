@@ -10,7 +10,6 @@ import pyroduck.entities.mob.*;
 import pyroduck.entities.mob.enemy.EnemyPower;
 import pyroduck.entities.mob.enemy.graphic.Enemy;
 import pyroduck.entities.tile.destroyable.*;
-import pyroduck.exceptions.*;
 import pyroduck.graphics.Screen;
 import pyroduck.gui.SettingsGame;
 import pyroduck.input.*;
@@ -76,20 +75,18 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
      */
     public void resetProperties() {
-        try {
-            if (this.getPlayerRight() == 0) {
-                Game.getInstance().playerSpeed = 1.3;
-                Game.getInstance().bombRadius = 1;
-                Game.getInstance().bombRate = 1;
-            } else if (this.getPlayerRight() == 1) {
-                Game.getInstance().playerSpeed = 1;
-                Game.getInstance().bombRadius = 1;
-                Game.getInstance().bombRate = 1;
-            }
-            Game.getInstance().reverse = false;
-        } catch (PyroduckException ex) {
-            Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (this.getPlayerRight() == 0) {
+            Game.getInstance().playerSpeed = 1.3;
+            Game.getInstance().bombRadius = 1;
+            Game.getInstance().bombRate = 1;
+        } else if (this.getPlayerRight() == 1) {
+            Game.getInstance().playerSpeed = 1;
+            Game.getInstance().bombRadius = 1;
+            Game.getInstance().bombRate = 1;
         }
+        Game.getInstance().reverse = false;
+
     }
 
     public void setLives(int lives) {
@@ -115,7 +112,7 @@ public class Board extends Observable implements Observer {
             Game.getInstance().pause();
             Thread.sleep(2500);
             Game.getInstance().resume();//wait 2,5 sec and often shows the next level
-        } catch (PyroduckException | InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -150,8 +147,6 @@ public class Board extends Observable implements Observer {
                 }
                 in.close();
                 entities = level.createEntities();
-            } catch (LoadLevelException e) {
-                JOptionPane.showMessageDialog(null, "Load level exception", "alert", JOptionPane.ERROR_MESSAGE);
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Level's file .txt not found", "alert", JOptionPane.ERROR_MESSAGE);
             } catch (FileNotFoundException ex) {
@@ -288,7 +283,6 @@ public class Board extends Observable implements Observer {
     | Renders
     |--------------------------------------------------------------------------
      */
-
     protected void renderMobs() {
         Iterator<Mob> itr = mobs.iterator();
         while (itr.hasNext()) {
@@ -415,21 +409,18 @@ public class Board extends Observable implements Observer {
             }
             ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
         } else {
-            try {
-                if (getLevel() == 0 && demo && getLives() == 2) {
-                    demo = false;
-                    resetPoints();
-                    points = 0;
-                    lives = SettingsGame.getLives();
-                    Game.getInstance().restartGame();
-                    setChanged();
-                    notifyObservers();
-                } else {
-                    setChanged();
-                    notifyObservers();
-                }
-            } catch (PyroduckException ex) {
-                Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+
+            if (getLevel() == 0 && demo && getLives() == 2) {
+                demo = false;
+                resetPoints();
+                points = 0;
+                lives = SettingsGame.getLives();
+                Game.getInstance().restartGame();
+                setChanged();
+                notifyObservers();
+            } else {
+                setChanged();
+                notifyObservers();
             }
         }
     }

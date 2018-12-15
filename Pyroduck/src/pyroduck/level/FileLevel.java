@@ -9,7 +9,6 @@ import pyroduck.entities.mob.*;
 import pyroduck.entities.tile.*;
 import pyroduck.entities.tile.destroyable.*;
 import pyroduck.entities.tile.powerup.*;
-import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.*;
 
 /**
@@ -30,7 +29,7 @@ public abstract class FileLevel {
      * @param path related to the ".txt" file.
      * @throws LoadLevelException error in the charge of level.
      */
-    public FileLevel(String path, BufferedReader in,int level) throws LoadLevelException {
+    public FileLevel(String path, BufferedReader in,int level) {
         this.level = level;
         loadLevel(path, in);
     }
@@ -42,7 +41,7 @@ public abstract class FileLevel {
      * @param path related to the ".txt" file.
      * @throws LoadLevelException error in the charge of level.
      */
-    public void loadLevel(String path, BufferedReader in) throws LoadLevelException {
+    public void loadLevel(String path, BufferedReader in) {
         try {
             lineTiles = new String[HEIGHT];
             for (int i = 0; i < HEIGHT; ++i) {

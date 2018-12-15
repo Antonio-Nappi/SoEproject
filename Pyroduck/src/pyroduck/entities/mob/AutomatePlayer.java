@@ -1,12 +1,8 @@
 package pyroduck.entities.mob;
 
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import pyroduck.*;
 import pyroduck.bomb.Bomb;
-import pyroduck.exceptions.PyroduckException;
 import pyroduck.level.Coordinates;
 
 /**
@@ -18,10 +14,10 @@ public class AutomatePlayer extends Player{
     private boolean putBomb = false;
     private int counter_idle = 0;
     private static boolean first = true;
-    private LinkedList<Double> registerX = new LinkedList<>();
-    private LinkedList<Double> registerY = new LinkedList<>();
+    private final LinkedList<Double> registerX = new LinkedList<>();
+    private final LinkedList<Double> registerY = new LinkedList<>();
 
-    public AutomatePlayer(int x, int y) throws InterruptedException {
+    public AutomatePlayer(int x, int y) {
         super(x, y);
         fillRegisters();
     }
@@ -34,7 +30,7 @@ public class AutomatePlayer extends Player{
     Ogni casella è 32?
     */
 
-    private void fillRegisters() throws InterruptedException{
+    private void fillRegisters() {
         if(first){
             first = false;
             moveRight(2);  //muoviti a destra di 2 caselle
@@ -119,15 +115,11 @@ public class AutomatePlayer extends Player{
     @Override
     protected void detectPlaceBomb() {
         if(putBomb){
-            try {
                 int xt = Coordinates.pixelToTile(x + 16);
                 int yt = Coordinates.pixelToTile(y - 16); //subtract half player height and minus 1 y position
                 placeBomb(xt,yt);
                 Game.getInstance().addBombRate(-1);
                 putBomb = false;
-            } catch (PyroduckException ex) {
-                Logger.getLogger(AutomatePlayer.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 

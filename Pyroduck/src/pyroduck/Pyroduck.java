@@ -1,7 +1,6 @@
 package pyroduck;
 
 import java.io.IOException;
-import pyroduck.exceptions.PyroduckException;
 import pyroduck.gui.Frame;
 
 /**
@@ -10,7 +9,7 @@ import pyroduck.gui.Frame;
  */
 public class Pyroduck {
 
-    public static void main(String[] args) throws PyroduckException, IOException {
+    public static void main(String[] args) throws IOException {
         Frame mainwindow = new Frame();
     }
 }

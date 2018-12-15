@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pyroduck.level;
 
 import java.io.BufferedReader;
@@ -11,7 +7,6 @@ import pyroduck.entities.mob.enemy.graphic.*;
 import pyroduck.entities.tile.*;
 import pyroduck.entities.tile.destroyable.BrickTile;
 import pyroduck.entities.tile.powerup.*;
-import pyroduck.exceptions.LoadLevelException;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -20,7 +15,7 @@ import pyroduck.graphics.Sprite;
  */
 public class GrassFileLevel extends FileLevel{
 
-    public GrassFileLevel(String path,BufferedReader in,int level) throws LoadLevelException {
+    public GrassFileLevel(String path,BufferedReader in,int level) {
         super(path,in,level);
     }
 

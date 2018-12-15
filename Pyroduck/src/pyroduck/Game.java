@@ -8,7 +8,6 @@ import java.util.*;
 import java.util.logging.*;
 import javax.sound.sampled.*;
 import pyroduck.audio.AudioPlayer;
-import pyroduck.exceptions.PyroduckException;
 import pyroduck.graphics.Screen;
 import pyroduck.gui.SettingsGame;
 import pyroduck.input.*;
@@ -46,7 +45,7 @@ public class Game extends Canvas {
 
     
             
-    private Game() throws PyroduckException {
+    private Game() {
         timer = new Timer();
         screen = new Screen();
         board = Board.getInstance();
@@ -54,7 +53,7 @@ public class Game extends Canvas {
         board.setScreen(screen);
     }
     
-    public static Game getInstance() throws PyroduckException{
+    public static Game getInstance(){
         if (instance == null)
             instance = new Game();
         return instance;
