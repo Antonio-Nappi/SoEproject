@@ -129,7 +129,10 @@ public class Game extends Canvas {
     public void changeAudioLevel(int n){
         try {
             audio.stop();      
-            audio = AudioPlayer.getAudioPlayer("Level" + n + ".wav");
+            if(n==0)
+                audio = AudioPlayer.getAudioPlayer("Level" + 1 + ".wav");
+            else
+                audio = AudioPlayer.getAudioPlayer("Level" + n + ".wav");
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
