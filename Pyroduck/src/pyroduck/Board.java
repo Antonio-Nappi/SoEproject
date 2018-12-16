@@ -51,7 +51,6 @@ public class Board extends Observable implements Observer {
         updateEntities();
         updateMobs();
         updateBombs();
-        System.out.println(Game.getInstance().getBombRate());
         for (int i = 0; i < mobs.size(); i++) {
             Mob a = mobs.get(i);
             if (((Entity) a).isRemoved()) {
@@ -417,6 +416,9 @@ public class Board extends Observable implements Observer {
                     }
                 }
             }
+            System.out.println(Game.getInstance().getBombRate());
+            System.out.println("Sceso da articuno perchè morto");
+            System.out.println(Game.getInstance().getBombRate());
             mobs.set(0, oldPlayer);
             for (int i = 1; i < mobs.size(); i++) {
                 EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
@@ -424,6 +426,8 @@ public class Board extends Observable implements Observer {
                     enemyPower.updateReferencePlayer(oldPlayer);
                 }
             }
+            timer.cancel();
+            timer = new Timer();
         } else {
             if (pl.isAlive()) {
                 Player p = getPlayer();
@@ -448,8 +452,6 @@ public class Board extends Observable implements Observer {
                     setChanged();
                     notifyObservers();
                 } else {
-                    timer.cancel();
-                    timer = new Timer();
                     setChanged();
                     notifyObservers();
                 }
@@ -537,6 +539,9 @@ public class Board extends Observable implements Observer {
                     enemyPower.updateReferencePlayer(oldPlayer);
                 }
             }
+            System.err.println(Game.getInstance().getBombRate());
+            System.err.println("Sceso da articuno perchè finito il tempo");
+            System.err.println(Game.getInstance().getBombRate());
         }
     }
 }
