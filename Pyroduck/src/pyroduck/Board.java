@@ -1,10 +1,10 @@
 package pyroduck;
 
 import java.io.*;
+import static java.lang.Math.abs;
 import java.util.*;
 import java.util.logging.*;
 import javax.swing.JOptionPane;
-import static pyroduck.Game.rev;
 import pyroduck.bomb.*;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.*;
@@ -35,9 +35,11 @@ public class Board extends Observable implements Observer {
     private static Board instance = null;
     private boolean demo = false;
     private int rightLives = 0;
+    private Timer timer;
 
     private Board() {
         con = new ContextDestroyable();
+        timer = new Timer();
     }
 
     /*
@@ -181,7 +183,9 @@ public class Board extends Observable implements Observer {
         if (res != null) {
             return res;
         }
-        res = getMobAtExcluding((int) x, (int) y, m);
+        ArrayList<Mob> list = getMobsAtExcluding((int) x, (int) y, m);
+        if(!list.isEmpty())
+            res = list.get(0);
         if (res != null) {
             return res;
         }
@@ -208,7 +212,7 @@ public class Board extends Observable implements Observer {
     public Player getPlayer() {
         return (Player) mobs.get(0);
     }
-
+/*
     private Mob getMobAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         Mob cur;
@@ -223,7 +227,7 @@ public class Board extends Observable implements Observer {
         }
         return null;
     }
-
+*/
     public ArrayList<Mob> getMobsAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         ArrayList<Mob> mobs1 = new ArrayList();
@@ -397,31 +401,56 @@ public class Board extends Observable implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         Player pl = (Player) o;
-        if (pl.isAlive()) {
-            Player p = getPlayer();
-            p = new SuperPlayer(p);
-            oldPlayer = (Player) mobs.set(0, p);
-            //player is the first element of the list mobs
+        if (pl.isSuperPlayer()) {
+            double x = mobs.get(0).getX();
+            double y = mobs.get(0).getY();
+            oldPlayer.setX(x);
+            oldPlayer.setY(y);
+            resetProperties();
+            //ArrayList<Mob> list = getMobsAtExcluding((int) x, (int) y, pl);
+            //System.out.println("Size della lista" + list.size());
+            for (Mob m : mobs) {
+                if(!m.isPlayer())
+                    if(Coordinates.pixelToTile(abs(x-m.getX()))<1&&Coordinates.pixelToTile(abs(y-m.getY()))<1)
+                        m.kill();
+            }
+            mobs.set(0, oldPlayer);
             for (int i = 1; i < mobs.size(); i++) {
                 EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
                 if (enemyPower.isPlayerReferenceUpdatable()) {
-                    enemyPower.updateReferencePlayer(p);
+                    enemyPower.updateReferencePlayer(oldPlayer);
                 }
             }
-            ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
-            new Timer().schedule(new ScheduleTask(), 20000);
-        } else {
-            if (getLevel() == 0 && demo && getLives() == 2) {
-                demo = false;
-                resetPoints();
-                points = 0;
-                lives = SettingsGame.getLives();
-                Game.getInstance().restartGame();
-                setChanged();
-                notifyObservers();
+            System.out.println("pyroduck.Board.update()");
+        } else {    
+            if (pl.isAlive()) {
+                Player p = getPlayer();
+                p = new SuperPlayer(p);
+                oldPlayer = (Player) mobs.set(0, p);
+                //player is the first element of the list mobs
+                for (int i = 1; i < mobs.size(); i++) {
+                    EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
+                    if (enemyPower.isPlayerReferenceUpdatable()) {
+                        enemyPower.updateReferencePlayer(p);
+                    }
+                }
+                ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
+                timer.schedule(new ScheduleTask(), 20000);
             } else {
-                setChanged();
-                notifyObservers();
+                if (getLevel() == 0 && demo) {
+                    demo = false;
+                    resetPoints();
+                    points = 0;
+                    lives = SettingsGame.getLives();
+                    Game.getInstance().restartGame();
+                    setChanged();
+                    notifyObservers();
+                } else {
+                    timer.cancel();
+                    timer = new Timer();
+                    setChanged();
+                    notifyObservers();
+                }
             }
         }
     }
@@ -494,14 +523,12 @@ public class Board extends Observable implements Observer {
 
         @Override
         public void run() {
-            System.out.println("pyroduck.Board.ScheduleTask.run()");
             double x = mobs.get(0).getX();
             double y = mobs.get(0).getY();
             oldPlayer.setX(x);
             oldPlayer.setY(y);
             resetProperties();
             mobs.set(0, oldPlayer);
-            System.out.println(Game.getInstance().getBombRate());
             for (int i = 1; i < mobs.size(); i++) {
                 EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
                 if (enemyPower.isPlayerReferenceUpdatable()) {

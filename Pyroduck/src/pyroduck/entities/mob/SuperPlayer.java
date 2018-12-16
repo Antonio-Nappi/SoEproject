@@ -141,4 +141,9 @@ public class SuperPlayer extends Player {
     public boolean isSuperPlayer() {
         return true;
     }
+    @Override
+    public void kill(){
+        setChanged();
+        notifyObservers();
+    }
 }
