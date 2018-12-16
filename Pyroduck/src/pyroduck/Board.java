@@ -51,6 +51,7 @@ public class Board extends Observable implements Observer {
         updateEntities();
         updateMobs();
         updateBombs();
+        System.out.println(Game.getInstance().getBombRate());
         for (int i = 0; i < mobs.size(); i++) {
             Mob a = mobs.get(i);
             if (((Entity) a).isRemoved()) {
@@ -184,8 +185,9 @@ public class Board extends Observable implements Observer {
             return res;
         }
         ArrayList<Mob> list = getMobsAtExcluding((int) x, (int) y, m);
-        if(!list.isEmpty())
+        if (!list.isEmpty()) {
             res = list.get(0);
+        }
         if (res != null) {
             return res;
         }
@@ -212,7 +214,8 @@ public class Board extends Observable implements Observer {
     public Player getPlayer() {
         return (Player) mobs.get(0);
     }
-/*
+
+    /*
     private Mob getMobAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         Mob cur;
@@ -227,7 +230,7 @@ public class Board extends Observable implements Observer {
         }
         return null;
     }
-*/
+     */
     public ArrayList<Mob> getMobsAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         ArrayList<Mob> mobs1 = new ArrayList();
@@ -407,12 +410,12 @@ public class Board extends Observable implements Observer {
             oldPlayer.setX(x);
             oldPlayer.setY(y);
             resetProperties();
-            //ArrayList<Mob> list = getMobsAtExcluding((int) x, (int) y, pl);
-            //System.out.println("Size della lista" + list.size());
             for (Mob m : mobs) {
-                if(!m.isPlayer())
-                    if(Coordinates.pixelToTile(abs(x-m.getX()))<1&&Coordinates.pixelToTile(abs(y-m.getY()))<1)
+                if (!m.isPlayer()) {
+                    if (Coordinates.pixelToTile(abs(x - m.getX())) < 1 && Coordinates.pixelToTile(abs(y - m.getY())) < 1) {
                         m.kill();
+                    }
+                }
             }
             mobs.set(0, oldPlayer);
             for (int i = 1; i < mobs.size(); i++) {
@@ -421,8 +424,7 @@ public class Board extends Observable implements Observer {
                     enemyPower.updateReferencePlayer(oldPlayer);
                 }
             }
-            System.out.println("pyroduck.Board.update()");
-        } else {    
+        } else {
             if (pl.isAlive()) {
                 Player p = getPlayer();
                 p = new SuperPlayer(p);
