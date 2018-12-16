@@ -113,6 +113,7 @@ public class SettingsGame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.setEnabled(false);
         jScrollPane2.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 270, 150));

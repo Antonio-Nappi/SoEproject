@@ -75,9 +75,15 @@ public class EndGame extends javax.swing.JFrame {
         restartButton.setText("Restart game");
         restartButton.setBorder(null);
         restartButton.setBorderPainted(false);
+        restartButton.setFocusable(false);
         restartButton.setMaximumSize(new java.awt.Dimension(170, 70));
         restartButton.setMinimumSize(new java.awt.Dimension(170, 70));
         restartButton.setPreferredSize(new java.awt.Dimension(170, 70));
+        restartButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                restartButtonMouseClicked(evt);
+            }
+        });
         restartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 restartButtonActionPerformed(evt);
@@ -89,9 +95,15 @@ public class EndGame extends javax.swing.JFrame {
         quitButton.setText("Quit");
         quitButton.setBorder(null);
         quitButton.setBorderPainted(false);
+        quitButton.setFocusable(false);
         quitButton.setMaximumSize(new java.awt.Dimension(170, 70));
         quitButton.setMinimumSize(new java.awt.Dimension(170, 70));
         quitButton.setPreferredSize(new java.awt.Dimension(170, 70));
+        quitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                quitButtonMouseClicked(evt);
+            }
+        });
         quitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quitButtonActionPerformed(evt);
@@ -113,6 +125,7 @@ public class EndGame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 
         exitLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -175,21 +188,28 @@ public class EndGame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
+    }//GEN-LAST:event_restartButtonActionPerformed
+
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+
+    }//GEN-LAST:event_quitButtonActionPerformed
+
+    private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitLabelMouseClicked
+
+    private void restartButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButtonMouseClicked
         setVisible(false);
         Board.getInstance().resetPoints();
         Game.getInstance().resume();
         Game.getInstance().changeAudioLevel(1);
         dispose();
         Board.getInstance().setLives(SettingsGame.getLives());
-    }//GEN-LAST:event_restartButtonActionPerformed
+    }//GEN-LAST:event_restartButtonMouseClicked
 
-    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+    private void quitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quitButtonMouseClicked
         System.exit(0);
-    }//GEN-LAST:event_quitButtonActionPerformed
-
-    private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_exitLabelMouseClicked
+    }//GEN-LAST:event_quitButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel exitLabel;
