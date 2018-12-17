@@ -12,7 +12,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import pyroduck.Board;
-import pyroduck.BoardTest;
 import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.enemy.graphic.Arbok;
