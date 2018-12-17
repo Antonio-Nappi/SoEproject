@@ -1,5 +1,6 @@
 package pyroduck.bomb;
 
+import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;
 import pyroduck.graphics.*;
@@ -79,8 +80,8 @@ public class Explosion extends Entity {
      */
     @Override
     public boolean collide(Entity e) {
-        if(e.isMob()) 
-            ((Mob)e).kill();
+        if(e.isMob())
+            ((Mob)e).kill();           
         return false;
     }
 }

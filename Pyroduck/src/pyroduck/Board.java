@@ -33,7 +33,7 @@ public class Board extends Observable implements Observer {
     private final List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
     protected boolean pause = false;
     private static Board instance = null;
-    private boolean demo = false;
+    //private boolean demo = false;
     private int rightLives = 0;
     private Timer timer;
 
@@ -127,7 +127,6 @@ public class Board extends Observable implements Observer {
                 int combination = new Random(System.currentTimeMillis()).nextInt(2) + 1;
                 String path;
                 if (numlevel == -1) {
-                    demo = true;
                     path = "./resources/levels/Demo1.txt";
                 } else if (numlevel == 0) {
                     path = "./resources/levels/Demo.txt";
@@ -214,22 +213,6 @@ public class Board extends Observable implements Observer {
         return (Player) mobs.get(0);
     }
 
-    /*
-    private Mob getMobAtExcluding(int x, int y, Mob a) {
-        Iterator<Mob> itr = mobs.iterator();
-        Mob cur;
-        while (itr.hasNext()) {
-            cur = itr.next();
-            if (cur == a) {
-                continue;
-            }
-            if (cur.getXTile() == x && cur.getYTile() == y) {
-                return cur;
-            }
-        }
-        return null;
-    }
-     */
     public ArrayList<Mob> getMobsAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         ArrayList<Mob> mobs1 = new ArrayList();
@@ -443,8 +426,8 @@ public class Board extends Observable implements Observer {
                 ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
                 timer.schedule(new ScheduleTask(), 20000);
             } else {
-                if (getLevel() == 0 && demo) {
-                    demo = false;
+                if (getLevel() == 0 && Game.getInstance().getDemo()) {
+                    Game.getInstance().setDemo(false);
                     resetPoints();
                     points = 0;
                     lives = SettingsGame.getLives();
@@ -519,9 +502,9 @@ public class Board extends Observable implements Observer {
         return rightLives;
     }
 
-    public boolean getDemo() {
-        return demo;
-    }
+//    public boolean getDemo() {
+//        return demo;
+//    }
 
     public void changeLives(int lives) {
         this.lives += lives;

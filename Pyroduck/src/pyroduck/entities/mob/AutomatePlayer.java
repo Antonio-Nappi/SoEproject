@@ -39,9 +39,9 @@ public class AutomatePlayer extends Player{
             moveRight(3);
             putBomb();
             moveLeft(2);
-            wait(9);
+            wait(5);
             moveRight(3);
-            wait(1);
+            wait(8);
             putBomb();
             moveLeft(2);
             moveDown(1);

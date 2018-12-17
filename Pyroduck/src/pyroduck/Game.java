@@ -24,7 +24,7 @@ public class Game extends Canvas {
     protected int bombRate = 1;
     protected int bombRadius = 1;
     protected double playerSpeed = 1.3;
-    protected boolean reverse=false;
+    protected boolean reverse = false;
     protected static int rev = 0;
     protected static boolean pause=false;
     private Keyboard input;
@@ -37,6 +37,7 @@ public class Game extends Canvas {
     private final BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
     protected int selected = 0; 
+    private boolean demo = false;
             
     private Game() {
         timer = new Timer();
@@ -183,6 +184,10 @@ public class Game extends Canvas {
     public int getSelected() {
         return selected;
     }
+    
+    public boolean getDemo(){
+        return demo;
+    }
 
     public void setSelected(int selected) {
         this.selected = selected;
@@ -201,6 +206,10 @@ public class Game extends Canvas {
 
     public void setPlayerSpeed(double playerSpeed) {
         this.playerSpeed = playerSpeed;
+    }
+    
+    public void setDemo(boolean demo){
+        this.demo = demo;
     }
     
     public void setMusicOn(boolean music) throws UnsupportedAudioFileException, IOException, LineUnavailableException{      

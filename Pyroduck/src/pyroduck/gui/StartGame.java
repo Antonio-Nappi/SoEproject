@@ -431,6 +431,7 @@ public class StartGame extends javax.swing.JFrame {
         Game.getInstance().setSelected(0);
         Board.getInstance().setPlayer(selected);
         Board.getInstance().changeLevel(-1);
+        Game.getInstance().setDemo(true);
         try {
             Pyroduck.main(args);
         } catch (IOException ex) {

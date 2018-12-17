@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import pyroduck.Board;
 import pyroduck.Game;
+import pyroduck.Message;
 import pyroduck.input.*;
 
 public class GamePanel extends JPanel implements Observer {
@@ -32,39 +33,25 @@ public class GamePanel extends JPanel implements Observer {
     private JButton musicButton = new JButton();
     private JButton skipDemo = new JButton();
     private JPanel panel = new JPanel();
+    private JPanel tutorialpanel = new JPanel();
     private Frame frame;
+    private final Message message;
     private JFrame endGame;
+    private JLabel tutorial = new JLabel();
 
     public GamePanel(Frame frame) throws IOException {
         this.frame = frame;
         endGame = null;
+        message = new Message(this);
+        game = Game.getInstance();
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width - 420, Toolkit.getDefaultToolkit().getScreenSize().height - 100));
-        Font font = new Font(Font.DIALOG, Font.BOLD, 24);
-        game = Game.getInstance();
         add(game);
-        boolean music = game.getMusicOn();
+        
+        setPanel();
+        setTutorialPanel();
         game.setVisible(true);
-        messageLabel = new JLabel("     Paused     ");
-        spaceLabel = new JLabel("                         ");
-        musicButton = new JButton("");
-        livesLabel.setText("Lives: " + Board.getInstance().getLives());
-        pointsLabel = new JLabel("Points: " + Board.getInstance().getPoints());
-        messageLabel.setFont(font);
-        pointsLabel.setForeground(Color.WHITE);
-        livesLabel.setForeground(Color.WHITE);
-        messageLabel.setForeground(Color.black);
-        if (music) {
-            musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\sound_32.png"));
-        } else {
-            musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\notsound_32.png"));
-        }
-        musicButton.setForeground(Color.white);
-        musicButton.addActionListener(new setMusic());
-        skipDemo = new JButton("  Skip Demo  ");
-        skipDemo.setFont(font);
-        skipDemo.setForeground(Color.BLACK);
-        skipDemo.setVisible(false);
+        
         if (Board.getInstance().getLevel() <= 0) {
             skipDemo.setVisible(true);
         }
@@ -78,6 +65,8 @@ public class GamePanel extends JPanel implements Observer {
         panel.add(skipDemo, 5);
         Board.getInstance().addObserver(this);
         this.add(panel, BorderLayout.PAGE_START);
+        if(Game.getInstance().getDemo())
+            this.add(tutorialpanel, BorderLayout.PAGE_END);
         setVisible(true);
         setFocusable(true);
     }
@@ -113,6 +102,7 @@ public class GamePanel extends JPanel implements Observer {
             pointsLabel.setText("Points: 0");
             Board.getInstance().resetProperties();
             Board.getInstance().changeLevel(1);
+            tutorialpanel.setVisible(false);
             skipDemo.setVisible(false);
             game.requestFocus();
         }
@@ -126,7 +116,7 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + Board.getInstance().getLives());
         pointsLabel.setText("Points: " + Board.getInstance().getPoints());
-        if (!Board.getInstance().getDemo()) {
+        if (!Game.getInstance().getDemo()) {
             skipDemo.setVisible(false);
         }
         if (Board.getInstance().getLives() <= 0) {
@@ -152,5 +142,42 @@ public class GamePanel extends JPanel implements Observer {
             livesLabel.setForeground(Color.white);
             pointsLabel.setForeground(Color.white);
         }
+    }
+    
+    private void setTutorialPanel(){
+        tutorialpanel.setBackground(Color.black);
+        tutorial.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+        tutorial.setText("Press UP, DOWN, RIGHT, LEFT or W, S, D, A to move the player through the arena");
+        tutorial.setForeground(Color.white);
+        tutorialpanel.add(tutorial, 0);
+    }
+    
+    private void setPanel(){
+        boolean music = game.getMusicOn();
+        Font font = new Font(Font.DIALOG, Font.BOLD, 24);
+        messageLabel = new JLabel("     Paused     ");
+        spaceLabel = new JLabel("                         ");
+        musicButton = new JButton("");
+        livesLabel.setText("Lives: " + Board.getInstance().getLives());
+        pointsLabel = new JLabel("Points: " + Board.getInstance().getPoints());
+        messageLabel.setFont(font);
+        pointsLabel.setForeground(Color.WHITE);
+        livesLabel.setForeground(Color.WHITE);
+        messageLabel.setForeground(Color.black);
+        if (music) {
+            musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\sound_32.png"));
+        } else {
+            musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\notsound_32.png"));
+        }
+        musicButton.setForeground(Color.white);
+        musicButton.addActionListener(new setMusic());
+        skipDemo = new JButton("  Skip Demo  ");
+        skipDemo.setFont(font);
+        skipDemo.setForeground(Color.BLACK);
+        skipDemo.setVisible(false);
+    }
+    
+    public JLabel getTutorial(){
+        return tutorial;
     }
 }
