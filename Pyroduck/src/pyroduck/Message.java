@@ -19,7 +19,7 @@ public class Message {
         this.panel = panel;
         tutorial = panel.getTutorial();
         timer = new Timer();
-        timer.schedule(new ScheduleTask(), 2000);
+        timer.schedule(new ScheduleTask(), 4000);
     }
 
     public static void setMessage(String message){
@@ -29,7 +29,10 @@ public class Message {
     private class ScheduleTask extends TimerTask {
         @Override
         public void run() {
-            setMessage("");
+            if(Game.getInstance().getDemo())
+                setMessage("");
+            else
+                timer.cancel();
         }
     }
 }

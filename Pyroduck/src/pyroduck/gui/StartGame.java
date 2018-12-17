@@ -396,6 +396,7 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        Game.getInstance().setDemo(false);
         try {
             Game.getInstance().setSelected(selected);
             audio.stop();
