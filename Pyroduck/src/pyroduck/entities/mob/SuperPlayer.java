@@ -108,7 +108,7 @@ public class SuperPlayer extends Player {
 
     @Override
     protected void placeBomb(int x, int y) {
-        Missile m = new Missile(x, y - 1, direction);
+        Missile m = new Missile(x, y, direction);
         bombs.add(m);
     }
 
@@ -117,7 +117,7 @@ public class SuperPlayer extends Player {
         if (input.space && timeBetweenPutBombs < 0) {
             int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
             int yt = Coordinates.pixelToTile((y + sprite.getSize() / 2) - sprite.getSize());
-            placeBomb(xt, yt+1);
+            placeBomb(xt, yt);
             timeBetweenPutBombs = 100;
         }
     }
