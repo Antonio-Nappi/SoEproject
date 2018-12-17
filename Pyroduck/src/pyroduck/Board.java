@@ -213,23 +213,7 @@ public class Board extends Observable implements Observer {
     public Player getPlayer() {
         return (Player) mobs.get(0);
     }
-
-    /*
-    private Mob getMobAtExcluding(int x, int y, Mob a) {
-        Iterator<Mob> itr = mobs.iterator();
-        Mob cur;
-        while (itr.hasNext()) {
-            cur = itr.next();
-            if (cur == a) {
-                continue;
-            }
-            if (cur.getXTile() == x && cur.getYTile() == y) {
-                return cur;
-            }
-        }
-        return null;
-    }
-     */
+    
     public ArrayList<Mob> getMobsAtExcluding(int x, int y, Mob a) {
         Iterator<Mob> itr = mobs.iterator();
         ArrayList<Mob> mobs1 = new ArrayList();
