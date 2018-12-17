@@ -33,7 +33,6 @@ public class Board extends Observable implements Observer {
     private final List<DestroyableIceTile> destroyableIceTiles = new ArrayList<>();
     protected boolean pause = false;
     private static Board instance = null;
-    //private boolean demo = false;
     private int rightLives = 0;
     private Timer timer;
 
@@ -399,9 +398,6 @@ public class Board extends Observable implements Observer {
                     }
                 }
             }
-            System.out.println(Game.getInstance().getBombRate());
-            System.out.println("Sceso da articuno perchè morto");
-            System.out.println(Game.getInstance().getBombRate());
             mobs.set(0, oldPlayer);
             for (int i = 1; i < mobs.size(); i++) {
                 EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
@@ -424,7 +420,7 @@ public class Board extends Observable implements Observer {
                     }
                 }
                 ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
-                timer.schedule(new ScheduleTask(), 20000);
+                timer.schedule(new ScheduleTask(), 10000);
             } else {
                 if (getLevel() == 0 && Game.getInstance().getDemo()) {
                     Game.getInstance().setDemo(false);
@@ -437,7 +433,6 @@ public class Board extends Observable implements Observer {
                         Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     Game.getInstance().restartGame();
-
                     setChanged();
                     notifyObservers();
                 } else {
@@ -502,10 +497,6 @@ public class Board extends Observable implements Observer {
         return rightLives;
     }
 
-//    public boolean getDemo() {
-//        return demo;
-//    }
-
     public void changeLives(int lives) {
         this.lives += lives;
         setChanged();
@@ -528,9 +519,6 @@ public class Board extends Observable implements Observer {
                     enemyPower.updateReferencePlayer(oldPlayer);
                 }
             }
-            System.err.println(Game.getInstance().getBombRate());
-            System.err.println("Sceso da articuno perchè finito il tempo");
-            System.err.println(Game.getInstance().getBombRate());
         }
     }
 }

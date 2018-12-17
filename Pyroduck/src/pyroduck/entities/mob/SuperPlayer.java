@@ -4,6 +4,7 @@ import pyroduck.*;
 import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.*;
 import pyroduck.bomb.Missile;
+import pyroduck.level.Coordinates;
 
 /**
  *
@@ -114,7 +115,8 @@ public class SuperPlayer extends Player {
     @Override
     protected void detectPlaceBomb() {
         if (input.space && timeBetweenPutBombs < 0) {
-            placeBomb((int) x + 16, (int) y);
+            int yt = Coordinates.pixelToTile((y + sprite.getSize() / 2) - sprite.getSize());
+            placeBomb((int) x + 16, yt+1);
             timeBetweenPutBombs = 100;
         }
     }

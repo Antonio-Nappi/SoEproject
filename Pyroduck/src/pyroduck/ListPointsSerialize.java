@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
  * @author Bini, Petruzzello
  */
 
+@SuppressWarnings("unchecked") 
 public class ListPointsSerialize {
     protected List<PointsSerialize> list;
 

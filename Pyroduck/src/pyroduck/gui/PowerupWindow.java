@@ -99,7 +99,7 @@ public class PowerupWindow extends javax.swing.JFrame {
         jTextArea7.setColumns(20);
         jTextArea7.setFont(new java.awt.Font("Comic Sans MS", 1, 15)); // NOI18N
         jTextArea7.setRows(5);
-        jTextArea7.setText("It decreases the\nplayer speed.\nBut, it is hidden \nin the game.");
+        jTextArea7.setText("It allows the \nyellow player to \nnot slide on ice.");
         jTextArea7.setBorder(null);
         jTextArea7.setFocusable(false);
         jScrollPane8.setViewportView(jTextArea7);
