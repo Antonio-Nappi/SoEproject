@@ -77,18 +77,6 @@ public class Board extends Observable implements Observer {
     | ChangeLevel
     |--------------------------------------------------------------------------
      */
-    public void resetProperties() {
-        if (this.getPlayerRight() == 0) {
-            Game.getInstance().playerSpeed = 1.3;
-            Game.getInstance().bombRadius = 1;
-            Game.getInstance().bombRate = 1;
-        } else if (this.getPlayerRight() == 1) {
-            Game.getInstance().playerSpeed = 1;
-            Game.getInstance().bombRadius = 1;
-            Game.getInstance().bombRate = 1;
-        }
-        Game.getInstance().reverse = false;
-    }
 
     public void setLives(int lives) {
         this.lives = lives;
@@ -391,7 +379,7 @@ public class Board extends Observable implements Observer {
             oldPlayer.setX(x);
             oldPlayer.setY(y);
             oldPlayer.setInput(getRightKeyboard());
-            resetProperties();
+            Game.getInstance().resetProperties();
             for (Mob m : mobs) {
                 if (!m.isPlayer()) {
                     if (Coordinates.pixelToTile(abs(x - m.getX())) < 1 && Coordinates.pixelToTile(abs(y - m.getY())) < 1) {
@@ -513,7 +501,7 @@ public class Board extends Observable implements Observer {
             oldPlayer.setX(x);
             oldPlayer.setY(y);
             oldPlayer.setInput(getRightKeyboard());
-            resetProperties();
+            Game.getInstance().resetProperties();
             mobs.set(0, oldPlayer);
             for (int i = 1; i < mobs.size(); i++) {
                 EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();

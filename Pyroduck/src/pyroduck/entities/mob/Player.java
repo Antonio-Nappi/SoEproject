@@ -405,7 +405,7 @@ public class Player extends Mob {
                 }
             }
         }
-        Board.getInstance().resetProperties();
+        Game.getInstance().resetProperties();
     }
 
     protected void updateTimerBreaker() {

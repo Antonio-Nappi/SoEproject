@@ -100,7 +100,7 @@ public class GamePanel extends JPanel implements Observer {
         public void actionPerformed(ActionEvent e) {
             Board.getInstance().resetPoints();
             pointsLabel.setText("Points: 0");
-            Board.getInstance().resetProperties();
+            Game.getInstance().resetProperties();
             Board.getInstance().changeLevel(1);
             tutorialpanel.setVisible(false);
             skipDemo.setVisible(false);
