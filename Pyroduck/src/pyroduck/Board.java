@@ -390,6 +390,7 @@ public class Board extends Observable implements Observer {
             double y = mobs.get(0).getY();
             oldPlayer.setX(x);
             oldPlayer.setY(y);
+            oldPlayer.setInput(getRightKeyboard());
             resetProperties();
             for (Mob m : mobs) {
                 if (!m.isPlayer()) {
@@ -511,6 +512,7 @@ public class Board extends Observable implements Observer {
             double y = mobs.get(0).getY();
             oldPlayer.setX(x);
             oldPlayer.setY(y);
+            oldPlayer.setInput(getRightKeyboard());
             resetProperties();
             mobs.set(0, oldPlayer);
             for (int i = 1; i < mobs.size(); i++) {
