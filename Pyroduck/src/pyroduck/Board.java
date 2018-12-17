@@ -545,9 +545,6 @@ public class Board extends Observable implements Observer {
                     enemyPower.updateReferencePlayer(oldPlayer);
                 }
             }
-            System.err.println(Game.getInstance().getBombRate());
-            System.err.println("Sceso da articuno perchè finito il tempo");
-            System.err.println(Game.getInstance().getBombRate());
         }
     }
 }
