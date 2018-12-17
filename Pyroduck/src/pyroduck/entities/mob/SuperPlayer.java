@@ -14,6 +14,10 @@ public class SuperPlayer extends Player {
 
     private GraphicalExtensionSuperplayer graphicalExtensionSP = null;
 
+    /**
+     * 
+     * @param player instance of the player at which apply the power up.
+     */
     public SuperPlayer(Player player) {
         super((int) player.getX(), (int) player.getY());
         this.input = player.input;
