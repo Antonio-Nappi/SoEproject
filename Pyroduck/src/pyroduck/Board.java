@@ -400,9 +400,6 @@ public class Board extends Observable implements Observer {
                     }
                 }
             }
-            System.out.println(Game.getInstance().getBombRate());
-            System.out.println("Sceso da articuno perchè morto");
-            System.out.println(Game.getInstance().getBombRate());
             mobs.set(0, oldPlayer);
             for (int i = 1; i < mobs.size(); i++) {
                 EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
