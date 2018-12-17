@@ -115,8 +115,9 @@ public class SuperPlayer extends Player {
     @Override
     protected void detectPlaceBomb() {
         if (input.space && timeBetweenPutBombs < 0) {
+            int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
             int yt = Coordinates.pixelToTile((y + sprite.getSize() / 2) - sprite.getSize());
-            placeBomb((int) x + 16, yt+1);
+            placeBomb(xt, yt+1);
             timeBetweenPutBombs = 100;
         }
     }
