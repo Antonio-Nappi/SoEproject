@@ -448,7 +448,13 @@ public class Board extends Observable implements Observer {
                     resetPoints();
                     points = 0;
                     lives = SettingsGame.getLives();
+                    try {
+                        nextLevel();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     Game.getInstance().restartGame();
+
                     setChanged();
                     notifyObservers();
                 } else {
