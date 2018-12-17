@@ -23,7 +23,7 @@ public class Missile extends Bomb{
     /**
      * Intsance a Missile object.
      * @param x horizontal coordinate in pixels
-     * @param y vertical coordinate in tile
+     * @param y vertical coordinate in pixels
      * @param direction moviment direction: 0 -> up, 1 -> right, 2 -> down, 3 -> left 
      */
     public Missile(int x, int y, int direction) {
@@ -55,7 +55,7 @@ public class Missile extends Bomb{
         return false;      
     }
     
-    private void move() {
+    protected void move() {
         double x0 = x, y0 = y;
         switch(direction){
            case 0:

@@ -11,11 +11,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import pyroduck.Board;
+import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.enemy.graphic.Arbok;
-import pyroduck.entities.tile.destroyable.BrickTile;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
+import pyroduck.entities.mob.enemy.graphic.Enemy;
+import pyroduck.entities.mob.enemy.graphic.Golbat;
+import pyroduck.level.FileLevel;
 
 /**
  *
@@ -38,7 +40,7 @@ public class MissileTest {
     
     @Before
     public void setUp() {
-        missile = new Missile(32, 1, 2);
+        missile = new Missile(1, 1, 2);
     }
     
     @After
@@ -50,7 +52,12 @@ public class MissileTest {
      */
     @Test
     public void testUpdate() {
-        
+        Game.getInstance();
+        for(int i=0; i<51; i++){
+            assertFalse(missile.isRemoved());
+            missile.update();
+        }
+        assertTrue(missile.isRemoved());
     }
 
     /**
@@ -60,14 +67,25 @@ public class MissileTest {
     public void testRender() {
         
     }
+    
+    public void testMove(){
+        Entity e = Board.getInstance().entities[(1 + 1 * FileLevel.WIDTH)];
+        assertFalse(e.collide(missile));
+        Enemy e1 = new Arbok(32, 72);
+        missile.move();
+        assertFalse(missile.isExploded());
+        assertTrue(e1.isAlive());
+        missile.move();
+        assertTrue(missile.isExploded());
+        assertFalse(e1.isAlive());
+    }
 
     /**
      * Test of collide method, of class Missile.
      */
     @Test
     public void testCollide() {
-        System.out.println("collide");
-        Entity e = new Arbok(32, 32);
+        Enemy e = new Golbat(32, 32);
         boolean test = missile.collide(e);
         assertEquals(test, false);
     }
