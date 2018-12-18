@@ -404,6 +404,7 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        
         Game.getInstance().setDemo(false);
         try {
             Game.getInstance().setSelected(selected);
@@ -413,7 +414,7 @@ public class StartGame extends javax.swing.JFrame {
         }
         Board.getInstance().setPlayer(selected);  
         try {
-            Pyroduck.main(args);
+            Frame mainWindow = new Frame();
         } catch (IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -449,6 +450,7 @@ public class StartGame extends javax.swing.JFrame {
         this.setVisible(false);  
     }//GEN-LAST:event_demomodeButtonActionPerformed
 
+   
     /**
      * @param args the command line arguments
      */
