@@ -73,33 +73,33 @@ public class SuperPlayer extends Player {
         } else {
             switch (direction) {
                 case 0:
-                    sprite = Sprite.player_upi;
+                    sprite = Sprite.articunoi_up;
                     if (moving) {
-                        sprite = Sprite.movingSprite(Sprite.player_up_1i, Sprite.player_up_2i, animate, 30);
+                        sprite = Sprite.movingSprite(Sprite.articunoi_up1, Sprite.articunoi_up2, animate, 30);
                     }
                     break;
                 case 1:
-                    sprite = Sprite.player_righti;
+                    sprite = Sprite.articunoi_right;
                     if (moving) {
-                        sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
+                        sprite = Sprite.movingSprite(Sprite.articunoi_right1, Sprite.articunoi_right2, animate, 30);
                     }
                     break;
                 case 2:
-                    sprite = Sprite.player_downi;
+                    sprite = Sprite.articunoi_down;
                     if (moving) {
-                        sprite = Sprite.movingSprite(Sprite.player_down_1i, Sprite.player_down_2i, animate, 30);
+                        sprite = Sprite.movingSprite(Sprite.articunoi_down1, Sprite.articunoi_down2, animate, 30);
                     }
                     break;
                 case 3:
-                    sprite = Sprite.player_lefti;
+                    sprite = Sprite.articunoi_left;
                     if (moving) {
-                        sprite = Sprite.movingSprite(Sprite.player_left_1i, Sprite.player_left_2i, animate, 30);
+                        sprite = Sprite.movingSprite(Sprite.articunoi_left1, Sprite.articunoi_left2, animate, 30);
                     }
                     break;
                 default:
-                    sprite = Sprite.player_righti;
+                    sprite = Sprite.articunoi_down;
                     if (moving) {
-                        sprite = Sprite.movingSprite(Sprite.player_right_1i, Sprite.player_right_2i, animate, 30);
+                        sprite = Sprite.movingSprite(Sprite.articunoi_down1, Sprite.articunoi_down2, animate, 30);
                     }
                     break;
             }

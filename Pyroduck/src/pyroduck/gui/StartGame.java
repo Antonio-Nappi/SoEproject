@@ -428,7 +428,7 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_settingButtonhowtoplayButtonActionPerformed
 
     private void demomodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demomodeButtonActionPerformed
-        Game.getInstance().setSelected(0);
+        Game.getInstance().setSelected(selected);
         Board.getInstance().setPlayer(selected);
         Board.getInstance().changeLevel(-1);
         try {
