@@ -1,5 +1,6 @@
 package pyroduck.gui;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -205,7 +206,9 @@ public class EndGame extends javax.swing.JFrame {
         dispose();
 
         
-        StartGame s=new StartGame();
+        StartGame s = new StartGame();
+        s.setLocation(new Point(200, 50));
+        s.setSize(1130, 600);
         s.setVisible(true); 
         Board.setBoard();
         Game.setGame();
