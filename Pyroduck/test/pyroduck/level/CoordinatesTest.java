@@ -14,6 +14,8 @@ import pyroduck.Game;
  */
 public class CoordinatesTest {
     
+    private int size;
+    
     public CoordinatesTest() {
     }
     
@@ -27,6 +29,7 @@ public class CoordinatesTest {
     
     @Before
     public void setUp() {
+        size = Game.TILES_SIZE;
     }
     
     @After
@@ -38,9 +41,7 @@ public class CoordinatesTest {
      */
     @Test
     public void testPixelToTile() {
-        System.out.println("pixelToTile");
-        double i = 32.0;
-        int size = Game.TILES_SIZE;
+        double i = 32.0;    
         int expResult = 1;
         int result = Coordinates.pixelToTile(i);
         assertEquals(expResult, result);
@@ -51,9 +52,7 @@ public class CoordinatesTest {
      */
     @Test
     public void testTileToPixel_int() {
-        System.out.println("tileToPixel");
         int i = 0;
-        int size = Game.TILES_SIZE;
         int expResult = 0;
         int result = Coordinates.tileToPixel(i);
         assertEquals(expResult, result); 
@@ -64,9 +63,7 @@ public class CoordinatesTest {
      */
     @Test
     public void testTileToPixel_double() {
-        System.out.println("tileToPixel");
         double i = 1.0;
-        int size = Game.TILES_SIZE;
         int expResult = 32;
         int result = Coordinates.tileToPixel(i);
         assertEquals(expResult, result);

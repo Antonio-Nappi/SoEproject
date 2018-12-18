@@ -8,7 +8,7 @@ import java.awt.Point;
  */
 public class HowToPlay extends javax.swing.JFrame {
 
-    private StartGame start;
+    private final StartGame start;
     /**
      * Creates new form HowToPlay
      */

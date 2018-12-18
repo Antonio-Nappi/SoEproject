@@ -21,7 +21,7 @@ public class SettingsGame extends javax.swing.JFrame {
     private static int lives = 3;
     private ListPointsSerialize scores = new ListPointsSerialize();
     private List<PointsSerialize> list;
-    private StartGame start;
+    private final StartGame start;
     /**
      * Creates new form SettingsGame
      */
