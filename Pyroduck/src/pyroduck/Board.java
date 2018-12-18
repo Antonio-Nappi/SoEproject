@@ -94,6 +94,7 @@ public class Board extends Observable implements Observer {
             rightLives = getLives();
             setLives(0);
         }
+        Game.getInstance().setDemo(false);
         changeLevel(i);
         try {
             Game.getInstance().renderScreen();
@@ -113,9 +114,7 @@ public class Board extends Observable implements Observer {
             try {
                 int combination = new Random(System.currentTimeMillis()).nextInt(2) + 1;
                 String path;
-                if (numlevel == -1) {
-                    path = "./resources/levels/Demo1.txt";
-                } else if (numlevel == 0) {
+                 if (numlevel == 0) {
                     path = "./resources/levels/Demo.txt";
                 } else {
                     path = "./resources/levels/nextlevel/Level" + numlevel + " " + combination + ".txt";
@@ -412,12 +411,11 @@ public class Board extends Observable implements Observer {
                 timer.schedule(new ScheduleTask(), 10000);
             } else {
                 if (getLevel() == 0 && Game.getInstance().getDemo()) {
-                    Game.getInstance().setDemo(false);
                     resetPoints();
-                    points = 0;
                     lives = SettingsGame.getLives();
                     try {
-                        nextLevel();
+                        Game.getInstance().setDemo(false);
+                        nextLevel();             
                     } catch (IOException ex) {
                         Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
                     }

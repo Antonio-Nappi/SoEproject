@@ -2,6 +2,7 @@ package pyroduck.graphics;
 
 import java.awt.*;
 import pyroduck.Game;
+import pyroduck.Message;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.level.FileLevel;

@@ -28,8 +28,6 @@ public abstract class Powerup extends DestroyableTile {
         if(e.isMob() && (((Mob)e).isPlayer())) {
             ((Player) e).addPowerup(this);
             remove();
-            if(Game.getInstance().getDemo())
-                Message.setMessage("This is a powerup. Pick up them to become much stronger. But pay attention to malus!");
             return true;
         }
         return false;

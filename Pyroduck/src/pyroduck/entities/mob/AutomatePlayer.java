@@ -13,7 +13,6 @@ public class AutomatePlayer extends Player{
 
     private boolean putBomb = false;
     private int counter_idle = 0;
-    private static boolean first = true;
     private final LinkedList<Double> registerX = new LinkedList<>();
     private final LinkedList<Double> registerY = new LinkedList<>();
 
@@ -21,25 +20,15 @@ public class AutomatePlayer extends Player{
         super(x, y);
         fillRegisters();
     }
-    
-    /*
-    Promemoria :
-    per x: +1 va a destra e -1 va a sinistra
-    per y: +1 va giu e -1 va su
-    Inizia con x=16, y=32
-    Ogni casella è 32
-    */
 
     private void fillRegisters() {
-        if(first){
-            first = false;
             moveRight(2);
             moveDown(2);
-            wait(6);
             moveRight(3);
+            wait(3);
             putBomb();
             moveLeft(2);
-            wait(5);
+            wait(3);
             moveRight(3);
             wait(8);
             putBomb();
@@ -51,9 +40,10 @@ public class AutomatePlayer extends Player{
             putBomb();
             moveLeft(2);
             moveDown(2);
-            wait(7);
+            wait(5);
             moveRight(2);
             moveDown(1); 
+            wait(1);
             putBomb();
             moveUp(1);
             moveLeft(1);
@@ -76,20 +66,11 @@ public class AutomatePlayer extends Player{
             moveUp(1);
             moveRight(2);
             moveDown(2);
-        }
-        else{
-           moveRight(4);
-           moveDown(3);
-           putBomb();
-           moveUp(3);
-           wait(3);
-           moveDown(2);
-        }
     }
 
     @Override
     protected void calculateMove(){
-        if(counter_idle < 500){  //player initial idle -> 500*15 ms
+        if(counter_idle < 350){  //player initial idle -> 500*15 ms
             counter_idle++;
             return;
         }
