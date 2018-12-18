@@ -3,17 +3,23 @@ package pyroduck.level;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import pyroduck.Board;
+import pyroduck.Game;
 import pyroduck.entities.Entity;
-import pyroduck.entities.mob.Mob;
-import pyroduck.entities.tile.GrassTile;
-import pyroduck.entities.tile.WallTile;
-import pyroduck.entities.tile.destroyable.BrickTile;
+import pyroduck.entities.mob.Player;
+import pyroduck.entities.mob.enemy.graphic.Arbok;
+import pyroduck.entities.mob.enemy.graphic.Golbat;
+import pyroduck.entities.mob.enemy.graphic.Machamp;
+import pyroduck.entities.tile.powerup.MalusSlow;
 import pyroduck.entities.tile.powerup.Powerup;
 
 /**
@@ -21,6 +27,15 @@ import pyroduck.entities.tile.powerup.Powerup;
  * @author 
  */
 public class GrassFileLevelTest {
+    
+    String path1 = "./resources/levels/nextlevel/Level1 1.txt";
+    BufferedReader in1;
+    FileLevel instance1;
+    String path2 = "./resources/levels/nextlevel/Level2 1.txt";
+    BufferedReader in2;
+    FileLevel instance2;
+    BufferedReader in3;
+    FileLevel instance3;
     
     public GrassFileLevelTest() {
     }
@@ -35,6 +50,21 @@ public class GrassFileLevelTest {
     
     @Before
     public void setUp() {
+        try {
+            in1 = new BufferedReader(new FileReader(path1));
+            in1.readLine();
+            instance1 = new GrassFileLevel(path1, in1, 1);
+            in2 = new BufferedReader(new FileReader(path2));
+            in2.readLine();
+            instance2 = new GrassFileLevel(path2, in2, 2);
+            in3 = new BufferedReader(new FileReader(path2));
+            in3.readLine();
+            instance3 = new GrassFileLevel(path2, in3, 2);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GrassFileLevelTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GrassFileLevelTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @After
@@ -47,14 +77,7 @@ public class GrassFileLevelTest {
     @Test
     public void testCreateWall() {
         System.out.println("createWall");
-        int x = 0;
-        int y = 0;
-        GrassFileLevel instance = null;
-        WallTile expResult = null;
-        WallTile result = instance.createWall(x, y);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance1.createWall(64, 32).isTile());
     }
 
     /**
@@ -63,14 +86,7 @@ public class GrassFileLevelTest {
     @Test
     public void testCreateBrick() {
         System.out.println("createBrick");
-        int x = 0;
-        int y = 0;
-        GrassFileLevel instance = null;
-        BrickTile expResult = null;
-        BrickTile result = instance.createBrick(x, y);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance1.createBrick(64, 32).isDestroyable());
     }
 
     /**
@@ -79,14 +95,7 @@ public class GrassFileLevelTest {
     @Test
     public void testCreateGrass() {
         System.out.println("createGrass");
-        int x = 0;
-        int y = 0;
-        GrassFileLevel instance = null;
-        GrassTile expResult = null;
-        GrassTile result = instance.createGrass(x, y);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(instance1.createGrass(64, 32).isTile());
     }
 
     /**
@@ -95,14 +104,8 @@ public class GrassFileLevelTest {
     @Test
     public void testCreateFirstEnemy() {
         System.out.println("createFirstEnemy");
-        int x = 0;
-        int y = 0;
-        GrassFileLevel instance = null;
-        Mob expResult = null;
-        Mob result = instance.createFirstEnemy(x, y);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Entity lowEnemy = instance1.createFirstEnemy(64, 32);
+        assertTrue(lowEnemy instanceof Golbat);
     }
 
     /**
@@ -111,15 +114,11 @@ public class GrassFileLevelTest {
     @Test
     public void testCreateSecondEnemy() {
         System.out.println("createSecondEnemy");
-        int x = 0;
-        int y = 0;
-        int choose = 0;
-        GrassFileLevel instance = null;
-        Mob expResult = null;
-        Mob result = instance.createSecondEnemy(x, y, choose);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Board.getInstance().addMob(new Player(32, 32 + Game.TILES_SIZE));;
+        Entity mediumEnemy = instance1.createSecondEnemy(32, 64, 2);
+        assertTrue(mediumEnemy instanceof Machamp);
+        Entity mediumEnemy2 = instance1.createSecondEnemy(64, 32, 3);
+        assertTrue(mediumEnemy2 instanceof Arbok);
     }
 
     /**
@@ -128,14 +127,8 @@ public class GrassFileLevelTest {
     @Test
     public void testCreatePowerup() {
         System.out.println("createPowerup");
-        int x = 0;
-        int y = 0;
-        GrassFileLevel instance = null;
-        Powerup expResult = null;
-        Powerup result = instance.createPowerup(x, y);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Powerup p = instance1.createPowerup(32, 64);
+        assertTrue(p instanceof MalusSlow);
     }
      
     /**
@@ -144,10 +137,10 @@ public class GrassFileLevelTest {
      */
     public void testLoadLevel() throws FileNotFoundException{
         System.out.println("loadLevel");
-        String path = "./resoucers/levels/Level1.txt";
-        BufferedReader in = new BufferedReader(new FileReader(path));
-        FileLevel instance = new GrassFileLevel(path, in, 1);
-        instance.loadLevel(path, in);
+        instance1.loadLevel(path1, in1);
+        instance2.loadLevel(path2, in2);
+        instance3.loadLevel(path2, in3);
+        assertArrayEquals(instance2.lineTiles, instance3.lineTiles);
     }
     
     /**
@@ -157,13 +150,10 @@ public class GrassFileLevelTest {
     @Test
     public void testCreateEntities() throws FileNotFoundException{
         System.out.println("createEntities");
-        BufferedReader in = new BufferedReader(new FileReader("./resources/level/test.txt"));
-        BufferedReader in1 = new BufferedReader(new FileReader("./resources/level/Level1.txt"));
-        FileLevel instance = new GrassFileLevel("./resources/level/test.txt", in, 1);
-        FileLevel instance1 = new GrassFileLevel("./resources/level/Level1.txt", in1, 1);
-        Entity[] result = instance.createEntities();
-        Entity [] expResult = instance1.createEntities();
-        assertArrayEquals(expResult, result);
+        Entity[] result2 = instance2.createEntities();
+        Entity [] result3 = instance3.createEntities();
+        for(Entity e : result2)
+            assertEquals(result2.getClass(), result3.getClass());
     }
     
     /**
@@ -173,10 +163,9 @@ public class GrassFileLevelTest {
     @Test
     public void testGetLevel() throws FileNotFoundException{
         System.out.println("getLevel");
-        BufferedReader in = new BufferedReader(new FileReader("./resources/level/Level1.txt"));
-        FileLevel instance = new GrassFileLevel("./resources/levels/Level1.txt", in, 1);
-        int expResult = 1;
-        int result = instance.getLevel();
-        assertEquals(expResult, result);
+        int result = instance1.getLevel();
+        assertEquals(1, result);
+        result = instance2.getLevel();
+        assertEquals(2, result);
     }    
 }

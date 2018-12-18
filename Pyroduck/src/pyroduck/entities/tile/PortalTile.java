@@ -21,13 +21,11 @@ public class PortalTile extends Tile {
     public boolean collide(Entity e) {
         if (e.isMob() && (((Mob) e).isPlayer())) {
             if (!Board.getInstance().detectNoEnemies()) {
-                if(Game.getInstance().getDemo())
-                    Message.setMessage("To cross a level you have to finish it. You must kill all the enemies before.");
                 return false;
             }
             if (e.getXTile() == getX() && e.getYTile() == getY()) {
                 if (Board.getInstance().detectNoEnemies()) {
-                    Message.setMessage("Congratulations! The level is now complete.");
+                    //Message.setMessage("Congratulations! The level is now complete.");
                     try {
                         Game.getInstance().pause();
                         Board.getInstance().setPoints(1000);

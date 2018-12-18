@@ -26,18 +26,18 @@ import pyroduck.input.*;
 public class GamePanel extends JPanel implements Observer {
 
     private final Game game;
-    private JLabel livesLabel = new JLabel();
+    private final JLabel livesLabel = new JLabel();
     private JLabel pointsLabel = new JLabel();
     private JLabel messageLabel = new JLabel();
     private JLabel spaceLabel = new JLabel();
     private JButton musicButton = new JButton();
     private JButton skipDemo = new JButton();
-    private JPanel panel = new JPanel();
-    private JPanel tutorialpanel = new JPanel();
-    private Frame frame;
+    private final JPanel panel = new JPanel();
+    private final JPanel tutorialpanel = new JPanel();
+    private final Frame frame;
     private final Message message;
     private JFrame endGame;
-    private JLabel tutorial = new JLabel();
+    private final JLabel tutorial = new JLabel();
 
     public GamePanel(Frame frame) throws IOException {
         this.frame = frame;
@@ -95,7 +95,6 @@ public class GamePanel extends JPanel implements Observer {
     }
 
     private class skip implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             Board.getInstance().resetPoints();
@@ -149,7 +148,7 @@ public class GamePanel extends JPanel implements Observer {
     private void setTutorialPanel(){
         tutorialpanel.setBackground(Color.black);
         tutorial.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
-        tutorial.setText("Press UP, DOWN, RIGHT, LEFT or W, S, D, A to move the player through the arena");
+        tutorial.setText("Press UP, DOWN, RIGHT, LEFT or W, S, D, A to move the player through the arena.");
         tutorial.setForeground(Color.white);
         tutorialpanel.add(tutorial, 0);
     }
