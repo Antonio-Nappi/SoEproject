@@ -21,12 +21,13 @@ public class SettingsGame extends javax.swing.JFrame {
     private static int lives = 3;
     private ListPointsSerialize scores = new ListPointsSerialize();
     private List<PointsSerialize> list;
-
+    private StartGame start;
     /**
      * Creates new form SettingsGame
      */
-    public SettingsGame() {
+    public SettingsGame(StartGame start) {
         initComponents(); 
+        this.start = start;
         setLocation(new Point(600,200));
         DefaultTableModel model= new DefaultTableModel();
         jTable1.setModel(model);
@@ -160,6 +161,7 @@ public class SettingsGame extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
+        start.setEnabled(true);
         dispose();
     }//GEN-LAST:event_exitLabelMouseClicked
 

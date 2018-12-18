@@ -8,11 +8,13 @@ import java.awt.Point;
  */
 public class HowToPlay extends javax.swing.JFrame {
 
+    private StartGame start;
     /**
      * Creates new form HowToPlay
      */
-    public HowToPlay() {
+    public HowToPlay(StartGame start) {
         initComponents();
+        this.start = start;
         setLocation(new Point(600,200));
         exitLabel.setIcon (new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         setVisible(true);  

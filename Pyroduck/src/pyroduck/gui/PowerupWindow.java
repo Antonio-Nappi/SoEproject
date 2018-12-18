@@ -8,11 +8,13 @@ import java.awt.Point;
  */
 public class PowerupWindow extends javax.swing.JFrame {
 
+    private StartGame start;
     /**
      * Creates new form PowerupWindow
      */
-    public PowerupWindow() {
+    public PowerupWindow(StartGame start) {
         initComponents();
+        this.start = start;
         flameLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\flame.png"));
         bombLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\bomb.png"));
         inversionLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\inversion.png"));

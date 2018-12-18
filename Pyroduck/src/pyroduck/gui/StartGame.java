@@ -429,19 +429,23 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void powerupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerupButtonActionPerformed
-        PowerupWindow pwindow = new PowerupWindow();
+        PowerupWindow pwindow = new PowerupWindow(this);
+        setEnabled(false);
     }//GEN-LAST:event_powerupButtonActionPerformed
 
     private void howtoplayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howtoplayButtonActionPerformed
-        HowToPlay howtoplay = new HowToPlay();
+        HowToPlay howtoplay = new HowToPlay(this);
+        setEnabled(false);
     }//GEN-LAST:event_howtoplayButtonActionPerformed
 
     private void infoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoButtonActionPerformed
-        InfoWindow info = new InfoWindow();
+        InfoWindow info = new InfoWindow(this);
+        setEnabled(false);
     }//GEN-LAST:event_infoButtonActionPerformed
                               
     private void settingButtonhowtoplayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingButtonhowtoplayButtonActionPerformed
-        SettingsGame setting = new SettingsGame();
+        SettingsGame setting = new SettingsGame(this);
+        setEnabled(false);
     }//GEN-LAST:event_settingButtonhowtoplayButtonActionPerformed
 
     private void demomodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demomodeButtonActionPerformed

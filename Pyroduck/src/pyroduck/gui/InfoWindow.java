@@ -8,11 +8,13 @@ import java.awt.Point;
  */
 public class InfoWindow extends javax.swing.JFrame {
 
+    private StartGame start;
     /**
      * Creates new form InfoWindow
      */
-    public InfoWindow() {
+    public InfoWindow(StartGame start) {
         initComponents();
+        this.start = start;
         setLocation(new Point(500, 300));
         exitLabel.setIcon (new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         setVisible(true);
