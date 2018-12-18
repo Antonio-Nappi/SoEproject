@@ -116,9 +116,11 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + Board.getInstance().getLives());
         pointsLabel.setText("Points: " + Board.getInstance().getPoints());
-        if (!Game.getInstance().getDemo()) {
+        
+        if (!Game.getInstance().getDemo()&& Board.getInstance().isPause() == false) {
             skipDemo.setVisible(false);
-            tutorialpanel.setVisible(false);        
+            this.remove(tutorialpanel);
+            
         }
         if (Board.getInstance().getLives() <= 0) {
             if (endGame == null) {
