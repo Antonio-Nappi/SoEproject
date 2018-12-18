@@ -1,7 +1,6 @@
 package pyroduck.entities.mob;
 
 import pyroduck.*;
-import pyroduck.entities.tile.powerup.Powerup;
 import pyroduck.graphics.*;
 import pyroduck.bomb.Missile;
 import pyroduck.level.Coordinates;
@@ -124,10 +123,6 @@ public class SuperPlayer extends Player {
             placeBomb(xt, yt);
             timeBetweenPutBombs = 100;
         }
-    }
-
-    @Override
-    public void addPowerup(Powerup p) {
     }
 
     @Override
