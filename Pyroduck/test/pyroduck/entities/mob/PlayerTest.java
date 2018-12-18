@@ -175,7 +175,8 @@ public class PlayerTest {
      * Test of correctKeyboard method, of class Player.
      */
     @Test
-    public void testCorrectKeyboard(){
+    public void testCorrectKeyboard(){        
+        System.out.println("correctKeyboard");
         Board.getInstance().setPlayer(1);
         player.correctKeyboard();
         assertEquals(player.input, Keyboard.getInstance());   
@@ -187,7 +188,6 @@ public class PlayerTest {
     @Test
     public void testKill() {
         player.alive = true;
-        
         assertEquals(3.0, Board.getInstance().getLives(),0);
         player.kill();
         assertFalse(player.alive);
