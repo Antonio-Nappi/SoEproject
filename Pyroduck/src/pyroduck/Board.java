@@ -491,7 +491,7 @@ public class Board extends Observable implements Observer {
     
     public static void setBoard(){
         instance=null;
-        instance=getInstance();
+        instance=getInstance();  
     }
 
     public void resetPoints() {
@@ -507,6 +507,8 @@ public class Board extends Observable implements Observer {
         setChanged();
         notifyObservers();
     }
+    
+    
 
     private class ScheduleTask extends TimerTask {
 
