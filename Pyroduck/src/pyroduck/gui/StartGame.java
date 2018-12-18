@@ -34,6 +34,7 @@ public class StartGame extends javax.swing.JFrame {
         pSpeed.setValue(100);
         pSliding.setValue(100);
         pBr.setValue(50);
+        demomodeButton.setToolTipText("Inizia la demo col personaggio selezionato e fai la tua prima partita!");
     }
 
     /**
