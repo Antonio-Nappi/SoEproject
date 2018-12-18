@@ -85,11 +85,6 @@ public class EndGame extends javax.swing.JFrame {
                 restartButtonMouseClicked(evt);
             }
         });
-        restartButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                restartButtonActionPerformed(evt);
-            }
-        });
 
         quitButton.setBackground(new java.awt.Color(255, 153, 0));
         quitButton.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
@@ -103,11 +98,6 @@ public class EndGame extends javax.swing.JFrame {
         quitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 quitButtonMouseClicked(evt);
-            }
-        });
-        quitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quitButtonActionPerformed(evt);
             }
         });
 
@@ -188,13 +178,6 @@ public class EndGame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
-    }//GEN-LAST:event_restartButtonActionPerformed
-
-    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
-
-    }//GEN-LAST:event_quitButtonActionPerformed
-
     private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
         System.exit(0);
     }//GEN-LAST:event_exitLabelMouseClicked
@@ -205,7 +188,6 @@ public class EndGame extends javax.swing.JFrame {
    
         dispose();
 
-        
         StartGame s = new StartGame();
         s.setLocation(new Point(200, 50));
         s.setSize(1130, 600);
