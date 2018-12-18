@@ -414,7 +414,6 @@ public class Board extends Observable implements Observer {
                 if (getLevel() == 0 && Game.getInstance().getDemo()) {
                     Game.getInstance().setDemo(false);
                     resetPoints();
-                    points = 0;
                     lives = SettingsGame.getLives();
                     try {
                         nextLevel();
