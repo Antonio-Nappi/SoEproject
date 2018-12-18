@@ -6,9 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.Board;
 import pyroduck.bomb.DirectionalExplosion;
-import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
 /**

@@ -1,7 +1,6 @@
 package pyroduck.bomb;
 
 import pyroduck.Board;
-import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.graphics.Screen;
 
