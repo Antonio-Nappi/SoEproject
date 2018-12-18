@@ -90,11 +90,17 @@ public class Board extends Observable implements Observer {
 
     public void nextLevel() throws IOException {
         int i = level.getLevel() + 1;
+        if(i==1){ //change demo to level1
+            resetPoints();
+            lives = SettingsGame.getLives();
+                   
+             Game.getInstance().setDemo(false);
+           Game.getInstance().restartGame();
+        }
         if (i >= 5) {
             rightLives = getLives();
             setLives(0);
         }
-        Game.getInstance().setDemo(false);
         changeLevel(i);
         try {
             Game.getInstance().renderScreen();
@@ -410,22 +416,22 @@ public class Board extends Observable implements Observer {
                 ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
                 timer.schedule(new ScheduleTask(), 10000);
             } else {
-                if (getLevel() == 0 && Game.getInstance().getDemo()) {
-                    resetPoints();
-                    lives = SettingsGame.getLives();
-                    try {
-                        Game.getInstance().setDemo(false);
-                        nextLevel();             
-                    } catch (IOException ex) {
-                        Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    Game.getInstance().restartGame();
+//                if (getLevel() == 0 && Game.getInstance().getDemo()) {
+//                    resetPoints();
+//                    lives = SettingsGame.getLives();
+//                    try {
+//                        Game.getInstance().setDemo(false);
+//                        nextLevel();             
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                    Game.getInstance().restartGame();
+//                    setChanged();
+//                    notifyObservers();
+//                } else {
                     setChanged();
                     notifyObservers();
-                } else {
-                    setChanged();
-                    notifyObservers();
-                }
+//                }
             }
         }
     }

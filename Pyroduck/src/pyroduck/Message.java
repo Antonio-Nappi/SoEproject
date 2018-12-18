@@ -39,8 +39,9 @@ public class Message {
         list.add("Wow! Another powerup. You can find a powerup description in the main menù.");
         list.add("To cross a level you must kill all the enemies before.");
         list.add("     ");
-        list.add("Congratulations! The level is now complete. It's your turn.");
         list.add("     ");
+        list.add("Congratulations! The level is now complete. It's your turn.");
+        
     }    
 
     private class ScheduleTask extends TimerTask {
