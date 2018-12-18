@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ public class GamePanel extends JPanel implements Observer {
     private JLabel spaceLabel = new JLabel();
     private JButton musicButton = new JButton();
     private JButton skipDemo = new JButton();
+    private JButton startReturn = new JButton();
     private final JPanel panel = new JPanel();
     private final JPanel tutorialpanel = new JPanel();
     private Frame frame;
@@ -64,6 +66,7 @@ public class GamePanel extends JPanel implements Observer {
         panel.add(spaceLabel, 3);
         panel.add(musicButton, 4);
         panel.add(skipDemo, 5);
+        panel.add(startReturn, 6);
         Board.getInstance().addObserver(this);
         this.add(panel, BorderLayout.PAGE_START);
         if(Game.getInstance().getDemo())
@@ -108,6 +111,31 @@ public class GamePanel extends JPanel implements Observer {
             game.requestFocus();
         }
     }
+    
+    private class returnToStart implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Board.getInstance().resetPoints();
+            pointsLabel.setText("Points: 0");
+            Game.getInstance().pause();
+            Keyboard.getInstance().releaseAll();
+            
+            setVisible(false);
+            frame.setVisible(false);
+            frame = null;
+            StartGame s = new StartGame();
+            s.setLocation(new Point(200, 50));
+            s.setSize(1130, 600); 
+            s.setVisible(true); 
+            Board.setBoard();
+            Game.setGame();
+            Game.getInstance().restartGame();            
+           
+            
+            
+            }
+    }
+    
 
     public  Game getGame() {
         return game;
@@ -184,6 +212,8 @@ public class GamePanel extends JPanel implements Observer {
         }
         musicButton.setForeground(Color.white);
         musicButton.addActionListener(new setMusic());
+        startReturn.addActionListener(new returnToStart());
+        startReturn.setText("Return to Start");
         skipDemo = new JButton("  Skip Demo  ");
         skipDemo.setFont(font);
         skipDemo.setForeground(Color.BLACK);
