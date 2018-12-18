@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import pyroduck.Board;
 import pyroduck.Game;
-import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.BrickTile;
@@ -32,6 +32,8 @@ public class PowerupBombsTest {
     
     @Before
     public void setUp() {
+        Board.getInstance().addMob(new Player(0, 0));
+        Game.getInstance().setBombRate(1);
     }
     
     @After
@@ -44,18 +46,14 @@ public class PowerupBombsTest {
     @Test
     public void testCollide() {
         System.out.println("collide");
-        Entity e1 = new DirectionalExplosion(1, 2, 0, 1);
-        Entity e2 = new Player(1, 1);
-        Entity e3 = new BrickTile(1, 1, Sprite.brick);
+        Entity e1 = new Player(1, 1);      
+        Entity e2 = new BrickTile(1, 1, Sprite.brick);
         PowerupBombs instance = new PowerupBombs(1, 1, Sprite.brick);
-        boolean des = instance.collide(e1);
-        assertFalse(des);
-        assertTrue(instance.isDestroyed());
-        boolean d2 = instance.collide(e2);
-        assertTrue(d2);
+        boolean d1 = instance.collide(e1);
+        assertTrue(d1);
         assertEquals(instance.isRemoved(), true);
-        boolean d3 = instance.collide(e3);
-        assertFalse(d3);
+        boolean d2 = instance.collide(e2);
+        assertFalse(d2);
     }
 
     /**
@@ -65,8 +63,8 @@ public class PowerupBombsTest {
     public void testSetValues() {
         System.out.println("setValues");
         PowerupBombs instance = new PowerupBombs(1, 1, Sprite.brick);
-        assertEquals(2, Game.getInstance().getBombRate(), 0);
+        assertEquals(1, Game.getInstance().getBombRate(), 0);
         instance.setValues();
-        assertEquals(3, Game.getInstance().getBombRate(), 0);
+        assertEquals(2, Game.getInstance().getBombRate(), 0);
     }  
 }

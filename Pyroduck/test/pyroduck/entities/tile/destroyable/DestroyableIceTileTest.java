@@ -65,17 +65,14 @@ public class DestroyableIceTileTest {
     /**
      * Test of decreaseTimerBreak method, of class DestroyableIceTile.
      */
-//    @Test    //da correggere
-//    public void testDecreaseTimerBreak() {
-//        instance.setTimerBreak(4);
-//        System.err.println("timer: " + instance.getTimerBreak());
-//        System.err.println("timer: " + this.timerBreak);
-//        instance.decreaseTimerBreak();
-//        System.err.println("--------------------------");
-//        System.err.println("timer: " + instance.getTimerBreak());
-//        System.err.println("timer: " + this.timerBreak);
-//        //assertTrue(instance.getTimerBreak() == 3);
-//    }
+    @Test
+    public void testDecreaseTimerBreak() {
+        instance.setTimerBreak(4);
+        assertEquals(4, instance.timerBreak,0);
+        instance.decreaseTimerBreak();
+        assertEquals(3, instance.timerBreak,0);
+  
+    }
 
     /**
      * Test of setTimerBreak method, of class DestroyableIceTile.

@@ -94,7 +94,7 @@ public class Player extends Mob {
     /**
      *
      */
-    public void calculateXOffset() {
+    private void calculateXOffset() {
         int xScroll = Screen.calculateXOffset(this);
         Screen.setOffset(xScroll, 0);
     }
@@ -150,7 +150,7 @@ public class Player extends Mob {
                     ((DestroyableIceTile) a).setTimerBreak(80);
                     newState = con.getState().nextState(con);
                     Board.getInstance().getDestroyableIceTile().add(newState);
-                    Board.getInstance().entities[((int) xt + (int) yt * FileLevel.WIDTH)] = con.getState();
+                    Board.getInstance().getEntities()[((int) xt + (int) yt * FileLevel.WIDTH)] = con.getState();
                 }
             }
             if (a.collide(this)) {

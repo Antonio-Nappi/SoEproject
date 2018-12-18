@@ -71,7 +71,7 @@ public class Missile extends Bomb{
                x0 -= MISSILE_SPEED;
                break;
         }
-        Entity e = Board.getInstance().entities[((int)x0/32 + (int)y0/32 * FileLevel.WIDTH)];
+        Entity e = Board.getInstance().getEntities()[((int)x0/32 + (int)y0/32 * FileLevel.WIDTH)];
         if(!e.collide(this)){
             x = x0;
             y = y0;
