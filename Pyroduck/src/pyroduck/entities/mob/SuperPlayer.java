@@ -14,6 +14,10 @@ public class SuperPlayer extends Player {
 
     private GraphicalExtensionSuperplayer graphicalExtensionSP = null;
 
+    /**
+     * 
+     * @param player instance of the player at which apply the power up.
+     */
     public SuperPlayer(Player player) {
         super((int) player.getX(), (int) player.getY());
         this.input = player.input;
@@ -108,15 +112,16 @@ public class SuperPlayer extends Player {
 
     @Override
     protected void placeBomb(int x, int y) {
-        Missile m = new Missile(x, y - 1, direction);
+        Missile m = new Missile(x, y, direction);
         bombs.add(m);
     }
 
     @Override
     protected void detectPlaceBomb() {
         if (input.space && timeBetweenPutBombs < 0) {
+            int xt = Coordinates.pixelToTile(x + sprite.getSize() / 2);
             int yt = Coordinates.pixelToTile((y + sprite.getSize() / 2) - sprite.getSize());
-            placeBomb((int) x + 16, yt+1);
+            placeBomb(xt, yt);
             timeBetweenPutBombs = 100;
         }
     }

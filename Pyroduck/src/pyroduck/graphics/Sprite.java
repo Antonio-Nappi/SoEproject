@@ -336,7 +336,7 @@ public class Sprite {
     |--------------------------------------------------------------------------
      */
     
-    public static Sprite missle = new Sprite(14, 1, SpriteSheet.tiles);
+    public static Sprite missile = new Sprite(14, 1, SpriteSheet.tiles);
 
     /*
     |--------------------------------------------------------------------------

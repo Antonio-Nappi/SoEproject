@@ -35,12 +35,6 @@ public class Screen {
         }
     }
 
-    /** Fill the pixel according the related screen and each entity that belongs to it
-    // To do it, it uses as variable:
-    // - xp, yp: initial position to which add the entity (low-right corner);
-    // - xOffset, yOffset: width and height of the entity;
-    // - x, y: internal relative position of the entity;
-    // - xa, ya: absolute position of the pixel which is being modificated
     /**
      * Fills the pixels array with the pixels related to the entity passed as parameter.
      * @param xp horizontal coordinate of the entity.

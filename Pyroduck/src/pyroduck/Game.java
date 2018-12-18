@@ -21,10 +21,10 @@ public class Game extends Canvas {
     public static final int TILES_SIZE = 32,
                             WIDTH = TILES_SIZE * (int)(31 / 2), //minus one to ajust the window,
                             HEIGHT = 13 * TILES_SIZE;
-    protected int bombRate = 1;
-    protected int bombRadius = 1;
-    protected double playerSpeed = 1.3;
-    protected boolean reverse=false;
+    private int bombRate;
+    private int bombRadius;
+    private double playerSpeed;
+    protected boolean reverse = false;
     protected static int rev = 0;
     protected static boolean pause=false;
     private Keyboard input;
@@ -36,7 +36,8 @@ public class Game extends Canvas {
     private static boolean musicon = SettingsGame.isMusic();
     private final BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-    protected int selected = 0; 
+    protected int selected; 
+    private boolean demo = false;
             
     private Game() {
         timer = new Timer();
@@ -54,7 +55,7 @@ public class Game extends Canvas {
 
     public void restartGame(){
         board.changeLevel(1);
-        board.resetProperties();
+        resetProperties();
     }
     
     private void renderGame() { //render will run the maximum times it can per second
@@ -101,7 +102,18 @@ public class Game extends Canvas {
         timer.cancel();
         board.setPause(true);
     }
-    
+        public void resetProperties() {
+        if (selected == 0) {
+            Game.getInstance().playerSpeed = 1.3;
+            Game.getInstance().bombRadius = 1;
+            Game.getInstance().bombRate = 1;
+        } else if (selected == 1) {
+            Game.getInstance().playerSpeed = 1;
+            Game.getInstance().bombRadius = 1;
+            Game.getInstance().bombRate = 1;
+        }
+        Game.getInstance().reverse = false;
+    }
     private void update(){   
         board.update();
         if(input!= Board.getInstance().getInput()){
@@ -183,12 +195,19 @@ public class Game extends Canvas {
     public int getSelected() {
         return selected;
     }
+    
+    public boolean getDemo(){
+        return demo;
+    }
 
     public void setSelected(int selected) {
         this.selected = selected;
-        if(selected == 1){
+        if(selected == 1)
             playerSpeed = 1;   
-        }
+        else
+            playerSpeed = 1.3;
+        bombRadius=1;
+        bombRate=1;
     }
     
     public void setBombRate(int bombRate) {
@@ -201,6 +220,10 @@ public class Game extends Canvas {
 
     public void setPlayerSpeed(double playerSpeed) {
         this.playerSpeed = playerSpeed;
+    }
+    
+    public void setDemo(boolean demo){
+        this.demo = demo;
     }
     
     public void setMusicOn(boolean music) throws UnsupportedAudioFileException, IOException, LineUnavailableException{      

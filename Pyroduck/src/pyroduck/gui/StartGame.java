@@ -396,6 +396,7 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        Game.getInstance().setDemo(false);
         try {
             Game.getInstance().setSelected(selected);
             audio.stop();
@@ -431,6 +432,7 @@ public class StartGame extends javax.swing.JFrame {
         Game.getInstance().setSelected(selected);
         Board.getInstance().setPlayer(selected);
         Board.getInstance().changeLevel(-1);
+        Game.getInstance().setDemo(true);
         try {
             Pyroduck.main(args);
         } catch (IOException ex) {

@@ -18,12 +18,18 @@ public class Missile extends Bomb{
     
     private final double MISSILE_SPEED = 2.5;
     private final int direction;
-    private int range = 50;
+    protected int range = 50;
 
-    public Missile(int x, int y,int direction) {
-        super(x,y*32);
+    /**
+     * Intsance a Missile object.
+     * @param x horizontal coordinate in pixels
+     * @param y vertical coordinate in pixels
+     * @param direction moviment direction: 0 -> up, 1 -> right, 2 -> down, 3 -> left 
+     */
+    public Missile(int x, int y, int direction) {
+        super(x*32, y*32);
         this.direction = direction;
-        sprite = Sprite.missle;
+        sprite = Sprite.missile;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class Missile extends Bomb{
     @Override
     public void render(Screen screen) {
         if(!exploded)
-            screen.renderEntity((int)x-16, (int)y, this);
+            screen.renderEntity((int)x, (int)y, this);
     }
 
     @Override
@@ -49,7 +55,7 @@ public class Missile extends Bomb{
         return false;      
     }
     
-    private void move() {
+    protected void move() {
         double x0 = x, y0 = y;
         switch(direction){
            case 0:
@@ -76,7 +82,7 @@ public class Missile extends Bomb{
         ListIterator li = mobs1.listIterator(1);
         while(li.hasNext()){
             Enemy m = (Enemy) li.next();  
-            if(abs(m.getX()-x) < 32 && abs(m.getY()-y-32) < 31){
+            if(abs(m.getX()-x) < 30 && abs(m.getY()-y-30) < 31){
                 if(m.isAlive())
                     m.kill();
             }      

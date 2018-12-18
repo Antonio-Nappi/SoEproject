@@ -160,6 +160,9 @@ public class Bomb extends AnimatedEntity {
             if (!(diffX >= -26 && diffX < 30 && diffY >= 1 && diffY <= 47)) { // differences to see if the player has moved out of the bomb, tested values
                 allowedToPassThru = true;
             }
+            if(Game.getInstance().getDemo()){
+                Message.setMessage("Press SPACE or X to place a bomb");
+            }
             return allowedToPassThru;
         }
         if (e.isExplosion()) {
