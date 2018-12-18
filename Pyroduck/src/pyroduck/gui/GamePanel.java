@@ -137,11 +137,7 @@ public class GamePanel extends JPanel implements Observer {
         }
         if (Board.getInstance().getLives() <= 0) {
             if (endGame == null) {
-                endGame = new EndGame();
-                endGame.setVisible(true);
-                frame.setVisible(false);
-                frame=null;
-                game.pause();
+                game.activeTimerEnd(frame);    //this set a boolean in game that active the ending of the game (temporized)
             }
         } else {
             endGame = null;

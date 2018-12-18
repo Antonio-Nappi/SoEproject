@@ -9,6 +9,8 @@ import java.util.logging.*;
 import javax.sound.sampled.*;
 import pyroduck.audio.AudioPlayer;
 import pyroduck.graphics.Screen;
+import pyroduck.gui.EndGame;
+import pyroduck.gui.Frame;
 import pyroduck.gui.SettingsGame;
 import pyroduck.input.*;
 
@@ -39,6 +41,9 @@ public class Game extends Canvas {
     protected int selected; 
     private boolean demo = false;
     protected boolean menu=false;
+    protected int timerEnd = 0;
+    protected boolean ending = false;
+    protected Frame frameToHidden;
        
     private Game() {
         timer = new Timer();
@@ -129,6 +134,19 @@ public class Game extends Canvas {
     }
     private void update(){   
         board.update();
+        if(ending){
+            timerEnd++;
+            if(timerEnd > 40){
+                ending = false;
+                EndGame endGame = new EndGame();
+                endGame.setVisible(true);
+                frameToHidden.setVisible(false);
+                frameToHidden=null;
+                Game.getInstance().pause();
+                Keyboard.getInstance().releaseAll();
+                Game.getInstance().restartGame();
+            }
+        }
         if(input!= Board.getInstance().getInput()){
             this.input = Board.getInstance().getInput();
             addKeyListener(input);
@@ -182,6 +200,12 @@ public class Game extends Canvas {
     
     public void reverseInput(boolean b){
         reverse = b;
+    }
+    
+    public void activeTimerEnd(Frame frame){
+        ending = true;
+        this.frameToHidden = frame;
+        timerEnd = 0;
     }
     
     /*
@@ -271,6 +295,7 @@ public class Game extends Canvas {
     public void setMenu(boolean menu){
         this.menu=menu;
     }
+
     private class ScheduleTask extends TimerTask{
         @Override
         public void run(){
