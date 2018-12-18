@@ -35,6 +35,7 @@ public class StartGame extends javax.swing.JFrame {
         pSpeed.setValue(100);
         pSliding.setValue(100);
         pBr.setValue(50);
+        demomodeButton.setToolTipText("Inizia la demo col personaggio selezionato e fai la tua prima partita!");
     }
 
     /**
@@ -405,6 +406,7 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        
         Game.getInstance().setDemo(false);
         try {
             Game.getInstance().setSelected(selected);
@@ -418,6 +420,7 @@ public class StartGame extends javax.swing.JFrame {
             Pyroduck.main(args);
             restart=true;
             }
+
         } catch (IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -442,7 +445,7 @@ public class StartGame extends javax.swing.JFrame {
     }//GEN-LAST:event_settingButtonhowtoplayButtonActionPerformed
 
     private void demomodeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_demomodeButtonActionPerformed
-        Game.getInstance().setSelected(0);
+        Game.getInstance().setSelected(selected);
         Board.getInstance().setPlayer(selected);
         Board.getInstance().changeLevel(0);
         Game.getInstance().setDemo(true);
@@ -462,6 +465,7 @@ public class StartGame extends javax.swing.JFrame {
         this.setVisible(false);  
     }//GEN-LAST:event_demomodeButtonActionPerformed
 
+   
     /**
      * @param args the command line arguments
      */

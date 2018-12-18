@@ -1,16 +1,16 @@
 4 I
 ###############################
-#p     *f *    *   *  * * *   #
+#p   z * o*   1*   *  * * *   #
 # # # #*# # #*#*# # # #*#*#*# #
-#   *   1 *b*  *      *   * * #
+#   *    1* *  *    1 *   * * #
 # # # # # #*# # #*#*# # # # #*#
-#f  b  s  o   *  *  *  2      #
+#   o3    a   *  *  *     z   #
 # # # # # # # # # #*# #*# # # #
-#*  *      b  *      *        #
+#*  *    z    *      * 1      #
 # # # # #*# # # #*#*# # # # # #
-#f    m*  *       *   3       #
+#      *  *  w  z *    o      #
 # #*# # # # # # #*# # # # # # #
-#     3     *   *  *          #
+# o      2  *   *  *     3    #
 ###############################
 
 
@@ -20,6 +20,8 @@ Meta data:
 Info Tiles:
 # - Wall
 * - Brick
+w - Portal
+z - Brick Ice
 
 Mobs:
 p - Player
@@ -33,3 +35,6 @@ f - Powerup Flames
 s - Powerup Speed
 o - Malus Decrease Speed
 m - Malus Reverse Keyboard
+l - Powerup Life
+u - Powerup Not Slip
+a - Poweruo Articuno

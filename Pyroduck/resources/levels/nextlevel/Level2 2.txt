@@ -1,16 +1,16 @@
 2 G
 ###############################
-#p a  s* * * * * * * * * * * *#
-# # # #*# # # # # # # # # # # #
-#z *     *     2 *            #
-# # # #*# # # # # # # # # # # #
-#  *     b *     2 *   w  *   #
-# # # #*# # # # # # # # # # # #
-#  *         *  s    *    l   #
-# # # #*# # # # # # # # # # # #
-#  * s    m    *       *  3   #
-# # # #*# # # # # # # # # # # #
-# 1*   l   *   3 *   s   *    #
+#p     *  *    o    *  l   *  #
+# # # # # # # # # # # # # # # #
+#*       *    3      *   *    #
+#s#*#*#*#*#*#*#*#*#*#*#*#*#*#*#
+#* 1    f  *   o   *  2       #
+# # # # # # # # # # # # # # # #
+#*    3  *       *     *   *  #
+# # # # # # # # # # # # # # # #
+#*  *    o     *  w *  3   *  #
+# # # # # # # # # # # # # # # #
+#* 1 *       *    2    *      #
 ###############################
 
 
@@ -20,17 +20,13 @@ Meta data:
 Info Tiles:
 # - Wall
 * - Brick
+w - Portal
 
 Mobs:
 p - Player
-a - Articuno
 1 - Golbat
 2 - Machamp
 3 - Arbok
-
-1 - Snorunt
-2 - Glalie
-3 - Darkrai
 
 Powerups:
 b - Powerup Bombs
@@ -39,16 +35,4 @@ s - Powerup Speed
 o - Malus Decrease Speed
 m - Malus Reverse Keyboard
 l - Powerup Live
-z - Tile rompibile (iceland)
 
-Grassland
-Level 1   due f- due m- tre o, tre 1 , due 2
-Level 2   s-b-m-o
-
-Iceland
-Level 3   
-Level 4
-
-per la prova facciamo
-1 grassland
-2 iceland

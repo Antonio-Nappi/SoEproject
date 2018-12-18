@@ -412,7 +412,7 @@ public class Board extends Observable implements Observer {
                     }
                 }
                 ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
-                timer.schedule(new ScheduleTask(), 10000);
+                timer.schedule(new ScheduleTask(), 30000);
             } else {
 //                if (getLevel() == 0 && Game.getInstance().getDemo()) {
 //                    resetPoints();

@@ -18,7 +18,7 @@ import pyroduck.graphics.Sprite;
  */
 public class MachampTest {
         
-    Arbok instance;
+    Machamp instance;
     
     public MachampTest() {
     }
@@ -33,7 +33,7 @@ public class MachampTest {
     
     @Before
     public void setUp() {
-        instance = new Arbok(1, 1);
+        instance = new Machamp(1, 1);
     }
     
     @After
