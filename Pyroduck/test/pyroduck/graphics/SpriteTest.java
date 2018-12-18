@@ -86,6 +86,5 @@ public class SpriteTest {
         int expResult = -65281;
         int result = instance.getPixel(i);
         assertEquals(expResult, result);
-    }
-    
+    } 
 }
