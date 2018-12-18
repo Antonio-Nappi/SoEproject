@@ -87,6 +87,8 @@ public class Game extends Canvas {
     }
 
     public void resume(){
+        if(demo)
+            return;
         try {
             audio.resumeAudio();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
@@ -98,6 +100,8 @@ public class Game extends Canvas {
     }
     
     public void pause(){
+        if(demo)
+            return;
         audio.pause();
         timer.cancel();
         board.setPause(true);
