@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.entities.mob.enemy;
 
 import org.junit.After;
@@ -14,7 +9,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Antonio
+ * @author 
  */
 public class LowPowerTest {
     LowPower low = null;
@@ -46,6 +41,5 @@ public class LowPowerTest {
     public void testCalculateDirection() {
         System.out.println("calculateDirection");
         assertEquals(low.calculateDirection(), 0, 3);
-    }
-    
+    }  
 }

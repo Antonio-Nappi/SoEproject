@@ -79,7 +79,7 @@ public class Keyboard implements KeyListener{
     
     public void releaseAll(){
         for(int i=0; i<keys.length; i++){
-            keys[i]= false;
+            keys[i] = false;
         }
     }
     

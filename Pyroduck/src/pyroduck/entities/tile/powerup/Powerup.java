@@ -1,7 +1,5 @@
 package pyroduck.entities.tile.powerup;
 
-import pyroduck.Game;
-import pyroduck.Message;
 import pyroduck.bomb.Bomb;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Mob;

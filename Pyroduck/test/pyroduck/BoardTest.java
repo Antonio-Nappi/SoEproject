@@ -1,8 +1,5 @@
 package pyroduck;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -64,6 +61,18 @@ public class BoardTest {
     public void testSetLives(){
         board.setLives(3);
         assertEquals(3, board.lives);
+    }
+    
+    @Test
+    /**
+     * Test of restartLevel method, of class Board.
+     */
+    public void testRestartLevel(){
+        board.changeLevel(1);
+        assertEquals(1, board.getLevel(), 0);
+        board.changeLevel(2);
+        board.restartLevel();
+        assertEquals(2, board.getLevel(), 0);
     }
     
 //    @Test

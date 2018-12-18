@@ -1,6 +1,5 @@
 package pyroduck;
 
-import java.util.Timer;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -55,9 +54,9 @@ public class GameTest {
     public void testAddBombRate() {
         System.out.println("addBombRate");
         Game.getInstance().addBombRate(0);
-        assertEquals(Game.getInstance().bombRate, 1);
+        assertEquals(Game.getInstance().getBombRate(), 1);
         Game.getInstance().addBombRate(1);
-        assertEquals(Game.getInstance().bombRate, 2);
+        assertEquals(Game.getInstance().getBombRate(), 2);
     }
 
     /**
@@ -67,9 +66,9 @@ public class GameTest {
     public void testAddBombRadius() {
         System.out.println("addBombRadius");
         Game.getInstance().addBombRadius(0);
-        assertEquals(Game.getInstance().bombRadius, 1);
+        assertEquals(Game.getInstance().getBombRadius(), 1);
         Game.getInstance().addBombRadius(1);
-        assertEquals(Game.getInstance().bombRadius, 2);
+        assertEquals(Game.getInstance().getBombRadius(), 2);
     }
 
     /**
@@ -79,9 +78,9 @@ public class GameTest {
     public void testAddPlayerSpeed() {
         System.out.println("addPlayerSpeed");
         Game.getInstance().addPlayerSpeed(0);
-        assertEquals(Game.getInstance().playerSpeed, 1.3,0);
+        assertEquals(Game.getInstance().getPlayerSpeed(), 1.3,0);
         Game.getInstance().addPlayerSpeed(1.0);
-        assertEquals(Game.getInstance().playerSpeed, 2.3,0);
+        assertEquals(Game.getInstance().getPlayerSpeed(), 2.3,0);
     }
 
     /**
@@ -91,7 +90,7 @@ public class GameTest {
     public void testDecreasePlayerSpeed() {
         System.out.println("decreasePlayerSpeed");
         Game.getInstance().decreasePlayerSpeed(0.5);
-        assertEquals(Game.getInstance().playerSpeed, 0.8,0);
+        assertEquals(Game.getInstance().getPlayerSpeed(), 0.8,0);
     }
 
     /**
@@ -134,7 +133,7 @@ public class GameTest {
     public void testSetSelected() {
         int selected = 1;
         game.setSelected(selected);
-        assertEquals(selected, Game.getInstance().playerSpeed, 0);
+        assertEquals(selected, Game.getInstance().getPlayerSpeed(), 0);
     }
     
     /**

@@ -67,7 +67,7 @@ public class ScreenTest {
     public void testCalculateXOffset() {
         System.out.println("calculateXOffset");
         Player player = new Player(1, 0);
-        int expResult = 0;
+        int expResult = 10;
         int result = Screen.calculateXOffset(player);
         assertEquals(expResult, result);
     }

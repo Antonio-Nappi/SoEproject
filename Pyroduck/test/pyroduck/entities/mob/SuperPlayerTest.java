@@ -6,14 +6,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.entities.tile.powerup.Powerup;
-import pyroduck.graphics.Screen;
+import pyroduck.Board;
+import pyroduck.bomb.Bomb;
+import pyroduck.input.Keyboard;
 
 /**
  *
- * @author stefa
+ * @author 
  */
 public class SuperPlayerTest {
+    
+    SuperPlayer superp;
+    Player p;
     
     public SuperPlayerTest() {
     }
@@ -28,21 +32,15 @@ public class SuperPlayerTest {
     
     @Before
     public void setUp() {
-        
+        p = new Player(1, 1);
+        superp = new SuperPlayer(p);
     }
     
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of render method, of class SuperPlayer.
-     */
-    @Test
-    public void testRender() {
-        System.out.println("render");
-        
-    }
+
 
     /**
      * Test of calculateMove method, of class SuperPlayer.
@@ -50,16 +48,7 @@ public class SuperPlayerTest {
     @Test
     public void testCalculateMove() {
         System.out.println("calculateMove");
-        
-    }
-
-    /**
-     * Test of chooseSprite method, of class SuperPlayer.
-     */
-    @Test
-    public void testChooseSprite() {
-        System.out.println("chooseSprite");
-        
+        assertFalse(superp.moving);
     }
 
     /**
@@ -68,25 +57,11 @@ public class SuperPlayerTest {
     @Test
     public void testPlaceBomb() {
         System.out.println("placeBomb");
-        
-    }
-
-    /**
-     * Test of detectPlaceBomb method, of class SuperPlayer.
-     */
-    @Test
-    public void testDetectPlaceBomb() {
-        System.out.println("detectPlaceBomb");
-        
-    }
-
-    /**
-     * Test of addPowerup method, of class SuperPlayer.
-     */
-    @Test
-    public void testAddPowerup() {
-        System.out.println("addPowerup");
-        
+        int x = 2;
+        int y = 1;
+        Bomb b = new Bomb(x, y);
+        superp.placeBomb(x, y);
+        assertFalse(b == superp.bombs.get(0)); 
     }
 
     /**
@@ -95,25 +70,9 @@ public class SuperPlayerTest {
     @Test
     public void testCorrectKeyboard() {
         System.out.println("correctKeyboard");
-        
-    }
-
-    /**
-     * Test of setGraphicalExtension method, of class SuperPlayer.
-     */
-    @Test
-    public void testSetGraphicalExtension() {
-        System.out.println("setGraphicalExtension");
-        
-    }
-
-    /**
-     * Test of getAnimate method, of class SuperPlayer.
-     */
-    @Test
-    public void testGetAnimate() {
-        System.out.println("getAnimate");
-        
+        Board.getInstance().setPlayer(1);
+        superp.correctKeyboard();
+        assertEquals(superp.input, Keyboard.getInstance());  
     }
 
     /**
@@ -122,7 +81,8 @@ public class SuperPlayerTest {
     @Test
     public void testIsSuperPlayer() {
         System.out.println("isSuperPlayer");
-        
+        assertFalse(p.isSuperPlayer());
+        assertTrue(superp.isSuperPlayer());
     }
 
     /**
@@ -131,7 +91,6 @@ public class SuperPlayerTest {
     @Test
     public void testKill() {
         System.out.println("kill");
-        
-    }
-    
+        assertTrue(p.alive);
+    } 
 }

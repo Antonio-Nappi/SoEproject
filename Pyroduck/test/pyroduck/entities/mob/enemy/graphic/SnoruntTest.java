@@ -18,7 +18,7 @@ import pyroduck.graphics.Sprite;
  */
 public class SnoruntTest {
         
-    Arbok instance;
+    Snorunt instance;
     
     public SnoruntTest() {
     }
@@ -33,7 +33,7 @@ public class SnoruntTest {
     
     @Before
     public void setUp() {
-        instance = new Arbok(1, 1);
+        instance = new Snorunt(1, 1);
     }
     
     @After
