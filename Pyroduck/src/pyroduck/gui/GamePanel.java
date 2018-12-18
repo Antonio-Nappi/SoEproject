@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.Message;
+import pyroduck.audio.AudioPlayer;
 import pyroduck.input.*;
 
 public class GamePanel extends JPanel implements Observer {
@@ -34,7 +35,7 @@ public class GamePanel extends JPanel implements Observer {
     private JButton skipDemo = new JButton();
     private final JPanel panel = new JPanel();
     private final JPanel tutorialpanel = new JPanel();
-    private final Frame frame;
+    private Frame frame;
     private final Message message;
     private JFrame endGame;
     private final JLabel tutorial = new JLabel();
@@ -108,7 +109,7 @@ public class GamePanel extends JPanel implements Observer {
         }
     }
 
-    public Game getGame() {
+    public  Game getGame() {
         return game;
     }
 
@@ -117,9 +118,21 @@ public class GamePanel extends JPanel implements Observer {
         livesLabel.setText("Lives: " + Board.getInstance().getLives());
         pointsLabel.setText("Points: " + Board.getInstance().getPoints());
         
-        if (!Game.getInstance().getDemo()&& Board.getInstance().isPause() == false) {
-            skipDemo.setVisible(false);
-            this.remove(tutorialpanel);
+        if (Game.getInstance().getMenu()==true) {
+            Game.getInstance().setMenu(false);
+            frame.setVisible(false);
+            frame=null;
+            try {
+                game.setMusicOn(false);
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Board.getInstance().resetPoints();        
+            StartGame s=new StartGame();
+            s.setVisible(true); 
+            Board.setBoard();
+            Game.setGame();
+            return;
             
         }
         if (Board.getInstance().getLives() <= 0) {
@@ -127,13 +140,14 @@ public class GamePanel extends JPanel implements Observer {
                 endGame = new EndGame();
                 endGame.setVisible(true);
                 frame.setVisible(false);
+                frame=null;
                 game.pause();
-                Keyboard.getInstance().releaseAll();
-                game.restartGame();
             }
         } else {
             endGame = null;
+            if(frame!=null)
             frame.setVisible(true);
+            
         }
         if (Board.getInstance().isPause() == true) {
             messageLabel.setForeground(Color.white);

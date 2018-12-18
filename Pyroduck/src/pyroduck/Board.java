@@ -39,6 +39,7 @@ public class Board extends Observable implements Observer {
     private Board() {
         con = new ContextDestroyable();
         timer = new Timer();
+        lives= SettingsGame.getLives();
     }
 
     /*
@@ -91,11 +92,8 @@ public class Board extends Observable implements Observer {
     public void nextLevel() throws IOException {
         int i = level.getLevel() + 1;
         if(i==1){ //change demo to level1
-            resetPoints();
-            lives = SettingsGame.getLives();
-                   
              Game.getInstance().setDemo(false);
-           Game.getInstance().restartGame();
+             return;
         }
         if (i >= 5) {
             rightLives = getLives();
@@ -480,6 +478,11 @@ public class Board extends Observable implements Observer {
             instance = new Board();
         }
         return instance;
+    }
+    
+    public static void setBoard(){
+        instance=null;
+        instance=getInstance();
     }
 
     public void resetPoints() {

@@ -38,19 +38,28 @@ public class Game extends Canvas {
     private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
     protected int selected; 
     private boolean demo = false;
-            
+    protected boolean menu=false;
+       
     private Game() {
         timer = new Timer();
         screen = new Screen();
         board = Board.getInstance();
         board.changeLevel(1);
         board.setScreen(screen);
+        audio=null;
+        menu=false;
     }
     
     public static Game getInstance(){
         if (instance == null)
             instance = new Game();
         return instance;
+    }
+    
+    public static void setGame(){
+        instance=null;
+        
+        instance=getInstance();
     }
 
     public void restartGame(){
@@ -131,6 +140,7 @@ public class Game extends Canvas {
     }
 
     public void start() {   
+        
         try {
             setMusicOn(musicon);
             this.input = Board.getInstance().getInput();
@@ -227,7 +237,11 @@ public class Game extends Canvas {
     }
     
     public void setDemo(boolean demo){
+        if(this.demo && !demo)
+           menu=true;
         this.demo = demo;
+        Board.getInstance().setPoints(0);//Per richiamare l'observer
+        
     }
     
     public void setMusicOn(boolean music) throws UnsupportedAudioFileException, IOException, LineUnavailableException{      
@@ -238,6 +252,7 @@ public class Game extends Canvas {
                audio = AudioPlayer.getAudioPlayer("Level"+1+".wav"); 
             else 
                 audio = AudioPlayer.getAudioPlayer("Level"+i+".wav");
+        
         audio.pause();
         if(!music)
             audio.musicOff();
@@ -249,6 +264,13 @@ public class Game extends Canvas {
         return musicon;
     }
     
+    public boolean getMenu(){
+        return menu;
+    }
+    
+    public void setMenu(boolean menu){
+        this.menu=menu;
+    }
     private class ScheduleTask extends TimerTask{
         @Override
         public void run(){

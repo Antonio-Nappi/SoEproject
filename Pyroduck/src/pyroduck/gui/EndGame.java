@@ -201,10 +201,16 @@ public class EndGame extends javax.swing.JFrame {
     private void restartButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButtonMouseClicked
         setVisible(false);
         Board.getInstance().resetPoints();
-        Game.getInstance().resume();
-        Game.getInstance().changeAudioLevel(1);
+   
         dispose();
-        Board.getInstance().setLives(SettingsGame.getLives());
+
+        
+        StartGame s=new StartGame();
+        s.setVisible(true); 
+        Board.setBoard();
+        Game.setGame();
+        //Board.getInstance().setLives(SettingsGame.getLives());
+        //Game.getInstance().restartGame();
     }//GEN-LAST:event_restartButtonMouseClicked
 
     private void quitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quitButtonMouseClicked

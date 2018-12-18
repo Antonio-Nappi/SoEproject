@@ -32,7 +32,7 @@ public class  AudioPlayer {
     } 
     
     public static AudioPlayer getAudioPlayer(String filepath){ 
-        if (audio == null || status == null || status.equals("stop")){
+        if (audio == null || status == null || status.equals("stop") || status.equals("paused")){
             try {
                 audio = new AudioPlayer(filepath);
                 if(!musicon){

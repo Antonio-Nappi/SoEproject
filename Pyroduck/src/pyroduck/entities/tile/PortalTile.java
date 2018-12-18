@@ -25,8 +25,9 @@ public class PortalTile extends Tile {
             }
             if (e.getXTile() == getX() && e.getYTile() == getY()) {
                 if (Board.getInstance().detectNoEnemies()) {
-                    //Message.setMessage("Congratulations! The level is now complete.");
+                    
                     try {
+                        //if(!Game.getInstance().getDemo())
                         Game.getInstance().pause();
                         Board.getInstance().setPoints(1000);
                         Board.getInstance().nextLevel();

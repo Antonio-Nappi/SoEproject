@@ -21,6 +21,7 @@ public class StartGame extends javax.swing.JFrame {
     private int selected = 0;
     public static AudioPlayer audio;
     String[] args;
+    private boolean restart=false;
    
     /**
      * Creates new form StartGame
@@ -413,11 +414,15 @@ public class StartGame extends javax.swing.JFrame {
         }
         Board.getInstance().setPlayer(selected);  
         try {
+            if(!restart){
             Pyroduck.main(args);
+            restart=true;
+            }
         } catch (IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        setVisible(false);    
+        Board.getInstance().setLives(SettingsGame.getLives());
+         setVisible(false);    
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void powerupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerupButtonActionPerformed
@@ -442,7 +447,15 @@ public class StartGame extends javax.swing.JFrame {
         Board.getInstance().changeLevel(0);
         Game.getInstance().setDemo(true);
         try {
+            audio.stop();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+             if(!restart){
             Pyroduck.main(args);
+            restart=true;
+            }
         } catch (IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
