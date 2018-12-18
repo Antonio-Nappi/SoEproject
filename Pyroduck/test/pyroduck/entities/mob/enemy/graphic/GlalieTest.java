@@ -18,7 +18,7 @@ import pyroduck.graphics.Sprite;
  */
 public class GlalieTest { 
         
-    Arbok instance;
+    Glalie instance;
     
     public GlalieTest() {
     }
@@ -33,7 +33,7 @@ public class GlalieTest {
     
     @Before
     public void setUp() {
-        instance = new Arbok(1, 1);
+        instance = new Glalie(1, 1);
     }
     
     @After

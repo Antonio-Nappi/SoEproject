@@ -18,7 +18,7 @@ import pyroduck.graphics.Sprite;
  */
 public class DarkraiTest {
         
-    Arbok instance;
+    Darkrai instance;
     
     public DarkraiTest() {
     }
@@ -33,7 +33,7 @@ public class DarkraiTest {
     
     @Before
     public void setUp() {
-        instance = new Arbok(1, 1);
+        instance = new Darkrai(1, 1);
     }
     
     @After
