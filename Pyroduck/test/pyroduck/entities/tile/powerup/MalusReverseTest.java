@@ -44,7 +44,7 @@ public class MalusReverseTest {
         System.out.println("collide");
         Entity e1 = new Player(1, 1);      
         Entity e2 = new BrickTile(1, 1, Sprite.brick);
-        MalusSlow instance = new MalusSlow(1, 1, Sprite.brick);
+        MalusReverse instance = new MalusReverse(1, 1, Sprite.brick);
         boolean d1 = instance.collide(e1);
         assertTrue(d1);
         assertEquals(instance.isRemoved(), true);

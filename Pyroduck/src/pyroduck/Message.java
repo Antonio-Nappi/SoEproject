@@ -12,7 +12,7 @@ import pyroduck.gui.GamePanel;
  */
 public class Message {
 
-    private JLabel tutorial;
+    private final JLabel tutorial;
     private final GamePanel panel;
     private final LinkedList<String> list;
     private final Timer timer;
@@ -35,13 +35,12 @@ public class Message {
         list.add("Press SPACE or X to place a bomb.");
         list.add("This is a powerup. Pick up them to become much stronger. But pay attention to malus!");
         list.add("    ");
-        list.add("You have just killed an enemy. Kill all the enemy to finish the level.");
+        list.add("You have just killed an enemy. Kill all the enemies to finish the level.");
         list.add("Wow! Another powerup. You can find a powerup description in the main menù.");
         list.add("To cross a level you must kill all the enemies before.");
         list.add("     ");
-        list.add("     ");
         list.add("Congratulations! The level is now complete. It's your turn.");
-        
+        list.add("     ");    
     }    
 
     private class ScheduleTask extends TimerTask {
