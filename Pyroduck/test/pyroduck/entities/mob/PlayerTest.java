@@ -1,5 +1,7 @@
 package pyroduck.entities.mob;
 
+import java.awt.Button;
+import java.awt.event.KeyEvent;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,6 +24,8 @@ import pyroduck.input.Keyboard;
 public class PlayerTest {
     
     Player player;
+    double x;
+    double y;
     
     public PlayerTest() {
     }
@@ -36,7 +40,11 @@ public class PlayerTest {
     
     @Before
     public void setUp() {
-        player = new Player(1, 1);  
+        Game.getInstance();
+        Board.getInstance().setLives(2);
+        player = Board.getInstance().getPlayer();
+        x = player.getX();
+        y = player.getY();
     }
     
     @After
@@ -48,13 +56,14 @@ public class PlayerTest {
      */
     @Test
     public void testUpdate() {
-    int i = player.timeBetweenPutBombs;
-        assertEquals(player.timeBetweenPutBombs,0);
-        for (int j = 0; j<7500;j++){
+        player.alive = true;
+        assertEquals(player.timeBetweenPutBombs, 0);
+        for (int j = 0; j<7500; j++)
             player.update();
-        }
-        assertNotNull(player.input);
-        assertEquals(player.timeBetweenPutBombs, -7500);
+        assertEquals(-7500, player.timeBetweenPutBombs);
+        player.update();
+        player.update();
+        assertEquals(player.timeBetweenPutBombs, 0);
     }
 
 
@@ -74,7 +83,13 @@ public class PlayerTest {
     @Test
     public void testCalculateMove() {
         System.out.println("calculateMove");
+        player.calculateMove();
         assertFalse(player.moving);
+        Button a = new Button("click");
+        KeyEvent e = new KeyEvent(a, 1, 20, 1, 10, 'a');
+        Keyboard.getInstance().keyPressed(e);
+        player.calculateMove();
+        assertTrue(!player.moving);
     }
 
     /**
@@ -83,24 +98,8 @@ public class PlayerTest {
     @Test
     public void testCanMove() {
         System.out.println("canMove");
-        double x = 0.0;
-        double y = 0.0;
-        assertFalse(player.canMove(x, y));
-//        
-//        x = 1.0;
-//        y = 0.0;
-//        assertTrue(player.canMove(x, y));
-//        
-//        x = 1.0;
-//        y = 1.0;
-//        assertTrue(player.canMove(x, y));
-//        x = 1.0;
-//        y = 0.0;
-//        assertTrue(player.canMove(x, y));
-//                x = 1.0;
-//        y = 0.0;
-//        assertTrue(player.canMove(x, y));
-        
+        assertTrue(player.canMove(x+32, y));
+        assertFalse(player.canMove(x-64, y));        
     }
 
     /**
@@ -113,39 +112,9 @@ public class PlayerTest {
         double ya = 0.0;
         player.canMove(xa, ya);
         assertEquals(player.direction, -1);
-        assertEquals(player.getX(), 1.0,0);
-        assertEquals(player.getY(), 1.0,0);
-//        
-//        xa = 1.0;
-//        ya = 0.0;
-//        player.move(xa, ya);
-//        assertEquals(player.direction, 1);
-//        System.out.println("player.getX() " + player.getX());
-//        assertEquals(player.getX(), 2.0,0);
-//        assertEquals(player.getY(), 1.0,0);
-//        
-//        xa = 0.0;
-//        ya = 1.0;
-//        player.move(xa, ya);
-//        assertEquals(player.direction, 2);
-//        assertEquals(player.getX(), 2.0,0);
-//        assertEquals(player.getY(), 2.0,0);
-//        
-//        xa = -1.0;
-//        ya = 0.0;
-//        player.move(xa, ya);
-//        assertEquals(player.direction, 3);
-//        assertEquals(player.getX(), 1.0,0);
-//        assertEquals(player.getY(), 2.0,0);
-//        
-//        xa = 0.0;
-//        ya = -1.0;
-//        player.move(xa, ya);
-//        assertEquals(player.direction, 0);
-//        assertEquals(player.getX(), 1.0,0);
-//        assertEquals(player.getY(), 1.0,0);
+        assertEquals(player.getX(), 32, 0);
+        assertEquals(player.getY(), 64, 0);
     }
-
 
     /**
      * Test of placeBomb method, of class Player.
@@ -166,9 +135,10 @@ public class PlayerTest {
     @Test
     public void testAddPowerup() {
         System.out.println("addPowerup");
+        Game.getInstance().resetProperties();
         Powerup p = new PowerupBombs(1, 1, Sprite.powerup_bombs);
         player.addPowerup(p);
-        assertEquals(Game.getInstance().getBombRate(), 2);
+        assertEquals(2, Game.getInstance().getBombRate());
     }   
     
     /**
@@ -187,11 +157,10 @@ public class PlayerTest {
      */
     @Test
     public void testKill() {
-        player.alive = true;
-        assertEquals(3.0, Board.getInstance().getLives(),0);
+        assertEquals(2.0, Board.getInstance().getLives(),0);
         player.kill();
         assertFalse(player.alive);
-        assertEquals(2.0, Board.getInstance().getLives(),0);
+        assertEquals(1.0, Board.getInstance().getLives(),0);
     }
             
     /**

@@ -60,18 +60,16 @@ public class Player extends Mob {
             done = true;
         }
         if (alive) {
-            if (timeBetweenPutBombs < -7500) {
+            if (timeBetweenPutBombs < -7500)
                 timeBetweenPutBombs = 0;
-            } else {
+            else
                 --timeBetweenPutBombs;
-            }
             animate();
             calculateMove();
             detectPlaceBomb();
             updateTimerBreaker();
-        } else {
+        } else 
             afterKill();
-        }
     }
 
     /**
@@ -110,24 +108,19 @@ public class Player extends Mob {
     @Override
     protected void calculateMove() {
         int xa = 0, ya = 0;
-        if (input.up) {
+        if (input.up)
             ya--;
-        }
-        if (input.down) {
+        if (input.down)
             ya++;
-        }
-        if (input.left) {
+        if (input.left)
             xa--;
-        }
-        if (input.right) {
+        if (input.right)
             xa++;
-        }
         if (xa != 0 || ya != 0) {
             move(xa * Game.getInstance().getPlayerSpeed(), ya * Game.getInstance().getPlayerSpeed());
             moving = true;
-        } else {
+        } else 
             moving = false;
-        }
     }
 
     /**

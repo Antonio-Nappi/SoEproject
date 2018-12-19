@@ -1,8 +1,6 @@
 package pyroduck;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import org.junit.After;
@@ -11,43 +9,36 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import pyroduck.audio.AudioPlayer;
+import pyroduck.gui.Frame;
 import pyroduck.input.Keyboard;
 
 /**
  *
- * @author all
+ * @author
  */
 public class GameTest {
-    Board board;
+
     Game game;
-    
+
     public GameTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
-    public void setUp() {
-        board = Board.getInstance();
+    public void setUp() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         game = Game.getInstance();
         game.setSelected(0);
-        try {
-            game.setMusicOn(false);
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        game.setMusicOn(false);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -63,16 +54,67 @@ public class GameTest {
     }
 
     /**
+     * Test of setGame method, of class Game.
+     */
+    @Test
+    public void testSetGame() {
+        System.out.println("setGame");
+        Game.setGame();
+        assertNotEquals(game, Game.getInstance());
+    }
+
+    /**
+     * Test of restartGame method, of class Game.
+     */
+    @Test
+    public void testRestartGame() {
+        System.out.println("restartGame");
+        game.restartGame();
+        assertEquals(1, Board.getInstance().getLevel(), 0);
+        testResetProperties();
+    }
+
+    /**
+     * Test of resume method, of class Game.
+     */
+    @Test
+    public void testResume() {
+        System.out.println("resume");
+        game.resume();
+        assertFalse(Board.getInstance().isPause());
+    }
+
+    /**
+     * Test of pause method, of class Game.
+     */
+    @Test
+    public void testPause() {
+        System.out.println("pause");
+        game.pause();
+        assertTrue(Board.getInstance().isPause());
+    }
+
+    /**
+     * Test of resetProperties method, of class Game.
+     */
+    @Test
+    public void testResetProperties() {
+        game.resetProperties();
+        assertEquals(1.3, game.getPlayerSpeed(), 0);
+        assertEquals(1, game.getBombRadius(), 0);
+        assertEquals(1, game.getBombRate(), 0);
+        assertFalse(Game.getInstance().reverse);
+    }
+
+    /**
      * Test of addBombRate method, of class Game.
      */
     @Test
     public void testAddBombRate() {
         System.out.println("addBombRate");
-        Game.getInstance().addBombRate(0);
-        assertEquals(Game.getInstance().getBombRate(), 1);
-        Game.getInstance().addBombRate(1);
-        assertEquals(Game.getInstance().getBombRate(), 2);
-    }
+        int i = 1;
+        game.addBombRate(i);
+        assertEquals(2, game.getBombRate(), 0);    }
 
     /**
      * Test of addBombRadius method, of class Game.
@@ -80,10 +122,9 @@ public class GameTest {
     @Test
     public void testAddBombRadius() {
         System.out.println("addBombRadius");
-        Game.getInstance().addBombRadius(0);
-        assertEquals(Game.getInstance().getBombRadius(), 1);
-        Game.getInstance().addBombRadius(1);
-        assertEquals(Game.getInstance().getBombRadius(), 2);
+        int i = 1;
+        game.addBombRadius(i);
+        assertEquals(2, game.getBombRadius(), 0);
     }
 
     /**
@@ -92,9 +133,9 @@ public class GameTest {
     @Test
     public void testAddPlayerSpeed() {
         System.out.println("addPlayerSpeed");
-        assertEquals(Game.getInstance().getPlayerSpeed(), 1.3,0);
-        Game.getInstance().addPlayerSpeed(1.0);
-        assertEquals(Game.getInstance().getPlayerSpeed(), 2.3,0);
+        double i = 1.0;
+        game.addPlayerSpeed(i);
+        assertEquals(2.3, game.getPlayerSpeed(), 0);
     }
 
     /**
@@ -103,8 +144,34 @@ public class GameTest {
     @Test
     public void testDecreasePlayerSpeed() {
         System.out.println("decreasePlayerSpeed");
-        Game.getInstance().decreasePlayerSpeed(0.5);
-        assertEquals(0.8,Game.getInstance().getPlayerSpeed(),0);
+        double i = 1.0;
+        game.decreasePlayerSpeed(i);
+        assertEquals(0.3, game.getPlayerSpeed(), 0.1);
+    }
+
+    /**
+     * Test of reverseInput method, of class Game.
+     */
+    @Test
+    public void testReverseInput() {
+        System.out.println("reverseInput");
+        boolean b = false;
+        Game instance = null;
+        game.reverseInput(b);
+        assertFalse(game.reverse);
+    }
+
+    /**
+     * Test of activeTimerEnd method, of class Game.
+     */
+    @Test
+    public void testActiveTimerEnd() throws IOException {
+        System.out.println("activeTimerEnd");
+        Frame frame = new Frame();
+        game.activeTimerEnd(frame);
+        assertTrue(game.ending);
+        assertEquals(frame, game.frameToHidden);
+        assertEquals(0, game.timerEnd,0);
     }
 
     /**
@@ -114,7 +181,7 @@ public class GameTest {
     public void testGetPlayerSpeed() {
         System.out.println("getPlayerSpeed");
         double expResult = 1.3;
-        double result = Game.getInstance().getPlayerSpeed();
+        double result = game.getPlayerSpeed();
         assertEquals(expResult, result, 0.0);
     }
 
@@ -125,7 +192,7 @@ public class GameTest {
     public void testGetBombRate() {
         System.out.println("getBombRate");
         int expResult = 1;
-        int result = Game.getInstance().getBombRate();
+        int result = game.getBombRate();
         assertEquals(expResult, result);
     }
 
@@ -136,43 +203,106 @@ public class GameTest {
     public void testGetBombRadius() {
         System.out.println("getBombRadius");
         int expResult = 1;
-        int result = Game.getInstance().getBombRadius();
+        int result = game.getBombRadius();
         assertEquals(expResult, result);
     }
-    
-    /**
-     * Test of setSelected method, of class Game.
-     */
-    @Test
-    public void testSetSelected() {
-        int selected = 1;
-        game.setSelected(selected);
-        assertEquals(selected, Game.getInstance().getPlayerSpeed(), 0);
-    }
-    
+
     /**
      * Test of getSelected method, of class Game.
      */
     @Test
     public void testGetSelected() {
-        assertEquals(0,game.getSelected(), 0); 
+        System.out.println("getSelected");
+        int expResult = 0;
+        int result = game.getSelected();
+        assertEquals(expResult, result);
     }
-    
+
     /**
-     * Test of reverseInput method, of class Game.
+     * Test of getDemo method, of class Game.
      */
     @Test
-    public void testReverseInput() {
-        assertFalse(Game.getInstance().reverse);
-        game.reverseInput(true);
-        assertTrue(game.reverse);
+    public void testGetDemo() {
+        System.out.println("getDemo");
+        boolean expResult = false;
+        boolean result = game.getDemo();
+        assertEquals(expResult, result);
     }
-      /**
-     * Test of start method, of class Game.
+
+    /**
+     * Test of setSelected method, of class Game.
      */
     @Test
-    public void testStart() {
-        game.start();
-        assertSame(game.getInput(), Keyboard.getInstance());
+    public void testSetSelected() {
+        System.out.println("setSelected");
+        int selected = 0;
+        game.setSelected(selected);
+        assertEquals(selected, game.getSelected(), 0);
     }
+
+    /**
+     * Test of setBombRate method, of class Game.
+     */
+    @Test
+    public void testSetBombRate() {
+        System.out.println("setBombRate");
+        int bombRate = 1;
+        game.setBombRate(bombRate);
+        assertEquals(1, game.getBombRate(), 0);
+    }
+
+    /**
+     * Test of setBombRadius method, of class Game.
+     */
+    @Test
+    public void testSetBombRadius() {
+        System.out.println("setBombRadius");
+        int bombRadius = 1;
+        game.setBombRate(bombRadius);
+        assertEquals(1, game.getBombRadius(), 0);
+    }
+
+    /**
+     * Test of setPlayerSpeed method, of class Game.
+     */
+    @Test
+    public void testSetPlayerSpeed() {
+        System.out.println("setPlayerSpeed");
+        double playerSpeed = 0.0;
+        game.setPlayerSpeed(playerSpeed);
+        assertEquals(0, game.getPlayerSpeed(), 0);
+    }
+
+    /**
+     * Test of setDemo method, of class Game.
+     */
+    @Test
+    public void testSetDemo() {
+        System.out.println("setDemo");
+        boolean demo = false;
+        game.setDemo(demo);
+        assertFalse(game.getDemo());
+    }
+
+    /**
+     * Test of setMusicOn method, of class Game.
+     */
+    @Test
+    public void testSetMusicOn() throws Exception {
+        System.out.println("setMusicOn");
+        boolean music = true;
+        game.setMusicOn(music);
+        assertTrue(game.getMusicOn());
+    }
+
+    /**
+     * Test of getMusicOn method, of class Game.
+     */
+    @Test
+    public void testGetMusicOn() {
+        System.out.println("getMusicOn");
+        boolean result = game.getMusicOn();
+        assertFalse(result);
+    }
+
 }

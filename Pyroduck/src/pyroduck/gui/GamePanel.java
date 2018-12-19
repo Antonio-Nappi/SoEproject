@@ -49,11 +49,11 @@ public class GamePanel extends JPanel implements Observer {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width - 420, Toolkit.getDefaultToolkit().getScreenSize().height - 100));
         add(game);
-        
+
         setPanel();
         setTutorialPanel();
         game.setVisible(true);
-        
+
         if (Board.getInstance().getLevel() <= 0) {
             skipDemo.setVisible(true);
             startReturn.setVisible(false);
@@ -101,7 +101,7 @@ public class GamePanel extends JPanel implements Observer {
     private class skip implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-           
+
             Board.getInstance().resetPoints();
             Game.getInstance().setDemo(false);
             pointsLabel.setText("Points: 0");
@@ -114,7 +114,7 @@ public class GamePanel extends JPanel implements Observer {
             game.requestFocus();
         }
     }
-    
+
     private class returnToStart implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -125,21 +125,20 @@ public class GamePanel extends JPanel implements Observer {
             Board.getInstance().getPlayer().remove();
 
             Keyboard.getInstance().releaseAll();
-            
+
             setVisible(false);
             frame.setVisible(false);
             frame = null;
             StartGame s = new StartGame();
-            s.setLocation(new Point(200, 50));
             s.setSize(1130, 600);
             s.setLocationRelativeTo(null);
-            s.setVisible(true); 
+            s.setVisible(true);
             Board.setBoard();
             Game.setGame();
             Game.getInstance().resetProperties();
             }
     }
-    
+
 
     public  Game getGame() {
         return game;
@@ -149,7 +148,7 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + Board.getInstance().getLives());
         pointsLabel.setText("Points: " + Board.getInstance().getPoints());
-               
+
         if (Board.getInstance().getLives() <= 0) {
             if (endGame == null) {
                 game.activeTimerEnd(frame);    //this set a boolean in game that active the ending of the game (temporized)
@@ -157,7 +156,7 @@ public class GamePanel extends JPanel implements Observer {
         } else {
             endGame = null;
             if(frame != null)
-            frame.setVisible(true);    
+            frame.setVisible(true);
         }
         if (Board.getInstance().isPause() == true) {
             messageLabel.setForeground(Color.white);
@@ -175,7 +174,7 @@ public class GamePanel extends JPanel implements Observer {
             startReturn.setVisible(true);
         }
     }
-    
+
     private void setTutorialPanel(){
         tutorialpanel.setBackground(Color.black);
         tutorial.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
@@ -183,7 +182,7 @@ public class GamePanel extends JPanel implements Observer {
         tutorial.setForeground(Color.white);
         tutorialpanel.add(tutorial, 0);
     }
-    
+
     private void setPanel(){
         boolean music = game.getMusicOn();
         Font font = new Font(Font.DIALOG, Font.BOLD, 20);
@@ -211,7 +210,7 @@ public class GamePanel extends JPanel implements Observer {
         skipDemo.setForeground(Color.BLACK);
         skipDemo.setVisible(false);
     }
-    
+
     public JLabel getTutorial(){
         return tutorial;
     }
