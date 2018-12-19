@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pyroduck.entities.mob;
 
 import org.junit.After;
@@ -13,12 +8,11 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import pyroduck.entities.Entity;
 import pyroduck.entities.tile.destroyable.BrickTile;
-import pyroduck.graphics.Screen;
 import pyroduck.graphics.Sprite;
 
 /**
  *
- * @author Alex
+ * @author 
  */
 public class ExtensionSPTest {
     

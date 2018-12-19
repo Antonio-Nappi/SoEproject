@@ -1,5 +1,7 @@
 package pyroduck.entities.mob;
 
+import java.awt.Button;
+import java.awt.event.KeyEvent;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -48,7 +50,14 @@ public class SuperPlayerTest {
     @Test
     public void testCalculateMove() {
         System.out.println("calculateMove");
-        assertFalse(superp.moving);
+        p.alive = true;
+        p.calculateMove();
+        assertFalse(p.moving);
+        Button a = new Button("click");
+        KeyEvent e = new KeyEvent(a, 1, 20, 1, 10, 'a');
+        Keyboard.getInstance().keyPressed(e);
+        p.calculateMove();
+        assertTrue(!p.moving);
     }
 
     /**
