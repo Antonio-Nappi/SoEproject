@@ -56,7 +56,7 @@ public class Board extends Observable implements Observer {
         updateBombs();
         for (int i = 0; i < mobs.size(); i++) {
             Mob a = mobs.get(i);
-            if (((Entity) a).isRemoved())
+            if(a.isRemoved())
                 mobs.remove(i);
         }
     }
