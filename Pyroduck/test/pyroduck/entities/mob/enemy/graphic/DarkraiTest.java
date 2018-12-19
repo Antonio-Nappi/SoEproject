@@ -1,12 +1,8 @@
 package pyroduck.entities.mob.enemy.graphic;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
-import pyroduck.bomb.DirectionalExplosion;
+import pyroduck.Board;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.BrickTile;
@@ -33,6 +29,7 @@ public class DarkraiTest {
     
     @Before
     public void setUp() {
+        Board.getInstance().addMob(new Player(1,1));
         instance = new Darkrai(1, 1);
     }
     
@@ -71,15 +68,12 @@ public class DarkraiTest {
     @Test
     public void testCollide() {
         System.out.println("collide");
-        Entity e1 = new DirectionalExplosion(1, 2, 0, 1);
-        Entity e2 = new Player(1, 1);
-        Entity e3 = new BrickTile(1, 1, Sprite.brick);
-        boolean des = instance.collide(e1);
-        assertTrue(des);
+        Entity e1 = new Player(2, 2);
+        Entity e2 = new BrickTile(1, 1, Sprite.brick);
+        boolean d1 = instance.collide(e1);
+        assertFalse(d1);
         boolean d2 = instance.collide(e2);
-        assertTrue(d2);
-        boolean d3 = instance.collide(e3);
-        assertFalse(d3);
+        assertFalse(d2);
     }
     
     /**

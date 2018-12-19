@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import pyroduck.Board;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.mob.enemy.graphic.Arbok;
 
@@ -32,8 +33,10 @@ public class MediumPowerTest {
     
     @Before
     public void setUp() {
-        player = new Player(0, 0);
+        player = new Player(0, 0);      
+        Board.getInstance().addMob(player);
         e = new Arbok(64, 64);
+        Board.getInstance().addMob(e);
         enemy = new MediumPower(player, e);
     }
     

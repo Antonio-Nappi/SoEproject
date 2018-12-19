@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import pyroduck.bomb.DirectionalExplosion;
+import pyroduck.Board;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.BrickTile;
@@ -17,6 +17,8 @@ import pyroduck.graphics.Sprite;
  * @author 
  */
 public class PowerupNotSlipTest {
+    
+    PowerupNotSlip instance;
     
     public PowerupNotSlipTest() {
     }
@@ -31,6 +33,11 @@ public class PowerupNotSlipTest {
     
     @Before
     public void setUp() {
+        Board.getInstance().setInput();
+        Player player = new Player(1, 1);
+        Board.getInstance().addMob(player);
+        Board.getInstance().getInput().setIce(true);
+        instance = new PowerupNotSlip(1, 1, Sprite.brick);
     }
     
     @After
@@ -43,18 +50,13 @@ public class PowerupNotSlipTest {
     @Test
     public void testCollide() {
         System.out.println("collide");
-        Entity e1 = new DirectionalExplosion(1, 2, 0, 1);
-        Entity e2 = new Player(1, 1);
-        Entity e3 = new BrickTile(1, 1, Sprite.brick);
-        MalusSlow instance = new MalusSlow(1, 1, Sprite.brick);
-        boolean des = instance.collide(e1);
-        assertFalse(des);
-        assertTrue(instance.isDestroyed());
-        boolean d2 = instance.collide(e2);
-        assertTrue(d2);
+        Entity e1 = new Player(1, 1);      
+        Entity e2 = new BrickTile(1, 1, Sprite.brick);
+        boolean d1 = instance.collide(e1);
+        assertTrue(d1);
         assertEquals(instance.isRemoved(), true);
-        boolean d3 = instance.collide(e3);
-        assertFalse(d3);
+        boolean d2 = instance.collide(e2);
+        assertFalse(d2);
     }
 
     /**
@@ -63,9 +65,8 @@ public class PowerupNotSlipTest {
     @Test
     public void testSetValues() {
         System.out.println("setValues");
-        PowerupNotSlip instance = null;
+        assertTrue(Board.getInstance().getInput().isIce());
         instance.setValues();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(Board.getInstance().getInput().isIce());
     }  
 }

@@ -31,7 +31,7 @@ public abstract class DestroyableIceTile extends Tile{
     }
     
     public void decreaseTimerBreak(){
-        this.timerBreak = this.timerBreak--;
+        timerBreak--;
     }
     
     public void setTimerBreak(int timerBreak){

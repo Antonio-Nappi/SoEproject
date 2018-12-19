@@ -161,8 +161,7 @@ public class Game extends Canvas {
             input.updateReverse();
     }
 
-    public void start() {   
-        
+    public void start() {       
         try {
             setMusicOn(musicon);
             this.input = Board.getInstance().getInput();

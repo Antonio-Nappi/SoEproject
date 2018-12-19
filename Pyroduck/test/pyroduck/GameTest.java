@@ -31,6 +31,8 @@ public class GameTest {
     public void setUp() {
         board = Board.getInstance();
         game = Game.getInstance();
+        game.setSelected(0);
+        game.setMusicOn(false);
     }
     
     @After
@@ -77,7 +79,6 @@ public class GameTest {
     @Test
     public void testAddPlayerSpeed() {
         System.out.println("addPlayerSpeed");
-        Game.getInstance().addPlayerSpeed(0);
         assertEquals(Game.getInstance().getPlayerSpeed(), 1.3,0);
         Game.getInstance().addPlayerSpeed(1.0);
         assertEquals(Game.getInstance().getPlayerSpeed(), 2.3,0);
@@ -90,7 +91,7 @@ public class GameTest {
     public void testDecreasePlayerSpeed() {
         System.out.println("decreasePlayerSpeed");
         Game.getInstance().decreasePlayerSpeed(0.5);
-        assertEquals(Game.getInstance().getPlayerSpeed(), 0.8,0);
+        assertEquals(0.8,Game.getInstance().getPlayerSpeed(),0);
     }
 
     /**
@@ -99,7 +100,7 @@ public class GameTest {
     @Test
     public void testGetPlayerSpeed() {
         System.out.println("getPlayerSpeed");
-        double expResult = 1;
+        double expResult = 1.3;
         double result = Game.getInstance().getPlayerSpeed();
         assertEquals(expResult, result, 0.0);
     }
@@ -141,7 +142,7 @@ public class GameTest {
      */
     @Test
     public void testGetSelected() {
-        assertEquals(game.getSelected(), 1.0, 0); 
+        assertEquals(0,game.getSelected(), 0); 
     }
     
     /**

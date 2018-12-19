@@ -21,8 +21,8 @@ public class Board extends Observable implements Observer {
     protected FileLevel level;
     private Keyboard input;
     private Screen screen;
-    public Entity[] entities;
-    public List<Mob> mobs = new ArrayList<>();
+    private Entity[] entities;
+    private List<Mob> mobs = new ArrayList<>();
     protected List<Bomb> bombs = new ArrayList<>();
     protected int lives = SettingsGame.getLives();
     private int points = 0;
@@ -253,6 +253,10 @@ public class Board extends Observable implements Observer {
     public List<Mob> getMobs() {
         return mobs;
     }
+
+    public Entity[] getEntities() {
+        return entities;
+    }    
 
     /**
      *
