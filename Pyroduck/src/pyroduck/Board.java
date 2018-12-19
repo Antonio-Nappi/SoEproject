@@ -48,11 +48,6 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
      */
     public void update() {
-        if(lives <= 0){
-            
-        }
-        
-        
         updateEntities();
         updateMobs();
         updateBombs();
@@ -426,22 +421,8 @@ public class Board extends Observable implements Observer {
                 ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
                 timer.schedule(new ScheduleTask(), 30000);
             } else {
-//                if (getLevel() == 0 && Game.getInstance().getDemo()) {
-//                    resetPoints();
-//                    lives = SettingsGame.getLives();
-//                    try {
-//                        Game.getInstance().setDemo(false);
-//                        nextLevel();             
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                    Game.getInstance().restartGame();
-//                    setChanged();
-//                    notifyObservers();
-//                } else {
-                    setChanged();
-                    notifyObservers();
-//                }
+                setChanged();
+                notifyObservers();
             }
         }
     }
@@ -493,8 +474,8 @@ public class Board extends Observable implements Observer {
     }
     
     public static void setBoard(){
-        instance=null;
-        instance=getInstance();
+        instance = null;
+        instance = getInstance();
     }
 
     public void resetPoints() {

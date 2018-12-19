@@ -15,7 +15,7 @@ public class InfoWindow extends javax.swing.JFrame {
     public InfoWindow(StartGame start) {
         initComponents();
         this.start = start;
-        setLocation(new Point(500, 300));
+        setLocationRelativeTo(null);        
         exitLabel.setIcon (new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         setVisible(true);
     }

@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import pyroduck.Board;
+import pyroduck.Game;
 import pyroduck.bomb.DirectionalExplosion;
 import pyroduck.graphics.Sprite;
 
@@ -31,6 +33,7 @@ public class BrickTileTest {
     
     @Before
     public void setUp() {
+        Game.getInstance();
         x = 0;
         y = 0;
         brick = new BrickTile(x, y, Sprite.brick);

@@ -48,7 +48,7 @@ public class WaterStateTest {
      */
     @Test
     public void testCollide() {
-        Entity e = new Player(x, y);
+        Player e = new Player(x, y);
         boolean result = e.collide(water);
         assertEquals(false, result);
     }

@@ -1,6 +1,5 @@
 package pyroduck.gui;
 
-import java.awt.Dimension;
 import java.awt.Point;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,7 +20,7 @@ public class EndGame extends javax.swing.JFrame {
      */
     public EndGame() {
         initComponents();
-        setLocation(new Point(400, 100));
+        setLocationRelativeTo(null);
         exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         scores.charge();
         String s = JOptionPane.showInputDialog(rootPane, "Insert your name", "Save your score", JOptionPane.PLAIN_MESSAGE);

@@ -52,7 +52,8 @@ public class Game extends Canvas {
         board = Board.getInstance();
         board.changeLevel(1);
         board.setScreen(screen);
-        audio = null;
+        audio=null;
+        musicon = SettingsGame.isMusic();
     }
 
     public static Game getInstance() {

@@ -24,8 +24,7 @@ public class PowerupWindow extends javax.swing.JFrame {
         brickLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\brick.png"));
         slideLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\slide.png"));
         exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
-        Point middle = new Point(500, 100);
-        setLocation(middle);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

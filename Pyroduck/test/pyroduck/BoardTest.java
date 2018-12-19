@@ -110,7 +110,6 @@ public class BoardTest {
         Bomb bomb = new Bomb(1, 1);
         board.addBomb(bomb);
         assertTrue(board.getEntity(1, 1, null) instanceof Bomb);
-        
         Player p = new Player(32, 32);
         board.addMob(p);
         assertTrue(board.getMobAt(1, 1) instanceof Player);
