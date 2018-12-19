@@ -127,11 +127,10 @@ public class Board extends Observable implements Observer {
             try {
                 int combination = new Random(System.currentTimeMillis()).nextInt(2) + 1;
                 String path;
-                 if (numlevel == 0) {
+                 if (numlevel == 0)
                     path = "./resources/levels/Demo.txt";
-                } else {
+                else
                     path = "./resources/levels/nextlevel/Level" + numlevel + " " + combination + ".txt";
-                }
                 BufferedReader in;
                 String data;
                 in = new BufferedReader(new FileReader(path));
@@ -140,11 +139,10 @@ public class Board extends Observable implements Observer {
                 int l = Integer.parseInt(tokens.nextToken());
                 world = tokens.nextToken();
                 input = getRightKeyboard();
-                if (world.equals("G")) {
+                if (world.equals("G"))
                     level = new GrassFileLevel(path, in, l);
-                } else {
+                else
                     level = new IceFileLevel(path, in, l);
-                }
                 in.close();
                 entities = level.createEntities();
             } catch (NullPointerException e) {
@@ -174,20 +172,16 @@ public class Board extends Observable implements Observer {
     public Entity getEntity(double x, double y, Mob m) {
         Entity res = null;
         res = getExplosionAt((int) x, (int) y);
-        if (res != null) {
+        if (res != null)
             return res;
-        }
         res = getBombAt(x, y);
-        if (res != null) {
+        if (res != null)
             return res;
-        }
         ArrayList<Mob> list = getMobsAtExcluding((int) x, (int) y, m);
-        if (!list.isEmpty()) {
+        if (!list.isEmpty())
             res = list.get(0);
-        }
-        if (res != null) {
+        if (res != null)
             return res;
-        }
         res = getEntityAt((int) x, (int) y);
         return res;
     }
@@ -201,9 +195,8 @@ public class Board extends Observable implements Observer {
         Bomb b;
         while (bs.hasNext()) {
             b = bs.next();
-            if (b.getX() == (int) x && b.getY() == (int) y) {
+            if (b.getX() == (int) x && b.getY() == (int) y)
                 return b;
-            }
         }
         return null;
     }
@@ -218,12 +211,10 @@ public class Board extends Observable implements Observer {
         Mob cur;
         while (itr.hasNext()) {
             cur = itr.next();
-            if (cur == a) {
+            if (cur == a)
                 continue;
-            }
-            if (cur.getXTile() == x && cur.getYTile() == y) {
+            if (cur.getXTile() == x && cur.getYTile() == y)
                 mobs1.add(cur);
-            }
         }
         return mobs1;
     }
@@ -234,9 +225,8 @@ public class Board extends Observable implements Observer {
         while (bs.hasNext()) {
             b = bs.next();
             Explosion e = b.explosionAt(x, y);
-            if (e != null) {
+            if (e != null)
                 return e;
-            }
         }
         return null;
     }
@@ -277,9 +267,8 @@ public class Board extends Observable implements Observer {
      */
     protected void renderMobs() {
         Iterator<Mob> itr = mobs.iterator();
-        while (itr.hasNext()) {
+        while (itr.hasNext())
             itr.next().render(screen);
-        }
     }
 
     /*
@@ -289,15 +278,13 @@ public class Board extends Observable implements Observer {
      */
     private void updateMobs() {
         ListIterator<Mob> itr = mobs.listIterator(mobs.size());
-        while (itr.hasPrevious()) {
+        while (itr.hasPrevious())
             itr.previous().update();
-        }
     }
 
     private void updateEntities() {
-        for (int i = 0; i < entities.length; i++) {
+        for (int i = 0; i < entities.length; i++)
             entities[i].update();
-        }
     }
 
     /*
@@ -326,9 +313,8 @@ public class Board extends Observable implements Observer {
      */
     private void updateBombs() {
         Iterator<Bomb> itr = bombs.iterator();
-        while (itr.hasNext()) {
+        while (itr.hasNext())
             itr.next().update();
-        }
     }
 
     /**
@@ -344,9 +330,8 @@ public class Board extends Observable implements Observer {
      */
     private void renderBombs() {
         Iterator<Bomb> itr = bombs.iterator();
-        while (itr.hasNext()) {
+        while (itr.hasNext())
             itr.next().render(screen);
-        }
     }
 
     public int getLives() {
@@ -370,9 +355,8 @@ public class Board extends Observable implements Observer {
         Mob cur;
         while (itr.hasNext()) {
             cur = itr.next();
-            if (cur.getXTile() == x && cur.getYTile() == y) {
+            if (cur.getXTile() == x && cur.getYTile() == y)
                 return cur;
-            }
         }
         return null;
     }
@@ -396,19 +380,15 @@ public class Board extends Observable implements Observer {
             oldPlayer.setY(y);
             oldPlayer.setInput(getRightKeyboard());
             Game.getInstance().resetProperties();
-            for (Mob m : mobs) {
-                if (!m.isPlayer()) {
-                    if (Coordinates.pixelToTile(abs(x - m.getX())) < 1 && Coordinates.pixelToTile(abs(y - m.getY())) < 1) {
+            for (Mob m : mobs)
+                if (!m.isPlayer())
+                    if (Coordinates.pixelToTile(abs(x - m.getX())) < 1 && Coordinates.pixelToTile(abs(y - m.getY())) < 1)
                         m.kill();
-                    }
-                }
-            }
             mobs.set(0, oldPlayer);
-            for (int i = 1; i < mobs.size(); i++) {
+            for (int i = 1; i < mobs.size(); i++){
                 EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
-                if (enemyPower.isPlayerReferenceUpdatable()) {
+                if (enemyPower.isPlayerReferenceUpdatable())
                     enemyPower.updateReferencePlayer(oldPlayer);
-                }
             }
             timer.cancel();
             timer = new Timer();
@@ -420,9 +400,8 @@ public class Board extends Observable implements Observer {
                 //player is the first element of the list mobs
                 for (int i = 1; i < mobs.size(); i++) {
                     EnemyPower enemyPower = ((Enemy) mobs.get(i)).getEp();
-                    if (enemyPower.isPlayerReferenceUpdatable()) {
+                    if (enemyPower.isPlayerReferenceUpdatable())
                         enemyPower.updateReferencePlayer(p);
-                    }
                 }
                 ((SuperPlayer) p).setGraphicalExtension((SuperPlayer) p);
                 timer.schedule(new ScheduleTask(), 30000);
@@ -473,9 +452,8 @@ public class Board extends Observable implements Observer {
     }
 
     public static Board getInstance() {
-        if (instance == null) {
+        if (instance == null)
             instance = new Board();
-        }
         return instance;
     }
     
