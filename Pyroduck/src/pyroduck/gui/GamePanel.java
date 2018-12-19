@@ -113,8 +113,6 @@ public class GamePanel extends JPanel implements Observer {
             skipDemo.setVisible(false);
             startReturn.setVisible(true);
             game.requestFocus();
-            
-
         }
     }
     
@@ -139,9 +137,6 @@ public class GamePanel extends JPanel implements Observer {
             Board.setBoard();
             Game.setGame();
             Game.getInstance().resetProperties();
-           
-            
-            
             }
     }
     
@@ -214,6 +209,7 @@ public class GamePanel extends JPanel implements Observer {
         startReturn.setText("Return to Start");
         skipDemo = new JButton("  Skip Demo  ");
         skipDemo.setFont(font);
+        startReturn.setFont(font);
         skipDemo.setForeground(Color.BLACK);
         skipDemo.setVisible(false);
     }

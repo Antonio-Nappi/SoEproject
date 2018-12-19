@@ -157,6 +157,7 @@ public class SettingsGame extends javax.swing.JFrame {
         }
         lives = (int) jSpinner1.getValue();
         setVisible(false);
+        start.setEnabled(true);
         dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
