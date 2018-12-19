@@ -36,6 +36,7 @@ public class MissileTest {
     @Before
     public void setUp() {
         missile = new Missile(1, 1, 2);
+        Game.getInstance();
     }
     
     @After
@@ -47,7 +48,6 @@ public class MissileTest {
      */
     @Test
     public void testUpdate() {
-        Game.getInstance();
         for(int i=0; i<51; i++){
             assertFalse(missile.isRemoved());
             missile.update();

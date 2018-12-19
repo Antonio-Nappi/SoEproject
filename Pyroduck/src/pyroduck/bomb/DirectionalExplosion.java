@@ -19,10 +19,10 @@ public class DirectionalExplosion extends Entity {
     /**
      * Creates an explosion object setting each properties of the range.
      *
-     * @param x
-     * @param y
-     * @param direction
-     * @param radius
+     * @param x horizontal coordinate in tiles
+     * @param y vertical coordinate in tiles
+     * @param direction propagation direction
+     * @param radius explosion radius
      */
     public DirectionalExplosion(int x, int y, int direction, int radius) {
         this.x = x;
