@@ -104,19 +104,23 @@ public class GamePanel extends JPanel implements Observer {
             Board.getInstance().resetPoints();
             pointsLabel.setText("Points: 0");
             Game.getInstance().pause();
+            
             Board.getInstance().getPlayer().remove();
             Keyboard.getInstance().releaseAll();
             
             setVisible(false);
             frame.setVisible(false);
-            frame = null;
+            frame.dispose();
+            
+            
             StartGame s = new StartGame();
             s.setLocation(new Point(200, 50));
             s.setSize(1130, 600); 
             s.setVisible(true); 
             Board.setBoard();
             Game.setGame();
-            Game.getInstance().restartGame();
+            Game.getInstance().resetProperties();
+            
         }
     }
     
@@ -126,6 +130,7 @@ public class GamePanel extends JPanel implements Observer {
             Board.getInstance().resetPoints();
             pointsLabel.setText("Points: 0");
             Game.getInstance().pause();
+            Board.getInstance().restartLevel();
             Board.getInstance().getPlayer().remove();
             Keyboard.getInstance().releaseAll();
             
@@ -138,7 +143,7 @@ public class GamePanel extends JPanel implements Observer {
             s.setVisible(true); 
             Board.setBoard();
             Game.setGame();
-            Game.getInstance().restartGame();            
+            Game.getInstance().resetProperties();
            
             
             
