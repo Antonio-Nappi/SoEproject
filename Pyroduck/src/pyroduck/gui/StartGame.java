@@ -1,7 +1,9 @@
 package pyroduck.gui;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,7 +11,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import pyroduck.Board;
 import pyroduck.Game;
-import pyroduck.Pyroduck;
 import pyroduck.audio.AudioPlayer;
 
 /**
@@ -417,7 +418,7 @@ public class StartGame extends javax.swing.JFrame {
         Board.getInstance().setPlayer(selected);  
         try {
             if(!restart){
-            Pyroduck.main(args);
+            Frame mainwindow = new Frame();
             restart=true;
             }
 
@@ -460,7 +461,7 @@ public class StartGame extends javax.swing.JFrame {
         }
         try {
              if(!restart){
-            Pyroduck.main(args);
+            Frame mainwindow = new Frame();
             restart=true;
             }
         } catch (IOException ex) {
@@ -501,8 +502,8 @@ public class StartGame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 StartGame s = new StartGame();
-                s.setBounds(new Rectangle(1000,600));   
-                s.setLocation(new Point(200, 50));
+                s.setBounds(new Rectangle(1000,600));  
+                s.setLocationRelativeTo(null);
                 s.setVisible(true);              
             }
         });

@@ -6,8 +6,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
+import pyroduck.entities.mob.enemy.graphic.Arbok;
 import pyroduck.graphics.Sprite;
 
 /**
@@ -18,6 +20,7 @@ public class DestroyableIceTileTest {
     
     private int timerBreak;
     private DestroyableIceTile instance;
+    private Game game;
     
     public DestroyableIceTileTest() {
     }
@@ -32,6 +35,7 @@ public class DestroyableIceTileTest {
     
     @Before
     public void setUp() {
+        game = Game.getInstance();
         instance = new IntactState(1, 1, Sprite.ice);
         timerBreak = 2;
         instance.setTimerBreak(timerBreak);
@@ -47,9 +51,9 @@ public class DestroyableIceTileTest {
     @Test
     public void testCollide() {
         Entity e = new Player(1, 1);
-        boolean expResult = false;
-        boolean result = instance.collide(e);
-        assertEquals(expResult, result);
+        Entity e1 = new Arbok(1, 1);
+        assertFalse(instance.collide(e));
+        assertFalse(instance.collide(e1));
     }
 
     /**
@@ -82,5 +86,11 @@ public class DestroyableIceTileTest {
         instance.setTimerBreak(5);
         assertTrue(instance.getTimerBreak() == 5);
     }
- 
+    
+    @Test
+    public void testIsDestroyableIceTile(){
+        IntactState intact = new IntactState(1, 1, Sprite.ice);
+        boolean res = intact.isDestroyableIceTile();
+        assertTrue(res);
+    }
 }
