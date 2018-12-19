@@ -48,8 +48,8 @@ public class BoardTest {
     @Test
     public void testUpdate() {
         board.addMob(new Player(0, 0));
-        assertTrue(board.mobs.get(0) instanceof Player);
-        board.mobs.get(0).remove();
+        assertTrue(board.getMobs().get(0) instanceof Player);
+        board.getMobs().get(0).remove();
         board.update();
         assertTrue(board.bombs.isEmpty());
     }
@@ -97,8 +97,8 @@ public class BoardTest {
         board.addMob(player);
         board.addMob(enemy);
         assertFalse(board.detectNoEnemies());
-        for(int i=0; i<board.mobs.size(); i++)
-            board.mobs.remove(i);
+        for(int i=0; i<board.getMobs().size(); i++)
+            board.getMobs().remove(i);
         assertTrue(board.detectNoEnemies());
     }
 
@@ -117,9 +117,9 @@ public class BoardTest {
         Arbok enemy = new Arbok(32, 97);
         board.addMob(enemy);
         assertTrue(board.getMobAt(1, 2) instanceof Mob);
-        assertFalse(board.entities[0] instanceof Mob);
-        assertFalse(board.entities[0] instanceof Bomb);
-        assertTrue(board.entities[0] instanceof Entity);
+        assertFalse(board.getEntities()[0] instanceof Mob);
+        assertFalse(board.getEntities()[0] instanceof Bomb);
+        assertTrue(board.getEntities()[0] instanceof Entity);
     }
 
     /**

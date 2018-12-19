@@ -1,5 +1,10 @@
 package pyroduck;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,7 +37,15 @@ public class GameTest {
         board = Board.getInstance();
         game = Game.getInstance();
         game.setSelected(0);
-        game.setMusicOn(false);
+        try {
+            game.setMusicOn(false);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(GameTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @After
