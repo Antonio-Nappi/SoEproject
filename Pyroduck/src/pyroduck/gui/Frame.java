@@ -28,4 +28,6 @@ public class Frame extends JFrame {
         setVisible(true);	
         gamepane.getGame().start();
     }
+    
+    
 }

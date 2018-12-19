@@ -25,7 +25,7 @@ public class ListPointsSerialize {
             this.list = (List<PointsSerialize>) in.readObject();
             in.close();
         } catch (IOException | ClassNotFoundException e){
-            JOptionPane.showMessageDialog(null, "IO Error", "alert", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "IO Error", "alert", JOptionPane.ERROR_MESSAGE);
         }
         return list;
     }

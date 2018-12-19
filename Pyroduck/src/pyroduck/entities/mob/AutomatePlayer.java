@@ -1,5 +1,6 @@
 package pyroduck.entities.mob;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import pyroduck.*;
 import pyroduck.bomb.Bomb;
@@ -70,26 +71,28 @@ public class AutomatePlayer extends Player{
 
     @Override
     protected void calculateMove(){
-        if(counter_idle < 350){  //player initial idle -> 500*15 ms
-            counter_idle++;
-            return;
-        }
-        if(registerX.size() > 0 && registerY.size() > 0){
-            Double xa = registerX.pop();
-            Double ya = registerY.pop();
-           if(xa != 0 || ya != 0)  {
-                if(xa == 3)
-                    putBomb = true;
-                else{
-                    move(xa, ya);
-                    moving = true;
-                }
-            } else {
-                moving = false;
+        if(!isRemoved()){
+            if(counter_idle < 350){  //player initial idle -> 500*15 ms
+                counter_idle++;
+                return;
             }
+            if(registerX.size() > 0 && registerY.size() > 0){
+                Double xa = registerX.pop();
+                Double ya = registerY.pop();
+               if(xa != 0 || ya != 0)  {
+                    if(xa == 3)
+                        putBomb = true;
+                    else{
+                        move(xa, ya);
+                        moving = true;
+                    }
+                } else {
+                    moving = false;
+                }
+            }
+            else
+                moving = false;
         }
-        else
-            moving = false;
     }
 
     @Override
@@ -148,6 +151,18 @@ public class AutomatePlayer extends Player{
         registerX.add(3.0);
         registerY.add(0.0);
     }
+    
+    public void removeBombs(){
+        Iterator<Bomb> bs = bombs.iterator();
+        Bomb b;
+        while (bs.hasNext()) {
+            b = (Bomb) bs.next();
+            bs.remove();
+            Game.getInstance().addBombRate(1);
+            
+        }
+    }
+    
 
     @Override
     protected void updateTimerBreaker(){}

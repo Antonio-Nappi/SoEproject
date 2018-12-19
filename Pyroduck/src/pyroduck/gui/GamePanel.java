@@ -104,11 +104,32 @@ public class GamePanel extends JPanel implements Observer {
             Board.getInstance().resetPoints();
             Game.getInstance().setDemo(false);
             pointsLabel.setText("Points: 0");
+<<<<<<< HEAD
             Game.getInstance().resetProperties();
             Board.getInstance().changeLevel(1);
             tutorialpanel.setVisible(false);
             skipDemo.setVisible(false);
             game.requestFocus();
+=======
+            Game.getInstance().pause();
+            
+            Board.getInstance().getPlayer().remove();
+            Keyboard.getInstance().releaseAll();
+            
+            setVisible(false);
+            frame.setVisible(false);
+            frame.dispose();
+            
+            
+            StartGame s = new StartGame();
+            s.setLocation(new Point(200, 50));
+            s.setSize(1130, 600); 
+            s.setVisible(true); 
+            Board.setBoard();
+            Game.setGame();
+            Game.getInstance().resetProperties();
+            
+>>>>>>> parent of c460524... Revert "skip fix"
         }
     }
     
@@ -118,6 +139,11 @@ public class GamePanel extends JPanel implements Observer {
             Board.getInstance().resetPoints();
             pointsLabel.setText("Points: 0");
             Game.getInstance().pause();
+<<<<<<< HEAD
+=======
+            Board.getInstance().restartLevel();
+            Board.getInstance().getPlayer().remove();
+>>>>>>> parent of c460524... Revert "skip fix"
             Keyboard.getInstance().releaseAll();
             
             setVisible(false);
@@ -129,7 +155,7 @@ public class GamePanel extends JPanel implements Observer {
             s.setVisible(true); 
             Board.setBoard();
             Game.setGame();
-            Game.getInstance().restartGame();            
+            Game.getInstance().resetProperties();
            
             
             
