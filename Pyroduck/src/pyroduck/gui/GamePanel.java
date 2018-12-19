@@ -22,7 +22,6 @@ import javax.swing.JPanel;
 import pyroduck.Board;
 import pyroduck.Game;
 import pyroduck.Message;
-import pyroduck.audio.AudioPlayer;
 import pyroduck.input.*;
 
 public class GamePanel extends JPanel implements Observer {
@@ -34,7 +33,7 @@ public class GamePanel extends JPanel implements Observer {
     private JLabel spaceLabel = new JLabel();
     private JButton musicButton = new JButton();
     private JButton skipDemo = new JButton();
-    private JButton startReturn = new JButton();
+    private final JButton startReturn = new JButton();
     private final JPanel panel = new JPanel();
     private final JPanel tutorialpanel = new JPanel();
     private Frame frame;
@@ -149,17 +148,15 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + Board.getInstance().getLives());
         pointsLabel.setText("Points: " + Board.getInstance().getPoints());
-        
-        
+               
         if (Board.getInstance().getLives() <= 0) {
             if (endGame == null) {
                 game.activeTimerEnd(frame);    //this set a boolean in game that active the ending of the game (temporized)
             }
         } else {
             endGame = null;
-            if(frame!=null)
-            frame.setVisible(true);
-            
+            if(frame != null)
+            frame.setVisible(true);    
         }
         if (Board.getInstance().isPause() == true) {
             messageLabel.setForeground(Color.white);
@@ -171,9 +168,9 @@ public class GamePanel extends JPanel implements Observer {
             livesLabel.setForeground(Color.white);
             pointsLabel.setForeground(Color.white);
         }
-        
-        if (!Game.getInstance().getDemo()){
+        if (!Game.getInstance().getDemo() && Board.getInstance().getLevel() == 1 && !Board.getInstance().isPause() && tutorialpanel.isVisible()){
             skipDemo.setVisible(false);
+            tutorialpanel.setVisible(false);
             startReturn.setVisible(true);
         }
     }
@@ -188,7 +185,7 @@ public class GamePanel extends JPanel implements Observer {
     
     private void setPanel(){
         boolean music = game.getMusicOn();
-        Font font = new Font(Font.DIALOG, Font.BOLD, 24);
+        Font font = new Font(Font.DIALOG, Font.BOLD, 20);
         messageLabel = new JLabel("     Paused     ");
         spaceLabel = new JLabel("                         ");
         musicButton = new JButton("");
@@ -206,8 +203,8 @@ public class GamePanel extends JPanel implements Observer {
         musicButton.setForeground(Color.white);
         musicButton.addActionListener(new setMusic());
         startReturn.addActionListener(new returnToStart());
-        startReturn.setText("Return to Start");
-        skipDemo = new JButton("  Skip Demo  ");
+        startReturn.setText(" Return to Start ");
+        skipDemo = new JButton(" Skip Demo ");
         skipDemo.setFont(font);
         startReturn.setFont(font);
         skipDemo.setForeground(Color.BLACK);
