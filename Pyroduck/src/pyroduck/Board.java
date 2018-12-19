@@ -16,6 +16,7 @@ import pyroduck.gui.SettingsGame;
 import pyroduck.input.*;
 import pyroduck.level.*;
 
+@SuppressWarnings("unchecked")
 public class Board extends Observable implements Observer {
 
     protected FileLevel level;
