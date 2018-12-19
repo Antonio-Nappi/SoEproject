@@ -28,7 +28,7 @@ public class SettingsGame extends javax.swing.JFrame {
     public SettingsGame(StartGame start) {
         initComponents(); 
         this.start = start;
-        setLocation(new Point(600,200));
+        setLocationRelativeTo(null);
         DefaultTableModel model= new DefaultTableModel();
         jTable1.setModel(model);
         Object[] row = new Object[3];
@@ -74,7 +74,7 @@ public class SettingsGame extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel1.setMinimumSize(new java.awt.Dimension(400, 400));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));
