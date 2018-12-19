@@ -11,7 +11,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import pyroduck.Board;
 import pyroduck.Game;
-import pyroduck.Pyroduck;
 import pyroduck.audio.AudioPlayer;
 
 /**
@@ -419,7 +418,7 @@ public class StartGame extends javax.swing.JFrame {
         Board.getInstance().setPlayer(selected);  
         try {
             if(!restart){
-            Pyroduck.main(args);
+            Frame mainwindow = new Frame();
             restart=true;
             }
 
@@ -462,7 +461,7 @@ public class StartGame extends javax.swing.JFrame {
         }
         try {
              if(!restart){
-            Pyroduck.main(args);
+            Frame mainwindow = new Frame();
             restart=true;
             }
         } catch (IOException ex) {
