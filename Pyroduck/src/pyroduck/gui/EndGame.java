@@ -190,6 +190,7 @@ public class EndGame extends javax.swing.JFrame {
         StartGame s = new StartGame();
         s.setLocation(new Point(200, 50));
         s.setSize(1130, 600);
+        s.setLocationRelativeTo(null);
         s.setVisible(true); 
         Board.setBoard();
         Game.setGame();

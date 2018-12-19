@@ -131,7 +131,8 @@ public class GamePanel extends JPanel implements Observer {
             frame = null;
             StartGame s = new StartGame();
             s.setLocation(new Point(200, 50));
-            s.setSize(1130, 600); 
+            s.setSize(1130, 600);
+            s.setLocationRelativeTo(null);
             s.setVisible(true); 
             Board.setBoard();
             Game.setGame();
