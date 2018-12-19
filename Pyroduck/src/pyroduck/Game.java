@@ -50,7 +50,7 @@ public class Game extends Canvas {
         timer = new Timer();
         screen = new Screen();
         board = Board.getInstance();
-        board.changeLevel(1);
+        board.changeLevel(4);
         board.setScreen(screen);
         audio=null;
         musicon = SettingsGame.isMusic();
@@ -92,7 +92,7 @@ public class Game extends Canvas {
         bs.show(); //make next buffer visible
     }
 
-    public void renderScreen() {
+    public void renderScreen(boolean finish) {
         BufferStrategy bs = getBufferStrategy();
         if (bs == null) {
             createBufferStrategy(3);
@@ -100,7 +100,7 @@ public class Game extends Canvas {
         }
         screen.clear();
         Graphics g = bs.getDrawGraphics();
-        screen.drawChangeLevel(g, board.getLevel());
+        screen.drawChangeLevel(g, board.getLevel(), finish);
         g.dispose();
         bs.show();
     }

@@ -99,12 +99,21 @@ public class Board extends Observable implements Observer {
              notifyObservers();   //to set invisible "skip" button and visible "return to start" button in GamePanel    
         }
         if (i >= 5) {
+            Game.getInstance().renderScreen(true);
             rightLives = getLives();
             setLives(0);
+            Game.getInstance().pause();
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Game.getInstance().resume();
+            return;
         }
         changeLevel(i);
         try {
-            Game.getInstance().renderScreen();
+            Game.getInstance().renderScreen(false);
             Game.getInstance().changeAudioLevel(i);
             Game.getInstance().pause();
             Thread.sleep(2500);

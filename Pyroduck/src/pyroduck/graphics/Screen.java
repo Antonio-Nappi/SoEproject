@@ -115,16 +115,18 @@ public class Screen {
         return temp;
     }
     
-    public void drawChangeLevel(Graphics g, int level) {
+    public void drawChangeLevel(Graphics g, int level, boolean finish) {
         g.setColor(Color.black);
         Dimension d = new Dimension(java.awt.Toolkit.getDefaultToolkit().getScreenSize().width-420, java.awt.Toolkit.getDefaultToolkit().getScreenSize().height-100);
         g.fillRect(0, 0, d.width, d.height);		
         Font font = new Font("Arial", Font.PLAIN, 48);
         g.setFont(font);
         g.setColor(Color.white);
-        drawCenteredString("LEVEL " + level, d.width, d.height, g);	
+        if(finish)
+            drawCenteredString("GAME COMPLETED!!!", d.width, d.height, g);
+        else
+            drawCenteredString("LEVEL " + level, d.width, d.height, g);	
     }
-    
     
     private void drawCenteredString(String s, int w, int h, Graphics g) {
         FontMetrics fm = g.getFontMetrics();
