@@ -30,7 +30,7 @@ public class StartGame extends javax.swing.JFrame {
         initComponents();
         imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
         exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));     
-        audio = AudioPlayer.getAudioPlayer("opening.wav");
+        audio = AudioPlayer.setAudioPlayer("opening.wav");
         audio.play();
         pSpeed.setValue(100);
         pSliding.setValue(100);

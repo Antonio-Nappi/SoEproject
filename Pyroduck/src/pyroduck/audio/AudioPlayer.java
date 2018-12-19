@@ -17,7 +17,7 @@ public class  AudioPlayer {
      
     private Long currentFrame; 
     private Clip clip; 
-    private static String status ; 
+    private static String status="" ; 
     private AudioInputStream audioInputStream; 
     private static String filepath;
     private static AudioPlayer audio = null;
@@ -31,7 +31,7 @@ public class  AudioPlayer {
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
     } 
     
-    public static AudioPlayer getAudioPlayer(String filepath){ 
+    public static AudioPlayer setAudioPlayer(String filepath){ 
         if (audio == null || status == null || status.equals("stop") || status.equals("paused")){
             try {
                 audio = new AudioPlayer(filepath);
@@ -71,15 +71,6 @@ public class  AudioPlayer {
         } 
     } 
       
-    public void restart() throws IOException, LineUnavailableException, UnsupportedAudioFileException{ 
-        clip.stop(); 
-        clip.close(); 
-        resetAudioStream(); 
-        currentFrame = 0L; 
-        clip.setMicrosecondPosition(0); 
-        this.play(); 
-    } 
-      
     public void stop() throws UnsupportedAudioFileException, IOException, LineUnavailableException{ 
         status = "stop";
         currentFrame = 0L; 
@@ -87,21 +78,8 @@ public class  AudioPlayer {
         clip.close(); 
     } 
       
-    // Method to jump over a specific part 
-    public void jump(long c) throws UnsupportedAudioFileException, IOException, LineUnavailableException  { 
-        if (c > 0 && c < clip.getMicrosecondLength())  
-        { 
-            clip.stop(); 
-            clip.close(); 
-            resetAudioStream(); 
-            currentFrame = c; 
-            clip.setMicrosecondPosition(c); 
-            this.play(); 
-        } 
-    } 
-      
     // Method to reset audio stream 
-    public void resetAudioStream() throws UnsupportedAudioFileException, IOException, LineUnavailableException{ 
+    private void resetAudioStream() throws UnsupportedAudioFileException, IOException, LineUnavailableException{ 
         audioInputStream = AudioSystem.getAudioInputStream( 
         new File("./resources/audio/"+filepath).getAbsoluteFile()); 
         clip.open(audioInputStream); 
@@ -118,19 +96,4 @@ public class  AudioPlayer {
         this.resumeAudio();        
     }
 
-    public Long getCurrentFrame() {
-        return currentFrame;
-    }
-
-    public Clip getClip() {
-        return clip;
-    }
-
-    public void setClip(Clip clip) {
-        this.clip = clip;
-    }
-
-    public String getStatus() {
-        return status;
-    }  
 }
