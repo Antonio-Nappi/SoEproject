@@ -57,6 +57,7 @@ public class GamePanel extends JPanel implements Observer {
         
         if (Board.getInstance().getLevel() <= 0) {
             skipDemo.setVisible(true);
+            startReturn.setVisible(false);
         }
         skipDemo.addActionListener(new skip());
         panel.setBackground(Color.black);
@@ -101,35 +102,19 @@ public class GamePanel extends JPanel implements Observer {
     private class skip implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+           
             Board.getInstance().resetPoints();
             Game.getInstance().setDemo(false);
             pointsLabel.setText("Points: 0");
-<<<<<<< HEAD
+
             Game.getInstance().resetProperties();
             Board.getInstance().changeLevel(1);
             tutorialpanel.setVisible(false);
             skipDemo.setVisible(false);
+            startReturn.setVisible(true);
             game.requestFocus();
-=======
-            Game.getInstance().pause();
             
-            Board.getInstance().getPlayer().remove();
-            Keyboard.getInstance().releaseAll();
-            
-            setVisible(false);
-            frame.setVisible(false);
-            frame.dispose();
-            
-            
-            StartGame s = new StartGame();
-            s.setLocation(new Point(200, 50));
-            s.setSize(1130, 600); 
-            s.setVisible(true); 
-            Board.setBoard();
-            Game.setGame();
-            Game.getInstance().resetProperties();
-            
->>>>>>> parent of c460524... Revert "skip fix"
+
         }
     }
     
@@ -139,11 +124,9 @@ public class GamePanel extends JPanel implements Observer {
             Board.getInstance().resetPoints();
             pointsLabel.setText("Points: 0");
             Game.getInstance().pause();
-<<<<<<< HEAD
-=======
             Board.getInstance().restartLevel();
             Board.getInstance().getPlayer().remove();
->>>>>>> parent of c460524... Revert "skip fix"
+
             Keyboard.getInstance().releaseAll();
             
             setVisible(false);
@@ -172,23 +155,7 @@ public class GamePanel extends JPanel implements Observer {
         livesLabel.setText("Lives: " + Board.getInstance().getLives());
         pointsLabel.setText("Points: " + Board.getInstance().getPoints());
         
-        if (Game.getInstance().getMenu()==true) {
-            Game.getInstance().setMenu(false);
-            frame.setVisible(false);
-            frame=null;
-            try {
-                game.setMusicOn(false);
-            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Board.getInstance().resetPoints();        
-            StartGame s=new StartGame();
-            s.setVisible(true); 
-            Board.setBoard();
-            Game.setGame();
-            return;
-            
-        }
+        
         if (Board.getInstance().getLives() <= 0) {
             if (endGame == null) {
                 game.activeTimerEnd(frame);    //this set a boolean in game that active the ending of the game (temporized)
@@ -208,6 +175,11 @@ public class GamePanel extends JPanel implements Observer {
             messageLabel.setForeground(Color.black);
             livesLabel.setForeground(Color.white);
             pointsLabel.setForeground(Color.white);
+        }
+        
+        if (!Game.getInstance().getDemo()){
+            skipDemo.setVisible(false);
+            startReturn.setVisible(true);
         }
     }
     

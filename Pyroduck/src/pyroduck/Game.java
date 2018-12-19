@@ -41,7 +41,6 @@ public class Game extends Canvas {
     protected int selected; 
     private boolean demo = false;
     private boolean demoFinished = false;
-    protected boolean menu=false;
     protected int timerEnd = 0;
     protected boolean ending = false;
     protected Frame frameToHidden;
@@ -53,7 +52,6 @@ public class Game extends Canvas {
         board.changeLevel(1);
         board.setScreen(screen);
         audio=null;
-        menu=false;
     }
     
     public static Game getInstance(){
@@ -264,8 +262,6 @@ public class Game extends Canvas {
     }
     
     public void setDemo(boolean demo){
-        if(this.demo && !demo)
-           menu=true;
         this.demo = demo;
         Board.getInstance().setPoints(0);//Per richiamare l'observer
         
@@ -291,13 +287,7 @@ public class Game extends Canvas {
         return musicon;
     }
     
-    public boolean getMenu(){
-        return menu;
-    }
     
-    public void setMenu(boolean menu){
-        this.menu=menu;
-    }
 
     private class ScheduleTask extends TimerTask{
         @Override

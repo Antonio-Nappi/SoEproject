@@ -98,7 +98,10 @@ public class Board extends Observable implements Observer {
         int i = level.getLevel() + 1;
         if(i==1){ //change demo to level1
              Game.getInstance().setDemo(false);
-             return;
+             Game.getInstance().resetProperties();
+             this.resetPoints();
+             setChanged();
+             notifyObservers();   //to set invisible "skip" button and visible "return to start" button in GamePanel    
         }
         if (i >= 5) {
             rightLives = getLives();
