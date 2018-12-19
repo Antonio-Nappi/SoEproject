@@ -13,8 +13,8 @@ public class BrickTile extends DestroyableTile {
 
     /**
      * Creates an object of BrickTile.
-     * @param x horizontal coordinate.
-     * @param y vertical coordinate.
+     * @param x horizontal coordinate in tiles.
+     * @param y vertical coordinate in tiles.
      * @param sprite related to the tile.
      */
     public BrickTile(int x, int y, Sprite sprite) {

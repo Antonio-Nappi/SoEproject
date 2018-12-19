@@ -22,8 +22,8 @@ public class Bomb extends AnimatedEntity {
     /**
      * Creates an instance of the Bomb.
      *
-     * @param x horizontal coordinate in pixels.
-     * @param y vertical coordinate in pixels.
+     * @param x horizontal coordinate in tiles.
+     * @param y vertical coordinate in tiles.
      */
     public Bomb(int x, int y) {
         this.x = x;
