@@ -15,7 +15,7 @@ public class HowToPlay extends javax.swing.JFrame {
     public HowToPlay(StartGame start) {
         initComponents();
         this.start = start;
-        setLocation(new Point(600,200));
+        setLocationRelativeTo(null);
         exitLabel.setIcon (new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
         setVisible(true);  
     }
