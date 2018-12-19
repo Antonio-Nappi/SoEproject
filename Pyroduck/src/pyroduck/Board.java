@@ -48,11 +48,6 @@ public class Board extends Observable implements Observer {
     |--------------------------------------------------------------------------
      */
     public void update() {
-        if(lives <= 0){
-            
-        }
-        
-        
         updateEntities();
         updateMobs();
         updateBombs();
