@@ -104,33 +104,6 @@ public class GamePanel extends JPanel implements Observer {
             Board.getInstance().resetPoints();
             pointsLabel.setText("Points: 0");
             Game.getInstance().pause();
-            
-            Board.getInstance().getPlayer().remove();
-            Keyboard.getInstance().releaseAll();
-            
-            setVisible(false);
-            frame.setVisible(false);
-            frame.dispose();
-            
-            
-            StartGame s = new StartGame();
-            s.setLocation(new Point(200, 50));
-            s.setSize(1130, 600); 
-            s.setVisible(true); 
-            Board.setBoard();
-            Game.setGame();
-            Game.getInstance().resetProperties();
-            
-        }
-    }
-    
-    private class returnToStart implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            Board.getInstance().resetPoints();
-            pointsLabel.setText("Points: 0");
-            Game.getInstance().pause();
-            Board.getInstance().restartLevel();
             Board.getInstance().getPlayer().remove();
             Keyboard.getInstance().releaseAll();
             
@@ -143,7 +116,29 @@ public class GamePanel extends JPanel implements Observer {
             s.setVisible(true); 
             Board.setBoard();
             Game.setGame();
-            Game.getInstance().resetProperties();
+            Game.getInstance().restartGame();
+        }
+    }
+    
+    private class returnToStart implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Board.getInstance().resetPoints();
+            pointsLabel.setText("Points: 0");
+            Game.getInstance().pause();
+            Board.getInstance().getPlayer().remove();
+            Keyboard.getInstance().releaseAll();
+            
+            setVisible(false);
+            frame.setVisible(false);
+            frame = null;
+            StartGame s = new StartGame();
+            s.setLocation(new Point(200, 50));
+            s.setSize(1130, 600); 
+            s.setVisible(true); 
+            Board.setBoard();
+            Game.setGame();
+            Game.getInstance().restartGame();            
            
             
             

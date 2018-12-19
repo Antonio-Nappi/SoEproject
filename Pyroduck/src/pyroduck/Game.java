@@ -40,7 +40,6 @@ public class Game extends Canvas {
     private final int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
     protected int selected; 
     private boolean demo = false;
-    private boolean demoFinished = false;
     protected boolean menu=false;
     protected int timerEnd = 0;
     protected boolean ending = false;
@@ -83,11 +82,8 @@ public class Game extends Canvas {
         board.render();
         System.arraycopy(screen.pixels, 0, pixels, 0, pixels.length); //create the image to be rendered
         Graphics g = bs.getDrawGraphics();
-        try{
-            g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-            g.dispose(); //release resources
-        }
-        catch (NullPointerException ex){}
+        g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+        g.dispose(); //release resources
         bs.show(); //make next buffer visible
     }
     
