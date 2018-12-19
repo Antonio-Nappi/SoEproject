@@ -64,7 +64,7 @@ public class MissileTest {
     }
     
     public void testMove(){
-        Entity e = Board.getInstance().entities[(1 + 1 * FileLevel.WIDTH)];
+        Entity e = Board.getInstance().getEntities()[(1 + 1 * FileLevel.WIDTH)];
         assertFalse(e.collide(missile));
         Enemy e1 = new Arbok(32, 72);
         missile.move();
