@@ -24,9 +24,7 @@ public class ListPointsSerialize {
             in = new ObjectInputStream(new FileInputStream(f));
             this.list = (List<PointsSerialize>) in.readObject();
             in.close();
-        } catch (IOException | ClassNotFoundException e){
-            //JOptionPane.showMessageDialog(null, "IO Error", "alert", JOptionPane.ERROR_MESSAGE);
-        }
+        } catch (IOException | ClassNotFoundException e){}
         return list;
     }
     
