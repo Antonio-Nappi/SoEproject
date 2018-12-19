@@ -97,6 +97,7 @@ public class InfoWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
+        start.setEnabled(true);
         dispose();
     }//GEN-LAST:event_exitLabelMouseClicked
 
