@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  */
 public class KeyboardTest {
     
-    private Keyboard keyboard = null;
+    private Keyboard keyboard;
     
     public KeyboardTest() {
     }

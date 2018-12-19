@@ -83,6 +83,7 @@ public class PlayerTest {
     @Test
     public void testCalculateMove() {
         System.out.println("calculateMove");
+        player.alive = true;
         player.calculateMove();
         assertFalse(player.moving);
         Button a = new Button("click");
