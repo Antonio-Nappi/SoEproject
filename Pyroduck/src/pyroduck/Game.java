@@ -50,7 +50,7 @@ public class Game extends Canvas {
         timer = new Timer();
         screen = new Screen();
         board = Board.getInstance();
-        board.changeLevel(1);
+        board.changeLevel(4);
         board.setScreen(screen);
         audio=null;
         musicon = SettingsGame.isMusic();

@@ -194,8 +194,6 @@ public class EndGame extends javax.swing.JFrame {
         s.setVisible(true); 
         Board.setBoard();
         Game.setGame();
-        //Board.getInstance().setLives(SettingsGame.getLives());
-        //Game.getInstance().restartGame();
     }//GEN-LAST:event_restartButtonMouseClicked
 
     private void quitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quitButtonMouseClicked

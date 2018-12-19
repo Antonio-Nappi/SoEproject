@@ -141,6 +141,10 @@ public class GamePanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         livesLabel.setText("Lives: " + Board.getInstance().getLives());
         pointsLabel.setText("Points: " + Board.getInstance().getPoints());
+        if(Board.getInstance().isFinish()){
+            game.activeTimerEnd(frame);
+            this.setVisible(false);
+        }
         if (Board.getInstance().getLives() <= 0) {
             if (endGame == null) 
                 game.activeTimerEnd(frame);    //this set a boolean in game that active the ending of the game (temporized)

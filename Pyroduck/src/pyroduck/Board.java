@@ -35,11 +35,13 @@ public class Board extends Observable implements Observer {
     private static Board instance = null;
     private int rightLives = 0;
     private Timer timer;
+    private boolean finish;
 
     private Board() {
         con = new ContextDestroyable();
         timer = new Timer();
-        lives= SettingsGame.getLives();
+        lives = SettingsGame.getLives();
+        finish = false;
     }
 
     /*
@@ -96,12 +98,13 @@ public class Board extends Observable implements Observer {
              notifyObservers();   //to set invisible "skip" button and visible "return to start" button in GamePanel    
         }
         if (i >= 5) {
-            Game.getInstance().renderScreen(true);
+            finish = true;
+            Game.getInstance().renderScreen(finish);
             rightLives = getLives();
-            setLives(0);
+            //setLives(0);
             Game.getInstance().pause();
             try {
-                Thread.sleep(2500);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -110,7 +113,8 @@ public class Board extends Observable implements Observer {
         }
         changeLevel(i);
         try {
-            Game.getInstance().renderScreen(false);
+            finish = false;
+            Game.getInstance().renderScreen(finish);
             Game.getInstance().changeAudioLevel(i);
             Game.getInstance().pause();
             Thread.sleep(2500);
@@ -468,6 +472,10 @@ public class Board extends Observable implements Observer {
 
     public int getRightLives() {
         return rightLives;
+    }
+    
+    public boolean isFinish(){
+        return finish;
     }
 
     public void changeLives(int lives) {
