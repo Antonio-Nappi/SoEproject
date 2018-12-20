@@ -35,24 +35,12 @@ public class MissileTest {
     
     @Before
     public void setUp() {
-        missile = new Missile(1, 1, 2);
         Game.getInstance();
+        missile = new Missile(1, 1, 2);
     }
     
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of update method, of class Missile.
-     */
-    @Test
-    public void testUpdate() {
-        for(int i=0; i<51; i++){
-            assertFalse(missile.isRemoved());
-            missile.update();
-        }
-        assertTrue(missile.isRemoved());
     }
 
     /**

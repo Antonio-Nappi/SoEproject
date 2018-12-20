@@ -3,6 +3,7 @@ package pyroduck.entities.mob.enemy.graphic;
 import org.junit.*;
 import static org.junit.Assert.*;
 import pyroduck.Board;
+import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.BrickTile;
@@ -29,6 +30,7 @@ public class ArbokTest {
     
     @Before
     public void setUp() {
+        Game.getInstance();
         Board.getInstance().addMob(new Player(1,1));
         instance = new Arbok(1, 1);
     }

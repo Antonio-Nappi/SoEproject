@@ -1,16 +1,16 @@
-2 G
+2 I
 ###############################
-#p    1*  * * * * * *  * * *  #
-# # #*# # #*#*# # # # # # # # #
-#*   *   * 1 *   *   * l *    #
-#s#*#*#*#*#*#*#*#*#*#*#*#*#*#*#
-#*      f  *   o   *  2   **  #
-# # # # # # # # # # # # # # # #
-#*    3  *       *     *   *  #
-# # # # # # # # # # # # # # # #
-#*  *    o3    *    *   *  3  #
-# # # # # # # # # # # # # # # #
-#* 1 *   *   *    o    *     w#
+#p     *  *  l *   *  * * #   #
+#*#o#z#*# # #*#*# # # #*#*#o# #
+#   *    1* *  *    * *   * 3 #
+#a# #l#o# #*# # #*#*# #*#o# # #
+#  o  2    * *     *    2  *  #
+# # # #o# # # # # #*# #f# # # #
+#*  *    z    *      *   *    #
+# # # # #*# # # #*#*# #*#*# # #
+#f    m*  *     u      2  *   #
+# #*# # # # # # #*# # # # # # #
+#      1    * z *  *  w*      #
 ###############################
 
 
@@ -21,12 +21,13 @@ Info Tiles:
 # - Wall
 * - Brick
 w - Portal
+z - Brick Ice
 
 Mobs:
 p - Player
-1 - Golbat
-2 - Machamp
-3 - Arbok
+1 - Snorunt
+2 - Glalie
+3 - Darkrai
 
 Powerups:
 b - Powerup Bombs
@@ -34,8 +35,6 @@ f - Powerup Flames
 s - Powerup Speed
 o - Malus Decrease Speed
 m - Malus Reverse Keyboard
-l - Powerup Live
-
-per la prova facciamo
-1 grassland
-2 iceland
+l - Powerup Life
+u - Powerup Not Slip
+a - Poweruo Articuno

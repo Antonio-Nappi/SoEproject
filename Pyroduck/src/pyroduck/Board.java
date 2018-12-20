@@ -102,10 +102,9 @@ public class Board extends Observable implements Observer {
             finish = true;
             Game.getInstance().renderScreen(finish);
             rightLives = getLives();
-            //setLives(0);
             Game.getInstance().pause();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -136,9 +135,7 @@ public class Board extends Observable implements Observer {
                     path = "/resources"+File.separator+"levels"+File.separator+"Demo.txt";
                 else
                     path = "/resources"+File.separator+"levels"+File.separator+"nextlevel"+File.separator+"Level" + 1 + "_" + 1 + ".txt";
-                System.out.println(path);
                 InputStream is = getClass().getResourceAsStream(path);
-                System.out.println(is);
                 BufferedReader in;
                 String data;
                 in = new BufferedReader(new InputStreamReader(is));

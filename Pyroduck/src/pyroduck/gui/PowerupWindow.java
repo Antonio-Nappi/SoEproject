@@ -15,15 +15,15 @@ public class PowerupWindow extends javax.swing.JFrame {
     public PowerupWindow(StartGame start) {
         initComponents();
         this.start = start;
-        flameLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\flame.png"));
-        bombLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\bomb.png"));
-        inversionLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\inversion.png"));
-        speedLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\speed.png"));
-        lifeLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\live.png"));
-        articunoLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\articuno.png"));
-        brickLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\brick.png"));
-        slideLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\Powerup\\slide.png"));
-        exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
+        flameLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/flame.png")));
+        bombLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/textures/Powerup/bomb.png")));
+        inversionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/inversion.png")));
+        speedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/speed.png")));
+        lifeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/live.png")));
+        articunoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/articuno.png")));
+        brickLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/brick.png")));
+        slideLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/slide.png")));
+        exitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/SelectCharacter/exit_32.png")));
         setLocationRelativeTo(null);
         setVisible(true);
     }
