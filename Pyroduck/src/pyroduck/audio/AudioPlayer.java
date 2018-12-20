@@ -20,7 +20,7 @@ public class  AudioPlayer {
    
     private AudioPlayer(String filepath) throws UnsupportedAudioFileException, LineUnavailableException, IOException { 
         this.filepath = filepath;
-        audioInputStream =  AudioSystem.getAudioInputStream((getClass().getResourceAsStream("../../resources/audio/"+filepath)));  
+        audioInputStream =  AudioSystem.getAudioInputStream(new File("./resources/audio/"+filepath).getAbsoluteFile());  
        
         clip = AudioSystem.getClip();
         clip.open(audioInputStream); 
