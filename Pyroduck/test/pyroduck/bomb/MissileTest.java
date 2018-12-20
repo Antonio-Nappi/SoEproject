@@ -44,18 +44,6 @@ public class MissileTest {
     }
 
     /**
-     * Test of update method, of class Missile.
-     */
-//    @Test
-//    public void testUpdate() {
-//        for(int i=0; i<51; i++){
-//            assertFalse(missile.isRemoved());
-//            missile.update();
-//        }
-//        assertTrue(missile.isRemoved());
-//    }
-
-    /**
      * Test of render method, of class Missile.
      */
     @Test
