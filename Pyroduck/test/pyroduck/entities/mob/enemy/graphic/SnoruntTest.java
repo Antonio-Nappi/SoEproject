@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import pyroduck.Board;
+import pyroduck.Game;
 import pyroduck.entities.Entity;
 import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.destroyable.BrickTile;
@@ -33,6 +34,7 @@ public class SnoruntTest {
     
     @Before
     public void setUp() {
+        Game.getInstance();
         Board.getInstance().addMob(new Player(1,1));
         instance = new Snorunt(1, 1);
     }

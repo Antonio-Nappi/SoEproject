@@ -1,17 +1,18 @@
-2 G
+2 I
 ###############################
-#p     *  *    o    *  l   *  #
-# # # # # # # # # # # # # # # #
-#*       *    3      *   *    #
-#s#*#*#*#*#*#*#*#*#*#*#*#*#*#*#
-#* 1    f  *   o   *  2       #
-# # # # # # # # # # # # # # # #
-#*    3  *       *     *   *  #
-# # # # # # # # # # # # # # # #
-#*  *    o     *  w *  3   *  #
-# # # # # # # # # # # # # # # #
-#* 1 *       *    2    *      #
+#p     *  *  f *   * 1* * #   #
+#*#o# # # # #*#*# # # #*#*#o# #
+#   *    1* *  *  z   *   * 2 #
+# # # # # #*# # #*#*# #*#l# # #
+#  u  1   o  *     *    2  *  #
+# # # #o# # # # # #*# #f# # # #
+#*  *   z    *      *   z*    #
+# # # # #*# # # #*#*# #*# # # #
+#  l   *  *       * m  3    z #
+# #*# # # # # # #*# # # # # # #
+#     o2    *   *  *  w*      #
 ###############################
+
 
 
 Meta data:
@@ -21,12 +22,13 @@ Info Tiles:
 # - Wall
 * - Brick
 w - Portal
+z - Brick Ice
 
 Mobs:
 p - Player
-1 - Golbat
-2 - Machamp
-3 - Arbok
+1 - Snorunt
+2 - Glalie
+3 - Darkrai
 
 Powerups:
 b - Powerup Bombs
@@ -34,5 +36,6 @@ f - Powerup Flames
 s - Powerup Speed
 o - Malus Decrease Speed
 m - Malus Reverse Keyboard
-l - Powerup Live
-
+l - Powerup Life
+u - Powerup Not Slip
+a - Poweruo Articuno

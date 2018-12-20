@@ -37,6 +37,7 @@ public class BoardTest {
     
     @Before
     public void setUp() {
+        Game.getInstance();
         board = Board.getInstance();
         board.changeLevel(1);
     }

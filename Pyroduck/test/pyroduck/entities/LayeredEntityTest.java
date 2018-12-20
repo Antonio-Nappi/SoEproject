@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import pyroduck.Game;
 import pyroduck.entities.tile.GrassTile;
 import pyroduck.entities.tile.WallTile;
 import pyroduck.entities.tile.destroyable.BrickTile;
@@ -35,6 +36,7 @@ public class LayeredEntityTest {
     
     @Before
     public void setUp() {
+        Game.getInstance();
         x = 0;
         y = 0;
         le = new LayeredEntity(x, y, new GrassTile(x ,y, Sprite.grass), new WallTile(x ,y, Sprite.wall));
