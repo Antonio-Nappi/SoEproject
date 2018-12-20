@@ -202,6 +202,8 @@ public class StartGame extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
+        imgLabel.setIcon(new javax.swing.ImageIcon("C:\\Users\\Antonio\\Documents\\GitHub\\SoEproject\\Pyroduck\\resources\\textures\\SelectCharacter\\Psyduck.png")); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(

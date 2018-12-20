@@ -53,13 +53,13 @@ public class IceFileLevelTest {
         try {
             in1 = new BufferedReader(new FileReader(path1));
             in1.readLine();
-            instance1 = new IceFileLevel(path1, in1, 1);
+            instance1 = new IceFileLevel(in1, 1);
             in2 = new BufferedReader(new FileReader(path2));
             in2.readLine();
-            instance2 = new IceFileLevel(path2, in2, 2);
+            instance2 = new IceFileLevel(in2, 2);
             in3 = new BufferedReader(new FileReader(path2));
             in3.readLine();
-            instance3 = new IceFileLevel(path2, in3, 2);
+            instance3 = new IceFileLevel(in3, 2);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GrassFileLevelTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -137,9 +137,9 @@ public class IceFileLevelTest {
      */
     public void testLoadLevel() throws FileNotFoundException{
         System.out.println("loadLevel");
-        instance1.loadLevel(path1, in1);
-        instance2.loadLevel(path2, in2);
-        instance3.loadLevel(path2, in3);
+        instance1.loadLevel(in1);
+        instance2.loadLevel(in2);
+        instance3.loadLevel(in3);
         assertArrayEquals(instance2.lineTiles, instance3.lineTiles);
     }
     

@@ -14,8 +14,8 @@ import pyroduck.graphics.Sprite;
  */
 public class GrassFileLevel extends FileLevel{
 
-    public GrassFileLevel(String path,BufferedReader in,int level) {
-        super(path,in,level);
+    public GrassFileLevel(BufferedReader in, int level) {
+        super(in,level);
     }
 
     @Override

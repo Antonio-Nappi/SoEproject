@@ -14,8 +14,8 @@ import pyroduck.graphics.Sprite;
  */
 public class IceFileLevel extends FileLevel{
 
-    public IceFileLevel(String path,BufferedReader in,int level) {
-        super(path,in,level);
+    public IceFileLevel(BufferedReader in, int level) {
+        super(in,level);
     }
 
     @Override

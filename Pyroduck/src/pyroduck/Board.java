@@ -133,22 +133,26 @@ public class Board extends Observable implements Observer {
                 int combination = new Random(System.currentTimeMillis()).nextInt(2) + 1;
                 String path;
                  if (numlevel == 0)
-                    path = "./resources/levels/Demo.txt";
+                    path = "/resources"+File.separator+"levels"+File.separator+"Demo.txt";
                 else
-                    path = "./resources/levels/nextlevel/Level" + numlevel + " " + combination + ".txt";
+                    path = "/resources"+File.separator+"levels"+File.separator+"nextlevel"+File.separator+"Level" + 1 + "_" + 1 + ".txt";
+                System.out.println(path);
+                InputStream is = getClass().getResourceAsStream(path);
+                System.out.println(is);
                 BufferedReader in;
                 String data;
-                in = new BufferedReader(new FileReader(path));
+                in = new BufferedReader(new InputStreamReader(is));
                 data = in.readLine();
                 StringTokenizer tokens = new StringTokenizer(data);
                 int l = Integer.parseInt(tokens.nextToken());
                 world = tokens.nextToken();
                 input = getRightKeyboard();
                 if (world.equals("G"))
-                    level = new GrassFileLevel(path, in, l);
+                    level = new GrassFileLevel(in, l);
                 else
-                    level = new IceFileLevel(path, in, l);
-                in.close();
+                    level = new IceFileLevel(in, l);
+                in.close(); 
+                System.out.println(level.toString());
                 entities = level.createEntities();
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Level's file .txt not found", "alert", JOptionPane.ERROR_MESSAGE);

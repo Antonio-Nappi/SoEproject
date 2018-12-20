@@ -26,23 +26,21 @@ public abstract class FileLevel {
     /**
      * Costructs level file.
      *
-     * @param path related to the ".txt" file.
      * @param in
      * @param level
      */
-    public FileLevel(String path, BufferedReader in,int level) {
+    public FileLevel(BufferedReader in, int level) {
         this.level = level;
-        loadLevel(path, in);
+        loadLevel(in);
     }
 
     /**
      * Load the level information (level, width, height) and the map
      * information.
      *
-     * @param path related to the ".txt" file.
      * @param in
      */
-    public final void loadLevel(String path, BufferedReader in) {
+    public final void loadLevel(BufferedReader in) {
         try {
             lineTiles = new String[HEIGHT];
             for (int i = 0; i < HEIGHT; ++i) {
@@ -177,7 +175,7 @@ public abstract class FileLevel {
      * @return the number of level charged.
      */
     public int getLevel() {
-        return this.level;
+        return level;
     }
 
     public abstract WallTile createWall(int x, int y);
