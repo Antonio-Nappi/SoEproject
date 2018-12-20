@@ -2,7 +2,6 @@ package pyroduck;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,8 +15,6 @@ import pyroduck.entities.mob.Player;
 import pyroduck.entities.tile.WallTile;
 import pyroduck.entities.tile.destroyable.ContextDestroyable;
 import pyroduck.entities.tile.destroyable.DestroyableIceTile;
-import pyroduck.graphics.Screen;
-import pyroduck.graphics.Sprite;
 import pyroduck.input.Keyboard;
 
 /**
@@ -47,17 +44,6 @@ public class BoardTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of update method, of class Board.
-     */
-    @Test
-    public void testUpdate_0args() {
-        System.out.println("update");
-        Board instance = null;
-        instance.update();
-    }
-
 
     /**
      * Test of setLives method, of class Board.
@@ -256,10 +242,10 @@ public class BoardTest {
     @Test
     public void testSetPoints() {
         System.out.println("setPoints");
-        int points = 100;
+        int points = 600;
         board.setPoints(points);
         int exp = board.getPoints();
-        assertEquals(100, exp, 0);
+        assertEquals(600, exp, 0);
     }
 
     /**
@@ -301,7 +287,7 @@ public class BoardTest {
     @Test
     public void testGetPoints() {
         System.out.println("getPoints");
-        int expResult = 100;
+        int expResult = 600;
         int result = board.getPoints();
         assertEquals(expResult, result);
     }
