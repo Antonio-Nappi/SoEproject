@@ -28,7 +28,7 @@ public class PortalTile extends Tile {
                     try {
                         
                         Game.getInstance().pause();
-                        if(!Game.getInstance().getDemo())
+                        if(!Game.getInstance().getDemo() && !Board.getInstance().isFinish())
                             Board.getInstance().setPoints(1000);
                         Board.getInstance().nextLevel();
                     } catch (IOException ex) {

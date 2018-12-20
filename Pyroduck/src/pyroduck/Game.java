@@ -50,7 +50,7 @@ public class Game extends Canvas {
         timer = new Timer();
         screen = new Screen();
         board = Board.getInstance();
-        board.changeLevel(4);
+        board.changeLevel(1);
         board.setScreen(screen);
         audio=null;
         musicon = SettingsGame.isMusic();
@@ -143,7 +143,7 @@ public class Game extends Canvas {
         board.update();
         if (ending) {
             timerEnd++;
-            if (timerEnd > 40) {
+            if (timerEnd > 20) {
                 ending = false;
                 EndGame endGame = new EndGame();
                 endGame.setVisible(true);
@@ -152,6 +152,7 @@ public class Game extends Canvas {
                 Game.getInstance().pause();
                 Keyboard.getInstance().releaseAll();
                 Game.getInstance().restartGame();
+                endGame.requestFocus();
             }
         }
         if (input != Board.getInstance().getInput()) {
