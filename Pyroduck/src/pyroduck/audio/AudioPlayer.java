@@ -10,11 +10,7 @@ import javafx.embed.swing.JFXPanel;
  * @author 
  */
 public class  AudioPlayer {
-    
-    static {
-        JFXPanel fxPanel = new JFXPanel();       
-    }
-     
+   
     private Long currentFrame; 
     private Clip clip; 
     private static String status="" ; 
