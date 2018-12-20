@@ -29,8 +29,8 @@ public class StartGame extends javax.swing.JFrame {
      */
     public StartGame() {
         initComponents();
-        imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
-        exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));     
+        imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../resources/textures/SelectCharacter/Psyduck.png")));
+        exitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../resources/textures/SelectCharacter/exit_32.png")));     
         audio = AudioPlayer.setAudioPlayer("opening.wav");
         audio.play();
         pSpeed.setValue(100);
@@ -370,7 +370,7 @@ public class StartGame extends javax.swing.JFrame {
 
     private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
         if (selected == 0){
-            imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Golduck.png"));
+            imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("resources/textures/SelectCharacter/Golduck.png")));
             pSpeed.setValue(50);
             pSliding.setValue(0);
             pBr.setValue(50);
@@ -378,7 +378,7 @@ public class StartGame extends javax.swing.JFrame {
             selected = 1;
         }
         else{
-            imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
+            imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("resources/textures/SelectCharacter/Psyduck.png")));
             pSpeed.setValue(100);
             pSliding.setValue(100);
             pBr.setValue(50);
@@ -389,7 +389,7 @@ public class StartGame extends javax.swing.JFrame {
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         if (selected == 0){
-            imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Golduck.png"));
+            imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../resources/textures/SelectCharacter/Golduck.png")));
             pSpeed.setValue(50);
             pSliding.setValue(0);
             pBr.setValue(50);
@@ -397,7 +397,7 @@ public class StartGame extends javax.swing.JFrame {
             selected = 1;
         }
         else{
-            imgLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\Psyduck.png"));
+            imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../resources/textures/SelectCharacter/Psyduck.png")));
             pSpeed.setValue(100);
             pSliding.setValue(100);
             pBr.setValue(50); 

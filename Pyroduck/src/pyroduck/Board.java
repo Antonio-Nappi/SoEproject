@@ -131,14 +131,13 @@ public class Board extends Observable implements Observer {
             try {
                 int combination = new Random(System.currentTimeMillis()).nextInt(2) + 1;
                 String path;
-                System.out.println(numlevel);
-                 if (numlevel == 1)
+                 if (numlevel == 0)
                     path ="../resources/levels/Demo.txt" ;
                 else
                     path = "../resources/levels/nextlevel/Level" + numlevel + " " + combination + ".txt";
+                
                 BufferedReader in;
                 String data;
-                System.out.println(getClass().getResource(path).getFile());
                 in = new BufferedReader(new FileReader(getClass().getResource(path).getFile()));
                 data = in.readLine();
                 StringTokenizer tokens = new StringTokenizer(data);
