@@ -104,7 +104,7 @@ public class Board extends Observable implements Observer {
             rightLives = getLives();
             Game.getInstance().pause();
             try {
-                Thread.sleep(500);
+                Thread.sleep(2500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
             }
