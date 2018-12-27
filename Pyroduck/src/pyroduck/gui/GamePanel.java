@@ -7,14 +7,11 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
@@ -91,21 +88,9 @@ public class GamePanel extends JPanel implements Observer {
             }
             JButton button = (JButton) e.getSource();
             if (!music) {
-                try {
-                    InputStream imgStream = getClass().getResourceAsStream("sound_32.png");
-                    BufferedImage myImg = ImageIO.read(imgStream);
-                    musicButton.setIcon(new javax.swing.ImageIcon(myImg));
-                } catch (IOException ex) {
-                    Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\sound_32.png"));
             } else {
-                try {
-                    InputStream imgStream = getClass().getResourceAsStream("notsound_32.png");
-                    BufferedImage myImg = ImageIO.read(imgStream);
-                    musicButton.setIcon(new javax.swing.ImageIcon(myImg));
-                } catch (IOException ex) {
-                    Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\notsound_32.png"));
             }
         }
     }
@@ -137,16 +122,10 @@ public class GamePanel extends JPanel implements Observer {
             setVisible(false);
             frame.setVisible(false);
             frame = null;
-            StartGame s;
-            try {
-                s = new StartGame();
-                s.setSize(1130, 600);
+            StartGame s = new StartGame();
+            s.setSize(1130, 600);
             s.setLocationRelativeTo(null);
             s.setVisible(true);
-            } catch (IOException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
             Board.setBoard();
             Game.setGame();
             Game.getInstance().resetProperties();
@@ -211,23 +190,10 @@ public class GamePanel extends JPanel implements Observer {
         pointsLabel.setForeground(Color.WHITE);
         livesLabel.setForeground(Color.WHITE);
         messageLabel.setForeground(Color.black);
-        if (music){
-            try {
-                InputStream imgStream = getClass().getResourceAsStream("sound_32.png");
-                BufferedImage myImg = ImageIO.read(imgStream);
-                musicButton.setIcon(new javax.swing.ImageIcon(myImg));
-            } catch (IOException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else{
-            try {
-                InputStream imgStream = getClass().getResourceAsStream("notsound_32.png");
-                BufferedImage myImg = ImageIO.read(imgStream);
-                musicButton.setIcon(new javax.swing.ImageIcon(myImg));
-            } catch (IOException ex) {
-                Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        if (music)
+            musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\sound_32.png"));
+        else
+            musicButton.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\notsound_32.png"));
         musicButton.setForeground(Color.white);
         musicButton.addActionListener(new setMusic());
         startReturn.addActionListener(new returnToStart());

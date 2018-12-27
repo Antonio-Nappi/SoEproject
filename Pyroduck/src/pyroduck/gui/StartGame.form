@@ -300,6 +300,11 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="imgLabel">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\Antonio\Documents\GitHub\SoEproject\Pyroduck\resources\textures\SelectCharacter\Psyduck.png"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

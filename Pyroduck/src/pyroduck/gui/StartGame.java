@@ -1,12 +1,12 @@
 package pyroduck.gui;
 
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
+import java.awt.Toolkit;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import pyroduck.Board;
@@ -15,27 +15,22 @@ import pyroduck.audio.AudioPlayer;
 
 /**
  *
- * @author
+ * @author 
  */
 public class StartGame extends javax.swing.JFrame {
 
     private int selected = 0;
     public static AudioPlayer audio;
     String[] args;
-    private boolean restart = false;
-
+    private boolean restart=false;
+   
     /**
      * Creates new form StartGame
-     * @throws java.io.IOException
      */
-    public StartGame() throws IOException {
+    public StartGame() {
         initComponents();
-        InputStream imgStream = getClass().getResourceAsStream("Psyduck.png");
-        BufferedImage myImg = ImageIO.read(imgStream);
-        imgLabel.setIcon(new javax.swing.ImageIcon(myImg));
-        imgStream = getClass().getResourceAsStream("exit_32.png");
-        myImg = ImageIO.read(imgStream);
-        exitLabel.setIcon(new javax.swing.ImageIcon(myImg));
+        imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../resources/textures/SelectCharacter/Psyduck.png")));
+        exitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../resources/textures/SelectCharacter/exit_32.png")));     
         audio = AudioPlayer.setAudioPlayer("opening.wav");
         audio.play();
         pSpeed.setValue(100);
@@ -372,73 +367,49 @@ public class StartGame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLabelMouseClicked
-        System.exit(0);
+        System.exit(0); 
     }//GEN-LAST:event_exitLabelMouseClicked
 
     private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
-        if (selected == 0) {
-            
-            try {
-                InputStream imgStream = getClass().getResourceAsStream("Golduck.png");
-                BufferedImage myImg = ImageIO.read(imgStream);
-                imgLabel.setIcon(new javax.swing.ImageIcon(myImg));
-                pSpeed.setValue(50);
-                pSliding.setValue(0);
-                pBr.setValue(50);
-                namecharacterLabel.setText("GOLDUCK");
-                selected = 1;
-            } catch (IOException ex) {
-                Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            try {
-                InputStream imgStream = getClass().getResourceAsStream("Psyduck.png");
-                BufferedImage myImg = ImageIO.read(imgStream);
-                imgLabel.setIcon(new javax.swing.ImageIcon(myImg));
-                pSpeed.setValue(100);
-                pSliding.setValue(100);
-                pBr.setValue(50);
-                namecharacterLabel.setText("PSYDUCK");
-                selected = 0;
-            } catch (IOException ex) {
-                Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (selected == 0){
+            imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("resources/textures/SelectCharacter/Golduck.png")));
+            pSpeed.setValue(50);
+            pSliding.setValue(0);
+            pBr.setValue(50);
+            namecharacterLabel.setText("GOLDUCK");
+            selected = 1;
         }
+        else{
+            imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("resources/textures/SelectCharacter/Psyduck.png")));
+            pSpeed.setValue(100);
+            pSliding.setValue(100);
+            pBr.setValue(50);
+            namecharacterLabel.setText("PSYDUCK");
+            selected = 0;
+        }              
     }//GEN-LAST:event_previousButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        if (selected == 0) {
-            
-            try {
-                InputStream imgStream = getClass().getResourceAsStream("Golduck.png");
-                BufferedImage myImg = ImageIO.read(imgStream);
-                imgLabel.setIcon(new javax.swing.ImageIcon(myImg));
-                pSpeed.setValue(50);
-                pSliding.setValue(0);
-                pBr.setValue(50);
-                namecharacterLabel.setText("GOLDUCK");
-                selected = 1;
-            } catch (IOException ex) {
-                Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            
-            try {
-                InputStream imgStream = getClass().getResourceAsStream("Psyduck.png");
-                BufferedImage myImg = ImageIO.read(imgStream);
-                imgLabel.setIcon(new javax.swing.ImageIcon(myImg));
-                pSpeed.setValue(100);
-                pSliding.setValue(100);
-                pBr.setValue(50);
-                namecharacterLabel.setText("PSYDUCK");
-                selected = 0;
-            } catch (IOException ex) {
-                Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if (selected == 0){
+            imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../resources/textures/SelectCharacter/Golduck.png")));
+            pSpeed.setValue(50);
+            pSliding.setValue(0);
+            pBr.setValue(50);
+            namecharacterLabel.setText("GOLDUCK");
+            selected = 1;
+        }
+        else{
+            imgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../resources/textures/SelectCharacter/Psyduck.png")));
+            pSpeed.setValue(100);
+            pSliding.setValue(100);
+            pBr.setValue(50); 
+            namecharacterLabel.setText("PSYDUCK");
+            selected = 0;
         }
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        
         Game.getInstance().setDemo(false);
         try {
             Game.getInstance().setSelected(selected);
@@ -446,18 +417,18 @@ public class StartGame extends javax.swing.JFrame {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Board.getInstance().setPlayer(selected);
+        Board.getInstance().setPlayer(selected);  
         try {
-            if (!restart) {
-                Frame mainwindow = new Frame();
-                restart = true;
+            if(!restart){
+            Frame mainwindow = new Frame();
+            restart=true;
             }
 
         } catch (IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         Board.getInstance().setLives(SettingsGame.getLives());
-        setVisible(false);
+         setVisible(false);    
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void powerupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_powerupButtonActionPerformed
@@ -474,7 +445,7 @@ public class StartGame extends javax.swing.JFrame {
         InfoWindow info = new InfoWindow(this);
         setEnabled(false);
     }//GEN-LAST:event_infoButtonActionPerformed
-
+                              
     private void settingButtonhowtoplayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingButtonhowtoplayButtonActionPerformed
         SettingsGame setting = new SettingsGame(this);
         setEnabled(false);
@@ -491,16 +462,17 @@ public class StartGame extends javax.swing.JFrame {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            if (!restart) {
-                Frame mainwindow = new Frame();
-                restart = true;
+             if(!restart){
+            Frame mainwindow = new Frame();
+            restart=true;
             }
         } catch (IOException ex) {
             Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
+        this.setVisible(false);  
     }//GEN-LAST:event_demomodeButtonActionPerformed
 
+   
     /**
      * @param args the command line arguments
      */
@@ -531,17 +503,10 @@ public class StartGame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
-                try {
-                    StartGame s;
-                    s = new StartGame();
-                    s.setBounds(new Rectangle(1000, 600));
-                    s.setLocationRelativeTo(null);
-                    s.setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(StartGame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
+                StartGame s = new StartGame();
+                s.setBounds(new Rectangle(1000,600));  
+                s.setLocationRelativeTo(null);
+                s.setVisible(true);              
             }
         });
     }

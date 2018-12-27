@@ -73,6 +73,20 @@ public abstract class Entity extends Observable{
             return false;
     }
     
+//    public boolean checkDistanceCollision(Entity e, double tune){
+//        tune = Game.TILES_SIZE * (tune);
+//        System.out.println("tune: "+tune);
+//        System.out.println("this x: "+this.getX()*Game.TILES_SIZE);
+//        System.out.println("this y: "+this.getY()*Game.TILES_SIZE);
+//        System.out.println("e x: "+e.getX());
+//        System.out.println("e y: "+e.getY());
+//        System.out.println("diff X: "+abs(this.x*Game.TILES_SIZE - e.getX()));
+//        System.out.println("diff Y: "+abs(this.y*Game.TILES_SIZE - e.getY()));
+//        if(abs(this.x*Game.TILES_SIZE - e.getX()) < tune && abs(this.y*Game.TILES_SIZE - e.getY())< tune)
+//            return true;
+//        return false;       
+//    }
+
     /**
      * Returns the sprite of the entity.
      * @return the sprite related at the entity.

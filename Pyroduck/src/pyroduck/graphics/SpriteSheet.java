@@ -1,10 +1,8 @@
 package pyroduck.graphics;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
@@ -16,7 +14,7 @@ public class SpriteSheet {
     private final String path;
     public final int SIZE;
     public int[] pixels;
-    public static SpriteSheet tiles = new SpriteSheet("Sheet32.png", 1024);
+    public static SpriteSheet tiles = new SpriteSheet("./resources/textures/Sheet32.png", 1024);
 
     /**
      * Creates an instance of SpriteSheet and it also creates an array which will load the image.
@@ -34,14 +32,14 @@ public class SpriteSheet {
      * Loads the image of sprite sheet from the file.
      */
     private void load() {
-        InputStream imgStream = getClass().getResourceAsStream(path);
+        File f = new File(path);
         try {
-            BufferedImage image = ImageIO.read(imgStream);
+            BufferedImage image = ImageIO.read(f); 
             int w = image.getWidth();
             int h = image.getHeight();
-            image.getRGB(0, 0, w, h, pixels, 0, w);
-        } catch (IOException ex) {
-            Logger.getLogger(SpriteSheet.class.getName()).log(Level.SEVERE, null, ex);
+            image.getRGB(0, 0, w, h, pixels, 0, w);  // getRGB write the information about pixels of the image into "pixels" passed as parameter
+        } catch (IOException e) {
+            System.exit(0);
         }
     }
 }

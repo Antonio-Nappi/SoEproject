@@ -20,8 +20,7 @@ public class GrassFileLevel extends FileLevel{
 
     @Override
     public WallTile createWall(int x, int y) {
-        WallTile w = new WallTile(x, y, Sprite.wall);
-        return w;
+        return new WallTile(x, y, Sprite.wall);
     }
 
     @Override

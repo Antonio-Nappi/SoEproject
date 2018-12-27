@@ -1,0 +1,40 @@
+4 I
+###############################
+#p   z * o*   1*   *  * * *   #
+# # # #*# # #*#*# # # #*#*#*# #
+#   *    1* *  *    1 *   * * #
+# # # # # #*# # #*#*# # # # #*#
+#   o3    a   *  *  *   u z   #
+# # # # # # # # # #*# #*# # # #
+#*  *    z    *      * 1      #
+# # # # #*# # # #*#*# # # # # #
+#  l   *  *  w  z *    o      #
+# #*# # # # # # #*# # # # # # #
+# o      2  *   *  *     3    #
+###############################
+
+
+Meta data:
+(Number or Level) (Rows) (Columns)
+
+Info Tiles:
+# - Wall
+* - Brick
+w - Portal
+z - Brick Ice
+
+Mobs:
+p - Player
+1 - Snorunt
+2 - Glalie
+3 - Darkrai
+
+Powerups:
+b - Powerup Bombs
+f - Powerup Flames
+s - Powerup Speed
+o - Malus Decrease Speed
+m - Malus Reverse Keyboard
+l - Powerup Life
+u - Powerup Not Slip
+a - Poweruo Articuno

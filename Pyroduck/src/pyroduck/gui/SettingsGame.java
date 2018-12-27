@@ -1,12 +1,10 @@
 package pyroduck.gui;
 
-import java.awt.image.BufferedImage;
+import java.awt.Point;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.table.DefaultTableModel;
@@ -23,39 +21,33 @@ public class SettingsGame extends javax.swing.JFrame {
     private static int lives = 3;
     private ListPointsSerialize scores = new ListPointsSerialize();
     private List<PointsSerialize> list;
-    private StartGame start = null;
+    private final StartGame start;
     /**
      * Creates new form SettingsGame
      */
     public SettingsGame(StartGame start) {
-        try {
-            initComponents();
-            this.start = start;
-            setLocationRelativeTo(null);
-            DefaultTableModel model= new DefaultTableModel();
-            jTable1.setModel(model);
-            Object[] row = new Object[3];
-            Object[] column = {"Names","Points","Lives"};
-            model.setColumnIdentifiers(column);
-            list = scores.charge();
-            for(PointsSerialize p : list){
-                row[0] = p.getName();
-                row[1]= p.getPoints();
-                row[2]= p.getLives();
-                model.addRow(row);
-            }
-            if (music == true)
-                musicCheckBox.setSelected(true);
-            else
-                musicCheckBox.setSelected(false);
-            jSpinner1.setValue(getLives());
-            InputStream imgStream = getClass().getResourceAsStream("exit_32.png");
-            BufferedImage myImg = ImageIO.read(imgStream);
-            exitLabel.setIcon(new javax.swing.ImageIcon(myImg));
-            setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(SettingsGame.class.getName()).log(Level.SEVERE, null, ex);
+        initComponents(); 
+        this.start = start;
+        setLocationRelativeTo(null);
+        DefaultTableModel model= new DefaultTableModel();
+        jTable1.setModel(model);
+        Object[] row = new Object[3];
+        Object[] column = {"Names","Points","Lives"};
+        model.setColumnIdentifiers(column);       
+        list = scores.charge();
+        for(PointsSerialize p : list){
+            row[0] = p.getName();
+            row[1]= p.getPoints();
+            row[2]= p.getLives();           
+            model.addRow(row);
         }
+        if (music == true)
+            musicCheckBox.setSelected(true);
+        else
+            musicCheckBox.setSelected(false);
+        jSpinner1.setValue(getLives());
+        exitLabel.setIcon(new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
+        setVisible(true);
     }
 
     /**

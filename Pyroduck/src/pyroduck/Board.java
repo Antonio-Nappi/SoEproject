@@ -131,10 +131,10 @@ public class Board extends Observable implements Observer {
             try {
                 int combination = new Random(System.currentTimeMillis()).nextInt(2) + 1;
                 String path;
-                if (numlevel == 0)
-                    path = "Demo.txt";
+                 if (numlevel == 0)
+                    path = "/resources"+File.separator+"levels"+File.separator+"Demo.txt";
                 else
-                    path = "Level" + numlevel + " " + combination + ".txt";
+                    path = "/resources"+File.separator+"levels"+File.separator+"nextlevel"+File.separator+"Level" + 1 + "_" + 1 + ".txt";
                 InputStream is = getClass().getResourceAsStream(path);
                 BufferedReader in;
                 String data;
@@ -148,7 +148,8 @@ public class Board extends Observable implements Observer {
                     level = new GrassFileLevel(in, l);
                 else
                     level = new IceFileLevel(in, l);
-                in.close();
+                in.close(); 
+                System.out.println(level.toString());
                 entities = level.createEntities();
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "Level's file .txt not found", "alert", JOptionPane.ERROR_MESSAGE);

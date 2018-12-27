@@ -20,10 +20,11 @@ public class  AudioPlayer {
    
     private AudioPlayer(String filepath) throws UnsupportedAudioFileException, LineUnavailableException, IOException { 
         this.filepath = filepath;
-        audioInputStream =  AudioSystem.getAudioInputStream(getClass().getResource(filepath)); 
+        audioInputStream =  AudioSystem.getAudioInputStream(getClass().getResource("../../resources/audio/"+filepath));  
+       
         clip = AudioSystem.getClip();
-        clip.open((AudioInputStream) audioInputStream); 
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        clip.open(audioInputStream); 
+        clip.loop(Clip.LOOP_CONTINUOUSLY); 
     } 
     
     public static AudioPlayer setAudioPlayer(String filepath){ 
@@ -75,7 +76,8 @@ public class  AudioPlayer {
       
     // Method to reset audio stream 
     private void resetAudioStream() throws UnsupportedAudioFileException, IOException, LineUnavailableException{ 
-        audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource(filepath)); 
+        audioInputStream = AudioSystem.getAudioInputStream( 
+        new File("./resources/audio/"+filepath).getAbsoluteFile()); 
         clip.open(audioInputStream); 
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
     } 

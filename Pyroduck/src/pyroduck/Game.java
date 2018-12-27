@@ -33,7 +33,7 @@ public class Game extends Canvas {
     private Keyboard input;
     private final Board board;
     private final Screen screen;
-    private static Game instance = new Game();
+    private static Game instance = null;
     private Timer timer;
     private static AudioPlayer audio;
     private static boolean musicon = SettingsGame.isMusic();
@@ -52,18 +52,21 @@ public class Game extends Canvas {
         board = Board.getInstance();
         board.changeLevel(1);
         board.setScreen(screen);
-        audio = null;
+        audio=null;
         musicon = SettingsGame.isMusic();
     }
 
     public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
         return instance;
     }
 
     public static void setGame() {
         instance = null;
 
-        instance = new Game();
+        instance = getInstance();
     }
 
     public void restartGame() {

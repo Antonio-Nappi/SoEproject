@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -30,15 +28,12 @@ import pyroduck.entities.tile.powerup.Powerup;
  */
 public class IceFileLevelTest {
     
-    String path1 = "Level2 1.txt";
-    InputStream is1 = getClass().getResourceAsStream(path1);
+    String path1 = "./resources/levels/nextlevel/Level3 1.txt";
     BufferedReader in1;
     FileLevel instance1;
-    String path2 = "Level4 1.txt";
-    InputStream is2 = getClass().getResourceAsStream(path2);
+    String path2 = "./resources/levels/nextlevel/Level4 1.txt";
     BufferedReader in2;
     FileLevel instance2;
-    InputStream is3 = getClass().getResourceAsStream(path2);
     BufferedReader in3;
     FileLevel instance3;
     
@@ -56,15 +51,15 @@ public class IceFileLevelTest {
     @Before
     public void setUp() {
         try {
-            in1 = new BufferedReader(new InputStreamReader(is1));
+            in1 = new BufferedReader(new FileReader(path1));
             in1.readLine();
-            instance1 = new IceFileLevel(in1, 2);
-            in2 = new BufferedReader(new InputStreamReader(is2));
+            instance1 = new IceFileLevel(in1, 1);
+            in2 = new BufferedReader(new FileReader(path2));
             in2.readLine();
-            instance2 = new IceFileLevel(in2, 4);
-            in3 = new BufferedReader(new InputStreamReader(is3));
+            instance2 = new IceFileLevel(in2, 2);
+            in3 = new BufferedReader(new FileReader(path2));
             in3.readLine();
-            instance3 = new IceFileLevel(in3, 4);
+            instance3 = new IceFileLevel(in3, 2);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GrassFileLevelTest.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -169,8 +164,8 @@ public class IceFileLevelTest {
     public void testGetLevel() throws FileNotFoundException{
         System.out.println("getLevel");
         int result = instance1.getLevel();
-        assertEquals(2, result);
+        assertEquals(1, result);
         result = instance2.getLevel();
-        assertEquals(4, result);
+        assertEquals(2, result);
     }
 }
