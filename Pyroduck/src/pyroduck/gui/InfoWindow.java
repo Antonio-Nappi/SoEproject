@@ -1,6 +1,12 @@
 package pyroduck.gui;
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -8,16 +14,22 @@ import java.awt.Point;
  */
 public class InfoWindow extends javax.swing.JFrame {
 
-    private final StartGame start;
+    private StartGame start = null;
     /**
      * Creates new form InfoWindow
      */
     public InfoWindow(StartGame start) {
-        initComponents();
-        this.start = start;
-        setLocationRelativeTo(null);        
-        exitLabel.setIcon (new javax.swing.ImageIcon(".\\resources\\textures\\SelectCharacter\\exit_32.png"));
-        setVisible(true);
+        try {
+            initComponents();
+            this.start = start;
+            setLocationRelativeTo(null);
+            InputStream imgStream = getClass().getResourceAsStream("exit_32.png");
+            BufferedImage myImg = ImageIO.read(imgStream);
+            exitLabel.setIcon (new javax.swing.ImageIcon(myImg));
+            setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(InfoWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
