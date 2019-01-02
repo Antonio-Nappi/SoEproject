@@ -1,6 +1,12 @@
 package pyroduck.gui;
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -13,19 +19,41 @@ public class PowerupWindow extends javax.swing.JFrame {
      * Creates new form PowerupWindow
      */
     public PowerupWindow(StartGame start) {
-        initComponents();
         this.start = start;
-        flameLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/flame.png")));
-        bombLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/textures/Powerup/bomb.png")));
-        inversionLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/inversion.png")));
-        speedLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/speed.png")));
-        lifeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/live.png")));
-        articunoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/articuno.png")));
-        brickLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/brick.png")));
-        slideLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/Powerup/slide.png")));
-        exitLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("./resources/textures/SelectCharacter/exit_32.png")));
-        setLocationRelativeTo(null);
-        setVisible(true);
+        try {
+            initComponents();       
+            InputStream imgStream = getClass().getResourceAsStream("flame.png");
+            BufferedImage myImg = ImageIO.read(imgStream);
+            flameLabel.setIcon(new javax.swing.ImageIcon(myImg));
+            imgStream = getClass().getResourceAsStream("bomb.png");
+            myImg = ImageIO.read(imgStream);
+            bombLabel.setIcon(new javax.swing.ImageIcon(myImg));
+            imgStream = getClass().getResourceAsStream("inversion.png");
+            myImg = ImageIO.read(imgStream);
+            inversionLabel.setIcon(new javax.swing.ImageIcon(myImg));
+            imgStream = getClass().getResourceAsStream("speed.png");
+            myImg = ImageIO.read(imgStream);
+            speedLabel.setIcon(new javax.swing.ImageIcon(myImg));
+            imgStream = getClass().getResourceAsStream("live.png");
+            myImg = ImageIO.read(imgStream);
+            lifeLabel.setIcon(new javax.swing.ImageIcon(myImg));
+            imgStream = getClass().getResourceAsStream("articuno.png");
+            myImg = ImageIO.read(imgStream);
+            articunoLabel.setIcon(new javax.swing.ImageIcon(myImg));
+            imgStream = getClass().getResourceAsStream("brick.png");
+            myImg = ImageIO.read(imgStream);
+            brickLabel.setIcon(new javax.swing.ImageIcon(myImg));
+            imgStream = getClass().getResourceAsStream("slide.png");
+            myImg = ImageIO.read(imgStream);
+            slideLabel.setIcon(new javax.swing.ImageIcon(myImg));
+            imgStream = getClass().getResourceAsStream("exit_32.png");
+            myImg = ImageIO.read(imgStream);
+            exitLabel.setIcon(new javax.swing.ImageIcon(myImg));
+            setLocationRelativeTo(null);
+            setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(PowerupWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

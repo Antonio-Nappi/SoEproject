@@ -1,7 +1,10 @@
 package pyroduck.gui;
 
 import java.awt.Point;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pyroduck.*;
@@ -182,18 +185,22 @@ public class EndGame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLabelMouseClicked
 
     private void restartButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restartButtonMouseClicked
-        setVisible(false);
-        Board.getInstance().resetPoints();
-   
-        dispose();
-
-        StartGame s = new StartGame();
-        s.setLocation(new Point(200, 50));
-        s.setSize(1130, 600);
-        s.setLocationRelativeTo(null);
-        s.setVisible(true); 
-        Board.setBoard();
-        Game.setGame();
+        try {
+            setVisible(false);
+            Board.getInstance().resetPoints();
+            
+            dispose();
+            
+            StartGame s = new StartGame();
+            s.setLocation(new Point(200, 50));
+            s.setSize(1130, 600);
+            s.setLocationRelativeTo(null);
+            s.setVisible(true);
+            Board.setBoard();
+            Game.setGame();
+        } catch (IOException ex) {
+            Logger.getLogger(EndGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_restartButtonMouseClicked
 
     private void quitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quitButtonMouseClicked
